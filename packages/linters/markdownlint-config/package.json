@@ -1,0 +1,25 @@
+{
+  "name": "@alanlu-dev/markdownlint-config",
+  "version": "0.0.0",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/markdownlint-config"
+  },
+  "license": "MIT",
+  "description": "Markdownlint configuration",
+  "main": "index.cjs",
+  "scripts": {
+    "lint:eslint": "eslint . --fix",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore . --write",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "devDependencies": {
+    "@github/markdownlint-github": "^0.6.0",
+    "markdownlint-cli2-formatter-pretty": "^0.0.5"
+  }
+}
