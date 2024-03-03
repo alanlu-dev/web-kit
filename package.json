@@ -22,14 +22,15 @@
     "prepare": "husky",
     "modules:clean": "npx rimraf --glob ./**/node_modules && rm -rf pnpm-lock.yaml",
     "pnpm:clean": "pnpm store prune",
+    "build": "turbo run build",
     "check": "turbo run test lint --parallel",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
     "commit": "czg",
     "changeset": "changeset",
-    "changeset:version": "changeset version",
-    "changeset:release": "changeset publish"
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config": "workspace:*",
