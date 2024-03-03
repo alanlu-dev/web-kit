@@ -1,3 +1,1 @@
-const config = require('@alanlu-dev/eslint-config')
-
-module.exports = config
+module.exports = require('@alanlu-dev/eslint-config')

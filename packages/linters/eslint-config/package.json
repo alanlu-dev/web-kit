@@ -1,17 +1,17 @@
 {
   "name": "@alanlu-dev/eslint-config",
   "version": "0.0.0",
+  "description": "ESLint configuration",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
-  "bugs": {
-    "url": "https://github.com/alanlu-dev/web-kit/issues"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/alanlu-dev/web-kit.git",
     "directory": "packages/linters/eslint-config"
   },
-  "license": "MIT",
-  "description": "ESLint configuration",
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
   "main": "index.cjs",
   "scripts": {
     "lint:eslint": "eslint . --fix",
