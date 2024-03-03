@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Build files
+.output
+.nuxt
+.nitro
+.cache
+.virtual
+.turbo
+dist
+
+# Logs
+logs
+.log
+
+# Miscellaneous
+.DS_Store
+.fleet
+.idea
+
+# Local environment files
+.env
+.env.*
+!.env.example

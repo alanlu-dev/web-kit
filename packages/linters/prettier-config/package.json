@@ -1,0 +1,25 @@
+{
+  "name": "@alanlu-dev/prettier-config",
+  "version": "0.0.0",
+  "description": "Prettier configuration",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/prettier-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "main": "index.cjs",
+  "scripts": {
+    "lint:eslint": "eslint . --fix",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore . --write",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "devDependencies": {
+    "prettier-plugin-brace-style": "^0.6.0",
+    "prettier-plugin-merge": "^0.6.0"
+  }
+}

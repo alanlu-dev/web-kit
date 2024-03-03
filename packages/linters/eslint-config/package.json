@@ -1,0 +1,28 @@
+{
+  "name": "@alanlu-dev/eslint-config",
+  "version": "0.0.0",
+  "description": "ESLint configuration",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "main": "index.cjs",
+  "scripts": {
+    "lint:eslint": "eslint . --fix",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore . --write",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.7.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-markdown": "^3.0.1",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-prettier": "^5.1.3"
+  }
+}
