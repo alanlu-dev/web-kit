@@ -1,17 +1,17 @@
 {
   "name": "@alanlu-dev/web-kit",
   "private": true,
+  "packageManager": "pnpm@8.15.4",
+  "description": "A monorepo starter template",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
-  "bugs": {
-    "url": "https://github.com/alanlu-dev/web-kit/issues"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/alanlu-dev/web-kit.git"
   },
-  "license": "MIT",
-  "description": "A monorepo starter template",
-  "packageManager": "pnpm@8.15.4",
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
   "engines": {
     "node": ">=20.11.0",
     "pnpm": ">=8.15.4",

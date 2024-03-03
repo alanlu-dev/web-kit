@@ -2,29 +2,12 @@ const antfu = require('@antfu/eslint-config').default
 const { FlatCompat } = require('@eslint/eslintrc')
 
 const compat = new FlatCompat()
+
+// Check out the configs and factory for more details.
+// configs: https://github.com/antfu/eslint-config/tree/main/src/configs
+// factory: https://github.com/antfu/eslint-config/blob/main/src/factory.ts
+
 module.exports = antfu(
-  {
-    // Enable stylistic formatting rules
-    // stylistic: true,
-
-    // TypeScript and Vue are auto-detected, you can also explicitly enable them:
-    typescript: true,
-    // typescript: {
-    //   tsconfigPath: "tsconfig.json",
-    // },
-    vue: true,
-
-    // To enable React support, you need to explicitly turn it on:
-    // react: true,
-
-    // Disable jsonc and yaml support
-    jsonc: false,
-    yaml: false,
-
-    // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
-    ignores: ['**/node_modules', '**/.output', '**/.nuxt', '**/.nitro', '**/.cache', '**/cache', '**/.virtual', '**/.turbo', '**/dist'],
-  },
-
   // Legacy config
   ...compat.config({
     extends: ['plugin:prettier/recommended'],
