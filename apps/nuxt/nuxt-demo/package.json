@@ -2,6 +2,16 @@
   "name": "@alanlu-dev/nuxt-demo",
   "type": "module",
   "private": true,
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "apps/nuxt/nuxt-demo"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
