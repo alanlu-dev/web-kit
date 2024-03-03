@@ -26,12 +26,17 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
-    "commit": "czg"
+    "commit": "czg",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:release": "changeset publish"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config": "workspace:*",
     "@alanlu-dev/markdownlint-config": "workspace:*",
     "@alanlu-dev/prettier-config": "workspace:*",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
     "czg": "^1.9.0",
