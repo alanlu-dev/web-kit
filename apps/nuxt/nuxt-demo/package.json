@@ -1,0 +1,30 @@
+{
+  "name": "@alanlu-dev/nuxt-demo",
+  "type": "module",
+  "private": true,
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "apps/nuxt/nuxt-demo"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore . --write",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "dependencies": {
+    "nuxt": "^3.10.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  }
+}

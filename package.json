@@ -1,0 +1,51 @@
+{
+  "name": "@alanlu-dev/web-kit",
+  "private": true,
+  "packageManager": "pnpm@8.15.4",
+  "description": "A monorepo starter template",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": ">=8.15.4",
+    "npm": "use pnpm please!",
+    "yarn": "use pnpm please!"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "modules:clean": "npx rimraf --glob ./**/node_modules && rm -rf pnpm-lock.yaml",
+    "pnpm:clean": "pnpm store prune",
+    "build": "turbo run build",
+    "check": "turbo run test lint --parallel",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
+    "commit": "czg",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config": "workspace:*",
+    "@alanlu-dev/markdownlint-config": "workspace:*",
+    "@alanlu-dev/prettier-config": "workspace:*",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "czg": "^1.9.0",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "markdownlint-cli2": "^0.12.1",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.4"
+  }
+}
