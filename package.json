@@ -22,8 +22,11 @@
     "prepare": "husky",
     "modules:clean": "npx rimraf --glob ./**/node_modules && rm -rf pnpm-lock.yaml",
     "pnpm:clean": "pnpm store prune",
-    "commit": "czg",
-    "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo"
+    "check": "turbo run test lint --parallel",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
+    "commit": "czg"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config": "workspace:*",
@@ -36,6 +39,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "markdownlint-cli2": "^0.12.1",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.4"
   }
 }
