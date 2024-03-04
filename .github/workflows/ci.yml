@@ -36,6 +36,9 @@ jobs:
       - name: TypeCheck
         run: pnpm run typecheck
 
+      - name: CSpell
+        uses: streetsidesoftware/cspell-action@v6
+
   test:
     timeout-minutes: 20
     runs-on: ${{ matrix.os }}
