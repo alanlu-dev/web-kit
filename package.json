@@ -1,5 +1,6 @@
 {
   "name": "@alanlu-dev/web-kit",
+  "type": "module",
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "description": "A monorepo starter template",
@@ -23,9 +24,10 @@
     "modules:clean": "npx rimraf --glob ./**/node_modules && rm -rf pnpm-lock.yaml",
     "pnpm:clean": "pnpm store prune",
     "build": "turbo run build",
-    "check": "turbo run test lint --parallel",
+    "check": "turbo run test lint typecheck --parallel",
     "test": "turbo run test",
     "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
     "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
     "commit": "czg",
     "changeset": "changeset",
