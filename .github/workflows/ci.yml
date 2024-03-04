@@ -5,120 +5,89 @@ on:
   - pull_request
 
 jobs:
-  build:
-    name: Build
+  lint:
+    timeout-minutes: 10
+    name: "Lint"
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
-          run_install: false
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          node-version: 20
+          cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install deps
+        run: pnpm install
 
-      - name: Build packages
+      - name: Build
         run: pnpm run build
 
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
+      - name: Lint
+        run: pnpm run lint
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Lint code
-        run: npx turbo lint
+      - name: TypeCheck
+        run: pnpm run typecheck
 
   test:
-    name: Test
-    runs-on: ubuntu-latest
-
+    timeout-minutes: 20
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: ['18.x', '20.x']
+        os: [ubuntu-latest]
+        node_version: [18, 20]
+        include:
+          # Active LTS + other OS
+          - os: macos-latest
+            node_version: 20
+          - os: windows-latest
+            node_version: 20
+      fail-fast: false
 
+    name: "Build & Test: node-${{ matrix.node_version }}, ${{ matrix.os }}"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          # Assume PRs are less than 50 commits
+          fetch-depth: 50
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v42.0.5
+        with:
+          files: |
+            docs/**
+            .github/**
+            !.github/workflows/ci.yml
+            **.md
 
       - name: Install pnpm
+        if: steps.changed-files.outputs.only_changed != 'true'
         uses: pnpm/action-setup@v3
+
+      - name: Set node version to ${{ matrix.node_version }}
+        if: steps.changed-files.outputs.only_changed != 'true'
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: false
+          node-version: ${{ matrix.node_version }}
+          cache: "pnpm"
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: Install deps
+        if: steps.changed-files.outputs.only_changed != 'true'
+        run: pnpm install
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Build
+        if: steps.changed-files.outputs.only_changed != 'true'
+        run: pnpm run build
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run tests
-        run: npx turbo test
+      - name: Test unit
+        if: steps.changed-files.outputs.only_changed != 'true'
+        run: pnpm run test
