@@ -1,30 +1,44 @@
-name: release
+name: Release
+
 on:
   push:
     branches:
       - main
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 permissions: {}
 jobs:
   release:
+    name: Release
     permissions:
-      contents: write
-      issues: write
-      pull-requests: write
+      contents: write       # to create release (changesets/action)
+      issues: write         # to post issue comments (changesets/action)
+      pull-requests: write  # to create pull request (changesets/action)
     timeout-minutes: 20
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - uses: pnpm/action-setup@v2
+          node-version: 20.x
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
         with:
           version: 8
-      - name: install dependencies
+          run_install: false
+
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: build packages
+
+      - name: Build packages
         run: pnpm run build
+
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
