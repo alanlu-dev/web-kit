@@ -1,0 +1,5 @@
+# Custom Dictionary Words
+commitlint
+mastercss
+nuxt
+tsup
