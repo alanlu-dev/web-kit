@@ -71,11 +71,11 @@ const defaultCommitTypes = [
 ]
 
 export function isBreakingChange(commit: string) {
-  return commit.includes('BREAKING CHANGE:') || defaultCommitTypes.some((commitType) => commit.match(new RegExp(`^${commitType.type}(?:\(.*\))?!:`)))
+  return commit.includes('BREAKING CHANGE:') || defaultCommitTypes.some((commitType) => commit.match(new RegExp(`^${commitType.type}(?:(.*))?!:`)))
 }
 
 export function isConventionalCommit(commit: string) {
-  return defaultCommitTypes.some((commitType) => commit.match(new RegExp(`^${commitType.type}(?:\(.*\))?!?:`)))
+  return defaultCommitTypes.some((commitType) => commit.match(new RegExp(`^${commitType.type}(?:(.*))?!?:`)))
 }
 
 /* Attempts to associate non-conventional commits to the nearest conventional commit */
