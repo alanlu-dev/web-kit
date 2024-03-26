@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/nuxt-base",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shareable Nuxt configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",

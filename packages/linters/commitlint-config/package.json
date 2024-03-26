@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/commitlint-config",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shareable commitlint configuration for Conventional Commits.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
