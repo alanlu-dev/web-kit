@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/types",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shareable TypeScript types.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
