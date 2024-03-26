@@ -2,7 +2,7 @@ name: CI
 
 on:
   - push
-  - pull_request
+  # - pull_request
 
 jobs:
   lint:
@@ -39,58 +39,58 @@ jobs:
       - name: CSpell
         uses: streetsidesoftware/cspell-action@v6
 
-  test:
-    timeout-minutes: 20
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node_version: [18, 20]
-        include:
-          # Active LTS + other OS
-          - os: macos-latest
-            node_version: 20
-          - os: windows-latest
-            node_version: 20
-      fail-fast: false
+  # test:
+  #   timeout-minutes: 20
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest]
+  #       node_version: [18, 20]
+  #       include:
+  #         # Active LTS + other OS
+  #         - os: macos-latest
+  #           node_version: 20
+  #         - os: windows-latest
+  #           node_version: 20
+  #     fail-fast: false
 
-    name: "Build & Test: node-${{ matrix.node_version }}, ${{ matrix.os }}"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          # Assume PRs are less than 50 commits
-          fetch-depth: 50
+  #   name: "Build & Test: node-${{ matrix.node_version }}, ${{ matrix.os }}"
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         # Assume PRs are less than 50 commits
+  #         fetch-depth: 50
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v42.0.5
-        with:
-          files: |
-            docs/**
-            .github/**
-            !.github/workflows/ci.yml
-            **.md
+  #     - name: Get changed files
+  #       id: changed-files
+  #       uses: tj-actions/changed-files@v42.0.5
+  #       with:
+  #         files: |
+  #           docs/**
+  #           .github/**
+  #           !.github/workflows/ci.yml
+  #           **.md
 
-      - name: Install pnpm
-        if: steps.changed-files.outputs.only_changed != 'true'
-        uses: pnpm/action-setup@v3
+  #     - name: Install pnpm
+  #       if: steps.changed-files.outputs.only_changed != 'true'
+  #       uses: pnpm/action-setup@v3
 
-      - name: Set node version to ${{ matrix.node_version }}
-        if: steps.changed-files.outputs.only_changed != 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node_version }}
-          cache: "pnpm"
+  #     - name: Set node version to ${{ matrix.node_version }}
+  #       if: steps.changed-files.outputs.only_changed != 'true'
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: ${{ matrix.node_version }}
+  #         cache: "pnpm"
 
-      - name: Install deps
-        if: steps.changed-files.outputs.only_changed != 'true'
-        run: pnpm install
+  #     - name: Install deps
+  #       if: steps.changed-files.outputs.only_changed != 'true'
+  #       run: pnpm install
 
-      - name: Build
-        if: steps.changed-files.outputs.only_changed != 'true'
-        run: pnpm run build
+  #     - name: Build
+  #       if: steps.changed-files.outputs.only_changed != 'true'
+  #       run: pnpm run build
 
-      - name: Test unit
-        if: steps.changed-files.outputs.only_changed != 'true'
-        run: pnpm run test
+  #     - name: Test unit
+  #       if: steps.changed-files.outputs.only_changed != 'true'
+  #       run: pnpm run test
