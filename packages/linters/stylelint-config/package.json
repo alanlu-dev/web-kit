@@ -1,0 +1,51 @@
+{
+  "name": "@alanlu-dev/stylelint-config",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable stylelint configuration.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/stylelint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": "./src/index.cjs"
+  },
+  "main": "src/index.cjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.38",
+    "postcss-html": "^1.6.0",
+    "postcss-preset-env": "^9.5.2",
+    "postcss-scss": "^4.0.9",
+    "sass": "^1.72.0",
+    "stylelint": "^16.3.1",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-scss": "^13.0.0"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "postcss": "^8.4.38",
+    "postcss-html": "^1.6.0",
+    "postcss-preset-env": "^9.5.2",
+    "postcss-scss": "^4.0.9",
+    "sass": "^1.72.0",
+    "stylelint": "^16.3.1",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard-scss": "^13.0.0"
+  }
+}

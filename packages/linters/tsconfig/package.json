@@ -1,0 +1,36 @@
+{
+  "name": "@alanlu-dev/tsconfig",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable TypeScript configuration.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "apps/linters/tsconfig"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    "./*": "./*"
+  },
+  "files": [
+    "base.json"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
+  }
+}

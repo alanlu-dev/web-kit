@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/markdownlint-config",
   "version": "0.0.1",
-  "description": "Markdownlint configuration",
+  "description": "Shareable markdownlint configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
@@ -12,14 +12,27 @@
   "bugs": {
     "url": "https://github.com/alanlu-dev/web-kit/issues"
   },
-  "main": "index.cjs",
+  "exports": {
+    ".": "./src/index.cjs"
+  },
+  "main": "src/index.cjs",
+  "files": [
+    "src"
+  ],
   "scripts": {
-    "lint:eslint": "eslint . --fix",
-    "lint:prettier": "prettier --ignore-path ../../../.prettierignore . --write",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
+  "peerDependencies": {
+    "@github/markdownlint-github": "^0.6.2",
+    "markdownlint-cli2": "^0.12.1",
+    "markdownlint-cli2-formatter-pretty": "^0.0.5"
+  },
   "devDependencies": {
-    "@github/markdownlint-github": "^0.6.0",
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "@github/markdownlint-github": "^0.6.2",
+    "markdownlint-cli2": "^0.12.1",
     "markdownlint-cli2-formatter-pretty": "^0.0.5"
   }
 }

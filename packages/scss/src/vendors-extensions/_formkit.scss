@@ -1,0 +1,10 @@
+// formkit floatingLabels
+[data-floating-label='true'] input:-webkit-autofill ~ .formkit-label {
+  bottom: 100%;
+  z-index: 2;
+  font-size: 0.7rem;
+  background-color: white;
+  transition-delay: 0s;
+  transition-duration: 0.25s;
+  transform: translateY(50%);
+}

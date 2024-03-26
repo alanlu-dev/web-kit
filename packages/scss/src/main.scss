@@ -1,0 +1,37 @@
+// Abstracts
+@import 'abstracts';
+
+// Vendors
+@import 'vendors/example-library';
+
+// Base
+@import 'base/base';
+@import 'base/reset';
+@import 'base/typography';
+
+// Components (alphabetical order)
+@import 'components/buttons';
+@import 'components/dropdown';
+@import 'components/loaders';
+@import 'components/modals';
+
+// Layout (alphabetical order)
+@import 'layout/footer';
+@import 'layout/forms';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/menu';
+@import 'layout/tables';
+
+// Vendors Extensions (alphabetical order)
+@import 'vendors-extensions/example-library';
+@import 'vendors-extensions/formkit';
+
+// Pages (alphabetical order)
+@import 'pages/contact';
+@import 'pages/home';
+@import 'pages/user-profile';
+
+// Themes (alphabetical order)
+@import 'themes/admin';
+@import 'themes/authenticated';

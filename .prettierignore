@@ -9,6 +9,10 @@
 **/.virtual
 **/.turbo
 **/dist
+**/build
+**/tsx-0
+**/node-jiti
+**/coverage
 
 # Logs
 **/logs

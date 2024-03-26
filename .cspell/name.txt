@@ -1,6 +1,0 @@
-# Custom Dictionary Words
-alanlu
-antfu
-dbaeumer
-esbenp
-Anson

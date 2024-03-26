@@ -1,0 +1,11 @@
+// SCSS Mixins
+@import 'mixins/precise-control-responsive-typography';
+
+// Fonts
+@mixin font-style($size, $color, $weight: 400, $style: normal, $align: left) {
+  font-size: $size;
+  font-style: $style;
+  font-weight: $weight;
+  color: $color;
+  text-align: $align;
+}
