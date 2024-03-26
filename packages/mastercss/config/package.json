@@ -1,0 +1,51 @@
+{
+  "name": "@alanlu-dev/mastercss-config",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable Master CSS configuration.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/mastercss/config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./vendors/*": {
+      "import": "./dist/vendors/*.mjs",
+      "require": "./dist/vendors/*.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "postinstall": "pnpm run build",
+    "build:clean": "npx rimraf --glob ./dist",
+    "build": "tsx scripts/build.mjs",
+    "dev": "tsx --watch scripts/build.mjs",
+    "runner:test": "node scripts/runner.mjs",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "@master/css": "2.0.0-rc.26"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "@alanlu-dev/mastercss-helpers": "workspace:*",
+    "@master/css": "2.0.0-rc.26",
+    "@master/css-validator": "2.0.0-rc.26",
+    "ts-deepmerge": "^7.0.0"
+  }
+}

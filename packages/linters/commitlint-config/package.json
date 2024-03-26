@@ -1,0 +1,40 @@
+{
+  "name": "@alanlu-dev/commitlint-config",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable commitlint configuration for Conventional Commits.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/commitlint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": "./src/index.cjs",
+    "./helpers": "./src/helpers/index.cjs"
+  },
+  "main": "src/index.cjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "czg": "^1.9.0"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "czg": "^1.9.0"
+  }
+}

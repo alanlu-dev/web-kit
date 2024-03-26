@@ -1,0 +1,35 @@
+{
+  "name": "@alanlu-dev/scss",
+  "type": "commonjs",
+  "version": "0.0.0",
+  "description": "Shareable SCSS configuration.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/scss"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "main": "dist/main.css",
+  "module": "src/main.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build:clean": "npx rimraf --glob ./dist",
+    "build": "sass --no-source-map --style=compressed src:dist",
+    "dev": "sass --watch --update --style=expanded src:dist",
+    "lint": "stylelint --allow-empty-input --fix ./src/**/*.scss"
+  },
+  "peerDependencies": {
+    "sass": "^1.72.0"
+  },
+  "devDependencies": {
+    "@alanlu-dev/stylelint-config": "workspace:*",
+    "sass": "^1.72.0"
+  }
+}

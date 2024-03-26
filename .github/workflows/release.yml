@@ -42,10 +42,10 @@ jobs:
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
-          version: pnpm run version
-          publish: pnpm run release
-          commit: "chore: new release"
-          title: "chore: new release candidate"
+          version: pnpm run update:version
+          publish: pnpm run publish
+          commit: "chore(release): version update"
+          title: "chore(release): version update"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
