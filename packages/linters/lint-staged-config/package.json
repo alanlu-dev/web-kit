@@ -1,0 +1,43 @@
+{
+  "name": "@alanlu-dev/lint-staged-config",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable lint-staged configuration.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/linters/lint-staged-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": "./src/index.cjs"
+  },
+  "main": "src/index.cjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "eslint": "^8.57.0",
+    "lint-staged": "^15.2.2",
+    "markdownlint-cli2": "^0.12.1",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.3.1"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "workspace:*",
+    "eslint": "^8.57.0",
+    "lint-staged": "^15.2.2",
+    "markdownlint-cli2": "^0.12.1",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.3.1"
+  }
+}

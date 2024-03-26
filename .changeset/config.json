@@ -7,8 +7,8 @@
     }
   ],
   "commit": false,
-  "fixed": [["@alanlu-dev/*-config"]],
-  "linked": [],
+  "fixed": [],
+  "linked": [["@alanlu-dev/mastercss-*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

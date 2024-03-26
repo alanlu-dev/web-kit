@@ -9,10 +9,13 @@ node_modules
 .virtual
 .turbo
 dist
+build
+tsx-0
+node-jiti
 
 # Logs
 logs
-.log
+*.log
 
 # Miscellaneous
 .DS_Store

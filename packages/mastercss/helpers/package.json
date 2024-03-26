@@ -1,0 +1,38 @@
+{
+  "name": "@alanlu-dev/mastercss-helpers",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A collection of utility functions for Master CSS.",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlu-dev/web-kit.git",
+    "directory": "packages/mastercss/helpers"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "postinstall": "pnpm run build",
+    "build:clean": "npx rimraf --glob ./dist",
+    "build": "unbuild --minify",
+    "dev": "unbuild --stub",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
+  }
+}
