@@ -5,6 +5,7 @@
       "cache": false
     },
     "pkg:prepare": {
+      "dependsOn": ["^pkg:prepare"],
       "cache": false
     },
     "dev": {
