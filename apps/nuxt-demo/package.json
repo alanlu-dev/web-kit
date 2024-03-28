@@ -43,8 +43,8 @@
   },
   "devDependencies": {
     "@alanlu-dev/nuxt-base": "workspace:*",
-    "@formkit/core": "^1.6.0",
-    "@formkit/vue": "^1.6.0",
+    "@formkit/core": "^1.6.1",
+    "@formkit/vue": "^1.6.1",
     "@gtm-support/vue-gtm": "^2.2.0",
     "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@nuxt/test-utils": "^3.12.0",
