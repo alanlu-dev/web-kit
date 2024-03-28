@@ -21,7 +21,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky && pnpm apps:prepare && pnpm packages:prepare",
+    "prepare": "husky && pnpm packages:prepare && pnpm apps:prepare",
     "packages:prepare": "turbo run pkg:prepare",
     "apps:prepare": "turbo run app:prepare",
     "apps:cleanup": "turbo run cleanup",
