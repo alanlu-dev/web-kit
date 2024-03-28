@@ -1,5 +1,11 @@
 # @alanlu-dev/changeset
 
+## 1.0.1
+
+### Patch Changes
+
+- [`f915a73`](https://github.com/alanlu-dev/web-kit/commit/f915a73f32c6f97e19764c62759fd54babda1e9a) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix: remove postinstall script
+
 ## 1.0.0
 
 ### Major Changes
