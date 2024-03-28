@@ -29,7 +29,7 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "pnpm run build",
+    "pkg:prepare": "pnpm run build",
     "build:clean": "npx rimraf --glob ./dist",
     "build": "tsx scripts/build.mjs",
     "dev": "tsx --watch scripts/build.mjs",

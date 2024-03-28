@@ -28,7 +28,7 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "pnpm run build",
+    "pkg:prepare": "pnpm run build",
     "build:clean": "npx rimraf --glob ./dist",
     "build": "unbuild --minify",
     "dev": "unbuild --stub",

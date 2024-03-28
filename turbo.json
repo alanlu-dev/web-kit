@@ -4,6 +4,9 @@
     "app:prepare": {
       "cache": false
     },
+    "pkg:prepare": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true
