@@ -57,8 +57,8 @@ importers:
         specifier: ^16.4.5
         version: 16.4.5
       happy-dom:
-        specifier: ^14.3.8
-        version: 14.3.8
+        specifier: ^14.3.9
+        version: 14.3.9
       husky:
         specifier: ^9.0.11
         version: 9.0.11
@@ -82,7 +82,7 @@ importers:
         version: 5.2.6(@types/node@20.11.30)
       vitest:
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.8)
+        version: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.9)
 
   apps/nuxt-base:
     dependencies:
@@ -133,32 +133,32 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8(@element-plus/icons-vue@2.3.1)(element-plus@2.6.2)(rollup@4.13.0)
       '@formkit/addons':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/core':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/i18n':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/icons':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/inputs':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/nuxt':
-        specifier: ^1.6.0
-        version: 1.6.0(esbuild@0.19.12)(rollup@4.13.0)(tailwindcss@3.4.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
+        specifier: ^1.6.1
+        version: 1.6.1(esbuild@0.19.12)(rollup@4.13.0)(tailwindcss@3.4.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
       '@formkit/themes':
-        specifier: ^1.6.0
-        version: 1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)
+        specifier: ^1.6.1
+        version: 1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)
       '@formkit/vue':
-        specifier: ^1.6.0
-        version: 1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
+        specifier: ^1.6.1
+        version: 1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
       '@formkit/zod':
-        specifier: ^1.6.0
-        version: 1.6.0(zod@3.22.4)
+        specifier: ^1.6.1
+        version: 1.6.1(zod@3.22.4)
       '@master/css.nuxt':
         specifier: 2.0.0-rc.26
         version: 2.0.0-rc.26(rollup@4.13.0)(vue@3.4.21)
@@ -166,8 +166,8 @@ importers:
         specifier: ^2.12.1
         version: 2.12.1(nuxt@3.11.1)(rollup@4.13.0)(vue@3.4.21)
       '@nuxt/devtools':
-        specifier: ^1.1.4
-        version: 1.1.4(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
+        specifier: ^1.1.5
+        version: 1.1.5(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
       '@nuxt/image':
         specifier: ^1.4.0
         version: 1.4.0(rollup@4.13.0)
@@ -266,11 +266,11 @@ importers:
         specifier: workspace:*
         version: link:../nuxt-base
       '@formkit/core':
-        specifier: ^1.6.0
-        version: 1.6.0
+        specifier: ^1.6.1
+        version: 1.6.1
       '@formkit/vue':
-        specifier: ^1.6.0
-        version: 1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
+        specifier: ^1.6.1
+        version: 1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
       '@gtm-support/vue-gtm':
         specifier: ^2.2.0
         version: 2.2.0(vue@3.4.21)
@@ -279,7 +279,7 @@ importers:
         version: 4.0.0(rollup@4.13.0)
       '@nuxt/test-utils':
         specifier: ^3.12.0
-        version: 3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.8)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
+        version: 3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.9)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
       '@nuxtjs/i18n':
         specifier: ^8.2.0
         version: 8.2.0(rollup@4.13.0)(vue@3.4.21)
@@ -2827,62 +2827,61 @@ packages:
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
 
-  /@formkit/addons@1.6.0:
-    resolution: {integrity: sha512-Y1IxQfAPZLpWBrVpvld2ywL1NjSrRLBFj1ZpNbArQXtYGy9jthIFqJX3khAV8caauud4Vp4+U3xXftT7xnBYLA==}
+  /@formkit/addons@1.6.1:
+    resolution: {integrity: sha512-MdWJhMso3CKG1wQds3iVgWmGx2GCFsvGuHZwBuNPCMCCv6HKeh3fqa0CVSDaODByn8XrcEJcF6cK9KheGpfXSw==}
     dependencies:
       '@formkit/auto-animate': 0.8.1
-      '@formkit/core': 1.6.0
-      '@formkit/inputs': 1.6.0
-      '@formkit/utils': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/inputs': 1.6.1
+      '@formkit/utils': 1.6.1
     dev: true
 
   /@formkit/auto-animate@0.8.1:
     resolution: {integrity: sha512-0/Z2cuNXWVVIG/l0SpcHAWFhGdvLJ8DRvEfRWvmojtmRWfEy+LWNwgDazbZqY0qQYtkHcoEK3jBLkhiZaB/4Ig==}
     dev: true
 
-  /@formkit/core@1.6.0:
-    resolution: {integrity: sha512-YsbVLJlY+4wbBCa4Ine3BHdX4Y0LOxbrOy0GWGnPv00iLFOFs3EwK0pV6vuQr/j8KB1Q8UsfdJ0f2fGk0ufLdQ==}
+  /@formkit/core@1.6.1:
+    resolution: {integrity: sha512-9QV6Si+YlZ059RvB1NaJiRu9vcTVEMpJ5bIi6Aqt5AyIIQDk1m/u1N0mdugolrhv3FShA5RVJ1Mj2m2zF0BmIw==}
     dependencies:
-      '@formkit/utils': 1.6.0
+      '@formkit/utils': 1.6.1
     dev: true
 
-  /@formkit/dev@1.6.0:
-    resolution: {integrity: sha512-dcwd6Cvgy/aewSDLbal9M0fgVxtoUypvqEqBbwSP9RmNEFuUF9l38Dh7mSUW/anNeoP+fN4fvISH9QiRtQHsXQ==}
+  /@formkit/dev@1.6.1:
+    resolution: {integrity: sha512-19AMxbmH+zRmnO3UQXjBuHA4R3HgUsPP6yR3Fx0Xc1BkGWOHfULW7ItINbe1WLgs4rNkdu85FfkZBb7XzLnTTg==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/utils': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/utils': 1.6.1
     dev: true
 
-  /@formkit/i18n@1.6.0:
-    resolution: {integrity: sha512-cGleIT9ztmeKc9M2dryvioPQtzwhUbmEUQOlhEWcxteYQ1q4NMJj/lFrFKxVP5LWqpZQSDE+dclo43qviWqHow==}
+  /@formkit/i18n@1.6.1:
+    resolution: {integrity: sha512-gy/NxXrIUkZv0GzxO1CoSqH7p3yMwpnXR9WqIp5jn0PstyBu0A5FHRgjG2qCnaEUcJSOsfofwdnvGC/vgcoeFA==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/utils': 1.6.0
-      '@formkit/validation': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/utils': 1.6.1
+      '@formkit/validation': 1.6.1
     dev: true
 
-  /@formkit/icons@1.6.0:
-    resolution: {integrity: sha512-qENCxqW8kx64GEOwyZupHUaCh+G0PeMBCCvxcJqhQOiGAckAu54P825e54F3+zWc/AR4ps8ocKfc3snOkeLhug==}
+  /@formkit/icons@1.6.1:
+    resolution: {integrity: sha512-J02b4cBtrATLDiXoX0d2MSp4CxPjRXBcYsFbC0BpG593e2fo5LQ76suVlF9X6ILSUtwbCzybZRwnOcLYSsdiAw==}
     dependencies:
-      '@formkit/core': 1.6.0
+      '@formkit/core': 1.6.1
     dev: true
 
-  /@formkit/inputs@1.6.0:
-    resolution: {integrity: sha512-Xo/TWcJOsSGYAGEpccsqtjZRmxdljoxfKceQojWekFtlhMZueowq8XULWnSVARzC+MZ+Qvugr206g5L0b3lETQ==}
+  /@formkit/inputs@1.6.1:
+    resolution: {integrity: sha512-XyVv3ujIUVyg9+HnxpmHLOlHHVYibBTK48uT1GP4+FIDRCc31Ow0RXqq432Q7mvz+J6pB8wQXxuaEtV6/k8pvQ==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/utils': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/utils': 1.6.1
     dev: true
 
-  /@formkit/nuxt@1.6.0(esbuild@0.19.12)(rollup@4.13.0)(tailwindcss@3.4.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21):
-    resolution: {integrity: sha512-JHZByAUZGbrnLt4q2KElc/7f99MBQwvEJPG/vtmJYN1J8/9J6fDyPFSVtP2ZIrq+4dv9LZPdaF8OkaKr5HV4Qg==}
+  /@formkit/nuxt@1.6.1(esbuild@0.19.12)(rollup@4.13.0)(tailwindcss@3.4.1)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21):
+    resolution: {integrity: sha512-A3pC+OwSUTdfcXPCl53d5ADboIkT3+3SlfG4TVTWDjlLmOU1ID8EStkiDCYplh7Ekv93IT755NXTcghBZQmY4g==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/i18n': 1.6.0
-      '@formkit/vue': 1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
+      '@formkit/core': 1.6.1
+      '@formkit/i18n': 1.6.1
+      '@formkit/vue': 1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21)
       '@nuxt/kit': 3.11.1(rollup@4.13.0)
       chokidar: 3.6.0
-      nuxi: 3.11.1
       pathe: 1.1.2
       unplugin: 1.10.0
       unplugin-formkit: 0.2.13(esbuild@0.19.12)(rollup@4.13.0)(vite@5.2.6)
@@ -2898,23 +2897,23 @@ packages:
       - windicss
     dev: true
 
-  /@formkit/observer@1.6.0:
-    resolution: {integrity: sha512-kOXZsUttxDZ0n6nYLIBO1Nt7dJq+7xmTVcuQBY2xrSRHxQHVX4deE768Ud52+NkjihSETzh4TDAetDa3pZlNrg==}
+  /@formkit/observer@1.6.1:
+    resolution: {integrity: sha512-UcFLDpC9YPN8UmV5AMZwgo9tUB1VxGAGfNZhxAS91dqNGBUQPwz/WLw/Rkit/o0hX5chOWcOu7x/9kqClpq2Xw==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/utils': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/utils': 1.6.1
     dev: true
 
-  /@formkit/rules@1.6.0:
-    resolution: {integrity: sha512-D4CoYaBpNTA2R7qLz8h18/erpoib1AmNV5XVrqERbeHoMCOD4OezUpxDwqqsl8exyNSldDf6/csNmYCwXJ0jzA==}
+  /@formkit/rules@1.6.1:
+    resolution: {integrity: sha512-4mXu3+kzRMjCkAagrAGzD+20bx2l1hrVuXr9unVgJncLpzLJRk2rcrGopkslOrFNXqNAq9Adc3ChoqrDnFra/g==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/utils': 1.6.0
-      '@formkit/validation': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/utils': 1.6.1
+      '@formkit/validation': 1.6.1
     dev: true
 
-  /@formkit/themes@1.6.0(tailwindcss@3.4.1)(unocss@0.58.7):
-    resolution: {integrity: sha512-b4bkRNDjmZEngXDIgGt3JmeSahUoDf7w0UkLCo1RUezGNmKwWrwgt2QzqFDvsxVsG9/fN0EAsaAX/EMbIJyvJg==}
+  /@formkit/themes@1.6.1(tailwindcss@3.4.1)(unocss@0.58.7):
+    resolution: {integrity: sha512-O5t9TER1kpZbPWKt+EjmT1qFyKWXWGUxdv+EuzrRKhx2W4wEhInHxbttKCmRhxohKqvjLYoCJgntlmoMW9OxRQ==}
     peerDependencies:
       tailwindcss: ^3.2.0
       unocss: ^0.31.0
@@ -2927,37 +2926,37 @@ packages:
       windicss:
         optional: true
     dependencies:
-      '@formkit/core': 1.6.0
+      '@formkit/core': 1.6.1
       tailwindcss: 3.4.1
       unocss: 0.58.7(@unocss/webpack@0.58.7)(postcss@8.4.38)(rollup@4.13.0)(vite@5.2.6)
     dev: true
 
-  /@formkit/utils@1.6.0:
-    resolution: {integrity: sha512-g+3yxGKAOm2oPibWDc6381U0euU8TGcQZmOTa7i1i40vi+DZDZ53ATmFZ/oOvWjnz5icJ+IfV7Zdo0quMBtZbQ==}
+  /@formkit/utils@1.6.1:
+    resolution: {integrity: sha512-34KtuNgNoVe/kG4eJ52tUgJ/kT+PTrQGvtHg9n4zb5oTZW66J7wZR1IbRl/PV19yZr6gvpLBfyt9VYEgkEnZHg==}
     dev: true
 
-  /@formkit/validation@1.6.0:
-    resolution: {integrity: sha512-zPO16AVdzDMZ+aJ0nQydOXU3oMeZ7z0NAGtidBAF2tyRpLa6H4AMfx8CJd0nJyv6EEe1i1XQag1+QZf0VxvIOA==}
+  /@formkit/validation@1.6.1:
+    resolution: {integrity: sha512-tO+qG6myYHLU+mCZ6XCXzTOpDvvEIkpurtYiy8mAojOA6k42oKq5vnwno2plTzUDaUxfqdZW6qXXgEiSMCrtlw==}
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/observer': 1.6.0
-      '@formkit/utils': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/observer': 1.6.1
+      '@formkit/utils': 1.6.1
     dev: true
 
-  /@formkit/vue@1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21):
-    resolution: {integrity: sha512-3RicHg5kpOSmvDpVTamehqY2QtSZvcxxW5UR5p9AR6EtTuPzgkZl8zownTJcgeYp6GWjLzo7zwBIWgrM8GQU/A==}
+  /@formkit/vue@1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)(vue@3.4.21):
+    resolution: {integrity: sha512-DoC8Ar3uEnxz3cQC+3H4QPzTvGD+G26NTUCK3sqS3g7cvxtme4bd66Uy2Y8IEAs+HgoSTJ6VvFVvQSWFSioGmA==}
     peerDependencies:
       vue: ^3.4.0
     dependencies:
-      '@formkit/core': 1.6.0
-      '@formkit/dev': 1.6.0
-      '@formkit/i18n': 1.6.0
-      '@formkit/inputs': 1.6.0
-      '@formkit/observer': 1.6.0
-      '@formkit/rules': 1.6.0
-      '@formkit/themes': 1.6.0(tailwindcss@3.4.1)(unocss@0.58.7)
-      '@formkit/utils': 1.6.0
-      '@formkit/validation': 1.6.0
+      '@formkit/core': 1.6.1
+      '@formkit/dev': 1.6.1
+      '@formkit/i18n': 1.6.1
+      '@formkit/inputs': 1.6.1
+      '@formkit/observer': 1.6.1
+      '@formkit/rules': 1.6.1
+      '@formkit/themes': 1.6.1(tailwindcss@3.4.1)(unocss@0.58.7)
+      '@formkit/utils': 1.6.1
+      '@formkit/validation': 1.6.1
       vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - tailwindcss
@@ -2965,12 +2964,12 @@ packages:
       - windicss
     dev: true
 
-  /@formkit/zod@1.6.0(zod@3.22.4):
-    resolution: {integrity: sha512-2O+9s5FlTK3Xk9lSCH8huCr9FxEAvg4t1o+qWOJXtO0ZHAh/MAn+fRVny6bgN2Rwk9wo535vq9nr5XySEwsPHw==}
+  /@formkit/zod@1.6.1(zod@3.22.4):
+    resolution: {integrity: sha512-Xm98B5l/2I8CYM/5Oz4sLGsMcoldGVk6y/JkgcXoAvrdnZ0rhLnL6UBMJh0FRvZ1vG2c+cTWIuIX4BIdlCW7hA==}
     peerDependencies:
       zod: ^3.0.0
     dependencies:
-      '@formkit/core': 1.6.0
+      '@formkit/core': 1.6.1
       zod: 3.22.4
     dev: true
 
@@ -3741,6 +3740,22 @@ packages:
       - supports-color
     dev: true
 
+  /@nuxt/devtools-kit@1.1.5(nuxt@3.11.1)(rollup@4.13.0)(vite@5.2.6):
+    resolution: {integrity: sha512-Nb/NKFCRtxyqcPD6snB52rXtbRQMjGtn3ncpa8cLWsnoqnkd9emQ4uwV8IwCNxTnqUBtbGU79/TlJ79SKH9TAw==}
+    peerDependencies:
+      nuxt: ^3.9.0
+      vite: '*'
+    dependencies:
+      '@nuxt/kit': 3.11.1(rollup@4.13.0)
+      '@nuxt/schema': 3.11.1(rollup@4.13.0)
+      execa: 7.2.0
+      nuxt: 3.11.1(@types/node@20.11.30)(@unocss/reset@0.58.7)(floating-vue@5.2.2)(rollup@4.13.0)(typescript@5.4.3)(unocss@0.58.7)(vite@5.2.6)(vue-tsc@2.0.7)
+      vite: 5.2.6(@types/node@20.11.30)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /@nuxt/devtools-ui-kit@1.1.4(@nuxt/devtools@1.1.4)(@vue/compiler-core@3.4.21)(fuse.js@7.0.0)(nuxt@3.11.1)(postcss@8.4.38)(rollup@4.13.0)(vite@5.2.6)(vue@3.4.21)(webpack@5.91.0):
     resolution: {integrity: sha512-m8TYD1mn+B0zDhS8Qer+ewC7LXLVrwPMEBTaPcnREUm/8eImxVYeTk3ZJhPAyYDf0bQOhQlGvR8IaCEU3QxXhQ==}
     peerDependencies:
@@ -3808,6 +3823,22 @@ packages:
       semver: 7.6.0
     dev: true
 
+  /@nuxt/devtools-wizard@1.1.5:
+    resolution: {integrity: sha512-bWLgLvYFbYCQYlLPttZaUo58cS1VJo1uEFguHaCwZ7Fzkm4Iv+lFTv5BzD+gOHwohaXLr3YecgZOO4YNJTgXyA==}
+    hasBin: true
+    dependencies:
+      consola: 3.2.3
+      diff: 5.2.0
+      execa: 7.2.0
+      global-directory: 4.0.1
+      magicast: 0.3.3
+      pathe: 1.1.2
+      pkg-types: 1.0.3
+      prompts: 2.4.2
+      rc9: 2.1.1
+      semver: 7.6.0
+    dev: true
+
   /@nuxt/devtools@1.1.4(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21):
     resolution: {integrity: sha512-mJFSB7zbzT1oBP9yf82siI7xIvhZleVuVLiSOCCks8+DhJGgcRPLIDNRm23aFu6YWO0pEv19TiISExiLAkJp2g==}
     hasBin: true
@@ -3822,6 +3853,77 @@ packages:
       '@vue/devtools-applet': 7.0.23(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
       '@vue/devtools-core': 7.0.23(vite@5.2.6)(vue@3.4.21)
       '@vue/devtools-kit': 7.0.23(vue@3.4.21)
+      birpc: 0.2.17
+      consola: 3.2.3
+      cronstrue: 2.48.0
+      destr: 2.0.3
+      error-stack-parser-es: 0.1.1
+      execa: 7.2.0
+      fast-glob: 3.3.2
+      flatted: 3.3.1
+      get-port-please: 3.1.2
+      hookable: 5.5.3
+      image-meta: 0.2.0
+      is-installed-globally: 1.0.0
+      launch-editor: 2.6.1
+      local-pkg: 0.5.0
+      magicast: 0.3.3
+      nuxt: 3.11.1(@types/node@20.11.30)(@unocss/reset@0.58.7)(floating-vue@5.2.2)(rollup@4.13.0)(typescript@5.4.3)(unocss@0.58.7)(vite@5.2.6)(vue-tsc@2.0.7)
+      nypm: 0.3.8
+      ohash: 1.1.3
+      pacote: 17.0.6
+      pathe: 1.1.2
+      perfect-debounce: 1.0.0
+      pkg-types: 1.0.3
+      rc9: 2.1.1
+      scule: 1.3.0
+      semver: 7.6.0
+      simple-git: 3.23.0
+      sirv: 2.0.4
+      unimport: 3.7.1(rollup@4.13.0)
+      vite: 5.2.6(@types/node@20.11.30)
+      vite-plugin-inspect: 0.8.3(@nuxt/kit@3.11.1)(rollup@4.13.0)(vite@5.2.6)
+      vite-plugin-vue-inspector: 4.0.2(vite@5.2.6)
+      which: 3.0.1
+      ws: 8.16.0
+    transitivePeerDependencies:
+      - '@unocss/reset'
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - bluebird
+      - bufferutil
+      - change-case
+      - drauu
+      - floating-vue
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - qrcode
+      - rollup
+      - sortablejs
+      - supports-color
+      - universal-cookie
+      - unocss
+      - utf-8-validate
+      - vue
+    dev: true
+
+  /@nuxt/devtools@1.1.5(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21):
+    resolution: {integrity: sha512-aDEqz4L1GDj4DDnX7PL9ety3Wx0kLyKTb2JOSoJR8uX09fC3gonCvj/gYHLSSIKqhPasUjoOO5RPCtT+r9dtsA==}
+    hasBin: true
+    peerDependencies:
+      nuxt: ^3.9.0
+      vite: '*'
+    dependencies:
+      '@antfu/utils': 0.7.7
+      '@nuxt/devtools-kit': 1.1.5(nuxt@3.11.1)(rollup@4.13.0)(vite@5.2.6)
+      '@nuxt/devtools-wizard': 1.1.5
+      '@nuxt/kit': 3.11.1(rollup@4.13.0)
+      '@vue/devtools-applet': 7.0.25(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
+      '@vue/devtools-core': 7.0.25(vite@5.2.6)(vue@3.4.21)
+      '@vue/devtools-kit': 7.0.25(vue@3.4.21)
       birpc: 0.2.17
       consola: 3.2.3
       cronstrue: 2.48.0
@@ -3985,7 +4087,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/test-utils@3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.8)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21):
+  /@nuxt/test-utils@3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.9)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21):
     resolution: {integrity: sha512-Q3HP53TDIYeqHT65r31HZhK/gRwVBmchSdVj1tfiYECyqstckvsQ4Cyt/GX/XmD7cLdD3d5aHow8LaMfP+BSqQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -4038,7 +4140,7 @@ packages:
       fake-indexeddb: 5.0.2
       get-port-please: 3.1.2
       h3: 1.11.1
-      happy-dom: 14.3.8
+      happy-dom: 14.3.9
       local-pkg: 0.5.0
       magic-string: 0.30.8
       node-fetch-native: 1.6.4
@@ -4053,8 +4155,8 @@ packages:
       unenv: 1.9.0
       unplugin: 1.10.0
       vite: 5.2.6(@types/node@20.11.30)
-      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.8)
-      vitest-environment-nuxt: 1.0.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.8)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
+      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.9)
+      vitest-environment-nuxt: 1.0.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.9)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
       vue: 3.4.21(typescript@5.4.3)
       vue-router: 4.3.0(vue@3.4.21)
     transitivePeerDependencies:
@@ -6081,7 +6183,7 @@ packages:
       strip-literal: 2.0.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.2.0
-      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.8)
+      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.9)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6286,11 +6388,57 @@ packages:
       - vite
     dev: true
 
+  /@vue/devtools-applet@7.0.25(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21):
+    resolution: {integrity: sha512-9JwnjRO2tAHxFjA+cHSpQ/DKIqUKILvYaWJkOt1KqkedXPHzUWU1NfQAto+p6ycaKInA5A0VdXdmIl4N8YJCrw==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-core': 7.0.25(vite@5.2.6)(vue@3.4.21)
+      '@vue/devtools-kit': 7.0.25(vue@3.4.21)
+      '@vue/devtools-shared': 7.0.25
+      '@vue/devtools-ui': 7.0.25(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vue@3.4.21)
+      perfect-debounce: 1.0.0
+      splitpanes: 3.1.5
+      vue: 3.4.21(typescript@5.4.3)
+      vue-virtual-scroller: 2.0.0-beta.8(vue@3.4.21)
+    transitivePeerDependencies:
+      - '@unocss/reset'
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - floating-vue
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - qrcode
+      - sortablejs
+      - universal-cookie
+      - unocss
+      - vite
+    dev: true
+
   /@vue/devtools-core@7.0.23(vite@5.2.6)(vue@3.4.21):
     resolution: {integrity: sha512-zxgNc+MOavh3ZELZC33CcgmPMokrJZNF5eYF+FG6OwwpsRi2VnP3D3zCHes5TgXVDy4ItiS8Bz+SKjo93JhIvw==}
     dependencies:
       '@vue/devtools-kit': 7.0.23(vue@3.4.21)
       '@vue/devtools-shared': 7.0.23
+      mitt: 3.0.1
+      nanoid: 3.3.7
+      pathe: 1.1.2
+      vite-hot-client: 0.2.3(vite@5.2.6)
+    transitivePeerDependencies:
+      - vite
+      - vue
+    dev: true
+
+  /@vue/devtools-core@7.0.25(vite@5.2.6)(vue@3.4.21):
+    resolution: {integrity: sha512-aCsY4J6SvSBDuGdYADszByT0wy0GgpgdCApxcZzQEqYlyVchX7vqznJQrm7Y1GCLqAvoLaxsQqew7Cz+KQ3Idg==}
+    dependencies:
+      '@vue/devtools-kit': 7.0.25(vue@3.4.21)
+      '@vue/devtools-shared': 7.0.25
       mitt: 3.0.1
       nanoid: 3.3.7
       pathe: 1.1.2
@@ -6313,14 +6461,65 @@ packages:
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
+  /@vue/devtools-kit@7.0.25(vue@3.4.21):
+    resolution: {integrity: sha512-wbLkSnOTsKHPb1mB9koFHUoSAF8Dp6Ii/ocR2+DeXFY4oKqIjCeJb/4Lihk4rgqEhCy1WwxLfTgNDo83VvDYkQ==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-shared': 7.0.25
+      hookable: 5.5.3
+      mitt: 3.0.1
+      perfect-debounce: 1.0.0
+      speakingurl: 14.0.1
+      vue: 3.4.21(typescript@5.4.3)
+    dev: true
+
   /@vue/devtools-shared@7.0.23:
     resolution: {integrity: sha512-4tSTNlijofiDR6RB4DD2Zwb/Z4M9DL9F8JzVRpMrbtDtnUZ97CxxGkUPmAlUigfZjRJBTcGw+op5cMQyVVIxmg==}
     dependencies:
       rfdc: 1.3.1
     dev: true
 
+  /@vue/devtools-shared@7.0.25:
+    resolution: {integrity: sha512-5+XYhcHSXuJSguYnNwL6/e6VTmXwCfryWQOkffh9ZU2zMByybqqqBrMWqvBkqTmMFCjPdzulo66xXbVbwLaElQ==}
+    dependencies:
+      rfdc: 1.3.1
+    dev: true
+
   /@vue/devtools-ui@7.0.23(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vue@3.4.21):
     resolution: {integrity: sha512-+83KHg7V4jNC7GVTa8HE+218YWi4Ly6Fa9VLF9jQv/Ykl3Xy4vgB4PSiGq45Ol1iFFtmBQ1Z2MZ6+HULLhpWhw==}
+    peerDependencies:
+      '@unocss/reset': '>=0.50.0-0'
+      floating-vue: '>=2.0.0-0'
+      unocss: '>=0.50.0-0'
+      vue: '>=3.0.0-0'
+    dependencies:
+      '@unocss/reset': 0.58.7
+      '@vueuse/components': 10.9.0(vue@3.4.21)
+      '@vueuse/core': 10.9.0(vue@3.4.21)
+      '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(fuse.js@7.0.0)(vue@3.4.21)
+      colord: 2.9.3
+      floating-vue: 5.2.2(@nuxt/kit@3.11.1)(vue@3.4.21)
+      focus-trap: 7.5.4
+      unocss: 0.58.7(@unocss/webpack@0.58.7)(postcss@8.4.38)(rollup@4.13.0)(vite@5.2.6)
+      vue: 3.4.21(typescript@5.4.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - change-case
+      - drauu
+      - fuse.js
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - qrcode
+      - sortablejs
+      - universal-cookie
+    dev: true
+
+  /@vue/devtools-ui@7.0.25(@unocss/reset@0.58.7)(floating-vue@5.2.2)(unocss@0.58.7)(vue@3.4.21):
+    resolution: {integrity: sha512-OxcwecnKmKm/zIG/VSixRgSqzjRU9UFld26LIq8kunxvr4zswjHT2xHMb/iauBC2c9TNo8Uk5muUTFLmNbYwnA==}
     peerDependencies:
       '@unocss/reset': '>=0.50.0-0'
       floating-vue: '>=2.0.0-0'
@@ -9410,7 +9609,7 @@ packages:
     dependencies:
       '@typescript-eslint/utils': 7.4.0(eslint@8.57.0)(typescript@5.4.3)
       eslint: 8.57.0
-      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.8)
+      vitest: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.9)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -10357,8 +10556,8 @@ packages:
       - uWebSockets.js
     dev: true
 
-  /happy-dom@14.3.8:
-    resolution: {integrity: sha512-jP7p/VQJ08lbIoCsw1Adna3RA86eE+2CNkqvJRWIhrKP7XKZ0e0s2TJSt5lwGS4b7x0z0Ztw0A9P4uQGMHPiiA==}
+  /happy-dom@14.3.9:
+    resolution: {integrity: sha512-0kPQchwthekcYpYN8CvCiq+/z5bqFYDLbTxZ+yDLwT8AFRVJDFadShHRxp3VAZRy7a5isOZ1j/LzsU1dtAIZMQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       entities: 4.5.0
@@ -13563,7 +13762,7 @@ packages:
         optional: true
     dependencies:
       '@nuxt/devalue': 2.0.2
-      '@nuxt/devtools': 1.1.4(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
+      '@nuxt/devtools': 1.1.5(@unocss/reset@0.58.7)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.7)(vite@5.2.6)(vue@3.4.21)
       '@nuxt/kit': 3.11.1(rollup@4.13.0)
       '@nuxt/schema': 3.11.1(rollup@4.13.0)
       '@nuxt/telemetry': 2.5.3(rollup@4.13.0)
@@ -18034,10 +18233,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest-environment-nuxt@1.0.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.8)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21):
+  /vitest-environment-nuxt@1.0.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.9)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21):
     resolution: {integrity: sha512-AWMO9h4HdbaFdPWZw34gALFI8gbBiOpvfbyeZwHIPfh4kWg/TwElYHvYMQ61WPUlCGaS5LebfHkaI0WPyb//Iw==}
     dependencies:
-      '@nuxt/test-utils': 3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.8)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
+      '@nuxt/test-utils': 3.12.0(@testing-library/vue@8.0.3)(@vue/test-utils@2.4.5)(h3@1.11.1)(happy-dom@14.3.9)(playwright-core@1.42.1)(rollup@4.13.0)(vite@5.2.6)(vitest@1.4.0)(vue-router@4.3.0)(vue@3.4.21)
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'
@@ -18057,7 +18256,7 @@ packages:
       - vue-router
     dev: true
 
-  /vitest@1.4.0(@types/node@20.11.30)(happy-dom@14.3.8):
+  /vitest@1.4.0(@types/node@20.11.30)(happy-dom@14.3.9):
     resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -18092,7 +18291,7 @@ packages:
       chai: 4.4.1
       debug: 4.3.4
       execa: 8.0.1
-      happy-dom: 14.3.8
+      happy-dom: 14.3.9
       local-pkg: 0.5.0
       magic-string: 0.30.8
       pathe: 1.1.2
