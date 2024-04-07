@@ -19,15 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup SSH keys
-        uses: shimataro/ssh-key-action@v2.7.0
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: github.com
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -42,15 +33,6 @@ jobs:
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-
 
-      - name: Setup turbo cache
-        uses: actions/cache@v4.0.2
-        with:
-          path: '.turbo'
-          key: turbo-${{ github.ref_name }}-${{ github.sha }}
-          restore-keys: |
-            turbo-${{ github.ref_name }}-
-            turbo-main-
-
       - name: Install deps
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: pnpm install --prefer-offline --frozen-lockfile
@@ -58,7 +40,7 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Setup git
+      - name: Setup git user
         run: |
           git config user.name "$GIT_USER_NAME"
           git config user.email "$GIT_USER_EMAIL"
@@ -70,6 +52,12 @@ jobs:
         run: echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+      - name: Setup ssh key
+        uses: shimataro/ssh-key-action@v2.7.0
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: github.com
 
       - name: Run Release
         run: pnpm release
