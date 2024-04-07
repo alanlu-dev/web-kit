@@ -1,43 +1,41 @@
 #!/usr/bin/env node
 
-const fs = require('node:fs').promises
+const fs = require('node:fs')
 const path = require('node:path')
 const { glob } = require('glob')
 const yaml = require('js-yaml')
 
-async function main() {
+function main() {
   try {
-    const workspaceData = await fs.readFile(`${process.cwd()}/pnpm-workspace.yaml`, 'utf8')
+    const workspaceData = fs.readFileSync(`${process.cwd()}/pnpm-workspace.yaml`, 'utf8')
     const workspace = yaml.load(workspaceData)
     const packages = workspace.packages
 
     const packagePaths = []
 
     for (const pattern of packages) {
-      const jsfiles = await glob(`${pattern}/package.json`, { ignore: '**/node_modules/**' })
-      for (const file of jsfiles) {
+      const packageFiles = glob.sync(`${pattern}/package.json`, { ignore: '**/node_modules/**' })
+      for (const file of packageFiles) {
         const packagePath = path.dirname(file)
         packagePaths.push(packagePath)
       }
     }
 
-    const workspacePackages = await Promise.all(
-      packagePaths.map(async (packagePath) => {
-        const pkgData = await fs.readFile(path.join(packagePath, 'package.json'), 'utf8')
-        const pkg = JSON.parse(pkgData)
-        return {
-          name: pkg.name,
-          version: pkg.version,
-          dependencies: pkg.dependencies || {},
-          devDependencies: pkg.devDependencies || {},
-          folder: packagePath,
-        }
-      }),
-    )
+    const workspacePackages = packagePaths.map((packagePath) => {
+      const pkgData = fs.readFileSync(path.join(packagePath, 'package.json'), 'utf8')
+      const pkg = JSON.parse(pkgData)
+      return {
+        name: pkg.name,
+        version: pkg.version,
+        dependencies: pkg.dependencies || {},
+        devDependencies: pkg.devDependencies || {},
+        folder: packagePath,
+      }
+    })
 
-    console.log(workspacePackages)
+    // console.log(workspacePackages)
     const dependenciesMap = checkPackageDependencies(workspacePackages)
-    await writeDependenciesJson(workspacePackages, dependenciesMap)
+    writeDependenciesJson(workspacePackages, dependenciesMap)
   }
   catch (error) {
     console.error('Error occurred:', error)
@@ -53,7 +51,7 @@ function checkPackageDependencies(packages) {
     }
     const dependencies = { ...pkg.dependencies, ...pkg.devDependencies }
     for (const [dependencyName, dependencyVersion] of Object.entries(dependencies)) {
-      if (dependencyVersion === 'workspace:*') {
+      if (dependencyVersion.startsWith('workspace:')) {
         const workspacePackage = packages.find((p) => p.name === dependencyName)
         if (workspacePackage) {
           version[dependencyName] = workspacePackage.version
@@ -67,7 +65,7 @@ function checkPackageDependencies(packages) {
   return usedDependencies
 }
 
-async function writeDependenciesJson(workspacePackages, dependenciesMap) {
+function writeDependenciesJson(workspacePackages, dependenciesMap) {
   for (const [packageName, dependencies] of dependenciesMap.entries()) {
     const packageInfo = workspacePackages.find((p) => p.name === packageName)
     if (!packageInfo) {
@@ -78,7 +76,7 @@ async function writeDependenciesJson(workspacePackages, dependenciesMap) {
 
     try {
       const jsonContent = JSON.stringify(dependencies, null, 2)
-      await fs.writeFile(jsonFilePath, jsonContent)
+      fs.writeFileSync(jsonFilePath, jsonContent)
       console.log(`Dependencies JSON file for ${packageName} written successfully.`)
     }
     catch (error) {
@@ -88,9 +86,3 @@ async function writeDependenciesJson(workspacePackages, dependenciesMap) {
 }
 
 main()
-  .then(() => {
-    console.log('All operations completed successfully.')
-  })
-  .catch((error) => {
-    console.error('Error occurred:', error)
-  })
