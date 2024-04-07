@@ -19,7 +19,11 @@
     ".": "./src/index.cjs"
   },
   "main": "src/index.cjs",
+  "bin": {
+    "release-it-bump": "./bin/bump.cjs"
+  },
   "files": [
+    "bin",
     "src"
   ],
   "scripts": {

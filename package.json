@@ -57,6 +57,7 @@
     "@alanlu-dev/stylelint-config": "^1.0.0",
     "@alanlu-dev/tsconfig": "^1.0.0",
     "@alanlu-dev/types": "^1.0.0",
+    "@jiehousekeeper/release-it-config": "workspace:*",
     "@types/node": "^20.12.5",
     "@vitest/coverage-v8": "^1.4",
     "cspell": "^8.6.1",
