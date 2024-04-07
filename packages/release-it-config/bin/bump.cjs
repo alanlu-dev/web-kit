@@ -5,9 +5,26 @@ const path = require('node:path')
 const { glob } = require('glob')
 const yaml = require('js-yaml')
 
+function findWorkspaceRoot(startPath) {
+  let currentPath = startPath
+
+  while (currentPath !== '/') {
+    const workspaceFile = path.join(currentPath, 'pnpm-workspace.yaml')
+
+    if (fs.existsSync(workspaceFile)) {
+      return currentPath
+    }
+
+    currentPath = path.dirname(currentPath)
+  }
+
+  throw new Error('pnpm-workspace.yaml not found')
+}
+
 function main() {
   try {
-    const workspaceData = fs.readFileSync(`${process.cwd()}/pnpm-workspace.yaml`, 'utf8')
+    const workspaceRoot = findWorkspaceRoot(__dirname)
+    const workspaceData = fs.readFileSync(path.join(workspaceRoot, 'pnpm-workspace.yaml'), 'utf8')
     const workspace = yaml.load(workspaceData)
     const packages = workspace.packages
 
