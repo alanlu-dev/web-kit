@@ -22,6 +22,7 @@ module.exports = {
     },
   },
   git: {
+    requireBranch: 'main',
     push: true,
     tagName: `${packageName}@${version}`,
     pushRepo: 'git@github.com:jiehousekeeper/official-site.git',
