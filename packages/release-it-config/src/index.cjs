@@ -40,4 +40,7 @@ module.exports = {
     release: true,
     releaseName: `${packageName}@${version}`,
   },
+  hooks: {
+    'before:git:release': ['release-it-bump', 'git add --all'],
+  },
 }

@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^8.0.1",
+    "glob": "^10.3.12",
+    "js-yaml": "4.1.0",
     "release-it": "^17.1.1"
   }
 }

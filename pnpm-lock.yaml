@@ -99,6 +99,12 @@ importers:
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
         version: 8.0.1(release-it@17.1.1)
+      glob:
+        specifier: ^10.3.12
+        version: 10.3.12
+      js-yaml:
+        specifier: 4.1.0
+        version: 4.1.0
       release-it:
         specifier: ^17.1.1
         version: 17.1.1(typescript@5.4.4)
