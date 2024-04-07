@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.0...@jiehousekeeper/release-it-config@0.1.1) (2024-04-07)
+
+
+### 🐛 Bug Fixes
+
+* **release-it-config:** update hook ([8782f6e](https://github.com/jiehousekeeper/official-site/commit/8782f6e0ca73c3134d0a311501413a9c9b7312db))
+
 ## [0.1.0](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.0.4...@jiehousekeeper/release-it-config@0.1.0) (2024-04-07)
 
 
