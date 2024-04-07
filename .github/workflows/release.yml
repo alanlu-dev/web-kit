@@ -33,7 +33,7 @@ jobs:
           git config --global user.email "jiehousekeeper2@gmail.com"
           git config --global user.name "Release Workflow"
       - name: Initialise the NPM config
-        run: echo "//registry.npmjs.org/:_authToken=$MY_GITHUB_TOKEN > .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=$MY_GITHUB_TOKEN > .npmrc"
         env:
           MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
       - name: Run Release
