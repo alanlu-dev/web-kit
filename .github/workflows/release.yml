@@ -46,8 +46,8 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
-      - name: SHOW SSH KEY
-        run: cat /home/runner/.ssh/id_rsa.pub
+      - name: TEST PUSH
+        run: git push --follow-tags git@github.com:jiehousekeeper/official-site.git
 
       - name: Run Release
         run: pnpm release
