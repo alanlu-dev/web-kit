@@ -1,0 +1,36 @@
+{
+  "name": "@jiehousekeeper/release-it-config",
+  "type": "commonjs",
+  "version": "0.0.2",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jiehousekeeper/official-site.git",
+    "directory": "packages/release-it-config"
+  },
+  "bugs": {
+    "url": "https://github.com/jiehousekeeper/official-site/issues"
+  },
+  "publishConfig": {
+    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": "./src/index.cjs"
+  },
+  "main": "src/index.cjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "release": "release-it --ci"
+  },
+  "peerDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
+    "release-it": "^17.1.1"
+  },
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
+    "release-it": "^17.1.1"
+  }
+}

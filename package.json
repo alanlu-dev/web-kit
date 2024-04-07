@@ -8,10 +8,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alanlu-dev/monorepo.git"
+    "url": "https://github.com/jiehousekeeper/official-site.git"
   },
   "bugs": {
-    "url": "https://github.com/alanlu-dev/monorepo/issues"
+    "url": "https://github.com/jiehousekeeper/official-site/issues"
+  },
+  "publishConfig": {
+    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
   },
   "engines": {
     "node": ">=20.11.1",
@@ -38,16 +41,11 @@
     "coverage": "turbo run coverage",
     "lint:cspell": "pnpm cspell . --unique --no-progress --no-must-find-files",
     "lint:cspell:only-changed": "git diff --name-only | npx cspell --file-list stdin",
-    "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
-    "nuxt-demo:dev": "turbo run dev --filter=@alanlu-dev/nuxt-demo --filter=./packages/**",
+    "web": "pnpm --filter=@jiehousekeeper/web",
+    "web:dev": "turbo run dev --filter=@jiehousekeeper/web --filter=./packages/**",
     "taze": "npx taze",
-    "change": "changeset",
-    "change:commit": "pnpm auto-changeset",
-    "update:version": "changeset version",
-    "publish": "pnpm release:only",
-    "release:only": "changeset publish",
     "commit": "czg",
-    "commit:changeset": "czg :changeset"
+    "release": "turbo release --concurrency=1 --no-daemon"
   },
   "devDependencies": {
     "@alanlu-dev/commitlint-config": "^1.0.0",
@@ -59,6 +57,10 @@
     "@alanlu-dev/stylelint-config": "^1.0.0",
     "@alanlu-dev/tsconfig": "^1.0.0",
     "@alanlu-dev/types": "^1.0.0",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@release-it/bumper": "^6.0.1",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@types/node": "^20.12.5",
     "@vitest/coverage-v8": "^1.4",
     "cspell": "^8.6.1",
@@ -66,6 +68,7 @@
     "happy-dom": "^14.7.0",
     "husky": "^9.0.11",
     "playwright-core": "^1.43.0",
+    "release-it": "^17.1.1",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "turbo": "^1.13.2",

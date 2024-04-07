@@ -30,6 +30,10 @@
     "typecheck": {},
     "coverage": {
       "outputs": ["coverage/**"]
+    },
+    "release": {
+      "dependsOn": ["^release"],
+      "outputMode": "new-only"
     }
   }
 }

@@ -1,0 +1,34 @@
+{
+  "name": "@jiehousekeeper/web",
+  "type": "module",
+  "version": "0.0.0",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jiehousekeeper/official-site.git",
+    "directory": "apps/web"
+  },
+  "bugs": {
+    "url": "https://github.com/jiehousekeeper/official-site/issues"
+  },
+  "publishConfig": {
+    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "release": "release-it --ci"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@jiehousekeeper/release-it-config": "workspace:*",
+    "nuxt": "^3.11.2"
+  }
+}
