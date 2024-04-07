@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.1...@jiehousekeeper/release-it-config@0.1.2) (2024-04-07)
+
+
+### 🐛 Bug Fixes
+
+* **release-it-config:** release-it-bump 改成同步 ([454f7eb](https://github.com/jiehousekeeper/official-site/commit/454f7eb4f66a5e6c7d4c9d528a238d564ed63eba))
+
 ## [0.1.1](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.0...@jiehousekeeper/release-it-config@0.1.1) (2024-04-07)
 
 
