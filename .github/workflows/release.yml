@@ -1,0 +1,42 @@
+name: Release & Publish
+on: workflow_dispatch
+permissions: {}
+jobs:
+  release:
+    name: Release
+    permissions:
+      contents: write # to create release (changesets/action)
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Initialize Git user
+        run: |
+          git config --global user.email "jiehousekeeper2@gmail.com"
+          git config --global user.name "Release Workflow"
+      - name: Initialise the NPM config
+        run: echo "//registry.npmjs.org/:_authToken=$MY_GITHUB_TOKEN > .npmrc
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      - name: Run Release
+        run: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
