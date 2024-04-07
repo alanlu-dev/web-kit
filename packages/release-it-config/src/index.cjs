@@ -32,7 +32,7 @@ module.exports = {
     requireCommitsFail: false,
   },
   npm: {
-    publish: true,
+    publish: false,
     // versionArgs: ['--workspaces false'],
   },
   github: {
