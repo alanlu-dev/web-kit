@@ -1,6 +1,7 @@
 {
   "name": "@jiehousekeeper/official-site",
   "type": "commonjs",
+  "version": "",
   "private": true,
   "packageManager": "pnpm@8.15.5",
   "description": "A monorepo starter template.",
@@ -8,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jiehousekeeper/official-site.git"
+    "url": "git+https://github.com/jiehousekeeper/official-site.git"
   },
   "bugs": {
     "url": "https://github.com/jiehousekeeper/official-site/issues"
