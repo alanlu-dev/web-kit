@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.1.3...@jiehousekeeper/web@0.1.4) (2024-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.8 [no ci] ([14285fc](https://github.com/jiehousekeeper/official-site/commit/14285fc5ac92e95924e0abb4a87f9cd30956a735))
+
 ## [0.1.3](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.1.2...@jiehousekeeper/web@0.1.3) (2024-04-07)
 
 
