@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.3...@jiehousekeeper/release-it-config@0.1.4) (2024-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** 啟用 npm.publish ([2af6000](https://github.com/jiehousekeeper/official-site/commit/2af60002b8290de1d489d5ea6e506d65f1c7077e))
+
 ## [0.1.3](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.2...@jiehousekeeper/release-it-config@0.1.3) (2024-04-07)
 
 
