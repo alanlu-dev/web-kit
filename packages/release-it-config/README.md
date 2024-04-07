@@ -11,5 +11,6 @@ A release-it configuration for JieHousekeeper projects.
 ```
 
 ```bash
+ssh-keyscan github.com
 ssh-keygen -t rsa -b 4096 -C "your_email@gmail.com"
 ```
