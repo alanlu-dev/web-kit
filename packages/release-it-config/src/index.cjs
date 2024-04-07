@@ -36,7 +36,7 @@ module.exports = {
   },
   github: {
     // requireCleanWorkingDir: false,
-    release: false,
+    release: true,
     releaseName: `${packageName}@${version}`,
   },
 }
