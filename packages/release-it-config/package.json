@@ -1,7 +1,7 @@
 {
   "name": "@jiehousekeeper/release-it-config",
   "type": "commonjs",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
