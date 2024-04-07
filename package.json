@@ -46,7 +46,7 @@
     "web:dev": "turbo run dev --filter=@jiehousekeeper/web --filter=./packages/**",
     "taze": "npx taze",
     "commit": "czg",
-    "release": "turbo release --concurrency=1 --no-daemon"
+    "release": "turbo release --concurrency=1"
   },
   "devDependencies": {
     "@alanlu-dev/commitlint-config": "^1.0.0",

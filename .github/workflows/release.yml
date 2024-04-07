@@ -1,6 +1,9 @@
 name: Release & Publish
-on: workflow_dispatch
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
 permissions: {}
 jobs:
   release:
@@ -13,6 +16,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup SSH keys
+        uses: shimataro/ssh-key-action@v2.7.0
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: github.com
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
@@ -23,28 +34,42 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - name: Setup node cache
+        id: node-cache
+        uses: actions/cache@v4.0.2
+        with:
+          path: '**/node_modules'
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-
+
+      - name: Setup turbo cache
+        uses: actions/cache@v4.0.2
+        with:
+          path: '.turbo'
+          key: turbo-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ github.ref_name }}-
+            turbo-main-
+
       - name: Install deps
-        run: pnpm install
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: pnpm install --prefer-offline --frozen-lockfile
 
       - name: Build
         run: pnpm run build
 
-      - name: Initialize Git user
+      - name: Setup git
         run: |
-          git config --global user.email "jiehousekeeper2@gmail.com"
-          git config --global user.name "Release Workflow"
-      - name: Initialize the NPM config
+          git config user.name "$GIT_USER_NAME"
+          git config user.email "$GIT_USER_EMAIL"
+        env:
+          GIT_USER_NAME: ${{ vars.GIT_USER_NAME }}
+          GIT_USER_EMAIL: ${{ vars.GIT_USER_EMAIL }}
+
+      - name: Setup npm auth
         run: echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2.7.0
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          name: id_rsa # optional
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
-          if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
       - name: Run Release
         run: pnpm release

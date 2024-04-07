@@ -27,20 +27,19 @@ module.exports = {
     tagName: `${packageName}@${version}`,
     pushRepo: 'git@github.com:jiehousekeeper/official-site.git',
     commitsPath: '.',
-    commitMessage: `chore(${scope}): released version v${version} [no ci]`,
+    commitMessage: `chore(${scope}): released version v${version} [skip ci]`,
     requireCommits: true,
     requireCommitsFail: false,
   },
   npm: {
     publish: true,
-    // versionArgs: ['--workspaces false'],
+    versionArgs: ['--workspaces false'],
   },
   github: {
-    // requireCleanWorkingDir: false,
     release: true,
     releaseName: `${packageName}@${version}`,
   },
   hooks: {
-    'after:bump': ['pnpm release-it-bump'],
+    'before:git:release': ['pnpm release-it-bump'],
   },
 }
