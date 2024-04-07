@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.6](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.4...@jiehousekeeper/release-it-config@0.1.6) (2024-04-07)
+
+
+### 📝 Documentation
+
+* **release-it-config:** add README.md ([fee87bf](https://github.com/jiehousekeeper/official-site/commit/fee87bf8b27fb2b3ba98720f80758e4f14c16b39))
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.5 ([8b31efb](https://github.com/jiehousekeeper/official-site/commit/8b31efba9586c34a173fa0bc8e3e91f41726ba09))
+* 更新 Git 存儲庫 URL 格式 ([9f6bd00](https://github.com/jiehousekeeper/official-site/commit/9f6bd00c23f226b905c7c7a92df7c0ec0a1604a5))
+
 ## [0.1.4](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.3...@jiehousekeeper/release-it-config@0.1.4) (2024-04-07)
 
 
