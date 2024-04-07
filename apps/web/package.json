@@ -1,7 +1,7 @@
 {
   "name": "@jiehousekeeper/web",
   "type": "module",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {

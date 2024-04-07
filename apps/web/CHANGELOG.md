@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.1.6...@jiehousekeeper/web@0.1.7) (2024-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.12 [skip ci] ([4a8bacc](https://github.com/jiehousekeeper/official-site/commit/4a8bacc16701418ff6bdd6cf244b612443dd5a36))
+
 ## 0.1.6 (2024-04-07)
 
 
