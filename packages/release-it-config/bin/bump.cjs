@@ -69,7 +69,12 @@ function checkPackageDependencies(packages) {
 
 async function writeDependenciesJson(workspacePackages, dependenciesMap) {
   for (const [packageName, dependencies] of dependenciesMap.entries()) {
-    const jsonFilePath = path.join(workspacePackages.find((p) => p.name === packageName).folder, 'dependencies.json')
+    const packageInfo = workspacePackages.find((p) => p.name === packageName)
+    if (!packageInfo) {
+      console.error(`Package info not found for ${packageName}.`)
+      continue
+    }
+    const jsonFilePath = path.join(packageInfo.folder, 'dependencies.json')
 
     try {
       const jsonContent = JSON.stringify(dependencies, null, 2)
@@ -83,3 +88,9 @@ async function writeDependenciesJson(workspacePackages, dependenciesMap) {
 }
 
 main()
+  .then(() => {
+    console.log('All operations completed successfully.')
+  })
+  .catch((error) => {
+    console.error('Error occurred:', error)
+  })

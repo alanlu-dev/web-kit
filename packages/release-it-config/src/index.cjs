@@ -41,6 +41,6 @@ module.exports = {
     releaseName: `${packageName}@${version}`,
   },
   hooks: {
-    'before:git:release': ['release-it-bump', 'git add --all'],
+    'before:git:release': ['pnpm release-it-bump', 'git add --all'],
   },
 }
