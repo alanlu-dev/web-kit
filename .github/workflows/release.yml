@@ -28,14 +28,6 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Setup node cache
-        id: node-cache
-        uses: actions/cache@v4.0.2
-        with:
-          path: '**/node_modules'
-          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: pnpm-
-
       - name: Setup turbo cache
         uses: actions/cache@v4.0.2
         with:
