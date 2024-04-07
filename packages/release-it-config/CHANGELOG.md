@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.3](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.2...@jiehousekeeper/release-it-config@0.1.3) (2024-04-07)
+
+
+### 🐛 Bug Fixes
+
+* **release-it-config:** get pnpm-workspace.yaml ([ae8610f](https://github.com/jiehousekeeper/official-site/commit/ae8610feb3b8389f0ace6f146bc4711644b0245b))
+* **release-it-config:** update hook ([359b9ca](https://github.com/jiehousekeeper/official-site/commit/359b9ca10cdaba58f7f1889203606594d7271d86))
+* **release-it-config:** 修復路徑問題 ([deea08c](https://github.com/jiehousekeeper/official-site/commit/deea08c756ca4b427e5ab7ae24ea9d25a3654507))
+* **release-it-config:** 改由 js 執行 git add ([92a8d0a](https://github.com/jiehousekeeper/official-site/commit/92a8d0a0d5fc58018209203931d38f4cfbafc410))
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** chage hook ([8742bc1](https://github.com/jiehousekeeper/official-site/commit/8742bc1e6b62537c75d72468bcfd0b8afa5968f2))
+
 ## [0.1.2](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.1...@jiehousekeeper/release-it-config@0.1.2) (2024-04-07)
 
 
