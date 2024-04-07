@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.8](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.6...@jiehousekeeper/release-it-config@0.1.8) (2024-04-07)
+
+
+### 📝 Documentation
+
+* **release-it-config:** update README.md ([5602e05](https://github.com/jiehousekeeper/official-site/commit/5602e0583ef00b2d69762b4df6c6cd2597d2c63d))
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.7 ([22197eb](https://github.com/jiehousekeeper/official-site/commit/22197eb3efcbb45503aed40a1f9d4d9b64003d99))
+* **release-it-config:** 停用 npm.publish ([0c0ed6f](https://github.com/jiehousekeeper/official-site/commit/0c0ed6f23a432ac022a3e740cc059edefa0db0b7))
+
 ## [0.1.6](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.4...@jiehousekeeper/release-it-config@0.1.6) (2024-04-07)
 
 
