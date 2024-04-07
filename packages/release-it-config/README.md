@@ -9,3 +9,7 @@ A release-it configuration for JieHousekeeper projects.
 ```bash
 //@jiehousekeeper:registry=https://npm.pkg.github.com/:_authToken=your_token
 ```
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "your_email@gmail.com"
+```
