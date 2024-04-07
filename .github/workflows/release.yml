@@ -46,6 +46,9 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
+      - name: Generate auth hosts
+        run: ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - name: Run Release
         run: pnpm release
         env:
