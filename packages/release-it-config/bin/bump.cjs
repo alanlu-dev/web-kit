@@ -31,7 +31,9 @@ function main() {
     const packagePaths = []
 
     for (const pattern of packages) {
-      const packageFiles = glob.sync(`${pattern}/package.json`, { ignore: '**/node_modules/**' })
+      const fullPattern = path.join(workspaceRoot, pattern, 'package.json')
+      const ignorePattern = path.join(workspaceRoot, '**/node_modules/**')
+      const packageFiles = glob.sync(fullPattern, { ignore: ignorePattern })
       for (const file of packageFiles) {
         const packagePath = path.dirname(file)
         packagePaths.push(packagePath)
