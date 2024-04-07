@@ -32,8 +32,8 @@
       "outputs": ["coverage/**"]
     },
     "release": {
-      "dependsOn": ["^release"],
-      "outputMode": "new-only"
+      "cache": false,
+      "dependsOn": ["^release"]
     }
   }
 }
