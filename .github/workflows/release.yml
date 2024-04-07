@@ -36,6 +36,15 @@ jobs:
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-
 
+      - name: Setup turbo cache
+        uses: actions/cache@v4.0.2
+        with:
+          path: '.turbo'
+          key: turbo-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ github.ref_name }}-
+            turbo-main-
+
       - name: Install deps
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: pnpm install --prefer-offline --frozen-lockfile
@@ -63,15 +72,6 @@ jobs:
           known_hosts: github.com
 
       - name: Run Release
-        run: pnpm release
+        run: pnpm release --cache-dir=.turbo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup turbo cache
-        uses: actions/cache@v4.0.2
-        with:
-          path: '**/.turbo'
-          key: turbo-${{ github.ref_name }}-${{ github.sha }}
-          restore-keys: |
-            turbo-${{ github.ref_name }}-
-            turbo-main-
