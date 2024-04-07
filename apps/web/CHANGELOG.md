@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.0.0...@jiehousekeeper/web@0.1.0) (2024-04-07)
+
+
+### ✨ Features
+
+* **release-it-config:** release-it-bump ([856ec1d](https://github.com/jiehousekeeper/official-site/commit/856ec1dcba2d5e9827d29edd944597d229d02d81))
+
 ## 0.0.0 (2024-04-07)
 
 
