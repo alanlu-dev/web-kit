@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.1.2...@jiehousekeeper/web@0.1.3) (2024-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.6 [no ci] ([477d1e8](https://github.com/jiehousekeeper/official-site/commit/477d1e8a2a4a64f53aa0fcfcbecd90c0dd0d26c2))
+* 更新 Git 存儲庫 URL 格式 ([9f6bd00](https://github.com/jiehousekeeper/official-site/commit/9f6bd00c23f226b905c7c7a92df7c0ec0a1604a5))
+
 ## [0.1.2](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/web@0.1.1...@jiehousekeeper/web@0.1.2) (2024-04-07)
 
 
