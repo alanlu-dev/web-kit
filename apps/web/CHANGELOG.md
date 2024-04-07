@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.6 (2024-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **release-it-config:** released version v0.1.10 [no ci] ([44eb49f](https://github.com/jiehousekeeper/official-site/commit/44eb49f9867a17424ea2a3fe9df4ef707386f875))
+* **release-it-config:** 啟用 npm.publish ([74b776e](https://github.com/jiehousekeeper/official-site/commit/74b776ee9e90862ca4a13f6ec8898195cd8295fc))
+
 ## 0.1.5 (2024-04-07)
 
 
