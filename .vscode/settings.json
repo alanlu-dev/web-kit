@@ -1,0 +1,48 @@
+{
+  // "prettier.enable": false, // Disable the default formatter, use eslint instead
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.formatOnPaste": false, // required
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": false, // optional, if you use ESlint，this should be false
+  "editor.formatOnSaveMode": "file", // required to format on save
+
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.markdownlint": "explicit"
+  },
+
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "json", "jsonc", "yaml", "toml"],
+
+  // Enable the ESlint flat config support
+  // "eslint.experimental.useFlatConfig": true,
+  // "eslint.rules.customizations": [
+  //   { "rule": "style/*", "severity": "off" },
+  //   { "rule": "format/*", "severity": "off" },
+  //   { "rule": "*-indent", "severity": "off" },
+  //   { "rule": "*-spacing", "severity": "off" },
+  //   { "rule": "*-spaces", "severity": "off" },
+  //   { "rule": "*-order", "severity": "off" },
+  //   { "rule": "*-dangle", "severity": "off" },
+  //   { "rule": "*-newline", "severity": "off" },
+  //   { "rule": "*quotes", "severity": "off" },
+  //   { "rule": "*semi", "severity": "off" }
+  // ],
+
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "less", "postcss", "sass", "scss", "vue", "html"],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  }
+}

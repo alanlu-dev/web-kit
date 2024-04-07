@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "ignorePaths": ["node_modules", ".output", ".nuxt", ".nitro", ".cache", ".virtual", ".turbo", "dist", "build", "tsx-0", "node-jiti", "coverage", "pnpm-lock.yaml"],
+  "dictionaryDefinitions": [
+    {
+      "name": "name",
+      "path": "./.cspell/name.txt",
+      "addWords": true
+    },
+    {
+      "name": "repo",
+      "path": "./.cspell/repo.txt",
+      "addWords": true
+    },
+    {
+      "name": "other",
+      "path": "./.cspell/other.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["name", "repo", "other"],
+  "words": [],
+  "ignoreWords": [],
+  "import": []
+}
