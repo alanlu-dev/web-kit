@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.1.9 (2024-04-07)
+
 ## [0.1.8](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.6...@jiehousekeeper/release-it-config@0.1.8) (2024-04-07)
 
 
