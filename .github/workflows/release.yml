@@ -47,7 +47,7 @@ jobs:
           if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
 
       - name: TEST PUSH
-        run: git push --follow-tags git@github.com:jiehousekeeper/official-site.git
+        run: ssh -T git@github.com && git push --follow-tags git@github.com:jiehousekeeper/official-site.git
 
       - name: Run Release
         run: pnpm release
