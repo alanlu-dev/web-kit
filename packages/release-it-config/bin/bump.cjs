@@ -2,6 +2,7 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const { execSync } = require('node:child_process')
 const { glob } = require('glob')
 const yaml = require('js-yaml')
 
@@ -97,6 +98,10 @@ function writeDependenciesJson(workspacePackages, dependenciesMap) {
       const jsonContent = JSON.stringify(dependencies, null, 2)
       fs.writeFileSync(jsonFilePath, jsonContent)
       console.log(`Dependencies JSON file for ${packageName} written successfully.`)
+
+      // Add the new file to git
+      execSync(`git add ${jsonFilePath}`, { stdio: 'inherit' })
+      console.log(`Added ${jsonFilePath} to git.`)
     }
     catch (error) {
       console.error(`Error writing dependencies JSON file for ${packageName}:`, error)
