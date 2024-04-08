@@ -16,11 +16,17 @@
     "@jiehousekeeper:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
+    "build:clean": "npx rimraf --glob ./.output",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "cleanup": "nuxt cleanup",
+    "app:prepare": "nuxt prepare",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "typecheck": "vue-tsc --noEmit",
     "release": "release-it --ci"
   },
   "dependencies": {
@@ -28,7 +34,13 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "^1.0.0",
+    "@alanlu-dev/mastercss-config": "^1.0.1",
+    "@alanlu-dev/types": "^1.0.0",
     "@jiehousekeeper/release-it-config": "workspace:*",
-    "nuxt": "^3.11.2"
+    "@master/css.nuxt": "2.0.0-rc.26",
+    "@master/css.vue": "2.0.0-rc.26",
+    "nuxt": "^3.11.2",
+    "vue-tsc": "^2.0.11"
   }
 }
