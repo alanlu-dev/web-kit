@@ -4,7 +4,7 @@ useHead({
     id: 'mcss',
   },
   bodyAttrs: {
-    class: 'normal fg:base-fg bg:base-bg overflow-x:hidden',
+    class: 'normal',
   },
 })
 

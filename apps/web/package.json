@@ -37,9 +37,13 @@
     "@alanlu-dev/eslint-config-base": "^1.0.0",
     "@alanlu-dev/mastercss-config": "^1.0.1",
     "@alanlu-dev/types": "^1.0.0",
+    "@jiehousekeeper/master-css-config": "workspace:*",
     "@jiehousekeeper/release-it-config": "workspace:*",
     "@master/css.nuxt": "2.0.0-rc.26",
     "@master/css.vue": "2.0.0-rc.26",
+    "@master/styled.vue": "^2.0.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "class-variant": "^2.0.2",
     "nuxt": "^3.11.2",
     "vue-tsc": "^2.0.11"
   }

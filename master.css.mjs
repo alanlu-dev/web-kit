@@ -1,4 +1,4 @@
-import config from '@alanlu-dev/mastercss-config'
+import config from '@jiehousekeeper/master-css-config'
 
 /** @type {import('@master/css').Config} */
 export default {
