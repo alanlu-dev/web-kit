@@ -129,9 +129,18 @@ importers:
 
   packages/master-css-config:
     devDependencies:
+      '@alanlu-dev/eslint-config-base':
+        specifier: ^1.0.0
+        version: 1.0.0(@antfu/eslint-config@0.43.1)(@master/eslint-config-css@2.0.0-rc.26)(eslint-config-prettier@9.1.0)(eslint-plugin-prettier@5.1.3)(eslint-plugin-vitest@0.4.1)(eslint@8.57.0)
+      '@alanlu-dev/mastercss-helpers':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@master/css':
         specifier: 2.0.0-rc.26
         version: 2.0.0-rc.26
+      ts-deepmerge:
+        specifier: ^7.0.0
+        version: 7.0.0
 
   packages/release-it-config:
     devDependencies:
@@ -219,6 +228,10 @@ packages:
       '@master/css': 2.0.0-rc.26
     dependencies:
       '@master/css': 2.0.0-rc.26
+    dev: true
+
+  /@alanlu-dev/mastercss-helpers@1.0.1:
+    resolution: {integrity: sha512-vrobw6J51tJ1fSbHYwZfvKREkOrIgQW3yXgg4goWYxCLrilNTtUOicFmZOWycmvGaYwLk8CYEreZJ6LngmmJVg==}
     dev: true
 
   /@alanlu-dev/prettier-config@1.0.0(prettier-plugin-brace-style@0.6.0)(prettier-plugin-merge@0.6.0)(prettier@3.2.5):
@@ -12728,6 +12741,11 @@ packages:
       typescript: '>=4.2.0'
     dependencies:
       typescript: 5.4.4
+    dev: true
+
+  /ts-deepmerge@7.0.0:
+    resolution: {integrity: sha512-WZ/iAJrKDhdINv1WG6KZIGHrZDar6VfhftG1QJFpVbOYZMYJLJOvZOo1amictRXVdBXZIgBHKswMTXzElngprA==}
+    engines: {node: '>=14.13.1'}
     dev: true
 
   /ts-interface-checker@0.1.13:
