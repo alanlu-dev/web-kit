@@ -30,6 +30,8 @@
     "release": "release-it --ci"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
+    "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
@@ -43,6 +45,8 @@
     "@master/css.vue": "2.0.0-rc.26",
     "@master/styled.vue": "^2.0.2",
     "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@pinia/nuxt": "^0.5.1",
     "class-variant": "^2.0.2",
     "nuxt": "^3.11.2",
     "vue-tsc": "^2.0.11"
