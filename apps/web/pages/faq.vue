@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex:column p:10x">
-    <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center} fg:font-title">常見問題</h1>
+  <section class="flex flex:column p:5x p:10x@tablet">
+    <h1 class="h1 title">常見問題 🚧</h1>
   </section>
 </template>

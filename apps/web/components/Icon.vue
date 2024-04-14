@@ -7,8 +7,8 @@ defineProps<IProps>()
 </script>
 
 <template>
-  <div class="icon">
+  <div class="icon f:6x_:where(iconify-icon)" :class="{ 'icon-text': $slots.default }">
     <slot />
-    <iconify-icon class="f:6x" :icon="icon" />
+    <iconify-icon :icon="icon" />
   </div>
 </template>

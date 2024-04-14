@@ -73,5 +73,10 @@
     "unbuild": "3.0.0-rc.1",
     "vite": "^5.2.8",
     "vitest": "^1.4.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.3.3"
+    }
   }
 }

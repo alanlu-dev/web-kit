@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     /* --- pinia --- */
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+
+    /* --- splide --- */
+    ['nuxt-splide', { theme: 'default' }],
   ],
 
   googleFonts: {
