@@ -6,7 +6,7 @@
     </section>
     <!-- 最新消息 -->
     <section class="flex flex:column p:10x">
-      <h1 class="h1 fg:font-title ls:0.15em text:center">最新消息</h1>
+      <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center} fg:font-title">最新消息</h1>
       <div class="center-content inline-flex flex:wrap gap:12x|11x mt:8x mx:auto">
         <nuxt-link v-for="i in 4" :key="i" class="bb:1|#868484 flex:1|0|45% max-w:500 pb:4x" to="/news">
           <p class="fg:font-title mb:4x">2024/03/10</p>
@@ -20,7 +20,7 @@
     <!-- 協會介紹 -->
     <section class="rel {content:'';abs;inset:0;bg:#3A87A0CC}:before background-attachment:fixed background:url(/section2.png)|top|center|no-repeat p:10x pb:20x">
       <div class="rel fg:white">
-        <h1 class="h1 ls:0.15em text:center">協會介紹</h1>
+        <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center}">協會介紹</h1>
         <div class="b1-r mt:7.5x text:center">
           <p>中華民國職業清潔認證協會是一個專業組織，</p>
           <p>致力於提供清潔行業的認證及培訓服務，促進行業發展。</p>
@@ -31,7 +31,7 @@
     </section>
     <!-- 課程資訊 -->
     <section class="flex flex:column p:10x">
-      <h1 class="h1 fg:font-title ls:0.15em text:center">課程資訊</h1>
+      <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center} fg:font-title">課程資訊</h1>
       <div class="center-content inline-flex flex:wrap gap:12x|11x mt:8x mx:auto">
         <nuxt-link class="bg:white r:2x scale(1.1):hover_img" to="/news">
           <div class="rel aspect:316/133 overflow:hidden">
@@ -62,7 +62,7 @@
     <!-- 課程價值 -->
     <section class="rel {content:'';abs;inset:0;bg:#3A87A0CC}:before background-attachment:fixed background:url(/section2.png)|top|center|no-repeat p:10x pb:20x">
       <div class="rel fg:white">
-        <h1 class="h1 ls:0.15em text:center">課程價值</h1>
+        <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center}">課程價值</h1>
         <div class="b1-r mt:7.5x text:center">
           <p>TODO</p>
         </div>
@@ -70,14 +70,14 @@
     </section>
     <!-- 實績案例 -->
     <section class="bg:#F2F9FA p:10x pb:20x">
-      <h1 class="h1 fg:font-title ls:0.15em text:center">實績案例</h1>
+      <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center} fg:font-title">實績案例</h1>
       <div class="b1-r mt:7.5x text:center">
         <p>TODO</p>
       </div>
     </section>
     <!-- 聯絡我們 -->
     <section class="p:10x pb:20x">
-      <h1 class="h1 fg:font-title ls:0.15em text:center">聯絡我們</h1>
+      <h1 class="h1 {ls:0.15em;ml:0.0725em;mr:-0.0725em;text:center} fg:font-title">聯絡我們</h1>
       <div class="b1-r mt:7.5x text:center">
         <p>TODO</p>
       </div>
