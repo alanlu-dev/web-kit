@@ -14,7 +14,7 @@ export default {
       }),
       '-primary': toLine({
         '': cls`fg:white bg:primary`,
-        ':hover': cls`bg:#126085`,
+        ':hover': cls`bg:primary-hover`,
       }),
       '-secondary': toLine({
         '': cls`fg:primary bg:#D0E6F1`,

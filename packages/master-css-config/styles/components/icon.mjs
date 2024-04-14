@@ -9,10 +9,14 @@ export default {
           p:2x|4x r:1x
           inline-flex center-content
           lh:1.5 ls:0.05em
-          fg:primary
           ~300ms|ease
         `,
-        ':hover': cls`fg:#126085 cursor:pointer`,
+      }),
+      'text': toLine({
+        '': cls`
+          fg:primary /*bg:secondary*/
+        `,
+        ':hover': cls`fg:primary-hover cursor:pointer`,
       }),
     },
   },
