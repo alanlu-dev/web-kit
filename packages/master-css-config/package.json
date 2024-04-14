@@ -20,6 +20,10 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
+    "./breakpoints": {
+      "import": "./dist/breakpoints.mjs",
+      "require": "./dist/breakpoints.cjs"
+    },
     "./vendors/*": {
       "import": "./dist/vendors/*.mjs",
       "require": "./dist/vendors/*.cjs"

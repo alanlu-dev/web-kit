@@ -26,6 +26,7 @@ async function build() {
   fs.mkdirSync(buildVendorsDir, { recursive: true })
 
   await buildModuleAndFile('../styles/master.css.mjs', resolve(buildDir, './index.mjs'))
+  await buildModuleAndFile('../styles/base/breakpoints.mjs', resolve(buildDir, './breakpoints.mjs'))
 
   const vendorsDir = resolve(currentDir, '../styles/vendors')
   const vendorFiles = fs.readdirSync(vendorsDir)

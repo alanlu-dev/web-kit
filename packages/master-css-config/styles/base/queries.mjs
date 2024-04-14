@@ -1,3 +1,5 @@
+import breakpoints from './breakpoints.mjs'
+
 /** @type {import('@master/css').Config} */
 export default {
   queries: {
@@ -18,9 +20,7 @@ export default {
     // 'motion': 'media (prefers-reduced-motion:no-preference)',
     // 'reduced-motion': 'media (prefers-reduced-motion:reduce)',
 
-    desktop: 1440,
-    tablet: 1024,
-    mobile: 390,
+    ...breakpoints,
 
     hover: 'media (any-hover:hover)',
   },
