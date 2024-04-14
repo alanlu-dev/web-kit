@@ -21,6 +21,7 @@
       "require": "./dist/index.cjs"
     },
     "./breakpoints": {
+      "types": "./dist/breakpoints.d.ts",
       "import": "./dist/breakpoints.mjs",
       "require": "./dist/breakpoints.cjs"
     },

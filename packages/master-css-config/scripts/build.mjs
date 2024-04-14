@@ -27,6 +27,10 @@ async function build() {
 
   await buildModuleAndFile('../styles/master.css.mjs', resolve(buildDir, './index.mjs'))
   await buildModuleAndFile('../styles/base/breakpoints.mjs', resolve(buildDir, './breakpoints.mjs'))
+  fs.copyFile(resolve(currentDir, '../styles/base/breakpoints.d.ts'), resolve(buildDir, './breakpoints.d.ts'), (err) => {
+    if (err) throw err
+    console.log('breakpoints.d.ts was copied to dist directory')
+  })
 
   const vendorsDir = resolve(currentDir, '../styles/vendors')
   const vendorFiles = fs.readdirSync(vendorsDir)
