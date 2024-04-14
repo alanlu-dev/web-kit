@@ -62,7 +62,7 @@
 
 ### 🧹 Miscellaneous Chores
 
-* **release-it-config:** chage hook ([8742bc1](https://github.com/jiehousekeeper/official-site/commit/8742bc1e6b62537c75d72468bcfd0b8afa5968f2))
+* **release-it-config:** change hook ([8742bc1](https://github.com/jiehousekeeper/official-site/commit/8742bc1e6b62537c75d72468bcfd0b8afa5968f2))
 
 ## [0.1.2](https://github.com/jiehousekeeper/official-site/compare/@jiehousekeeper/release-it-config@0.1.1...@jiehousekeeper/release-it-config@0.1.2) (2024-04-07)
 
