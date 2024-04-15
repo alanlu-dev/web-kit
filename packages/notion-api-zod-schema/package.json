@@ -1,0 +1,35 @@
+{
+  "name": "@jiehousekeeper/notion-api-zod-schema",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Zod schemas for the Notion API (unofficial)",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "main": "index.js",
+  "module": "index.ts",
+  "files": [
+    "index.ts",
+    "src"
+  ],
+  "scripts": {
+    "build": "npx tsc",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+  },
+  "peerDependencies": {
+    "zod": "3.22.4"
+  },
+  "dependencies": {
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@alanlu-dev/eslint-config-base": "^1.0.0",
+    "@notionhq/client": "2.2.15",
+    "dotenv": "16.4.5",
+    "tsx": "4.7.2",
+    "typescript": "5.4.5",
+    "zod": "3.22.4"
+  }
+}
