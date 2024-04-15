@@ -60,23 +60,18 @@
     "@alanlu-dev/types": "^1.0.0",
     "@jiehousekeeper/master-css-config": "workspace:*",
     "@jiehousekeeper/release-it-config": "workspace:*",
-    "@types/node": "^20.12.5",
-    "@vitest/coverage-v8": "^1.4",
-    "cspell": "^8.6.1",
+    "@types/node": "^20.12.7",
+    "@vitest/coverage-v8": "^1.5.0",
+    "cspell": "^8.7.0",
     "dotenv": "^16.4.5",
-    "happy-dom": "^14.7.0",
+    "happy-dom": "^14.7.1",
     "husky": "^9.0.11",
-    "playwright-core": "^1.43.0",
+    "playwright-core": "^1.43.1",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "turbo": "^1.13.2",
     "unbuild": "3.0.0-rc.1",
     "vite": "^5.2.8",
-    "vitest": "^1.4.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "typescript": "5.3.3"
-    }
+    "vitest": "^1.5.0"
   }
 }

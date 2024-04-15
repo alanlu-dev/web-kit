@@ -30,10 +30,14 @@
     "release": "release-it --ci"
   },
   "dependencies": {
+    "@jiehousekeeper/notion-api-zod-schema": "workspace:*",
+    "@notionhq/client": "^2.2.15",
     "@vueuse/core": "^10.9.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.22",
+    "vue-router": "^4.3.0",
+    "vue3-notion": "^0.1.45",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config-base": "^1.0.0",
@@ -50,6 +54,6 @@
     "class-variant": "^2.0.2",
     "nuxt": "^3.11.2",
     "nuxt-splide": "1.1.1",
-    "vue-tsc": "^2.0.11"
+    "vue-tsc": "^2.0.13"
   }
 }
