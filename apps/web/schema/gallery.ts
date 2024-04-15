@@ -18,7 +18,7 @@ export const GallerySchema = z.object({
   導轉連結: NotionDatabaseUrlSchema.transform((o) => o.url),
   // 發布期間: NotionDatabaseDateSchema.transform((o) => o.date),
   資料驗證: NotionDatabaseFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
-  發布狀態: NotionDatabaseStatusSchema.transform((o) => o.status.name),
+  發布狀態: NotionDatabaseStatusSchema.transform((o) => o.status),
   封存: NotionDatabaseCheckboxSchema.transform((o) => o.checkbox),
 })
 

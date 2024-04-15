@@ -44,7 +44,8 @@ const courses = [
           <img v-if="images" v-bind="images[0]" />
         </template>
         <Splide :options="{ arrows: false, autoplay: true, interval: 5000, type: 'loop' }">
-          <SplideSlide v-for="image in images" :key="image.圖片">
+          <SplideSlide v-for="image in images" :key="image.圖片" class="rel">
+            <NotionTag :color="image.發布狀態.color" class="abs p:1x rbl:2x right:0 top:0 z:devPanel">{{ image.發布狀態.name }}</NotionTag>
             <img :src="image.圖片" :alt="image.標題" :title="image.標題" />
           </SplideSlide>
         </Splide>

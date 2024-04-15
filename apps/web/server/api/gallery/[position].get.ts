@@ -18,7 +18,19 @@ export default defineEventHandler(async (event) => {
     })
 
     const position = decodeURIComponent(paramPosition)
-    return arr.filter((item) => item.位置 === position && item.封存 === false && item.資料驗證 === '✅').sort((a, b) => a.排序 - b.排序)
+    return arr
+      .filter((item) => {
+        if (item.封存 === true) return false
+        if (item.資料驗證 !== '✅') return false
+        if (item.位置 !== position) return false
+        if (item.發布狀態.name === '草稿') return false
+
+        if (process.env.VERCEL_ENV === 'production') {
+          if (item.發布狀態.name !== '發布') return false
+        }
+        return true
+      })
+      .sort((a, b) => a.排序 - b.排序)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {
