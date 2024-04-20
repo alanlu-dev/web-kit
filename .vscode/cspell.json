@@ -17,7 +17,8 @@
     "pnpm-lock.yaml",
     "nginx.conf",
     "NotionTimezoneSchema.ts",
-    "*/notion-api-zod-schema/data/**"
+    "*/notion-api-zod-schema/data/**",
+    ".env.example"
   ],
   "dictionaryDefinitions": [
     {
