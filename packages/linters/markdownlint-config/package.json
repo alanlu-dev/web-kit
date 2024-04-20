@@ -26,13 +26,13 @@
   },
   "peerDependencies": {
     "@github/markdownlint-github": "^0.6.2",
-    "markdownlint-cli2": "^0.12.1",
+    "markdownlint-cli2": "^0.13.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.5"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config-base": "workspace:*",
     "@github/markdownlint-github": "^0.6.2",
-    "markdownlint-cli2": "^0.12.1",
+    "markdownlint-cli2": "^0.13.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.5"
   }
 }
