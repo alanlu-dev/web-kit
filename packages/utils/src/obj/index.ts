@@ -38,12 +38,15 @@ function queryString2Obj(str?: string): Record<string, any> {
 function arrayToObject<T extends Record<K, PropertyKey>, K extends keyof any>(array: T[], keyProp: K): Record<T[K], T> {
   return array.reduce(
     (obj, item) => {
-      const key = item[keyProp] as PropertyKey // 斷言 key 為 PropertyKey
-      obj[key] = item
+      setItem(obj, item[keyProp], item)
       return obj
     },
     {} as Record<T[K], T>,
   )
 }
 
-export { getDefaultFromProps, obj2QueryString, queryString2Obj, arrayToObject }
+function setItem<T, K extends keyof T>(obj: T, key: K, item: T[K]): void {
+  obj[key] = item
+}
+
+export { getDefaultFromProps, obj2QueryString, queryString2Obj, arrayToObject, setItem }
