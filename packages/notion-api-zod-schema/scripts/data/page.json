@@ -1,0 +1,58 @@
+{
+  "object": "page",
+  "id": "5c2d82c6-2a5c-45b2-9bb3-5cdde83a679d",
+  "created_time": "2024-04-20T17:02:00.000Z",
+  "last_edited_time": "2024-04-20T21:11:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "18333e13-8093-425d-b546-00ff63c0f508"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "18333e13-8093-425d-b546-00ff63c0f508"
+  },
+  "cover": {
+    "type": "external",
+    "external": {
+      "url": "https://www.notion.so/images/page-cover/met_william_morris_1878.jpg"
+    }
+  },
+  "icon": {
+    "type": "emoji",
+    "emoji": "♦️"
+  },
+  "parent": {
+    "type": "page_id",
+    "page_id": "4b8d507e-007b-42fd-9210-3ac281db3f7d"
+  },
+  "archived": false,
+  "in_trash": false,
+  "properties": {
+    "title": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "page",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "page",
+          "href": null
+        }
+      ]
+    }
+  },
+  "url": "https://www.notion.so/page-5c2d82c62a5c45b29bb35cdde83a679d",
+  "public_url": "https://brash-chevre-3f4.notion.site/page-5c2d82c62a5c45b29bb35cdde83a679d",
+  "request_id": "636b9e6d-5306-4dca-8b4c-1fec041343d6"
+}
