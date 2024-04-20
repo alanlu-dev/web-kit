@@ -35,7 +35,6 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "coverage": "turbo run coverage",
     "lint:cspell": "pnpm cspell . --unique --no-progress --no-must-find-files",
     "lint:cspell:only-changed": "git diff --name-only | npx cspell --file-list stdin",
     "nuxt-demo": "pnpm --filter=@alanlu-dev/nuxt-demo",
