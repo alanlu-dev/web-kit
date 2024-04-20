@@ -15,6 +15,7 @@ Noto
 Overriden
 preinstall
 stroustrup
+toggleable
 typecheck
 unref
 wght

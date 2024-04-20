@@ -1,0 +1,6 @@
+{
+  "extends": "@alanlu-dev/tsconfig/base.json",
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  }
+}

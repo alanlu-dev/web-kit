@@ -12,6 +12,7 @@ manypkg
 maska
 mastercss
 mcss
+notionhq
 nuxt
 nuxtjs
 persistedstate
