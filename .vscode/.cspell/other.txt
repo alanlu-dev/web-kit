@@ -21,3 +21,4 @@ typecheck
 unref
 wght
 zod's
+shellcheck
