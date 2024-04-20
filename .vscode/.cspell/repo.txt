@@ -1,6 +1,7 @@
 # Custom Dictionary Words
 commitlint
 commitlintrc
+conventionalcommits
 deepmerge
 fontaine
 formkit
@@ -28,4 +29,5 @@ tsup
 Turborepo
 unplugin
 unstorage
+versionrc
 vueuse
