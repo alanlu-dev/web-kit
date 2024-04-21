@@ -1,5 +1,11 @@
 # @alanlu-dev/scss
 
+<p>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/packages/scss/CHANGELOG.md"><img src="https://img.shields.io/github/v/release/alanlu-dev/web-kit?filter=@alanlu-dev/scss%2A&style=flat" alt="Version"></a>
+ <a href="https://www.npmjs.com/package/@alanlu-dev/scss"><img src="https://img.shields.io/npm/dm/@alanlu-dev/scss" alt="Downloads"></a>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alanlu-dev/web-kit?style=flat" alt="License"></a>
+</p>
+
 Shareable SCSS configuration.
 
 ## Installation
