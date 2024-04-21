@@ -1,5 +1,11 @@
 # @alanlu-dev/changeset
 
+<p>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/packages/changeset/CHANGELOG.md"><img src="https://img.shields.io/github/v/release/alanlu-dev/web-kit?filter=@alanlu-dev/changeset%2A&style=flat" alt="Version"></a>
+ <a href="https://www.npmjs.com/package/@alanlu-dev/changeset"><img src="https://img.shields.io/npm/dm/@alanlu-dev/changeset" alt="Downloads"></a>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alanlu-dev/web-kit?style=flat" alt="License"></a>
+</p>
+
 Automatically generate changeset by [Conventional Commits](https://www.conventionalcommits.org).
 
 ## Installation

@@ -1,5 +1,11 @@
 # @alanlu-dev/prettier-config
 
+<p>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/packages/linters/prettier-config/CHANGELOG.md"><img src="https://img.shields.io/github/v/release/alanlu-dev/web-kit?filter=@alanlu-dev/prettier-config%2A&style=flat" alt="Version"></a>
+ <a href="https://www.npmjs.com/package/@alanlu-dev/prettier-config"><img src="https://img.shields.io/npm/dm/@alanlu-dev/prettier-config" alt="Downloads"></a>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alanlu-dev/web-kit?style=flat" alt="License"></a>
+</p>
+
 Shareable prettier configuration.
 
 ## Installation
