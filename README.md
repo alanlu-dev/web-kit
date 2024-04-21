@@ -1,5 +1,10 @@
 # @alanlu-dev/web-kit
 
+<p>
+ <a href="https://github.com/alanlu-dev/web-kit/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/alanlu-dev/web-kit/ci.yml?branch=main" alt="Build Status"></a>
+ <a href="https://github.com/alanlu-dev/web-kit/blob/main/LICENSE"><img src="https://img.shields.io/github/license/alanlu-dev/web-kit?style=flat" alt="License"></a>
+</p>
+
 ## 環境建置
 
 在專案中，選擇適合的工具能夠提高代碼品質、開發效率以及團隊合作。以下是一系列可供選擇的工具，您可以根據專案需求和個人偏好進行選擇和配置。
