@@ -33,13 +33,13 @@ export default {
     },
     dialog: {
       type: cls`
-        hide f:3xl {block;mr:2x}[icon]
+        hidden f:3xl {block;mr:2x}[icon]
       `,
       content: cls`
         rel w:full
       `,
       title: cls`
-        mb:2x f:xl f:bolder lh:1.2 user-select:none
+        mb:2x f:xl f:bolder line-h:1.2 user-select:none
       `,
       body: cls`
         min-h:50 overflow:auto

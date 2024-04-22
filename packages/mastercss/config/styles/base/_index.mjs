@@ -1,7 +1,7 @@
 import animations from './animations.mjs'
 import queries from './queries.mjs'
 import selectors from './selectors.mjs'
-import semantics from './semantics.mjs'
+import utilities from './utilities.mjs'
 import variables from './variables.mjs'
 
 export default {
@@ -9,6 +9,6 @@ export default {
   animations,
   queries,
   selectors,
-  semantics,
+  utilities,
   variables,
 }

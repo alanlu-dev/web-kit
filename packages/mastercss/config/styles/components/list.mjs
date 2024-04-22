@@ -6,7 +6,7 @@ export default {
     // 清單
     list: {
       '': cls`
-        lh:1.4;
+        line-h:1.4;
         {m:0;p:0;counter-reset:item;list-style-type:none}_ol
         {m:0;p:0;pl:5x;list-style-type:disc}_ul
         {m:0}_li

@@ -72,7 +72,6 @@ export interface IProps {
 }
 
 const localProps = computed(() => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const { header, content, footer, cancelText, confirmText, needCancel, modelValue, ...modalProps } = props
   return {
     modelValue: unref(modelValue),
@@ -123,7 +122,7 @@ function handleConfirm() {
     @closed="handleClosed"
   >
     <div class="vfm__content__root mt:6x overflow:auto px:6x w:full">
-      <header class="vfm__content__header {hide;mb:0}:empty f:bolder f:lg lh:1.2 mb:6x user-select:none">
+      <header class="vfm__content__header {hidden;mb:0}:empty f:bolder f:lg line-h:1.2 mb:6x user-select:none">
         <slot name="header">
           <template v-if="typeof header === 'string'">
             {{ header }}
