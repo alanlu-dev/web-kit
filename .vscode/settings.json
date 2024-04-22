@@ -1,6 +1,9 @@
 {
   // "prettier.enable": false, // Disable the default formatter, use eslint instead
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
 
   "editor.formatOnPaste": false, // required
   "editor.formatOnType": false, // required
@@ -22,7 +25,9 @@
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "json", "jsonc", "yaml", "toml"],
 
   // Enable the ESlint flat config support
-  // "eslint.experimental.useFlatConfig": true,
+  "eslint.experimental.useFlatConfig": true,
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
   // "eslint.rules.customizations": [
   //   { "rule": "style/*", "severity": "off" },
   //   { "rule": "format/*", "severity": "off" },
@@ -42,7 +47,5 @@
   "less.validate": false,
   "scss.validate": false,
 
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  }
+  "vitest.disableWorkspaceWarning": true
 }

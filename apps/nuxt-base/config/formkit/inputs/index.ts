@@ -16,7 +16,7 @@ const textWithBtn: FormKitTypeDefinition = {
         $attrs(
           {
             type: 'button',
-            class: `hide:empty btn btn-type--flat r:0! px:6x! py:3x! rel {abs-center-y;left:0;content:'';bl:1|G-30;h:70%}::after`,
+            class: `hidden:empty btn btn-type--flat r:0! px:6x! py:3x! rel {abs-center-y;left:0;content:'';bl:1|G-30;h:70%}::after`,
             onClick: '$handlers.btnClick()',
           },
           buttonInput(buttonLabel(`$btnTextNew || $btnText || ''`)),

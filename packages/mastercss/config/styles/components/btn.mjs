@@ -9,7 +9,7 @@ export default {
           box:border rel overflow:hidden
           inline-flex center-content gap:2x
           p:3x|4x r:2x
-          f:inherit lh:1
+          f:inherit line-h:1
           t:center vertical-align:middle
           text-transform:inherit text:none white-space:nowrap
           fg:$(btn-fg,inherit) bg:$(btn-bg,inherit) b:1|solid|$(btn-border,$(G-30))

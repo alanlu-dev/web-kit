@@ -46,7 +46,6 @@
   "devDependencies": {
     "@alanlu-dev/eslint-config-base": "workspace:*",
     "@alanlu-dev/tsconfig": "workspace:*",
-    "@alanlu-dev/types": "workspace:*",
     "@changesets/types": "^6.0.0"
   }
 }

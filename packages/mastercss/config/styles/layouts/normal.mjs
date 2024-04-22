@@ -6,7 +6,7 @@ export default {
     // 一般初始
     normal: {
       '': toLine({
-        '': cls`m:0 p:0 f:base lh:1.4 font:sans.normal font:mono_:where(code,pre)`,
+        '': cls`m:0 p:0 f:base line-h:1.4 font:sans.normal font:mono_:where(code,pre)`,
         '_:where(p),_headings': cls`m:0`,
         '_:where(kbd)': cls`mx:1x p:1x r:1x f:xs fg:base-fg bg:W-50 b:1|base-fg/.5 shadow:sm`,
         '_::selection': cls`bg:base-fg/.2`,
