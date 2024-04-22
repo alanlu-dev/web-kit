@@ -27,7 +27,7 @@ function toggleSwitch() {
 <template>
   <label class="inline-flex ai:center ml:2x">
     <input
-      class="hide bg:theme:checked+svg cursor:no-drop[disabled]+svg filter:none[disabled]+svg>rect opacity:.7[disabled]+svg translateX(16):checked+svg>rect translateX(12):checked:active:not([disabled])+svg>rect width:20:active:not([disabled])+svg>rect"
+      class="hidden bg:theme:checked+svg cursor:no-drop[disabled]+svg filter:none[disabled]+svg>rect opacity:.7[disabled]+svg translateX(16):checked+svg>rect translateX(12):checked:active:not([disabled])+svg>rect width:20:active:not([disabled])+svg>rect"
       type="checkbox"
       :checked="checked"
       @change="toggleSwitch"

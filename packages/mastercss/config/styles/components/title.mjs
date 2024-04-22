@@ -17,12 +17,12 @@ export default {
         '::before': cls`top:0 left:0 {w:100}@<xs`,
         '::after': cls`bottom:0 right:0 {w:100}@<xs`,
         '>h2': toLine({
-          '': cls`f:bold f:3xl lh:35px`,
-          '@<3xs': cls`f:lg lh:28px`,
+          '': cls`f:bold f:3xl line-h:35`,
+          '@<3xs': cls`f:lg line-h:28`,
         }),
         '>h3': toLine({
-          '': cls`pt:10 f:md f:regular lh:25px fg:G-50`,
-          '@<3xs': cls`pt:1x f:sm lh:20px`,
+          '': cls`pt:10 f:md f:regular line-h:25 fg:G-50`,
+          '@<3xs': cls`pt:1x f:sm line-h:20`,
         }),
       }),
     },

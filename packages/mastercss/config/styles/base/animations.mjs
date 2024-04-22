@@ -1,6 +1,6 @@
 /** @type {import('@master/css').Config} */
 export default {
-  semantics: {
+  utilities: {
     spin: {
       animation: '1s linear infinite rotate',
     },

@@ -101,7 +101,7 @@ const gliderCV = cv(
 const labelCV = cv(
   toLine({
     '': `center-content flex flex:1 t:center cursor:pointer z:1`,
-    '>input': 'hide',
+    '>input': 'hidden',
     // '>input:checked+span': '',
     '>span': `ellipsis ~color|.1s|ease-in`,
   }),

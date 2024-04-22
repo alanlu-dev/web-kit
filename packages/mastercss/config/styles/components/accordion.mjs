@@ -10,7 +10,7 @@ export default {
         '>*': cls`w:full`,
         // Toggle (hide)
         '>input': toLine({
-          '': cls`z:-1 hide abs size:0 opacity:0`,
+          '': cls`z:-1 hidden abs size:0 opacity:0`,
           ':checked~label_zy-icon[type=arrow]': cls`rotate(-180deg)`,
         }),
         // Arrow Icon

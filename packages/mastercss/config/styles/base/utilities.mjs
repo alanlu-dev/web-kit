@@ -1,6 +1,6 @@
 /** @type {import('@master/css').Config} */
 export default {
-  semantics: {
+  utilities: {
     'nowrap': { 'white-space': 'nowrap' },
     'ellipsis': { 'text-overflow': 'ellipsis', 'white-space': 'nowrap', 'overflow': 'hidden' },
     'pointer': { 'cursor': 'pointer', 'user-select': 'none' },
