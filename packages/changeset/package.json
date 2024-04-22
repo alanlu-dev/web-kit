@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/changeset",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically generate changeset by Conventional Commits.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
