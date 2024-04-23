@@ -11,6 +11,7 @@ intlify
 lintstagedrc
 manypkg
 maska
+markdownlint
 mastercss
 mcss
 notionhq
@@ -18,6 +19,7 @@ nuxt
 nuxtjs
 persistedstate
 pinia
+postcss
 resvg
 splide
 splidejs
