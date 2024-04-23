@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/eslint-config-base",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shareable eslint configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
