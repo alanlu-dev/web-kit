@@ -1,5 +1,17 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.4
+
+### Patch Changes
+
+- [`10a0e9c`](https://github.com/alanlu-dev/web-kit/commit/10a0e9cd9d98518a4074a02353f5354813ab190f) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(eslint): resolve the conflict between 'config-base' and 'config-flat' in a monorepo
+
+- Updated dependencies [[`10a0e9c`](https://github.com/alanlu-dev/web-kit/commit/10a0e9cd9d98518a4074a02353f5354813ab190f)]:
+  - @alanlu-dev/eslint-config-base@1.0.2
+  - @alanlu-dev/mastercss-config@1.0.2
+  - @alanlu-dev/types@1.0.1
+  - @alanlu-dev/utils@1.0.2
+
 ## 1.0.3
 
 ### Patch Changes
