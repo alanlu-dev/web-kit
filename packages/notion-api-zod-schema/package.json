@@ -35,7 +35,7 @@
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
-    "test": "vitest run"
+    "pkg:test": "vitest run"
   },
   "peerDependencies": {
     "zod": "3.23.0"
