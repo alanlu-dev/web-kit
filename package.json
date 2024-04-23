@@ -52,7 +52,6 @@
     "@alanlu-dev/changeset": "workspace:*",
     "@alanlu-dev/commitlint-config": "workspace:*",
     "@alanlu-dev/eslint-config-base": "workspace:*",
-    "@alanlu-dev/eslint-config-flat": "workspace:*",
     "@alanlu-dev/lint-staged-config": "workspace:*",
     "@alanlu-dev/markdownlint-config": "workspace:*",
     "@alanlu-dev/mastercss-config": "workspace:*",
