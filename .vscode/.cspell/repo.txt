@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+clsx
 commitlint
 commitlintrc
 conventionalcommits
@@ -10,8 +11,8 @@ iconify
 intlify
 lintstagedrc
 manypkg
-maska
 markdownlint
+maska
 mastercss
 mcss
 notionhq
@@ -33,3 +34,4 @@ unplugin
 unstorage
 versionrc
 vueuse
+xclip
