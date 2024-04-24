@@ -28,6 +28,7 @@
   "peerDependencies": {
     "@antfu/eslint-config": "^2.15.0",
     "@master/eslint-config-css": "2.0.0-rc.28",
+    "@master/eslint-plugin-css": "2.0.0-rc.28",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-antfu": "2.1.2",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.15.0",
     "@master/eslint-config-css": "2.0.0-rc.28",
+    "@master/eslint-plugin-css": "2.0.0-rc.28",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-antfu": "2.1.2",

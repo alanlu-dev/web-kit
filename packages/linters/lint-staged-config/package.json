@@ -30,7 +30,7 @@
     "lint-staged": "^15.2.2",
     "markdownlint-cli2": "^0.13.0",
     "prettier": "^3.2.5",
-    "stylelint": "^16.3.1"
+    "stylelint": "^16.4.0"
   },
   "devDependencies": {
     "@alanlu-dev/eslint-config-base": "workspace:*",
@@ -38,6 +38,6 @@
     "lint-staged": "^15.2.2",
     "markdownlint-cli2": "^0.13.0",
     "prettier": "^3.2.5",
-    "stylelint": "^16.3.1"
+    "stylelint": "^16.4.0"
   }
 }

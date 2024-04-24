@@ -2,7 +2,7 @@
   "name": "@alanlu-dev/web-kit",
   "type": "commonjs",
   "private": true,
-  "packageManager": "pnpm@9.0.5",
+  "packageManager": "pnpm@9.0.6",
   "description": "A monorepo build system and workflow for web projects.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "engines": {
     "node": ">=20.12.2",
-    "pnpm": ">=9.0.5",
+    "pnpm": ">=9.0.6",
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!"
   },
@@ -62,7 +62,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.12.7",
-    "@vitest/coverage-v8": "^1.5.0",
+    "@vitest/coverage-v8": "^1.5.1",
     "cspell": "^8.7.0",
     "dotenv": "^16.4.5",
     "happy-dom": "^14.7.1",
@@ -73,6 +73,6 @@
     "turbo": "^1.13.2",
     "unbuild": "3.0.0-rc.1",
     "vite": "^5.2.10",
-    "vitest": "^1.5.0"
+    "vitest": "^1.5.1"
   }
 }

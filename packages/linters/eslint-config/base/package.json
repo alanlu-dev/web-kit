@@ -28,6 +28,10 @@
   "peerDependencies": {
     "@antfu/eslint-config": "0.43.1",
     "@master/eslint-config-css": "2.0.0-rc.28",
+    "@master/eslint-plugin-css": "2.0.0-rc.28",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "@typescript-eslint/typescript-estree": "^6.2.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-antfu": "0.43.1",
@@ -38,6 +42,10 @@
   "devDependencies": {
     "@antfu/eslint-config": "0.43.1",
     "@master/eslint-config-css": "2.0.0-rc.28",
+    "@master/eslint-plugin-css": "2.0.0-rc.28",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "@typescript-eslint/typescript-estree": "^6.2.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-antfu": "0.43.1",
