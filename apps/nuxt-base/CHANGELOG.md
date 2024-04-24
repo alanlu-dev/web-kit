@@ -1,5 +1,18 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.5
+
+### Patch Changes
+
+- [`374a19d`](https://github.com/alanlu-dev/web-kit/commit/374a19d97b51ad7011016835e78191828c3d49e8) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
+- Updated dependencies [[`374a19d`](https://github.com/alanlu-dev/web-kit/commit/374a19d97b51ad7011016835e78191828c3d49e8)]:
+  - @alanlu-dev/eslint-config-base@1.0.3
+  - @alanlu-dev/mastercss-config@1.0.3
+  - @alanlu-dev/types@1.0.1
+  - @alanlu-dev/utils@1.0.2
+  - @alanlu-dev/scss@1.0.1
+
 ## 1.0.4
 
 ### Patch Changes
