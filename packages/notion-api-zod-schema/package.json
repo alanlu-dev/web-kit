@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/notion-api-zod-schema",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Zod schemas for the Notion API (unofficial)",
   "keywords": [
     "notion",
