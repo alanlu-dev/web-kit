@@ -5,7 +5,7 @@ const showNav = ref(false)
 </script>
 
 <template>
-  <header id="header" class="center-content flex sticky bg:base-bg left:0 max-w:inherit p:4x|5x p:4x|10x@tablet shadow:md top:0 w:full z:header">
+  <header v-bind="$attrs" id="header" class="center-content flex sticky bg:base-bg left:0 max-w:inherit p:4x|5x p:4x|10x@tablet top:0 w:full z:header">
     <div class="center-content flex gap:2x gap:3x@tablet">
       <nuxt-link class="rounded ~background|300ms|ease bg:font-content bg:primary-hover:hover size:6x size:9x@tablet size:10x@desktop" to="/"></nuxt-link>
       <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">中華民國職業清潔認證協會</p>

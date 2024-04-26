@@ -1,8 +1,10 @@
-import { useBreakpoints } from '@vueuse/core'
+import { useBreakpoints, useWindowScroll } from '@vueuse/core'
 import breakpointsValue from '@jiehousekeeper/master-css-config/breakpoints'
 
 export const useCommonStore = defineStore('common', () => {
   const breakpoints = useBreakpoints(breakpointsValue)
 
-  return { breakpoints }
+  const { y: scrollY } = useWindowScroll({ behavior: 'smooth' })
+
+  return { breakpoints, scrollY }
 })

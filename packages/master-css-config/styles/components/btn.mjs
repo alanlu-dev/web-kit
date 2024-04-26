@@ -10,6 +10,7 @@ export default {
           f:4x font:bold
           line-h:1.375 ls:0.02em
           ~300ms|ease
+          {transition:none!}_.icon
         `,
       }),
       '-primary': toLine({
