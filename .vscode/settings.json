@@ -23,9 +23,8 @@
   },
 
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "json", "jsonc", "yaml", "toml"],
-
-  // Enable the ESlint flat config support
-  "eslint.experimental.useFlatConfig": false,
+  "eslint.workingDirectories": [{ "pattern": "./apps/*" }, { "pattern": "./packages/*" }],
+  // "eslint.trace.server": "verbose",
 
   // Silent the stylistic rules in you IDE, but still auto fix them
   // "eslint.rules.customizations": [

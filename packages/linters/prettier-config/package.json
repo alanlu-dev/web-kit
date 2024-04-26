@@ -30,7 +30,6 @@
     "prettier-plugin-merge": "^0.6.0"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "workspace:*",
     "prettier": "^3.2.5",
     "prettier-plugin-brace-style": "^0.6.0",
     "prettier-plugin-merge": "^0.6.0"

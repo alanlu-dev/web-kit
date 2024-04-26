@@ -28,6 +28,7 @@ Stylelint
 stylelintrc
 taze
 toastify
+tseslint
 tsup
 Turborepo
 unplugin

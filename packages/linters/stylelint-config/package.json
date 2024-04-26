@@ -37,7 +37,6 @@
     "stylelint-config-standard-scss": "^13.1.0"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "workspace:*",
     "postcss": "^8.4.38",
     "postcss-html": "^1.6.0",
     "postcss-preset-env": "^9.5.9",

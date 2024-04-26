@@ -72,7 +72,6 @@ export interface IProps {
 }
 
 const localProps = computed(() => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const { header, content, footer, cancelText, confirmText, needCancel, modelValue, ...modalProps } = props
   return {
     modelValue: unref(modelValue),

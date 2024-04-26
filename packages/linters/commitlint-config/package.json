@@ -32,7 +32,6 @@
     "czg": "^1.9.1"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "workspace:*",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "czg": "^1.9.1"

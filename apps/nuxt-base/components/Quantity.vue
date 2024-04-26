@@ -103,7 +103,7 @@ onUnmounted(() => {
 <template>
   <div tabindex="0" class="center-content flex rounded bg:white/.9 gap:4x" :class="{ show: isOpen, max: qty === maxQty }" @click="open" @onblur="done">
     <div class="quantity-minus center-content flex pointer round b:2|G-30 bg:white f:md fg:G-30 size:8x" :class="{ 'hidden!': !isOpen, 'flex': isOpen }" @click="tryDecreaseQty">
-      <iconify-icon icon="ic:round-minus" size="18" />
+      <iconify-icon icon="ic:round-minus" size="18" noobserver />
     </div>
     <div class="abs center-content flex hidden:empty round .show_{rel!;fg:base-fg;bg:transparent} bg:error fg:white size:8x user-select:none z:1">
       {{ qty > 0 || (alwaysOpen && isOpen) || (isOpen && qty >= 0) ? qty : null }}
@@ -111,7 +111,7 @@ onUnmounted(() => {
     <VDropdown v-model:shown="showPopper" :disabled="!maxQty || qty < maxQty" :triggers="[]" auto-hide placement="top" theme="tooltip">
       <template #popper>{{ maxMsg }}</template>
       <div class="quantity-plus center-content flex pointer round .max_{bg:G-30;b:2|G-30} b:2|B-30 bg:B-30 f:md fg:white size:8x" @click="tryIncreaseQty">
-        <iconify-icon icon="ic:round-plus" size="18" />
+        <iconify-icon icon="ic:round-plus" size="18" noobserver />
       </div>
     </VDropdown>
   </div>
