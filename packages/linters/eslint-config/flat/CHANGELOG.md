@@ -1,5 +1,11 @@
 # @alanlu-dev/eslint-config-flat
 
+## 0.0.4
+
+### Patch Changes
+
+- [`ee78c15`](https://github.com/alanlu-dev/web-kit/commit/ee78c1513de2aeb2058ffe01adb3d3109a321af5) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore: use eslint flat config
+
 ## 0.0.3
 
 ### Patch Changes
