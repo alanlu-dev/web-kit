@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { GallerySchemaType } from '~/schema/gallery'
+import type { NewsSchemaType } from '~/schema/news'
 
 const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首頁-大B')
+const { data: news } = await useFetch<NewsSchemaType[]>('/api/news/?page_size=4')
 
 const courses = [
   {
@@ -45,7 +47,7 @@ const courses = [
         <Splide :options="{ arrows: false, autoplay: true, interval: 5000, type: 'loop' }">
           <SplideSlide v-for="image in images" :key="image.圖片">
             <nuxt-link :to="image.導轉連結 || undefined" class="rel">
-              <NotionTag :color="image.發布狀態.color" class="abs nowrap p:1x rbl:2x right:0 top:0">{{ image.發布狀態.name }}</NotionTag>
+              <NotionTag :color="image.發布狀態.color" class="abs nowrap p:1x rbl:2x right:0 top:0">{{ image.發布狀態.name }} </NotionTag>
               <img :src="image.圖片" :alt="image.標題" :title="image.標題" />
             </nuxt-link>
           </SplideSlide>
@@ -58,9 +60,9 @@ const courses = [
     <section class="flex flex:column px:7x py:5x py:10x@tablet">
       <h1 class="h1 title">最新消息</h1>
       <div class="center-content inline-flex flex:column flex:row@tablet flex:wrap gap:5x gap:12x|6x@tablet gap:12x|11x@desktop mt:5x mt:8x@tablet mx:auto">
-        <nuxt-link v-for="i in 4" :key="i" class="~color|300ms|ease bb:1|divider fg:primary-hover:hover flex:1|0|45% max-w:400@tablet max-w:500@desktop" :to="`/news/${i}`">
-          <p class="b1-r">2024/03/10</p>
-          <h3 class="b1-r lines:1 my:2x my:3x@tablet">最新清潔認證課程：全面涵蓋環保清潔技術</h3>
+        <nuxt-link v-for="i in news" :key="i.ID" class="~color|300ms|ease bb:1|divider fg:primary-hover:hover flex:1|0|45% max-w:400@tablet max-w:500@desktop" :to="`/news/${i.ID}`">
+          <p class="b1-r">{{ i.發布日期 }}</p>
+          <h3 class="b1-r lines:1 my:2x my:3x@tablet">{{ i.標題 }}</h3>
         </nuxt-link>
       </div>
       <div class="{mt:7.5x}@tablet mb:1.5x mt:6x text:center">
