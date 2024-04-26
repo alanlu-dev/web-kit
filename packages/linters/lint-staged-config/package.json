@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/lint-staged-config",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Shareable lint-staged configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",

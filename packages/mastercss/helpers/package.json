@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/mastercss-helpers",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A collection of utility functions for Master CSS.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",

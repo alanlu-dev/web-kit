@@ -1,5 +1,17 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.6
+
+### Patch Changes
+
+- [`ee78c15`](https://github.com/alanlu-dev/web-kit/commit/ee78c1513de2aeb2058ffe01adb3d3109a321af5) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore: use eslint flat config
+
+- Updated dependencies [[`ee78c15`](https://github.com/alanlu-dev/web-kit/commit/ee78c1513de2aeb2058ffe01adb3d3109a321af5)]:
+  - @alanlu-dev/mastercss-config@1.0.4
+  - @alanlu-dev/types@1.0.2
+  - @alanlu-dev/utils@1.0.3
+  - @alanlu-dev/scss@1.0.1
+
 ## 1.0.5
 
 ### Patch Changes
