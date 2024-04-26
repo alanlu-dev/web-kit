@@ -89,6 +89,9 @@ importers:
       '@notionhq/client':
         specifier: ^2.2.15
         version: 2.2.15(encoding@0.1.13)
+      '@vue-final-modal/nuxt':
+        specifier: ^1.0.3
+        version: 1.0.3(rollup@4.16.4)(vue-final-modal@4.5.4(@vueuse/core@10.9.0(vue@3.4.25(typescript@5.4.5)))(@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))
       '@vueuse/core':
         specifier: ^10.9.0
         version: 10.9.0(vue@3.4.25(typescript@5.4.5))
@@ -98,6 +101,9 @@ importers:
       vue:
         specifier: ^3.4.25
         version: 3.4.25(typescript@5.4.5)
+      vue-final-modal:
+        specifier: ^4.5.4
+        version: 4.5.4(@vueuse/core@10.9.0(vue@3.4.25(typescript@5.4.5)))(@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5))
       vue-router:
         specifier: ^4.3.2
         version: 4.3.2(vue@3.4.25(typescript@5.4.5))
@@ -2262,6 +2268,11 @@ packages:
 
   '@volar/typescript@2.2.0-alpha.10':
     resolution: {integrity: sha512-GCa0vTVVdA9ULUsu2Rx7jwsIuyZQPvPVT9o3NrANTbYv+523Ao1gv3glC5vzNSDPM6bUl37r94HbCj7KINQr+g==}
+
+  '@vue-final-modal/nuxt@1.0.3':
+    resolution: {integrity: sha512-I8YTvrBB93mLLV51Kn3BhlX5saAPqE4jz3Zb9jBm3wwMkvBkEtw3PwXq9kiGb+rNRS2v9EOL2FmhWWim++Mmvg==}
+    peerDependencies:
+      vue-final-modal: '>=4.0.0'
 
   '@vue-macros/common@1.10.2':
     resolution: {integrity: sha512-WC66NPVh2mJWqm4L0l/u/cOqm4pNOIwVdMGnDYAH2rHcOWy5x68GkhpkYTBu1+xwCSeHWOQn1TCGGbD+98fFpA==}
@@ -7434,6 +7445,14 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
+  vue-final-modal@4.5.4:
+    resolution: {integrity: sha512-wYunoN89Ago2d6p/hevyo4KSfar1HxScllS6FaHujCGyx69fsb40YPGzN17bk9K68daYAgrJ1inxv+fvhIGv5A==}
+    peerDependencies:
+      '@vueuse/core': '>=10.0.0'
+      '@vueuse/integrations': '>=10.0.0'
+      focus-trap: '>=7.2.0'
+      vue: '>=3.2.0'
+
   vue-observe-visibility@2.0.0-alpha.1:
     resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
     peerDependencies:
@@ -10108,6 +10127,14 @@ snapshots:
     dependencies:
       '@volar/language-core': 2.2.0-alpha.10
       path-browserify: 1.0.1
+
+  '@vue-final-modal/nuxt@1.0.3(rollup@4.16.4)(vue-final-modal@4.5.4(@vueuse/core@10.9.0(vue@3.4.25(typescript@5.4.5)))(@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))':
+    dependencies:
+      '@nuxt/kit': 3.11.2(rollup@4.16.4)
+      vue-final-modal: 4.5.4(@vueuse/core@10.9.0(vue@3.4.25(typescript@5.4.5)))(@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5))
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
 
   '@vue-macros/common@1.10.2(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))':
     dependencies:
@@ -16060,6 +16087,13 @@ snapshots:
       semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
+
+  vue-final-modal@4.5.4(@vueuse/core@10.9.0(vue@3.4.25(typescript@5.4.5)))(@vueuse/integrations@10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)))(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5)):
+    dependencies:
+      '@vueuse/core': 10.9.0(vue@3.4.25(typescript@5.4.5))
+      '@vueuse/integrations': 10.9.0(focus-trap@7.5.4)(vue@3.4.25(typescript@5.4.5))
+      focus-trap: 7.5.4
+      vue: 3.4.25(typescript@5.4.5)
 
   vue-observe-visibility@2.0.0-alpha.1(vue@3.4.25(typescript@5.4.5)):
     dependencies:

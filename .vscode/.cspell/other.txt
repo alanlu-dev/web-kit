@@ -12,6 +12,7 @@ infile
 jiti
 multistep
 noborder
+noobserver
 Noto
 Overriden
 preinstall

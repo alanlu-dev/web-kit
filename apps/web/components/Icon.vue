@@ -9,6 +9,6 @@ defineProps<IProps>()
 <template>
   <div class="icon f:6x_:where(iconify-icon)" :class="{ 'icon-text': $slots.default }">
     <slot />
-    <iconify-icon :icon="icon" />
+    <iconify-icon :icon="icon" noobserver />
   </div>
 </template>

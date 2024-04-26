@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ModalsContainer } from 'vue-final-modal'
+
 useHead({
   htmlAttrs: {
     id: 'mcss',
@@ -16,6 +18,7 @@ const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@mast
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
+      <ModalsContainer />
     </NuxtLayout>
   </CSSRuntimeProvider>
 </template>
