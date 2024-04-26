@@ -50,10 +50,10 @@
   },
   "devDependencies": {
     "@alanlu-dev/commitlint-config": "^1.0.3",
-    "@alanlu-dev/eslint-config-flat": "^0.0.4",
+    "@alanlu-dev/eslint-config-flat": "^0.0.5",
     "@alanlu-dev/lint-staged-config": "^1.0.3",
     "@alanlu-dev/markdownlint-config": "^1.0.2",
-    "@alanlu-dev/mastercss-config": "^1.0.4",
+    "@alanlu-dev/mastercss-config": "^1.0.5",
     "@alanlu-dev/prettier-config": "^1.0.1",
     "@alanlu-dev/release-it-config": "^0.0.1",
     "@alanlu-dev/stylelint-config": "^1.0.4",
