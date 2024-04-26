@@ -27,8 +27,8 @@
   },
   "peerDependencies": {
     "@antfu/eslint-config": "^2.16.0",
-    "@master/eslint-config-css": "2.0.0-rc.32",
-    "@master/eslint-plugin-css": "2.0.0-rc.32",
+    "@master/eslint-config-css": "2.0.0-rc.33",
+    "@master/eslint-plugin-css": "2.0.0-rc.33",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "@typescript-eslint/utils": "^7.7.1",
@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.16.0",
-    "@master/eslint-config-css": "2.0.0-rc.32",
-    "@master/eslint-plugin-css": "2.0.0-rc.32",
+    "@master/eslint-config-css": "2.0.0-rc.33",
+    "@master/eslint-plugin-css": "2.0.0-rc.33",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "@typescript-eslint/utils": "^7.7.1",

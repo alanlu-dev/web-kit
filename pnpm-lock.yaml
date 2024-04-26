@@ -160,11 +160,11 @@ importers:
         specifier: ^1.6.2
         version: 1.6.2(zod@3.23.4)
       '@master/css.nuxt':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))
       '@master/css.vue':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32(vue@3.4.25(typescript@5.4.5))
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33(vue@3.4.25(typescript@5.4.5))
       '@nuxt/content':
         specifier: ^2.12.1
         version: 2.12.1(ioredis@5.4.1)(nuxt@3.11.2(@parcel/watcher@2.4.1)(@types/node@20.12.7)(@unocss/reset@0.59.4)(async-validator@4.2.5)(encoding@0.1.13)(eslint@9.1.1)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.16.4))(vue@3.4.25(typescript@5.4.5)))(fuse.js@6.6.2)(ioredis@5.4.1)(meow@9.0.0)(optionator@0.9.3)(rollup@4.16.4)(sass@1.75.0)(stylelint@16.4.0(typescript@5.4.5))(terser@5.30.4)(typescript@5.4.5)(unocss@0.59.4(@unocss/webpack@0.59.4(rollup@4.16.4)(webpack@5.91.0(esbuild@0.19.12)))(postcss@8.4.38)(rollup@4.16.4)(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0)(terser@5.30.4)))(vite@5.2.10(@types/node@20.12.7)(sass@1.75.0)(terser@5.30.4))(vue-tsc@2.0.14(typescript@5.4.5)))(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))
@@ -357,11 +357,11 @@ importers:
         specifier: ^2.16.0
         version: 2.16.0(@vue/compiler-sfc@3.4.25)(eslint@9.1.1)(svelte@4.2.15)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@14.7.1)(sass@1.75.0)(terser@5.30.4))
       '@master/eslint-config-css':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32(eslint@9.1.1)(typescript@5.4.5)
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)
       '@master/eslint-plugin-css':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32(eslint@9.1.1)(typescript@5.4.5)
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.7.1
         version: 7.7.1(@typescript-eslint/parser@7.7.1(eslint@9.1.1)(typescript@5.4.5))(eslint@9.1.1)(typescript@5.4.5)
@@ -471,11 +471,11 @@ importers:
         specifier: workspace:*
         version: link:../helpers
       '@master/css':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33
       '@master/css-validator':
-        specifier: 2.0.0-rc.32
-        version: 2.0.0-rc.32
+        specifier: 2.0.0-rc.33
+        version: 2.0.0-rc.33
       ts-deepmerge:
         specifier: ^7.0.0
         version: 7.0.0
@@ -2131,35 +2131,35 @@ packages:
   '@master/colors@2.0.0':
     resolution: {integrity: sha512-0s4DzBSXthRVCFKkKbGvAioT6oVlN54f9H4MX6GN1YoNG0/x0NECyIv/5Tx9p5nDMr+ClDHSDbQ37DJUp8CHFg==}
 
-  '@master/css-explore-config@2.0.0-rc.32':
-    resolution: {integrity: sha512-F1LP4iZkelntl67loJl9DffY35eJnhQ0ge3qOSHwPoe9lz1NE8cvDX7nVB6251HpOIWD/drpkuTtYDRLxhtHZg==}
+  '@master/css-explore-config@2.0.0-rc.33':
+    resolution: {integrity: sha512-dUcj4Pb2HcuJpNNgk9jSqoKDPze2gybDYq6IHCmGnOXFBXHt24DD6UNQp22J64ENksZZJRINSZWBxt9YcV/Ttw==}
 
-  '@master/css-runtime@2.0.0-rc.32':
-    resolution: {integrity: sha512-Fr6sU7RaZ+fnxu7rLA4eWjnx92lfGvKUVCVjtZ2N3j/3sRMJUx9YoNVm1tZp0O3v3570rTotv2iiJG+4kkeR1w==}
+  '@master/css-runtime@2.0.0-rc.33':
+    resolution: {integrity: sha512-U30h75EgS+AJZUbubvwI0Kler7N6gdtM/1ye7Dt1rVdL09X6lthI2OPlU8dXiT861RBehUXtXZkpUw7gfbPXcQ==}
 
-  '@master/css-server@2.0.0-rc.32':
-    resolution: {integrity: sha512-UdoSDkVfWjUbXgDfd/OeBqECv9oSu6xjB9CE7fTe1hyAa4mC6LGmWH5N745cDkE6EYGC1Cw+FEaY2ah/6GN1yg==}
+  '@master/css-server@2.0.0-rc.33':
+    resolution: {integrity: sha512-A5WxSwTY8wg0F7p4cwbsIC7MwkkqEpdmafNK6mUv2M7MZBdB5mrWNKTP9jXgxf8lkWmVgwuiFda4Fj1h3L2hcQ==}
 
-  '@master/css-validator@2.0.0-rc.32':
-    resolution: {integrity: sha512-KiVSg9jIN8By9Jo19YcX/C1p16oHYACGxu3Ic5FyRZCKfqqAMgLCyCsJOE9PZk/uqHoEPHN8fXRYiqw4rTWyog==}
+  '@master/css-validator@2.0.0-rc.33':
+    resolution: {integrity: sha512-s0pW/+uu8e9rKcgqt5F18cQSBrJUjJxTlpJtLTJS3KXH/hubRFyTQoZaQ5piNOgJPgxy4UriA6GU60WDTheVJA==}
 
-  '@master/css.nuxt@2.0.0-rc.32':
-    resolution: {integrity: sha512-HWmQbHc+BgwBcVlZjqfq5hluO+ftsnbdE4yC5V8D/BMH5H/gNDEeHuq8oOvStA03RdbSV8zx9avBU7SSPVjDfw==}
+  '@master/css.nuxt@2.0.0-rc.33':
+    resolution: {integrity: sha512-AC6lpEvzqWgQdj194SH9zMvEmbEkit2iN7ZmOg/87RvPtmXpBd6iErQVwCSJQEKarh8CW1zyzmVOCBxpaTq6fQ==}
 
-  '@master/css.vue@2.0.0-rc.32':
-    resolution: {integrity: sha512-rft9kFh2ljueYfymeLzioEvF+LteSkwsyQ4NFR3TPAhzBhdi0K2I63+aX22hTlwB4mGX1O3+MHqC7fiPk+OAbg==}
+  '@master/css.vue@2.0.0-rc.33':
+    resolution: {integrity: sha512-KQCBZN2phn65tkyaTlyQTJp9jHlC5dZu1cUvjq7zYVYEWTYeXZAvBm4KKYyfJx2B2kpwu8bH2ofAXs/hoYJ/pQ==}
     peerDependencies:
       vue: '>= 3.0.0'
 
-  '@master/css@2.0.0-rc.32':
-    resolution: {integrity: sha512-4Mpu24WxdfKGhBDaETvmZHPYWIuxKmRw/6lMmYmyQc3Pou8SxR8zJoKum4Iv3iDeV2O2lqNrzmhvZFFUPvcSAw==}
+  '@master/css@2.0.0-rc.33':
+    resolution: {integrity: sha512-PcWjNHyF5JhmE55FumLs72E8miLvpaRtQEC2V7Ilw2ji2Ntx1D7iX9idnAtRc5fB3jrrZxVbShNbIfxq1sh1lw==}
     hasBin: true
 
-  '@master/eslint-config-css@2.0.0-rc.32':
-    resolution: {integrity: sha512-zLAnbcJWsGB1Nub8IW+MgYJquPpTwTOEHlYWhZehnTsl6ZdynomorjmKujU2N8FzPL/lwC3IY5BdmT0+I2cY2Q==}
+  '@master/eslint-config-css@2.0.0-rc.33':
+    resolution: {integrity: sha512-EjJTAou1m/Rn2ShZf3LNUgoZL0rW44trjL4EEHNW8hd9+RXUoIO9TuziFoNR7+urrsvmKe7eCs4txqojYzzFrw==}
 
-  '@master/eslint-plugin-css@2.0.0-rc.32':
-    resolution: {integrity: sha512-Z4mRIswxnq+nvckrM0S8KDN8xsljksHJHmfUcECmUdLTdjt9FH98IDvHrb95qDbLWnkQspGARqP5yh/t6sk3cQ==}
+  '@master/eslint-plugin-css@2.0.0-rc.33':
+    resolution: {integrity: sha512-whSwLb+i4AspKmcvjF7SSEY5vIiJFzLQRyY+aRwjgIpBjh2u8HEwuVy2jE7tGWsc6UJjV8GfbZivpN2kM3QmtQ==}
 
   '@master/normal.css@2.1.1':
     resolution: {integrity: sha512-u5NQLjTLmhwVzfrro40EfuAtDpYb/HCXEwlsBibyCc9Fpc5IjZVWZDSXpcejYiX7SJUuwdZnlJ+HBBZfBHMqkw==}
@@ -12008,31 +12008,31 @@ snapshots:
 
   '@master/colors@2.0.0': {}
 
-  '@master/css-explore-config@2.0.0-rc.32':
+  '@master/css-explore-config@2.0.0-rc.33':
     dependencies:
       '@techor/log': 3.0.20
       explore-config: 3.0.20
 
-  '@master/css-runtime@2.0.0-rc.32':
+  '@master/css-runtime@2.0.0-rc.33':
     dependencies:
-      '@master/css': 2.0.0-rc.32
+      '@master/css': 2.0.0-rc.33
 
-  '@master/css-server@2.0.0-rc.32':
+  '@master/css-server@2.0.0-rc.33':
     dependencies:
-      '@master/css': 2.0.0-rc.32
+      '@master/css': 2.0.0-rc.33
       dom-serializer: 2.0.0
       domhandler: 5.0.3
       htmlparser2: 9.1.0
 
-  '@master/css-validator@2.0.0-rc.32':
+  '@master/css-validator@2.0.0-rc.33':
     dependencies:
-      '@master/css': 2.0.0-rc.32
+      '@master/css': 2.0.0-rc.33
       css-tree: 2.3.1
 
-  '@master/css.nuxt@2.0.0-rc.32(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))':
+  '@master/css.nuxt@2.0.0-rc.33(rollup@4.16.4)(vue@3.4.25(typescript@5.4.5))':
     dependencies:
-      '@master/css-server': 2.0.0-rc.32
-      '@master/css.vue': 2.0.0-rc.32(vue@3.4.25(typescript@5.4.5))
+      '@master/css-server': 2.0.0-rc.33
+      '@master/css.vue': 2.0.0-rc.33(vue@3.4.25(typescript@5.4.5))
       '@nuxt/kit': 3.11.2(rollup@4.16.4)
       '@techor/log': 3.0.20
     transitivePeerDependencies:
@@ -12040,31 +12040,31 @@ snapshots:
       - supports-color
       - vue
 
-  '@master/css.vue@2.0.0-rc.32(vue@3.4.25(typescript@5.4.5))':
+  '@master/css.vue@2.0.0-rc.33(vue@3.4.25(typescript@5.4.5))':
     dependencies:
-      '@master/css-runtime': 2.0.0-rc.32
+      '@master/css-runtime': 2.0.0-rc.33
       '@techor/extend': 3.0.20
       vue: 3.4.25(typescript@5.4.5)
 
-  '@master/css@2.0.0-rc.32':
+  '@master/css@2.0.0-rc.33':
     dependencies:
       '@master/colors': 2.0.0
       '@master/normal.css': 2.1.1
       '@techor/extend': 3.0.20
 
-  '@master/eslint-config-css@2.0.0-rc.32(eslint@9.1.1)(typescript@5.4.5)':
+  '@master/eslint-config-css@2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)':
     dependencies:
-      '@master/eslint-plugin-css': 2.0.0-rc.32(eslint@9.1.1)(typescript@5.4.5)
+      '@master/eslint-plugin-css': 2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)
     transitivePeerDependencies:
       - eslint
       - supports-color
       - typescript
 
-  '@master/eslint-plugin-css@2.0.0-rc.32(eslint@9.1.1)(typescript@5.4.5)':
+  '@master/eslint-plugin-css@2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)':
     dependencies:
-      '@master/css': 2.0.0-rc.32
-      '@master/css-explore-config': 2.0.0-rc.32
-      '@master/css-validator': 2.0.0-rc.32
+      '@master/css': 2.0.0-rc.33
+      '@master/css-explore-config': 2.0.0-rc.33
+      '@master/css-validator': 2.0.0-rc.33
       '@typescript-eslint/utils': 7.7.1(eslint@9.1.1)(typescript@5.4.5)
       synckit: 0.9.0
       typescript-eslint: 7.7.1(eslint@9.1.1)(typescript@5.4.5)
