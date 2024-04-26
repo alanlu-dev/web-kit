@@ -1,5 +1,11 @@
 # @alanlu-dev/notion-api-zod-schema
 
+## 0.0.6
+
+### Patch Changes
+
+- [`58c321c`](https://github.com/alanlu-dev/web-kit/commit/58c321ce0c627ec0769b95b4860a51e98429b6bd) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(notion-api-zod-schema): update NotionPageSchema properties
+
 ## 0.0.5
 
 ### Patch Changes
