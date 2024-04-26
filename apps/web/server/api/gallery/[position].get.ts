@@ -9,7 +9,20 @@ export default defineEventHandler(async (event) => {
     const paramPosition = getRouterParam(event, 'position')
     if (!paramPosition) return []
 
-    const response = await notion.databases.query({ database_id: process.env.NOTION_DATABASE_ID_GALLERY! })
+    const position = decodeURIComponent(paramPosition)
+
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID_GALLERY!,
+      filter: {
+        and: [
+          { property: '位置', select: { equals: position } },
+          { property: '資料驗證', formula: { string: { equals: '✅' } } },
+          { property: '封存', checkbox: { equals: false } },
+        ],
+      },
+      filter_properties: ['title', 'dBtm', 'f%3Eo%60', 'x%60DM'],
+      sorts: [{ property: '排序', direction: 'ascending' }],
+    })
 
     const arr: GallerySchemaType[] = []
     response.results.forEach((item) => {
@@ -17,24 +30,14 @@ export default defineEventHandler(async (event) => {
       arr.push(GallerySchema.parse(item.properties))
     })
 
-    const position = decodeURIComponent(paramPosition)
-    return arr
-      .filter((item) => {
-        if (item.封存 === true) return false
-        if (item.資料驗證 !== '✅') return false
-        if (item.位置 !== position) return false
-        if (item.發布狀態.name === '草稿') return false
+    return arr.filter((item) => {
+      if (item.發布狀態.name === '草稿') return false
 
-        if (process.env.VERCEL_ENV === 'production') {
-          if (item.發布狀態.name !== '發布') return false
-        }
-        return true
-      })
-      .sort((a, b) => {
-        if (a.排序 === null) return 1
-        if (b.排序 === null) return -1
-        return a.排序 - b.排序
-      })
+      if (process.env.VERCEL_ENV === 'production') {
+        if (item.發布狀態.name !== '發布') return false
+      }
+      return true
+    })
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {
