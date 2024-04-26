@@ -84,8 +84,8 @@ importers:
   apps/web:
     dependencies:
       '@alanlu-dev/notion-api-zod-schema':
-        specifier: ^0.0.5
-        version: 0.0.5(zod@3.23.4)
+        specifier: ^0.0.6
+        version: 0.0.6(zod@3.23.4)
       '@notionhq/client':
         specifier: ^2.2.15
         version: 2.2.15(encoding@0.1.13)
@@ -107,9 +107,6 @@ importers:
       vue-router:
         specifier: ^4.3.2
         version: 4.3.2(vue@3.4.25(typescript@5.4.5))
-      vue3-notion:
-        specifier: ^0.1.45
-        version: 0.1.45(katex@0.15.6)(prismjs@1.29.0)(vue@3.4.25(typescript@5.4.5))
       zod:
         specifier: ^3.23.4
         version: 3.23.4
@@ -217,8 +214,8 @@ packages:
   '@alanlu-dev/mastercss-helpers@1.0.4':
     resolution: {integrity: sha512-sKYOaBZ8/wRiKZ9tUlg6KQi+th4EkwgRmQ8wxmBMJOUlB1aP+r6IUAAasRVO9MIb4yIj17Tf7TPw8Jch4TZ7ZQ==}
 
-  '@alanlu-dev/notion-api-zod-schema@0.0.5':
-    resolution: {integrity: sha512-4BY2RkBDNTpaS33zrHL6LL/RuiN1WGrWW9eC35QV7s5rpFT9G5FuBlKIb5vznhFYMUyKgCWAaLEsJylhYG9zmg==}
+  '@alanlu-dev/notion-api-zod-schema@0.0.6':
+    resolution: {integrity: sha512-tGaU9JZbirGQVZmfmR4Em5wckE+LXQNSWJ/lBTIP/cvXB/4J2lLTmJ45l3tMXRSW9aUh5/E1pMjeoKHOig9oKQ==}
     peerDependencies:
       zod: 3.23.4
 
@@ -1970,11 +1967,11 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
-  '@techor/extend@3.0.20':
-    resolution: {integrity: sha512-60c0m3Q6vK8h3zOfzdOdyfLcy+6kYFjxicuVGgv1RxjbobNDX1CEGPvxFVLPkWroWCa54WG8SyhfAMP+FftX0g==}
+  '@techor/extend@3.0.21':
+    resolution: {integrity: sha512-c3y6Z8wSr5XOGx/xR64byk/SGOjLtXYEvdjyDUxygFIAElNwJugPHSX1OFDEtZsTsxlUwK11GOGmWqJNDHVYEA==}
 
-  '@techor/log@3.0.20':
-    resolution: {integrity: sha512-V3mcdtLqyK+jpdhrqWUPaLFXGNQxkh4gxG1A0HzSntNaCwReAN/0UDsaVwhfYUbQH7f1WSvAvSb1nr2XalJeBw==}
+  '@techor/log@3.0.21':
+    resolution: {integrity: sha512-z+Kr96PgtPaEjzsYCQkYJXVYEZ7pylxXd2U0Dnc9fs2sZ1PIL1cCZl/Ydd4EYZ4KdF8RzvKQTW1IkqV6PNRB8w==}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -3069,8 +3066,8 @@ packages:
     resolution: {integrity: sha512-FWZBqdStQaPR8ZTBQGALh1EK9Hl1HcG70dyGvD1rKLPafFO3H73o38dz/e8YkIlbLn3JxmBI/f6Doe3Nh+DcEQ==}
     hasBin: true
 
-  cross-import@3.0.20:
-    resolution: {integrity: sha512-71r/JmA6aYR/8moKhgk1+j6tgxndOVnTkj+fBTEJwgKvu5v6sJTk4EM70Uc2qAWvF1BpKkQpR7X5yVQGHXHYIQ==}
+  cross-import@3.0.21:
+    resolution: {integrity: sha512-Bn3i0znSgX3gS/7HRVuPtTg/4N8y9sfow/DyxhzsJdArFAEdnybS6KF4s4yximL9/rkhisxCjaAmsCNQe7tXHg==}
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -3806,8 +3803,8 @@ packages:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
 
-  explore-config@3.0.20:
-    resolution: {integrity: sha512-FfmIbPwRPaAHRkf7Gor5j2fqS47dgDTUpnb2VZifuRqFJUkzx8N3PZ5VIVH1Dzoc7i6oN/GeU8kvvlpql037Yw==}
+  explore-config@3.0.21:
+    resolution: {integrity: sha512-LNUqG7jPL95GxbrOxZbsfb90OxtE3TGZCVUpimnVMmpZPay8wZ+AUW1biQI8lygBCU/5IRiCQGmetj1BfzvbMQ==}
 
   exponential-backoff@3.1.1:
     resolution: {integrity: sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==}
@@ -4700,10 +4697,6 @@ packages:
   jsonparse@1.3.1:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
-
-  katex@0.15.6:
-    resolution: {integrity: sha512-UpzJy4yrnqnhXvRPhjEuLA4lcPn6eRngixW7Q3TJErjg3Aw2PuLFBzTkdUb89UtumxjhHTqL3a5GDGETMSwgJA==}
-    hasBin: true
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -6162,10 +6155,6 @@ packages:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
-    engines: {node: '>=6'}
-
   proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -7488,13 +7477,6 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  vue3-notion@0.1.45:
-    resolution: {integrity: sha512-6e7z9dsZeOQAVmqyvuvM0ljrIVsgWFzfkN4GZeSp9vLb/c+ctdBnVjYtDM0XaBVHme9tqUAbyeQYH8bnKQFGig==}
-    peerDependencies:
-      katex: ^0.15.1
-      prismjs: ^1.25.0
-      vue: ^3.2.20
-
   vue@3.4.25:
     resolution: {integrity: sha512-HWyDqoBHMgav/OKiYA2ZQg+kjfMgLt/T0vg4cbIF7JbXAjDexRf5JRg+PWAfrAkSmTd2I8aPSXtooBFWHB98cg==}
     peerDependencies:
@@ -7723,7 +7705,7 @@ snapshots:
 
   '@alanlu-dev/mastercss-helpers@1.0.4': {}
 
-  '@alanlu-dev/notion-api-zod-schema@0.0.5(zod@3.23.4)':
+  '@alanlu-dev/notion-api-zod-schema@0.0.6(zod@3.23.4)':
     dependencies:
       zod: 3.23.4
 
@@ -8894,8 +8876,8 @@ snapshots:
 
   '@master/css-explore-config@2.0.0-rc.33':
     dependencies:
-      '@techor/log': 3.0.20
-      explore-config: 3.0.20
+      '@techor/log': 3.0.21
+      explore-config: 3.0.21
 
   '@master/css-runtime@2.0.0-rc.33':
     dependencies:
@@ -8918,7 +8900,7 @@ snapshots:
       '@master/css-server': 2.0.0-rc.33
       '@master/css.vue': 2.0.0-rc.33(vue@3.4.25(typescript@5.4.5))
       '@nuxt/kit': 3.11.2(rollup@4.16.4)
-      '@techor/log': 3.0.20
+      '@techor/log': 3.0.21
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -8927,14 +8909,14 @@ snapshots:
   '@master/css.vue@2.0.0-rc.33(vue@3.4.25(typescript@5.4.5))':
     dependencies:
       '@master/css-runtime': 2.0.0-rc.33
-      '@techor/extend': 3.0.20
+      '@techor/extend': 3.0.21
       vue: 3.4.25(typescript@5.4.5)
 
   '@master/css@2.0.0-rc.33':
     dependencies:
       '@master/colors': 2.0.0
       '@master/normal.css': 2.1.1
-      '@techor/extend': 3.0.20
+      '@techor/extend': 3.0.21
 
   '@master/eslint-config-css@2.0.0-rc.33(eslint@9.1.1)(typescript@5.4.5)':
     dependencies:
@@ -8961,7 +8943,7 @@ snapshots:
 
   '@master/styled.vue@2.0.2(vue@3.4.25(typescript@5.4.5))':
     dependencies:
-      '@techor/extend': 3.0.20
+      '@techor/extend': 3.0.21
       class-variant: 2.0.2
       clsx: 2.1.1
       vue: 3.4.25(typescript@5.4.5)
@@ -9676,9 +9658,9 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@techor/extend@3.0.20': {}
+  '@techor/extend@3.0.21': {}
 
-  '@techor/log@3.0.20': {}
+  '@techor/log@3.0.21': {}
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
@@ -11065,7 +11047,7 @@ snapshots:
 
   cronstrue@2.49.0: {}
 
-  cross-import@3.0.20:
+  cross-import@3.0.21:
     dependencies:
       jiti: 1.21.0
       sucrase: 3.35.0
@@ -12006,9 +11988,9 @@ snapshots:
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
 
-  explore-config@3.0.20:
+  explore-config@3.0.21:
     dependencies:
-      cross-import: 3.0.20
+      cross-import: 3.0.21
 
   exponential-backoff@3.1.1: {}
 
@@ -12910,10 +12892,6 @@ snapshots:
       graceful-fs: 4.2.11
 
   jsonparse@1.3.1: {}
-
-  katex@0.15.6:
-    dependencies:
-      commander: 8.3.0
 
   keyv@4.5.4:
     dependencies:
@@ -14605,8 +14583,6 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.3.1
 
-  prismjs@1.29.0: {}
-
   proc-log@3.0.0: {}
 
   proc-log@4.2.0: {}
@@ -16138,12 +16114,6 @@ snapshots:
       vue: 3.4.25(typescript@5.4.5)
       vue-observe-visibility: 2.0.0-alpha.1(vue@3.4.25(typescript@5.4.5))
       vue-resize: 2.0.0-alpha.1(vue@3.4.25(typescript@5.4.5))
-
-  vue3-notion@0.1.45(katex@0.15.6)(prismjs@1.29.0)(vue@3.4.25(typescript@5.4.5)):
-    dependencies:
-      katex: 0.15.6
-      prismjs: 1.29.0
-      vue: 3.4.25(typescript@5.4.5)
 
   vue@3.4.25(typescript@5.4.5):
     dependencies:
