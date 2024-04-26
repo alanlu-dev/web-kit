@@ -1,5 +1,11 @@
 # @alanlu-dev/notion-api-zod-schema
 
+## 0.0.5
+
+### Patch Changes
+
+- [`8de5747`](https://github.com/alanlu-dev/web-kit/commit/8de5747735fd7b23823380516665420a358a6a7d) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(notion-api-zod-schema): export database schema
+
 ## 0.0.4
 
 ### Patch Changes
