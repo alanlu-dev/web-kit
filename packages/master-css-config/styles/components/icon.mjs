@@ -8,7 +8,7 @@ export default {
         '': cls`
           p:2x|4x r:1x
           inline-flex center-content
-          lh:1.5 ls:0.05em
+          line-h:1.5 ls:0.05em
           ~300ms|ease
         `,
       }),

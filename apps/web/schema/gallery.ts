@@ -1,25 +1,25 @@
 import { z } from 'zod'
 import {
-  NotionDatabaseCheckboxSchema,
-  NotionDatabaseFilesSchema,
-  NotionDatabaseFormulaSchema,
-  NotionDatabaseNumberSchema,
-  NotionDatabaseSelectSchema,
-  NotionDatabaseStatusSchema,
-  NotionDatabaseTitleSchema,
-  NotionDatabaseUrlSchema,
-} from '@jiehousekeeper/notion-api-zod-schema'
+  NotionCheckboxSchema,
+  NotionFilesSchema,
+  NotionFormulaSchema,
+  NotionNumberSchema,
+  NotionSelectSchema,
+  NotionStatusSchema,
+  NotionTitleSchema,
+  NotionUrlSchema,
+} from '@alanlu-dev/notion-api-zod-schema'
 
 export const GallerySchema = z.object({
-  位置: NotionDatabaseSelectSchema.transform((o) => o.select.name),
-  排序: NotionDatabaseNumberSchema.transform((o) => o.number),
-  標題: NotionDatabaseTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-  圖片: NotionDatabaseFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
-  導轉連結: NotionDatabaseUrlSchema.transform((o) => o.url),
-  // 發布期間: NotionDatabaseDateSchema.transform((o) => o.date),
-  資料驗證: NotionDatabaseFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
-  發布狀態: NotionDatabaseStatusSchema.transform((o) => o.status),
-  封存: NotionDatabaseCheckboxSchema.transform((o) => o.checkbox),
+  位置: NotionSelectSchema.transform((o) => o.select?.name),
+  排序: NotionNumberSchema.transform((o) => o.number),
+  標題: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+  圖片: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
+  導轉連結: NotionUrlSchema.transform((o) => o.url),
+  // 發布期間: NotionDateSchema.transform((o) => o.date),
+  資料驗證: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
+  發布狀態: NotionStatusSchema.transform((o) => o.status),
+  封存: NotionCheckboxSchema.transform((o) => o.checkbox),
 })
 
 export type GallerySchemaType = z.infer<typeof GallerySchema>

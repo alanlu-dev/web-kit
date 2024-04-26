@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface IProps {
-  icon: String
+  icon: string
 }
 
 defineProps<IProps>()

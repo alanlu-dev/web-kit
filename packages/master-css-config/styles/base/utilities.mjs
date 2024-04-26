@@ -1,6 +1,6 @@
 /** @type {import('@master/css').Config} */
 export default {
-  semantics: {
+  utilities: {
     nowrap: { 'white-space': 'nowrap' },
   },
 }

@@ -46,12 +46,11 @@
     "release": "release-it --ci"
   },
   "peerDependencies": {
-    "@master/css": "2.0.0-rc.26"
+    "@master/css": "2.0.0-rc.32"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "^1.0.0",
-    "@alanlu-dev/mastercss-helpers": "^1.0.1",
-    "@master/css": "2.0.0-rc.26",
+    "@alanlu-dev/mastercss-helpers": "^1.0.4",
+    "@master/css": "2.0.0-rc.32",
     "ts-deepmerge": "^7.0.0"
   }
 }

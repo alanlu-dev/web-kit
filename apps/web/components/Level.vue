@@ -7,14 +7,14 @@ interface IProps {
 defineProps<IProps>()
 
 const tagText: Record<string, string> = {
-  '1': '初階',
-  '2': '進階',
+  1: '初階',
+  2: '進階',
 }
 
 const tagCv = cv('btn', {
   level: {
-    '1': 'bg:#EBF9E9 fg:#249921',
-    '2': 'bg:#FEE9DD fg:#FB753B',
+    1: 'bg:#EBF9E9 fg:#249921',
+    2: 'bg:#FEE9DD fg:#FB753B',
   },
 })
 </script>

@@ -8,7 +8,7 @@ export default {
         '': cls`
           p:3x|6x r:1.5x
           f:4x font:bold
-          lh:1.375 ls:0.02em
+          line-h:1.375 ls:0.02em
           ~300ms|ease
         `,
       }),

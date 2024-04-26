@@ -30,7 +30,11 @@ export default defineEventHandler(async (event) => {
         }
         return true
       })
-      .sort((a, b) => a.排序 - b.排序)
+      .sort((a, b) => {
+        if (a.排序 === null) return 1
+        if (b.排序 === null) return -1
+        return a.排序 - b.排序
+      })
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

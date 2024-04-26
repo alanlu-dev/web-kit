@@ -30,23 +30,21 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "@jiehousekeeper/notion-api-zod-schema": "workspace:*",
+    "@alanlu-dev/notion-api-zod-schema": "^0.0.5",
     "@notionhq/client": "^2.2.15",
     "@vueuse/core": "^10.9.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.22",
-    "vue-router": "^4.3.0",
+    "vue": "^3.4.25",
+    "vue-router": "^4.3.2",
     "vue3-notion": "^0.1.45",
-    "zod": "^3.22.4"
+    "zod": "^3.23.4"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "^1.0.0",
-    "@alanlu-dev/mastercss-config": "^1.0.1",
-    "@alanlu-dev/types": "^1.0.0",
+    "@alanlu-dev/release-it-config": "^0.0.1",
+    "@alanlu-dev/types": "^1.0.2",
     "@jiehousekeeper/master-css-config": "workspace:*",
-    "@jiehousekeeper/release-it-config": "workspace:*",
-    "@master/css.nuxt": "2.0.0-rc.26",
-    "@master/css.vue": "2.0.0-rc.26",
+    "@master/css.nuxt": "2.0.0-rc.32",
+    "@master/css.vue": "2.0.0-rc.32",
     "@master/styled.vue": "^2.0.2",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
@@ -54,6 +52,6 @@
     "class-variant": "^2.0.2",
     "nuxt": "^3.11.2",
     "nuxt-splide": "1.1.1",
-    "vue-tsc": "^2.0.13"
+    "vue-tsc": "^2.0.14"
   }
 }
