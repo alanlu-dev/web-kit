@@ -27,6 +27,7 @@
     },
     "test": {},
     "lint": {},
+    "lint:eslint": {},
     "typecheck": {},
     "coverage": {
       "outputs": ["coverage/**"]

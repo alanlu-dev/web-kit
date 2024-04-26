@@ -12,13 +12,14 @@ infile
 jiti
 multistep
 noborder
+noobserver
 Noto
 Overriden
 preinstall
+shellcheck
 stroustrup
 toggleable
 typecheck
 unref
 wght
 zod's
-shellcheck

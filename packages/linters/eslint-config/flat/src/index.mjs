@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import antfu from '@antfu/eslint-config'
 import vitest from 'eslint-plugin-vitest'
 import css from '@master/eslint-config-css/flat'
@@ -84,6 +83,7 @@ export default antfu(
       'no-console': 'off',
       'n/prefer-global/process': 'off',
     },
+
     overrides: [
       {
         // 針對 locales 目錄下的所有 .json 檔案

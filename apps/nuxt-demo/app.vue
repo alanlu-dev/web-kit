@@ -46,6 +46,7 @@ const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@mast
       <NuxtLoadingIndicator />
       <ModalsContainer />
       <NuxtPage />
+      <div class="bg:nuxt-demo"></div>
     </NuxtLayout>
   </CSSRuntimeProvider>
 </template>

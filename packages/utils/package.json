@@ -52,7 +52,6 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "workspace:*",
     "@alanlu-dev/tsconfig": "workspace:*",
     "@alanlu-dev/types": "workspace:*"
   }

@@ -26,15 +26,14 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "eslint": "^8.57.0",
+    "eslint": "^9.1.1",
     "lint-staged": "^15.2.2",
     "markdownlint-cli2": "^0.13.0",
     "prettier": "^3.2.5",
     "stylelint": "^16.4.0"
   },
   "devDependencies": {
-    "@alanlu-dev/eslint-config-base": "workspace:*",
-    "eslint": "^8.57.0",
+    "eslint": "^9.1.1",
     "lint-staged": "^15.2.2",
     "markdownlint-cli2": "^0.13.0",
     "prettier": "^3.2.5",
