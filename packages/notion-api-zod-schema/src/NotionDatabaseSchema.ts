@@ -6,13 +6,13 @@ import { NotionExternalFileObjectSchema, NotionFileSchema, NotionInternalFileObj
 import { NotionUserSchema } from './NotionUserSchema'
 import { NotionTimezoneSchema } from './NotionTimezoneSchema'
 
-const NotionDatabaseCellSchema = z.object({
+export const NotionDatabaseCellSchema = z.object({
   id: z.string(),
   type: z.string(),
 })
 
 // title
-const NotionTitleSchema = z.object({
+export const NotionTitleSchema = z.object({
   type: z.literal('title'),
   title: z.array(NotionTextSchema.optional()),
 })
@@ -26,34 +26,34 @@ export const NotionRichTextSchema = z.object({
 export type NotionRichTextBlockType = z.infer<typeof NotionRichTextSchema>
 
 // number
-const NotionNumberSchema = z.object({
+export const NotionNumberSchema = z.object({
   type: z.literal('number'),
   number: z.number().nullable(),
 })
 export type NotionNumberType = z.infer<typeof NotionNumberSchema>
 
-const NotionSelectOptionSchema = z.object({
+export const NotionSelectOptionSchema = z.object({
   id: z.string(),
   name: z.string(),
   color: NotionColorSchema,
 })
 
 // select
-const NotionSelectSchema = z.object({
+export const NotionSelectSchema = z.object({
   type: z.literal('select'),
   select: NotionSelectOptionSchema.nullable(),
 })
 export type NotionSelectType = z.infer<typeof NotionSelectSchema>
 
 // multi_select
-const NotionMultiSelectSchema = z.object({
+export const NotionMultiSelectSchema = z.object({
   type: z.literal('multi_select'),
   multi_select: z.array(NotionSelectOptionSchema.optional()),
 })
 export type NotionMultiSelectType = z.infer<typeof NotionMultiSelectSchema>
 
 // status
-const NotionStatusSchema = z.object({
+export const NotionStatusSchema = z.object({
   type: z.literal('status'),
   status: z.object({
     id: z.string(),
@@ -63,7 +63,7 @@ const NotionStatusSchema = z.object({
 })
 export type NotionStatusType = z.infer<typeof NotionStatusSchema>
 
-const NotionDateItemSchema = z.object({
+export const NotionDateItemSchema = z.object({
   start: z.string(),
   end: z.string().nullable(),
   time_zone: NotionTimezoneSchema.nullable(),
@@ -71,84 +71,84 @@ const NotionDateItemSchema = z.object({
 export type NotionDateItemType = z.infer<typeof NotionDateItemSchema>
 
 // date
-const NotionDateSchema = z.object({
+export const NotionDateSchema = z.object({
   type: z.literal('date'),
   date: NotionDateItemSchema.nullable(),
 })
 export type NotionDateType = z.infer<typeof NotionDateSchema>
 
 // people
-const NotionPeopleSchema = z.object({
+export const NotionPeopleSchema = z.object({
   type: z.literal('people'),
   people: z.array(NotionUserSchema.optional()),
 })
 export type NotionPeopleType = z.infer<typeof NotionPeopleSchema>
 
 // files
-const NotionFilesSchema = z.object({
+export const NotionFilesSchema = z.object({
   type: z.literal('files'),
   files: z.array(NotionFileSchema.optional()),
 })
 export type NotionFilesType = z.infer<typeof NotionFilesSchema>
 
 // checkbox
-const NotionCheckboxSchema = z.object({
+export const NotionCheckboxSchema = z.object({
   type: z.literal('checkbox'),
   checkbox: z.boolean(),
 })
 export type NotionCheckboxType = z.infer<typeof NotionCheckboxSchema>
 
 // url
-const NotionUrlSchema = z.object({
+export const NotionUrlSchema = z.object({
   type: z.literal('url'),
   url: z.string().url().nullable(),
 })
 export type NotionUrlType = z.infer<typeof NotionUrlSchema>
 
 // email
-const NotionEmailSchema = z.object({
+export const NotionEmailSchema = z.object({
   type: z.literal('email'),
   email: z.string().nullable(),
 })
 export type NotionEmailType = z.infer<typeof NotionEmailSchema>
 
 // phone_number
-const NotionPhoneNumberSchema = z.object({
+export const NotionPhoneNumberSchema = z.object({
   type: z.literal('phone_number'),
   phone_number: z.string().nullable(),
 })
 export type NotionPhoneNumberType = z.infer<typeof NotionPhoneNumberSchema>
 
 // created_time
-const NotionCreatedTimeSchema = z.object({
+export const NotionCreatedTimeSchema = z.object({
   type: z.literal('created_time'),
   created_time: z.string(),
 })
 export type NotionCreatedTimeType = z.infer<typeof NotionCreatedTimeSchema>
 
 // created_by
-const NotionCreatedBySchema = z.object({
+export const NotionCreatedBySchema = z.object({
   type: z.literal('created_by'),
   created_by: NotionUserSchema,
 })
 export type NotionCreatedByType = z.infer<typeof NotionCreatedBySchema>
 
 // last_edited_time
-const NotionLastEditedTimeSchema = z.object({
+export const NotionLastEditedTimeSchema = z.object({
   type: z.literal('last_edited_time'),
   last_edited_time: z.string(),
 })
 export type NotionLastEditedTimeType = z.infer<typeof NotionLastEditedTimeSchema>
 
 // last_edited_by
-const NotionLastEditedBySchema = z.object({
+export const NotionLastEditedBySchema = z.object({
   type: z.literal('last_edited_by'),
   last_edited_by: NotionUserSchema,
 })
 export type NotionLastEditedByType = z.infer<typeof NotionLastEditedBySchema>
 
 // unique_id
-const NotionUniqueIdSchema = z.object({
+export const NotionUniqueIdSchema = z.object({
   type: z.literal('unique_id'),
   unique_id: z.object({
     prefix: z.string().nullable(),
@@ -157,14 +157,14 @@ const NotionUniqueIdSchema = z.object({
 })
 export type NotionUniqueIdType = z.infer<typeof NotionUniqueIdSchema>
 
-const NotionButtonSchema = z.object({
+export const NotionButtonSchema = z.object({
   type: z.literal('button'),
   button: z.object({}),
 })
 export type NotionButtonType = z.infer<typeof NotionButtonSchema>
 
 // formula
-const NotionFormulaSchema = z.object({
+export const NotionFormulaSchema = z.object({
   type: z.literal('formula'),
   formula: z.object({
     type: z.literal('string'),
@@ -174,7 +174,7 @@ const NotionFormulaSchema = z.object({
 export type NotionFormulaType = z.infer<typeof NotionFormulaSchema>
 
 // relation
-const NotionRelationSchema = z.object({
+export const NotionRelationSchema = z.object({
   type: z.literal('relation'),
   relation: z.array(z.object({ id: z.string() }).optional()),
 })
