@@ -109,10 +109,10 @@ const courses = [
             }"
           >
             <div class="splide__arrows splide__arrows--ltr">
-              <Button intent="secondary" class="splide__arrow splide__arrow--prev size:9x left:-2.5em! {size:11.5x!;left:-5em!}@2xs">
+              <Button intent="secondary" class="splide__arrow splide__arrow--prev p:0! rounded! size:9x left:-2.5em! {size:11.5x!;left:-5em!}@2xs">
                 <Icon icon="material-symbols-light:chevron-left" />
               </Button>
-              <Button intent="secondary" class="splide__arrow splide__arrow--next size:9x right:-2.5em! {size:11.5x!;right:-5em!}@2xs">
+              <Button intent="secondary" class="splide__arrow splide__arrow--next p:0! rounded! size:9x right:-2.5em! {size:11.5x!;right:-5em!}@2xs">
                 <Icon icon="material-symbols-light:chevron-right" />
               </Button>
             </div>
