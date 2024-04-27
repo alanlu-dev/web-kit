@@ -88,7 +88,7 @@ const courses = [
     <!-- 課程資訊 -->
     <section class="flex flex:column py:5x py:10x@tablet">
       <h1 class="h1 title">課程資訊</h1>
-      <section class="rel m:5x|15vw {my:10x}@tablet">
+      <section class="rel {my:10x}@tablet m:5x|15vw">
         <ClientOnly>
           <template #fallback>
             <div class="text:center"> loading </div>
@@ -109,15 +109,15 @@ const courses = [
             }"
           >
             <div class="splide__arrows splide__arrows--ltr">
-              <Button intent="secondary" class="splide__arrow splide__arrow--prev p:0! rounded! size:9x left:-2.5em! {size:11.5x!;left:-5em!}@2xs">
+              <Button intent="secondary" class="splide__arrow splide__arrow--prev rounded! {size:11.5x!;left:-5em!}@2xs left:-2.5em! p:0! size:9x">
                 <Icon icon="material-symbols-light:chevron-left" />
               </Button>
-              <Button intent="secondary" class="splide__arrow splide__arrow--next p:0! rounded! size:9x right:-2.5em! {size:11.5x!;right:-5em!}@2xs">
+              <Button intent="secondary" class="splide__arrow splide__arrow--next rounded! {size:11.5x!;right:-5em!}@2xs p:0! right:-2.5em! size:9x">
                 <Icon icon="material-symbols-light:chevron-right" />
               </Button>
             </div>
             <SplideTrack>
-              <SplideSlide v-for="course in courses" :key="course.id" class="px:0.5x pb:0.5x!">
+              <SplideSlide v-for="course in courses" :key="course.id" class="pb:0.5x! px:0.5x">
                 <div class="text:center">
                   <div class="center-content inline-flex flex:wrap gap:12x|11x mx:auto">
                     <nuxt-link class="bg:base-bg overflow:hidden r:2x scale(1.1):hover_img shadow:md" :to="`/course/${course.id}`">

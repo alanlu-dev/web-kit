@@ -11,7 +11,7 @@ const tagText: Record<string, string> = {
   2: '進階',
 }
 
-const tagCv = cv('btn', {
+const tagCv = cv({
   level: {
     1: 'bg:#EBF9E9 fg:#249921',
     2: 'bg:#FEE9DD fg:#FB753B',

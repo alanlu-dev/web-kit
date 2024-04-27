@@ -35,6 +35,7 @@ useEventListener(window, 'keydown', (event) => {
     <main class="flex:1 overflow:hidden">
       <slot />
     </main>
+
     <Footer />
 
     <ClientOnly>
