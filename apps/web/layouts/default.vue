@@ -40,7 +40,7 @@ useEventListener(window, 'keydown', (event) => {
     <ClientOnly>
       <Button
         intent="secondary"
-        class="center-content fixed flex rounded! {opacity:1;visibility:visible}[show=true] ~300ms|ease ~property:opacity,visibility bottom:240 opacity:0 p:0! right:30 size:11.5x visibility:hidden z:nav"
+        class="center-content fixed flex rounded! {opacity:1;visibility:visible}[show=true] ~300ms|ease ~property:opacity,visibility bottom:30 bottom:60@2xs opacity:0 p:0! right:30 size:9x size:11.5x@2xs visibility:hidden z:nav"
         :show="common.scrollY > 200"
         @click="common.scrollY = 0"
       >

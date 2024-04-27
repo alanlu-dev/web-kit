@@ -14,12 +14,12 @@ export default {
         `,
       }),
       '-primary': toLine({
-        '': cls`fg:white bg:primary`,
-        ':hover': cls`bg:primary-hover`,
+        '': cls`fg:white! bg:primary!`,
+        ':hover': cls`bg:primary-hover!`,
       }),
       '-secondary': toLine({
-        '': cls`fg:primary bg:#D0E6F1`,
-        ':hover': cls`fg:white bg:#7BBFE0`,
+        '': cls`fg:primary! bg:#D0E6F1!`,
+        ':hover': cls`fg:white! bg:#7BBFE0!`,
       }),
     },
   },

@@ -18,7 +18,7 @@ const btn = cv('btn', {
 </script>
 
 <template>
-  <button :class="btn({ intent })">
+  <button :class="btn({ intent })" type="button">
     <slot />
   </button>
 </template>

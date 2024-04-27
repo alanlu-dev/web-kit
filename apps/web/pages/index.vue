@@ -86,47 +86,65 @@ const courses = [
     </section>
 
     <!-- 課程資訊 -->
-    <section class="flex flex:column px:7x py:5x py:10x@tablet">
-      <h1 class="h1 title">課程資訊 🚧</h1>
-      <section class="rel mt:5x mt:10x@tablet">
+    <section class="flex flex:column py:5x py:10x@tablet">
+      <h1 class="h1 title">課程資訊</h1>
+      <section class="rel m:5x|15vw {my:10x}@tablet">
         <ClientOnly>
-          <template #fallback> TODO </template>
+          <template #fallback>
+            <div class="text:center"> loading </div>
+          </template>
           <Splide
+            :has-track="false"
             :options="{
-              perPage: 3,
               arrows: true,
               type: 'loop',
+              perPage: 3,
+              gap: '28px',
+              snap: true,
               pagination: false,
-              breakpoints: { 1024: { perPage: 2 }, 390: { perPage: 1 } },
+              breakpoints: {
+                1024: { perPage: 2 },
+                600: { perPage: 1 },
+              },
             }"
           >
-            <SplideSlide v-for="course in courses" :key="course.id">
-              <div class="text:center">
-                <div class="center-content inline-flex flex:wrap gap:12x|11x mx:auto">
-                  <nuxt-link class="bg:base-bg overflow:hidden r:2x scale(1.1):hover_img shadow:md" :to="`/course/${course.id}`">
-                    <div class="rel aspect:316/133 overflow:hidden">
-                      <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="course.image" :alt="course.title" />
-                    </div>
-                    <div class="p:2x|4x">
-                      <div class="flex ai:center gap:2x jc:flex-start">
-                        <Level :level="course.tag" />
-                        <p class="b1-b fg:font-title">{{ course.title }}</p>
+            <div class="splide__arrows splide__arrows--ltr">
+              <Button intent="secondary" class="splide__arrow splide__arrow--prev size:9x left:-2.5em! {size:11.5x!;left:-5em!}@2xs">
+                <Icon icon="material-symbols-light:chevron-left" />
+              </Button>
+              <Button intent="secondary" class="splide__arrow splide__arrow--next size:9x right:-2.5em! {size:11.5x!;right:-5em!}@2xs">
+                <Icon icon="material-symbols-light:chevron-right" />
+              </Button>
+            </div>
+            <SplideTrack>
+              <SplideSlide v-for="course in courses" :key="course.id" class="px:0.5x pb:0.5x!">
+                <div class="text:center">
+                  <div class="center-content inline-flex flex:wrap gap:12x|11x mx:auto">
+                    <nuxt-link class="bg:base-bg overflow:hidden r:2x scale(1.1):hover_img shadow:md" :to="`/course/${course.id}`">
+                      <div class="rel aspect:316/133 overflow:hidden">
+                        <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="course.image" :alt="course.title" />
                       </div>
-                      <div class="flex ai:center jc:flex-start mt:2x">
-                        <p>上課日期：</p>
-                        <p>{{ course.date }}</p>
+                      <div class="p:2x|4x">
+                        <div class="flex ai:center gap:2x jc:flex-start">
+                          <Level :level="course.tag" />
+                          <p class="b1-b fg:font-title">{{ course.title }}</p>
+                        </div>
+                        <div class="flex ai:center jc:flex-start mt:2x">
+                          <p class="nowrap">上課日期：</p>
+                          <p>{{ course.date }}</p>
+                        </div>
+                        <div class="flex ai:center jc:flex-start mt:2x">
+                          <p class="nowrap">上課地點：</p>
+                          <p>{{ course.place }}</p>
+                        </div>
+                        <hr class="bg:#DBD9D9 h:1 mt:9x" />
+                        <p class="h3 fg:accent! mt:2x text:right">{{ course.price }}</p>
                       </div>
-                      <div class="flex ai:center jc:flex-start mt:2x">
-                        <p>上課地點：</p>
-                        <p>{{ course.place }}</p>
-                      </div>
-                      <hr class="bg:#DBD9D9 h:1 mt:9x" />
-                      <p class="h3 fg:accent! mt:2x text:right">{{ course.price }}</p>
-                    </div>
-                  </nuxt-link>
+                    </nuxt-link>
+                  </div>
                 </div>
-              </div>
-            </SplideSlide>
+              </SplideSlide>
+            </SplideTrack>
           </Splide>
         </ClientOnly>
       </section>
