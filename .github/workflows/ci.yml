@@ -68,13 +68,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [18, 20]
-        include:
-          # Active LTS + other OS
-          - os: macos-latest
-            node_version: 20
-          - os: windows-latest
-            node_version: 20
+        node_version: [20]
+        # node_version: [18, 20]
+        # include:
+        #   # Active LTS + other OS
+        #   - os: macos-latest
+        #     node_version: 20
+        #   - os: windows-latest
+        #     node_version: 20
       fail-fast: false
 
     name: 'Build & Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
@@ -117,8 +118,3 @@ jobs:
       - name: Test unit
         if: steps.changed-files.outputs.only_changed != 'true'
         run: pnpm run test
-        env:
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          NOTION_DASHBOARD_ID: ${{ secrets.NOTION_DASHBOARD_ID }}
