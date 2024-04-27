@@ -1,3 +1,8 @@
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const currentDir = dirname(fileURLToPath(import.meta.url))
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -19,6 +24,18 @@ export default defineNuxtConfig({
 
     /* --- modal --- */
     '@vue-final-modal/nuxt',
+
+    /* --- formkit --- */
+    ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
+  ],
+
+  // https://nuxt.com/docs/api/configuration/nuxt-config#css
+  css: [
+    // master css
+    '@master/normal.css',
+    // formkit
+    '@formkit/themes/genesis',
+    '@formkit/addons/css/floatingLabels',
   ],
 
   googleFonts: {
@@ -43,6 +60,4 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // https://nuxt.com/docs/api/configuration/nuxt-config#css
-  css: ['@master/normal.css'],
 })
