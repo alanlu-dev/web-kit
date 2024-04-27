@@ -32,7 +32,7 @@ useEventListener(window, 'keydown', (event) => {
       <Header :class="{ 'shadow:md': common.scrollY > 200 }" />
     </ClientOnly>
 
-    <main class="flex:1">
+    <main class="flex:1 overflow:hidden">
       <slot />
     </main>
     <Footer />
