@@ -46,11 +46,11 @@
     "release": "release-it --ci"
   },
   "peerDependencies": {
-    "@master/css": "2.0.0-rc.33"
+    "@master/css": "2.0.0-rc.35"
   },
   "devDependencies": {
     "@alanlu-dev/mastercss-helpers": "^1.0.4",
-    "@master/css": "2.0.0-rc.33",
+    "@master/css": "2.0.0-rc.35",
     "ts-deepmerge": "^7.0.0"
   }
 }
