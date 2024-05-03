@@ -10,7 +10,7 @@
     <HomeIntroduce />
 
     <!-- 課程資訊 -->
-    <HomeCourse />
+    <HomeCourses />
 
     <!-- 課程價值 -->
     <img src="/wave.svg" alt="課程價值" class="aspect:390/121 mb:-10% mb:-15%@desktop object:cover w:full z:-1" />

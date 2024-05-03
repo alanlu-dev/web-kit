@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     const position = decodeURIComponent(paramPosition)
 
     const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID_GALLERY!,
+      database_id: process.env.NOTION_DATABASE_ID_GALLERIES!,
       filter: {
         and: [
           { property: '位置', select: { equals: position } },
