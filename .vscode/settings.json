@@ -20,6 +20,7 @@
   },
 
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "json", "jsonc", "yaml", "toml"],
+  "eslint.workingDirectories": [{ "mode": "auto" }],
 
   // Enable the ESlint flat config support
   // "eslint.experimental.useFlatConfig": true,

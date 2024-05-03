@@ -8,9 +8,11 @@ datetime
 evenodd
 Fira
 fullname
+infile
 jiti
 multistep
 noborder
+noobserver
 Noto
 Overriden
 preinstall

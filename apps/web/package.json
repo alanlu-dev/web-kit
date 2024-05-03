@@ -16,19 +16,53 @@
     "@jiehousekeeper:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
+    "build:clean": "npx rimraf --glob ./.output",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --dotenv .env",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "cleanup": "nuxt cleanup",
+    "app:prepare": "nuxt prepare",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "typecheck": "vue-tsc --noEmit",
     "release": "release-it --ci"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "@alanlu-dev/notion-api-zod-schema": "^0.0.6",
+    "@formkit/addons": "^1.6.2",
+    "@formkit/core": "^1.6.2",
+    "@formkit/i18n": "^1.6.2",
+    "@formkit/icons": "^1.6.2",
+    "@formkit/inertia": "^0.1.5",
+    "@formkit/inputs": "^1.6.2",
+    "@formkit/nuxt": "^1.6.2",
+    "@formkit/themes": "^1.6.2",
+    "@formkit/vue": "^1.6.2",
+    "@formkit/zod": "^1.6.2",
+    "@notionhq/client": "^2.2.15",
+    "@vue-final-modal/nuxt": "^1.0.3",
+    "@vueuse/core": "^10.9.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.25",
+    "vue-final-modal": "^4.5.4",
+    "vue-router": "^4.3.2",
+    "zod": "^3.23.4"
   },
   "devDependencies": {
-    "@jiehousekeeper/release-it-config": "workspace:*",
-    "nuxt": "^3.11.2"
+    "@alanlu-dev/release-it-config": "^0.0.1",
+    "@alanlu-dev/types": "^1.0.2",
+    "@jiehousekeeper/master-css-config": "workspace:*",
+    "@master/css.nuxt": "2.0.0-rc.33",
+    "@master/css.vue": "2.0.0-rc.33",
+    "@master/styled.vue": "^2.0.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@pinia/nuxt": "^0.5.1",
+    "class-variant": "^2.0.2",
+    "nuxt": "^3.11.2",
+    "nuxt-splide": "1.1.1",
+    "vue-tsc": "^2.0.14"
   }
 }

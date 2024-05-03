@@ -1,0 +1,56 @@
+{
+  "name": "@jiehousekeeper/master-css-config",
+  "type": "module",
+  "version": "0.0.0",
+  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiehousekeeper/official-site.git",
+    "directory": "packages/master-css-config"
+  },
+  "bugs": {
+    "url": "https://github.com/jiehousekeeper/official-site/issues"
+  },
+  "publishConfig": {
+    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./breakpoints": {
+      "types": "./dist/breakpoints.d.ts",
+      "import": "./dist/breakpoints.mjs",
+      "require": "./dist/breakpoints.cjs"
+    },
+    "./vendors/*": {
+      "import": "./dist/vendors/*.mjs",
+      "require": "./dist/vendors/*.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "pkg:prepare": "pnpm run build",
+    "build:clean": "npx rimraf --glob ./dist",
+    "build": "tsx scripts/build.mjs",
+    "dev": "tsx --watch scripts/build.mjs",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "release": "release-it --ci"
+  },
+  "peerDependencies": {
+    "@master/css": "2.0.0-rc.33"
+  },
+  "devDependencies": {
+    "@alanlu-dev/mastercss-helpers": "^1.0.4",
+    "@master/css": "2.0.0-rc.33",
+    "ts-deepmerge": "^7.0.0"
+  }
+}
