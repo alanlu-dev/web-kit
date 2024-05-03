@@ -41,14 +41,14 @@
     "@formkit/themes": "^1.6.2",
     "@formkit/vue": "^1.6.2",
     "@formkit/zod": "^1.6.2",
-    "@master/css.nuxt": "2.0.0-rc.33",
-    "@master/css.vue": "2.0.0-rc.33",
+    "@master/css.nuxt": "2.0.0-rc.35",
+    "@master/css.vue": "2.0.0-rc.35",
     "@nuxt/devtools": "^1.2.0",
-    "@nuxt/image": "^1.6.0",
+    "@nuxt/image": "^1.7.0",
     "@nuxt/kit": "^3.11.2",
     "@nuxt/schema": "3.11.2",
     "@nuxt/ui": "^2.15.2",
-    "@nuxtjs/color-mode": "^3.4.0",
+    "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
@@ -63,11 +63,11 @@
     "nuxt-icon": "^0.6.10",
     "pinia": "^2.1.7",
     "unstorage": "^1.10.2",
-    "vue": "^3.4.25",
+    "vue": "^3.4.26",
     "vue-final-modal": "^4.5.4",
     "vue-router": "^4.3.2",
-    "vue-tsc": "^2.0.14",
-    "zod": "^3.23.4"
+    "vue-tsc": "^2.0.16",
+    "zod": "^3.23.6"
   },
   "dependencies": {
     "@alanlu-dev/utils": "workspace:*",
@@ -75,10 +75,10 @@
     "class-variant": "^2.0.2",
     "nanoid": "^5.0.7",
     "pinia": "^2.1.7",
-    "vue": "^3.4.25",
+    "vue": "^3.4.26",
     "vue-final-modal": "^4.5.4",
     "vue-router": "^4.3.2",
-    "zod": "^3.23.4"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@alanlu-dev/mastercss-config": "workspace:*",
@@ -95,15 +95,15 @@
     "@formkit/themes": "^1.6.2",
     "@formkit/vue": "^1.6.2",
     "@formkit/zod": "^1.6.2",
-    "@master/css.nuxt": "2.0.0-rc.33",
-    "@master/css.vue": "2.0.0-rc.33",
+    "@master/css.nuxt": "2.0.0-rc.35",
+    "@master/css.vue": "2.0.0-rc.35",
     "@nuxt/content": "^2.12.1",
     "@nuxt/devtools": "^1.2.0",
-    "@nuxt/image": "^1.6.0",
+    "@nuxt/image": "^1.7.0",
     "@nuxt/kit": "^3.11.2",
     "@nuxt/schema": "3.11.2",
     "@nuxt/ui": "^2.15.2",
-    "@nuxtjs/color-mode": "^3.4.0",
+    "@nuxtjs/color-mode": "^3.4.1",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
@@ -115,6 +115,6 @@
     "nuxt": "^3.11.2",
     "nuxt-icon": "^0.6.10",
     "unstorage": "^1.10.2",
-    "vue-tsc": "^2.0.14"
+    "vue-tsc": "^2.0.16"
   }
 }
