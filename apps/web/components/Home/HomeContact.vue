@@ -10,15 +10,15 @@ async function submitHandler() {
 
 <template>
   <section class="flex flex:column px:7x py:5x py:10x@tablet">
-    <h1 class="h1 title">聯絡我們 🚧</h1>
-    <div class="b1-r mb:8.5x mt:5x text:center">
+    <h1 class="h1 title">聯絡我們</h1>
+    <div class="b1-r {mb:8.5x;mt:5x}@tablet mb:6.75x mt:3x text:center">
       <p>有課程相關的問題嗎？</p>
       <p>留下資訊我們將盡快回覆您</p>
     </div>
 
-    <div class="mx:auto">
+    <div class="max-w:600 mx:auto w:full">
       <FormKit type="form" :config="{ classes: { wrapper: 'max-w:unset!', outer: 'mb:0!' } }" :actions="false" @submit="submitHandler">
-        <div class="gap:4x|6x grid-cols:2">
+        <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
           <FormKit type="text" name="mobile" label="連絡電話" validation="required|phone" />
           <FormKit type="email" name="email" label="電子信箱" validation="required|email" />
