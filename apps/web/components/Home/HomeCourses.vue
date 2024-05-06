@@ -8,7 +8,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
 <template>
   <section class="flex flex:column py:5x py:10x@tablet">
     <h1 class="h1 title">課程資訊</h1>
-    <section class="rel {my:10x}@tablet m:5x|15vw">
+    <section class="rel mt:5x {mt:10x}@tablet mx:15vw">
       <ClientOnly>
         <template #fallback>
           <div class="text:center"> loading </div>
@@ -69,7 +69,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
       </ClientOnly>
     </section>
 
-    <div class="{mt:7.5x}@tablet mb:1.5x mt:6x text:center">
+    <div class="mt:7.5x mb:1.5x text:center">
       <nuxt-link to="/course">
         <Icon icon="material-symbols-light:arrow-right-alt">更多課程</Icon>
       </nuxt-link>

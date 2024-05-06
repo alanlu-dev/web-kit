@@ -13,5 +13,11 @@ const { data: news } = await useFetch<NewsSchemaType[]>('/api/news/?page_size=4'
         <h3 class="b1-b lines:1 my:2x my:3x@tablet">{{ i.標題 }}</h3>
       </nuxt-link>
     </div>
+
+    <div class="{mt:7.5x}@tablet mb:1.5x mt:6x text:center">
+      <nuxt-link to="/news">
+        <Icon icon="material-symbols-light:arrow-right-alt">更多消息</Icon>
+      </nuxt-link>
+    </div>
   </section>
 </template>
