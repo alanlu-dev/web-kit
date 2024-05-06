@@ -20,7 +20,10 @@ const showNav = ref(false)
       </ul>
     </nav>
 
-    <button class="center-content flex hidden@desktop {f:27;size:27} {f:9x;size:9x}@tablet b:1|font-content bg:base-bg cursor:pointer ml:auto r:2x" @click="showNav = !showNav">
+    <button
+      class="center-content flex hidden@desktop {f:6.75x;size:6.75x;min-w:6.75x} {f:9x;size:9x;min-w:9x}@tablet b:1|font-content bg:base-bg cursor:pointer ml:auto r:2x"
+      @click="showNav = !showNav"
+    >
       <Icon class="f:0.6em!_:where(iconify-icon)" icon="material-symbols-light:menu" />
     </button>
   </header>
