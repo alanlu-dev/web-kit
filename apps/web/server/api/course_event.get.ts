@@ -1,0 +1,77 @@
+import { APIErrorCode, Client, ClientErrorCode, isFullPage, isNotionClientError } from '@notionhq/client'
+import type { CourseEventSchemaType } from '~/schema/course_event'
+import { CourseEventSchema } from '~/schema/course_event'
+
+const notion = new Client({ auth: process.env.NOTION_API_KEY })
+
+export default defineEventHandler<{ query: { page_size?: string } }>(async (event) => {
+  try {
+    const { page_size } = getQuery(event)
+
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID_COURSE_EVENTS!,
+      filter: {
+        and: [
+          { property: '封存', checkbox: { equals: false } },
+          { property: '課程驗證', formula: { string: { equals: '✅' } } },
+          { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+        ],
+      },
+      filter_properties: [
+        /** 編號 */
+        'title',
+        /** 上課日期 */
+        '%7D%3EfP',
+        /** 課程 */
+        'k_%5Ev',
+        /** 課程標題 */
+        '%5BYP%5B',
+        /** 課程標籤 */
+        'ZBzH',
+        /** 最終價格 */
+        'KF%3FY',
+        /** 教室名稱 */
+        'Azcq',
+        /** 教室地址 */
+        '~~VH',
+      ],
+      sorts: [{ property: '上課日期', direction: 'descending' }],
+      page_size: page_size ? Number.parseInt(page_size) : 10,
+    })
+
+    const arr = (
+      await Promise.all(
+        response.results.map(async (item) => {
+          if (!isFullPage(item)) return null
+          const parseItem = CourseEventSchema.parse(item.properties)
+          parseItem.ID = item.id.replaceAll('-', '')
+
+          const response = await notion.pages.properties.retrieve({ page_id: parseItem.課程!, property_id: 'r%3ENY' })
+          if (response.type === 'files' && response.files[0].type === 'file') {
+            parseItem.課程圖片連結 = response.files[0].file.url
+          }
+          return parseItem
+        }),
+      )
+    ).filter((item): item is CourseEventSchemaType => item !== null)
+
+    return arr
+  }
+  catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      // error is now strongly typed to NotionClientError
+      switch (error.code) {
+        case ClientErrorCode.RequestTimeout:
+          // ...
+          break
+        case APIErrorCode.ObjectNotFound:
+          // ...
+          break
+        case APIErrorCode.Unauthorized:
+          // ...
+          break
+      }
+    }
+    return error
+  }
+})

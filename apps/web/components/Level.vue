@@ -2,23 +2,21 @@
 import cv from 'class-variant'
 
 interface IProps {
-  level: string
+  level?: string
 }
-defineProps<IProps>()
-
-const tagText: Record<string, string> = {
-  1: '初階',
-  2: '進階',
-}
+withDefaults(defineProps<IProps>(), {
+  level: '未知',
+})
 
 const tagCv = cv({
   level: {
-    1: 'bg:#EBF9E9 fg:#249921',
-    2: 'bg:#FEE9DD fg:#FB753B',
+    未知: 'bg:divider fg:white',
+    初階: 'bg:#EBF9E9 fg:#249921',
+    進階: 'bg:#FEE9DD fg:#FB753B',
   },
 })
 </script>
 
 <template>
-  <span class="b2-r nowrap p:1x|2x r:5" :class="tagCv({ level })">{{ tagText[level] ?? '未知' }}</span>
+  <span class="b2-r nowrap p:1x|2x r:5" :class="tagCv({ level })">{{ level }} </span>
 </template>

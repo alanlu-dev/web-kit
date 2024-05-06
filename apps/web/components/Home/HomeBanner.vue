@@ -13,7 +13,6 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首�
       <Splide :options="{ arrows: false, autoplay: true, interval: 5000, type: 'loop' }">
         <SplideSlide v-for="image in images" :key="image.圖片">
           <nuxt-link :to="image.導轉連結 || undefined" class="rel">
-            <NotionTag :color="image.發布狀態.color" class="abs nowrap p:1x rbl:2x right:0 top:0">{{ image.發布狀態.name }} </NotionTag>
             <img :src="image.圖片" :alt="image.標題" :title="image.標題" />
           </nuxt-link>
         </SplideSlide>

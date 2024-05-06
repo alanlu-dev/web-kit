@@ -13,7 +13,7 @@ importers:
         version: 1.0.3(@commitlint/cli@19.3.0(@types/node@20.12.8)(typescript@5.4.5))(@commitlint/config-conventional@19.2.2)(czg@1.9.1)
       '@alanlu-dev/eslint-config-flat':
         specifier: ^0.0.6
-        version: 0.0.6(@antfu/eslint-config@2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0)))(@master/eslint-config-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@master/eslint-plugin-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/utils@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-antfu@2.1.2(eslint@8.57.0))(eslint-plugin-prettier@5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5))(eslint@8.57.0)
+        version: 0.0.6(@antfu/eslint-config@2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0)))(@master/eslint-config-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@master/eslint-plugin-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/eslint-plugin@7.8.0(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/utils@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-antfu@2.1.2(eslint@8.57.0))(eslint-plugin-prettier@5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5))(eslint@8.57.0)
       '@alanlu-dev/lint-staged-config':
         specifier: ^1.0.4
         version: 1.0.4(eslint@8.57.0)(lint-staged@15.2.2)(markdownlint-cli2@0.13.0)(prettier@3.2.5)(stylelint@16.5.0(typescript@5.4.5))
@@ -86,6 +86,9 @@ importers:
       '@alanlu-dev/notion-api-zod-schema':
         specifier: ^1.0.1
         version: 1.0.1(zod@3.23.6)
+      '@alanlu-dev/utils':
+        specifier: ^1.0.3
+        version: 1.0.3
       '@formkit/addons':
         specifier: ^1.6.2
         version: 1.6.2
@@ -286,6 +289,9 @@ packages:
     peerDependencies:
       '@types/node': ^20.12.8
       typescript: ^5.4.5
+
+  '@alanlu-dev/utils@1.0.3':
+    resolution: {integrity: sha512-DxsieUAn9B6uX7H4ayxkKgaBoflLHGFZilE3a+1yqxrufVX626zRNyGV7J3JMQCbq5vp6/PNCbnN01kmqB934Q==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -8033,14 +8039,14 @@ snapshots:
       '@commitlint/config-conventional': 19.2.2
       czg: 1.9.1
 
-  '@alanlu-dev/eslint-config-flat@0.0.6(@antfu/eslint-config@2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0)))(@master/eslint-config-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@master/eslint-plugin-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/utils@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-antfu@2.1.2(eslint@8.57.0))(eslint-plugin-prettier@5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5))(eslint@8.57.0)':
+  '@alanlu-dev/eslint-config-flat@0.0.6(@antfu/eslint-config@2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0)))(@master/eslint-config-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@master/eslint-plugin-css@2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/eslint-plugin@7.8.0(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(@typescript-eslint/utils@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint-plugin-antfu@2.1.2(eslint@8.57.0))(eslint-plugin-prettier@5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5))(eslint@8.57.0)':
     dependencies:
       '@antfu/eslint-config': 2.16.1(@vue/compiler-sfc@3.4.26)(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0))
       '@master/eslint-config-css': 2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5)
       '@master/eslint-plugin-css': 2.0.0-rc.35(eslint@8.57.0)(typescript@5.4.5)
-      '@typescript-eslint/eslint-plugin': 7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
-      '@typescript-eslint/parser': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
-      '@typescript-eslint/utils': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/eslint-plugin': 7.8.0(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/parser': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-config-prettier: 9.1.0(eslint@8.57.0)
       eslint-plugin-antfu: 2.1.2(eslint@8.57.0)
@@ -8102,6 +8108,8 @@ snapshots:
     dependencies:
       '@types/node': 20.12.8
       typescript: 5.4.5
+
+  '@alanlu-dev/utils@1.0.3': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -9402,7 +9410,7 @@ snapshots:
       '@master/css': 2.0.0-rc.35
       '@master/css-explore-config': 2.0.0-rc.35
       '@master/css-validator': 2.0.0-rc.35
-      '@typescript-eslint/utils': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       synckit: 0.9.0
       typescript-eslint: 7.8.0(eslint@8.57.0)(typescript@5.4.5)
     transitivePeerDependencies:
@@ -12380,7 +12388,7 @@ snapshots:
 
   eslint-plugin-import-x@0.5.0(eslint@8.57.0)(typescript@5.4.5):
     dependencies:
-      '@typescript-eslint/utils': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       debug: 4.3.4
       doctrine: 3.0.0
       eslint: 8.57.0
@@ -12442,7 +12450,7 @@ snapshots:
 
   eslint-plugin-perfectionist@2.10.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
     dependencies:
-      '@typescript-eslint/utils': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       minimatch: 9.0.4
       natural-compare-lite: 1.4.0
@@ -12503,7 +12511,7 @@ snapshots:
 
   eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@20.12.8)(happy-dom@14.7.1)(sass@1.76.0)(terser@5.31.0)):
     dependencies:
-      '@typescript-eslint/utils': 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)

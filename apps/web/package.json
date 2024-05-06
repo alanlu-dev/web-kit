@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@alanlu-dev/notion-api-zod-schema": "^1.0.1",
+    "@alanlu-dev/utils": "^1.0.3",
     "@formkit/addons": "^1.6.2",
     "@formkit/core": "^1.6.2",
     "@formkit/i18n": "^1.6.2",

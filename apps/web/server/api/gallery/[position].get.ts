@@ -17,10 +17,18 @@ export default defineEventHandler(async (event) => {
         and: [
           { property: '位置', select: { equals: position } },
           { property: '資料驗證', formula: { string: { equals: '✅' } } },
+          { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
           { property: '封存', checkbox: { equals: false } },
         ],
       },
-      filter_properties: ['title', 'dBtm', 'f%3Eo%60', 'x%60DM'],
+      filter_properties: [
+        /** 標題 */
+        'title',
+        /** 圖片 */
+        'x%60DM',
+        /** 導轉連結 */
+        'f%3Eo%60',
+      ],
       sorts: [{ property: '排序', direction: 'ascending' }],
     })
 
@@ -30,14 +38,7 @@ export default defineEventHandler(async (event) => {
       arr.push(GallerySchema.parse(item.properties))
     })
 
-    return arr.filter((item) => {
-      if (item.發布狀態.name === '草稿') return false
-
-      if (process.env.VERCEL_ENV === 'production') {
-        if (item.發布狀態.name !== '發布') return false
-      }
-      return true
-    })
+    return arr
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

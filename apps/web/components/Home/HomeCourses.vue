@@ -1,9 +1,8 @@
 <script setup lang="ts">
-const courses = [
-  { id: 1, title: '初級家事清潔課程', price: 'NT$3,200', tag: '1', place: '台中潔管家教室', date: '2024/06/01～2024/06/30', image: '/course1.png' },
-  { id: 2, title: '進階家事清潔課程', price: 'NT$3,200', tag: '2', place: '台中潔管家教室', date: '2024/06/01～2024/06/30', image: '/course1.png' },
-  { id: 3, title: '初級家事清潔課程', price: 'NT$3,200', tag: '1', place: '台中潔管家教室', date: '2024/06/01～2024/06/30', image: '/course1.png' },
-]
+import { formatThousand } from '@alanlu-dev/utils'
+import type { CourseEventSchemaType } from '~/schema/course_event'
+
+const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event')
 </script>
 
 <template>
@@ -38,28 +37,28 @@ const courses = [
             </Button>
           </div>
           <SplideTrack>
-            <SplideSlide v-for="course in courses" :key="course.id" class="pb:0.5x! px:0.5x">
+            <SplideSlide v-for="event in courseEvents" :key="event.ID" class="pb:0.5x! px:0.5x">
               <div class="text:center">
                 <div class="center-content inline-flex flex:wrap gap:12x|11x mx:auto">
-                  <nuxt-link class="bg:base-bg overflow:hidden r:2x scale(1.1):hover_img shadow:md" :to="`/course/${course.id}`">
+                  <nuxt-link class="bg:base-bg overflow:hidden r:2x scale(1.1):hover_img shadow:md" :to="`/course/${event.ID}`">
                     <div class="rel aspect:316/133 overflow:hidden">
-                      <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="course.image" :alt="course.title" />
+                      <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
                     </div>
                     <div class="p:2x|4x">
                       <div class="flex ai:center gap:2x jc:flex-start">
-                        <Level :level="course.tag" />
-                        <p class="b1-b fg:font-title">{{ course.title }}</p>
+                        <Level :level="event.課程標籤" />
+                        <p class="b1-b fg:font-title">{{ event.課程標題 }}</p>
                       </div>
                       <div class="flex ai:center jc:flex-start mt:2x">
                         <p class="nowrap">上課日期：</p>
-                        <p>{{ course.date }}</p>
+                        <p>{{ event.上課日期?.start }}～{{ event.上課日期?.end }}</p>
                       </div>
                       <div class="flex ai:center jc:flex-start mt:2x">
                         <p class="nowrap">上課地點：</p>
-                        <p>{{ course.place }}</p>
+                        <p>{{ event.教室名稱 }}</p>
                       </div>
                       <hr class="bg:#DBD9D9 h:1 mt:9x" />
-                      <p class="h3 fg:accent! mt:2x text:right">{{ course.price }}</p>
+                      <p class="h3 fg:accent! mt:2x text:right">NT$ {{ event.最終價格 ? formatThousand(event.最終價格) : '???' }} </p>
                     </div>
                   </nuxt-link>
                 </div>

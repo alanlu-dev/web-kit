@@ -11,13 +11,21 @@ export default defineEventHandler<{ query: { page_size?: string } }>(async (even
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID_NEWS!,
       filter: {
-        and: [{ property: '封存', checkbox: { equals: false } }],
+        and: [
+          { property: '封存', checkbox: { equals: false } },
+          { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+        ],
       },
-      filter_properties: ['title', 'C~%3Ac', '%3BqzX'],
+      filter_properties: [
+        /** 標題 */
+        'title',
+        /** 發布日期 */
+        '%3BqzX',
+      ],
       sorts: [{ property: '發布日期', direction: 'descending' }],
       page_size: page_size ? Number.parseInt(page_size) : 10,
     })
-    // return response.results
+
     const arr: NewsSchemaType[] = []
     response.results.forEach((item) => {
       if (!isFullPage(item)) return false
@@ -26,14 +34,7 @@ export default defineEventHandler<{ query: { page_size?: string } }>(async (even
       arr.push(parseItem)
     })
 
-    return arr.filter((item) => {
-      if (item.發布狀態.name === '草稿') return false
-
-      if (process.env.VERCEL_ENV === 'production') {
-        if (item.發布狀態.name !== '發布') return false
-      }
-      return true
-    })
+    return arr
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {
