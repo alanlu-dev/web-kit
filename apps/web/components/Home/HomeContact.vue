@@ -20,7 +20,7 @@ async function submitHandler() {
       <FormKit type="form" :config="{ classes: { wrapper: 'max-w:unset!', outer: 'mb:0!' } }" :actions="false" @submit="submitHandler">
         <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
-          <FormKit type="text" name="mobile" label="連絡電話" validation="required|phone" />
+          <FormKit type="text" name="mobile" label="聯絡電話" validation="required|phone" />
           <FormKit type="email" name="email" label="電子信箱" validation="required|email" />
           <FormKit type="text" name="title" label="主旨" validation="required" />
         </div>
