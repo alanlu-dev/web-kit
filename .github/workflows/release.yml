@@ -22,7 +22,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9.0.6  # 指定 pnpm 的版本
+          version: 9.1.0  # 指定 pnpm 的版本
 
       - name: Use Node.js 20
         uses: actions/setup-node@v4

@@ -30,7 +30,7 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "@alanlu-dev/notion-api-zod-schema": "^1.0.1",
+    "@alanlu-dev/notion-api-zod-schema": "^1.0.2",
     "@alanlu-dev/utils": "^1.0.3",
     "@formkit/addons": "^1.6.2",
     "@formkit/core": "^1.6.2",
@@ -46,17 +46,17 @@
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vueuse/core": "^10.9.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.26",
+    "vue": "^3.4.27",
     "vue-final-modal": "^4.5.4",
     "vue-router": "^4.3.2",
-    "zod": "^3.23.6"
+    "zod": "^3.23.7"
   },
   "devDependencies": {
     "@alanlu-dev/release-it-config": "^0.0.2",
-    "@alanlu-dev/types": "^1.0.3",
+    "@alanlu-dev/types": "^1.0.4",
     "@jiehousekeeper/master-css-config": "workspace:*",
-    "@master/css.nuxt": "2.0.0-rc.35",
-    "@master/css.vue": "2.0.0-rc.35",
+    "@master/css.nuxt": "2.0.0-rc.38",
+    "@master/css.vue": "2.0.0-rc.38",
     "@master/styled.vue": "^2.0.2",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
