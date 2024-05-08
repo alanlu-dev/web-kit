@@ -25,12 +25,12 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@github/markdownlint-github": "^0.6.2",
+    "@github/markdownlint-github": "^0.6.3",
     "markdownlint-cli2": "^0.13.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.5"
   },
   "devDependencies": {
-    "@github/markdownlint-github": "^0.6.2",
+    "@github/markdownlint-github": "^0.6.3",
     "markdownlint-cli2": "^0.13.0",
     "markdownlint-cli2-formatter-pretty": "^0.0.5"
   }
