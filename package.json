@@ -2,7 +2,7 @@
   "name": "@alanlu-dev/web-kit",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.0",
   "description": "A monorepo build system and workflow for web projects.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "engines": {
     "node": ">=20.12.2",
-    "pnpm": ">=9.0.6",
+    "pnpm": ">=9.1.0",
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!"
   },
@@ -62,19 +62,19 @@
     "@alanlu-dev/types": "workspace:*",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@types/node": "^20.12.8",
-    "@vitest/coverage-v8": "^1.5.3",
-    "cspell": "^8.7.0",
+    "@types/node": "^20.12.11",
+    "@vitest/coverage-v8": "^1.6.0",
+    "cspell": "^8.8.0",
     "dotenv": "^16.4.5",
-    "happy-dom": "^14.7.1",
+    "happy-dom": "^14.10.1",
     "husky": "^9.0.11",
-    "playwright-core": "^1.43.1",
+    "playwright-core": "^1.44.0",
     "tsup": "^8.0.2",
-    "tsx": "^4.9.0",
+    "tsx": "^4.9.3",
     "turbo": "^1.13.3",
     "typescript": "^5.4.5",
     "unbuild": "3.0.0-rc.1",
     "vite": "^5.2.11",
-    "vitest": "^1.5.3"
+    "vitest": "^1.6.0"
   }
 }

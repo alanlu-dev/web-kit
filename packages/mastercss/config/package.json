@@ -39,12 +39,12 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@master/css": "2.0.0-rc.35"
+    "@master/css": "2.0.0-rc.38"
   },
   "devDependencies": {
     "@alanlu-dev/mastercss-helpers": "workspace:*",
-    "@master/css": "2.0.0-rc.35",
-    "@master/css-validator": "2.0.0-rc.35",
+    "@master/css": "2.0.0-rc.38",
+    "@master/css-validator": "2.0.0-rc.38",
     "ts-deepmerge": "^7.0.0"
   }
 }
