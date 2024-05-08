@@ -1,5 +1,11 @@
 # @alanlu-dev/eslint-config-flat
 
+## 0.0.7
+
+### Patch Changes
+
+- [`647e695`](https://github.com/alanlu-dev/web-kit/commit/647e69551f872fd31ab605816291e84cd9a8fa23) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 0.0.6
 
 ### Patch Changes
