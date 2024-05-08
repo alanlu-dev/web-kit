@@ -1,5 +1,11 @@
 # @alanlu-dev/tsconfig
 
+## 1.0.4
+
+### Patch Changes
+
+- [`647e695`](https://github.com/alanlu-dev/web-kit/commit/647e69551f872fd31ab605816291e84cd9a8fa23) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.3
 
 ### Patch Changes
