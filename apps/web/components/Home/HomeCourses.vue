@@ -30,10 +30,10 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
         >
           <div class="splide__arrows splide__arrows--ltr">
             <Button intent="secondary" class="splide__arrow splide__arrow--prev rounded! {size:11.5x!;left:-5em!}@2xs left:-2.5em! p:0! size:9x">
-              <Icon icon="material-symbols-light:chevron-left" />
+              <Iconfiy icon="material-symbols-light:chevron-left" />
             </Button>
             <Button intent="secondary" class="splide__arrow splide__arrow--next rounded! {size:11.5x!;right:-5em!}@2xs p:0! right:-2.5em! size:9x">
-              <Icon icon="material-symbols-light:chevron-right" />
+              <Iconfiy icon="material-symbols-light:chevron-right" />
             </Button>
           </div>
           <SplideTrack>
@@ -75,7 +75,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
 
     <div class="mb:1.5x mt:7.5x text:center">
       <nuxt-link to="/course">
-        <Icon icon="material-symbols-light:arrow-right-alt">更多課程</Icon>
+        <Iconfiy icon="material-symbols-light:arrow-right-alt">更多課程</Iconfiy>
       </nuxt-link>
     </div>
   </section>

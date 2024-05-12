@@ -24,7 +24,7 @@ definePageMeta({
     <!-- 課程價值 -->
     <img src="/wave.svg" alt="課程價值" class="aspect:390/121 mb:-10% mb:-15%@desktop object:cover w:full z:-1" />
     <section class="flex rel bg:#F2F9FA flex:column pb:10x pb:20x@tablet px:7x">
-      <div class="flex {ai:flex-start;flex:row}@tablet ai:center flex:column gap:7x jc:space-around max-w:280>div">
+      <div class="flex {ai:flex-start;flex:row}@tablet ai:center flex:column flex:wrap gap:7x jc:space-around max-w:280>div">
         <div class="center-content flex flex:column">
           <img src="/p/p1.svg" alt="專業認證" class="size:80 size:120@tablet w:full" />
           <p class="h2 title nowrap mb:2x mt:4x">專業認證</p>

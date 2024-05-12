@@ -9,7 +9,7 @@
     </section>
     <section>
       <h2>圖示</h2>
-      <Icon icon="material-symbols-light:arrow-right-alt"> 更多消息 </Icon>
+      <Iconfiy icon="material-symbols-light:arrow-right-alt"> 更多消息 </Iconfiy>
     </section>
   </div>
 </template>

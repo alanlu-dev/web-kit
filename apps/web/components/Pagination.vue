@@ -84,7 +84,7 @@ function jumpPages(page: number | string) {
     class="center-content flex {gap:2x;my:15x} {my:10x;gap:3x}@tablet {gap:5x}@desktop {size:6x;f:14;p:0;rounded;fg:font-title;font:regular}>button {size:7x;f:16}>button@tablet {size:8x}>button@desktop"
   >
     <Button intent="text" class="center-content flex" :disabled="currentPage === 1" @click="jumpPages(currentPage - 1)">
-      <Icon icon="material-symbols-light:chevron-left" />
+      <Iconfiy icon="material-symbols-light:chevron-left" />
     </Button>
     <Button
       v-for="(targetPage, index) in displayPages"
@@ -95,7 +95,7 @@ function jumpPages(page: number | string) {
       {{ targetPage }}
     </Button>
     <Button intent="text" class="center-content flex" :disabled="currentPage === totalPage" @click="jumpPages(currentPage + 1)">
-      <Icon icon="material-symbols-light:chevron-right" />
+      <Iconfiy icon="material-symbols-light:chevron-right" />
     </Button>
   </div>
 </template>

@@ -9,7 +9,7 @@ async function submitHandler() {
 </script>
 
 <template>
-  <section class="flex flex:column px:7x py:5x py:10x@tablet">
+  <section class="flex flex:column pt:10x@tablet px:7x py:5x">
     <h1 class="h1 title">聯絡我們</h1>
     <div class="b1-r {mb:8.5x;mt:5x}@tablet mb:6.75x mt:3x text:center">
       <p>有課程相關的問題嗎？</p>
@@ -28,6 +28,10 @@ async function submitHandler() {
 
         <FormKit :classes="{ wrapper: 'mt:6x! text:right', input: 'mr:0!' }" type="submit" label="送出" />
       </FormKit>
+    </div>
+
+    <div class="block@xs hidden mb:-4x ml:auto mr:100@desktop mt:-15x w:155">
+      <img src="/cleaning-utensils.png" />
     </div>
     <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
       <p>已收到您的留言，</p>
