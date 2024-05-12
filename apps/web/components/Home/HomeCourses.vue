@@ -8,7 +8,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
 <template>
   <section class="flex flex:column py:5x py:10x@tablet">
     <h1 class="h1 title">課程資訊</h1>
-    <section class="rel mt:5x {mt:10x}@tablet mx:15vw">
+    <section class="rel {mt:10x}@tablet mt:5x mx:15vw">
       <ClientOnly>
         <template #fallback>
           <div class="text:center"> loading </div>
@@ -44,16 +44,20 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
                     <div class="rel aspect:316/133 overflow:hidden">
                       <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
                     </div>
-                    <div class="p:2x|4x">
+                    <div class="p:2x|4x text:left">
                       <div class="flex ai:center gap:2x jc:flex-start">
                         <Level :level="event.課程標籤" />
                         <p class="b1-b fg:font-title">{{ event.課程標題 }}</p>
                       </div>
-                      <div class="flex ai:center jc:flex-start mt:2x">
+                      <div class="flex ai:flex-start jc:flex-start mt:2x">
                         <p class="nowrap">上課日期：</p>
-                        <p>{{ event.上課日期?.start }}～{{ event.上課日期?.end }}</p>
+                        <p class="flex ai:center flex:wrap jc:flex-start">
+                          <span>{{ event.上課日期?.start }}</span>
+                          <span>～</span>
+                          <span>{{ event.上課日期?.end }}</span>
+                        </p>
                       </div>
-                      <div class="flex ai:center jc:flex-start mt:2x">
+                      <div class="flex ai:flex-start jc:flex-start mt:2x">
                         <p class="nowrap">上課地點：</p>
                         <p>{{ event.教室名稱 }}</p>
                       </div>
@@ -69,7 +73,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
       </ClientOnly>
     </section>
 
-    <div class="mt:7.5x mb:1.5x text:center">
+    <div class="mb:1.5x mt:7.5x text:center">
       <nuxt-link to="/course">
         <Icon icon="material-symbols-light:arrow-right-alt">更多課程</Icon>
       </nuxt-link>
