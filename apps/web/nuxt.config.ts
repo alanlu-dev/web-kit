@@ -27,6 +27,9 @@ export default defineNuxtConfig({
 
     /* --- formkit --- */
     ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
+
+    /* --- seo --- */
+    '@nuxtjs/seo',
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
@@ -43,6 +46,16 @@ export default defineNuxtConfig({
       'Noto+Sans+TC': { wght: [400, 700] },
       'Inter': true,
     },
+  },
+
+  ogImage: {
+    enabled: false,
+  },
+
+  site: {
+    name: '中華民國職業清潔認證協會',
+    description: 'Welcome to my awesome site!',
+    defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
   },
 
   vue: {

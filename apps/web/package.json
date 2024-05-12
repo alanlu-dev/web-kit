@@ -43,6 +43,7 @@
     "@formkit/vue": "^1.6.2",
     "@formkit/zod": "^1.6.2",
     "@notionhq/client": "^2.2.15",
+    "@nuxtjs/seo": "^2.0.0-rc.10",
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vueuse/core": "^10.9.0",
     "pinia": "^2.1.7",
