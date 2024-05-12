@@ -1,3 +1,12 @@
+<script setup lang="ts">
+definePageMeta({
+  title: '首頁',
+  breadcrumb: {
+    label: '首頁',
+  },
+})
+</script>
+
 <template>
   <div>
     <!-- 輪播 -->

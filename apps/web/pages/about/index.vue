@@ -1,15 +1,15 @@
 <script setup lang="ts">
 definePageMeta({
-  title: '課程資訊',
+  title: '關於我們',
   breadcrumb: {
-    label: '課程資訊',
+    label: '關於我們',
   },
 })
 </script>
 
 <template>
   <div>
-    <Hero title="課程資訊🚧" />
+    <Hero title="關於我們🚧" />
     <Breadcrumb />
   </div>
 </template>

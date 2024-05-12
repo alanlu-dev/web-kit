@@ -16,7 +16,7 @@
         <ul class="b1-r gap:5x grid-cols:2 mx:auto text:center">
           <li><nuxt-link to="/news">最新消息</nuxt-link></li>
           <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
-          <li><nuxt-link to="/kit">實績案例</nuxt-link></li>
+          <li><nuxt-link to="/case">實績案例</nuxt-link></li>
           <li><nuxt-link to="/about">關於我們</nuxt-link></li>
         </ul>
       </div>

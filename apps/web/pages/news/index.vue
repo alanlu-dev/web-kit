@@ -1,5 +1,15 @@
+<script setup lang="ts">
+definePageMeta({
+  title: '最新消息',
+  breadcrumb: {
+    label: '最新消息',
+  },
+})
+</script>
+
 <template>
-  <section class="flex flex:column p:5x p:10x@tablet">
-    <h1 class="h1 title">最新消息 🚧</h1>
-  </section>
+  <div>
+    <Hero title="最新消息🚧" />
+    <Breadcrumb />
+  </div>
 </template>
