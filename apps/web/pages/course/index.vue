@@ -30,7 +30,7 @@ const filterCourseEvents = computed(() => {
   <div>
     <Hero title="課程資訊" />
     <section>
-      <div class="px:6x px:22.5x@tablet">
+      <div class="px:6x px:10vw@tablet px:22.5x@desktop">
         <Breadcrumb />
       </div>
       <div class="center-content flex@desktop hidden bg:#F2F9FA gap:5x mb:14x mx:auto px:6vw py:5x">

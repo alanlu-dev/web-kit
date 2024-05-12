@@ -10,6 +10,8 @@ definePageMeta({
 <template>
   <div>
     <Hero title="常見問答🚧" />
-    <Breadcrumb />
+    <section class="px:6x px:10vw@tablet px:22.5x@desktop">
+      <Breadcrumb />
+    </section>
   </div>
 </template>
