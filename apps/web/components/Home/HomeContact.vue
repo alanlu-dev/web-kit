@@ -25,8 +25,7 @@ async function submitHandler() {
           <FormKit type="text" name="title" label="主旨" validation="required" />
         </div>
         <FormKit :classes="{ wrapper: 'mt:6x!' }" type="textarea" name="message" validation="required" label="問題描述，寫下您的問題" lines="3" />
-
-        <FormKit :classes="{ wrapper: 'mt:6x! text:right', input: 'mr:0!' }" type="submit" label="送出" />
+        <FormKit :classes="{ wrapper: 'mt:6x! text:right', input: 'p:3x|6x! mr:0!' }" type="submit" label="送出" />
       </FormKit>
     </div>
 
