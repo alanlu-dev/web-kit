@@ -2,7 +2,7 @@
 import cv from 'class-variant'
 
 interface IProps {
-  intent?: 'primary' | 'secondary'
+  intent?: 'primary' | 'secondary' | 'text'
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -13,6 +13,7 @@ const btn = cv('btn', {
   intent: {
     primary: 'btn--primary',
     secondary: 'btn--secondary',
+    text: '',
   },
 })
 </script>
