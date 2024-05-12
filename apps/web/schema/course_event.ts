@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionDatabaseRollupSchema, NotionDateSchema, NotionFormulaSchema, NotionRelationSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDatabaseRollupSchema, NotionDateSchema, NotionFormulaSchema, NotionNumberSchema, NotionRelationSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
 
 export const CourseEventSchema = z.object({
   // ID: NotionUniqueIdSchema.transform((o) => o.unique_id),
@@ -17,14 +17,20 @@ export const CourseEventSchema = z.object({
     }
   }),
   課程: NotionRelationSchema.transform((o) => o.relation[0]?.id),
-  課程標題: NotionDatabaseRollupSchema.transform((o) => (o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined)),
-  課程標籤: NotionDatabaseRollupSchema.transform((o) => (o.rollup.array[0]?.type === 'select' ? o.rollup.array[0].select?.name : undefined)),
+  課程標題: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined,
+  ),
+  課程標籤: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'select' ? o.rollup.array[0].select?.name : undefined)),
   課程圖片連結: z.string().optional(),
   最終價格: NotionFormulaSchema.transform((o) => (o.formula.type === 'number' ? o.formula.number : undefined)),
-  教室名稱: NotionDatabaseRollupSchema.transform((o) => (o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined)),
-  教室地址: NotionDatabaseRollupSchema.transform((o) =>
-    o.rollup.array[0]?.type === 'rich_text' && o.rollup.array[0].rich_text[0]?.type === 'text' ? o.rollup.array[0].rich_text[0].plain_text : undefined,
+  教室名稱: NotionDatabaseRollupSchema.transform(
+    (o) => o.rollup.type === 'array' && (o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined),
   ),
+  教室地址: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'rich_text' && o.rollup.array[0].rich_text[0]?.type === 'text' ? o.rollup.array[0].rich_text[0].plain_text : undefined,
+  ),
+  名額限制: NotionNumberSchema.transform((o) => o.number),
+  報名人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' ? o.rollup.number : undefined)),
   // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
 })
 

@@ -34,6 +34,10 @@ export default defineEventHandler<{ query: { page_size?: string } }>(async (even
         'Azcq',
         /** 教室地址 */
         '~~VH',
+        /** 名額限制 */
+        'MZlx',
+        /** 報名人數 */
+        'uuzW',
       ],
       sorts: [{ property: '上課日期', direction: 'descending' }],
       page_size: page_size ? Number.parseInt(page_size) : 10,

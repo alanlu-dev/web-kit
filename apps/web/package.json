@@ -30,7 +30,7 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "@alanlu-dev/notion-api-zod-schema": "^1.0.2",
+    "@alanlu-dev/notion-api-zod-schema": "^1.0.3",
     "@alanlu-dev/utils": "^1.0.3",
     "@formkit/addons": "^1.6.2",
     "@formkit/core": "^1.6.2",

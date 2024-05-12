@@ -84,8 +84,8 @@ importers:
   apps/web:
     dependencies:
       '@alanlu-dev/notion-api-zod-schema':
-        specifier: ^1.0.2
-        version: 1.0.2(zod@3.23.7)
+        specifier: ^1.0.3
+        version: 1.0.3(zod@3.23.7)
       '@alanlu-dev/utils':
         specifier: ^1.0.3
         version: 1.0.3
@@ -249,8 +249,8 @@ packages:
   '@alanlu-dev/mastercss-helpers@1.0.4':
     resolution: {integrity: sha512-sKYOaBZ8/wRiKZ9tUlg6KQi+th4EkwgRmQ8wxmBMJOUlB1aP+r6IUAAasRVO9MIb4yIj17Tf7TPw8Jch4TZ7ZQ==}
 
-  '@alanlu-dev/notion-api-zod-schema@1.0.2':
-    resolution: {integrity: sha512-xWehLgz5O+bp7zTn6mPA4djQGAqiRnJWbClAviMaVFoTxdOFr7amjWJrgIjoO1kVi8PIprMi1e/+HpapxYYHOg==}
+  '@alanlu-dev/notion-api-zod-schema@1.0.3':
+    resolution: {integrity: sha512-bF/3El5rtVQ62fUr4RVBuGFIiu6Kh+BcsTrF3Y2bLpGvIzBwxHWqXsZXUSYIzQpeZmjMo/ILG1hQyOPlXVvSiQ==}
     peerDependencies:
       zod: ^3.23.7
 
@@ -8657,7 +8657,7 @@ snapshots:
 
   '@alanlu-dev/mastercss-helpers@1.0.4': {}
 
-  '@alanlu-dev/notion-api-zod-schema@1.0.2(zod@3.23.7)':
+  '@alanlu-dev/notion-api-zod-schema@1.0.3(zod@3.23.7)':
     dependencies:
       zod: 3.23.7
 
