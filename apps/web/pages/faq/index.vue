@@ -54,6 +54,11 @@ onMounted(() => {
       router.push(link.getAttribute('href')!)
     })
   })
+
+  const firstInput = htmlEl.value!.querySelector('input')
+  if (firstInput) {
+    ;(firstInput as HTMLInputElement).checked = true
+  }
 })
 </script>
 
