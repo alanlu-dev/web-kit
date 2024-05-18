@@ -37,7 +37,7 @@ const filterCases = computed(() => {
     <section class="px:10vw@tablet px:22.5x@desktop">
       <Breadcrumb />
 
-      <div class="flex ai:flex-start jc:space-between flex:column flex:row@tablet gap:5x gap:20x@tablet gap:32.5x@desktop mt:10x">
+      <div class="flex ai:flex-start jc:space-between flex:column flex:row@tablet gap:5x gap:16x@tablet gap:32.5x@desktop mt:10x">
         <nav aria-label="Filters" class="sticky z:nav h:full top:59! top:76!@tablet top:82!@desktop b1-r">
           <div class="hidden block@tablet">
             <ul
@@ -59,20 +59,8 @@ const filterCases = computed(() => {
           </div>
         </nav>
 
-        <div class="flex flex:column gap:12x sticky h:full rel@tablet px:6x px:0@tablet">
-          <div v-for="item in filterCases" :key="item.ID" class="center-content flex gap:5x">
-            <div class="{aspect:489/342;object:cover;w:full}_img aspect:489/342 flex:1">
-              <img :src="item.封面" alt="課程介紹" class="pointer-events:none user-select:none" />
-            </div>
-            <div class="bg:#F2F9FA flex:2 p:5x|6x">
-              <CaseTag :tag="item.分類" />
-              <p class="h3 fg:font-title mt:2x">{{ item.標題 }}</p>
-              <p class="b1-r mt:3x">{{ item.簡介 }}</p>
-              <div class="text:right">
-                <Button intent="primary" class="ml:auto mt:5x" @click="navigateTo(`/case/${item.ID}`)">繼續閱讀</Button>
-              </div>
-            </div>
-          </div>
+        <div class="flex flex:column ai:stretch gap:15x px:6x px:0@tablet">
+          <CaseCard v-for="item in filterCases" :key="item.ID" :item="item" />
         </div>
       </div>
 
