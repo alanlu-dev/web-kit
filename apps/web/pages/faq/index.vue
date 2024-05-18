@@ -67,9 +67,9 @@ onMounted(() => {
     <Hero title="常見問答" />
     <section class="px:6x px:10vw@tablet px:22.5x@desktop">
       <Breadcrumb />
-      <div ref="htmlEl" class="max-w:screen-md my:5x my:10x@tablet mx:auto flex flex:column gap:5x gap:10x@tablet">
+      <div ref="htmlEl" class="flex flex:column gap:5x gap:10x@tablet max-w:screen-md mx:auto my:5x my:10x@tablet">
         <div v-for="item in list" :key="item.sort" class="bg:#F2F9FA p:0!">
-          <label class="flex pointer gap:2x p:5x|6x b1-r fg:primary flex ai:flex-start jc:space-between" :for="`faq-${item.sort}`">
+          <label class="pointer b1-r flex ai:flex-start fg:primary gap:2x jc:space-between p:5x|6x" :for="`faq-${item.sort}`">
             <div>{{ item.sort }}. {{ item.title }}</div>
             <div class="size:24">
               <Icon name="material-symbols-light:add" />

@@ -41,6 +41,9 @@ importers:
       '@jiehousekeeper/master-css-config':
         specifier: workspace:*
         version: link:packages/master-css-config
+      '@master/css':
+        specifier: ^2.0.0-rc.38
+        version: 2.0.0-rc.38
       '@types/node':
         specifier: ^20.12.11
         version: 20.12.12
