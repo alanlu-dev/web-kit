@@ -46,7 +46,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
                     </div>
                     <div class="p:2x|4x text:left">
                       <div class="flex ai:center gap:2x jc:flex-start">
-                        <Level :level="event.課程標籤" />
+                        <CourseLevel :level="event.課程標籤" />
                         <p class="b1-b fg:font-title">{{ event.課程標題 }}</p>
                       </div>
                       <div class="flex ai:flex-start jc:flex-start mt:2x">

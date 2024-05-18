@@ -87,7 +87,7 @@ const filterCourseEvents = computed(() => {
               </div>
               <div class="b2-r flex:1 p:3x|6x">
                 <div class="flex ai:center gap:2x jc:flex-start">
-                  <Level :level="event.課程標籤" />
+                  <CourseLevel :level="event.課程標籤" />
                   <p class="b1-b fg:font-title">{{ event.課程標題 }}</p>
                   <p class="h3 block@tablet hidden nowrap fg:accent! ml:auto text:right">NT$ {{ event.最終價格 ? formatThousand(event.最終價格) : '???' }} </p>
                 </div>
