@@ -18,5 +18,5 @@ const tagCv = cv({
 </script>
 
 <template>
-  <span class="b2-r nowrap p:1x|2x r:5" :class="tagCv({ level })">{{ level }} </span>
+  <div class="inline-block b2-r nowrap p:1x|2x r:5" :class="tagCv({ level })">{{ level }} </div>
 </template>

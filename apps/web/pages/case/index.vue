@@ -65,7 +65,7 @@ const filterCases = computed(() => {
               <img :src="item.封面" alt="課程介紹" class="pointer-events:none user-select:none" />
             </div>
             <div class="bg:#F2F9FA flex:2 p:5x|6x">
-              <p>{{ item.分類 }}</p>
+              <CaseTag :tag="item.分類" />
               <p class="h3 fg:font-title mt:2x">{{ item.標題 }}</p>
               <p class="b1-r mt:3x">{{ item.簡介 }}</p>
               <div class="text:right">
