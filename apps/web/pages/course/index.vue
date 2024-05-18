@@ -38,7 +38,7 @@ const filterCourseEvents = computed(() => {
           <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
           <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
             <p class="b1-m">課堂上課</p>
-            <p class="b2-r nowrap">教室講解建材特特行</p>
+            <p class="b2-r nowrap">教室講解建材特性</p>
           </div>
         </div>
         <img src="/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
