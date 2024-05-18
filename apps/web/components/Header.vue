@@ -17,7 +17,7 @@ const showNav = ref(false)
         <li><nuxt-link to="/news">最新消息</nuxt-link></li>
         <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
         <li><nuxt-link to="/case">實績案例</nuxt-link></li>
-        <li><nuxt-link to="/faq">常見問題</nuxt-link></li>
+        <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
         <li><nuxt-link to="/about">關於我們</nuxt-link></li>
       </ul>
     </nav>
@@ -48,7 +48,7 @@ const showNav = ref(false)
           <li><nuxt-link to="/news">最新消息</nuxt-link></li>
           <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
           <li><nuxt-link to="/case">實績案例</nuxt-link></li>
-          <li><nuxt-link to="/faq">常見問題</nuxt-link></li>
+          <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
           <li><nuxt-link to="/about">關於我們</nuxt-link></li>
         </ul>
       </div>
