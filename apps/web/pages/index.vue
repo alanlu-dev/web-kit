@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import HomeCase from '~/components/Home/HomeCase.vue'
+
 definePageMeta({
   title: '首頁',
   breadcrumb: {
@@ -44,12 +46,7 @@ definePageMeta({
     </section>
 
     <!-- 實績案例 -->
-    <section class="flex bg:#F2F9FA flex:column px:7x py:5x py:10x@tablet">
-      <h1 class="h1 title">實績案例 🚧</h1>
-      <div class="b1-r min-h:500 mt:5x mt:10x@tablet text:center">
-        <p>TODO</p>
-      </div>
-    </section>
+    <HomeCase />
 
     <!-- 聯絡我們 -->
     <HomeContact />
