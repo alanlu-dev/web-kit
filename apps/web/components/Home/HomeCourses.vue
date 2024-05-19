@@ -17,7 +17,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
           :options="{
             arrows: true,
             type: 'loop',
-            perPage: 3,
+            perPage: 2.5,
             gap: '28px',
             snap: true,
             pagination: false,

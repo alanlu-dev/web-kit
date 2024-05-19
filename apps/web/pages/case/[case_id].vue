@@ -50,7 +50,7 @@ onMounted(() => {
           :options="{
             rewind: true,
             pagination: false,
-            perPage: 3,
+            perPage: 2.5,
             gap: '1rem',
             cover: true,
             focus: 'center',

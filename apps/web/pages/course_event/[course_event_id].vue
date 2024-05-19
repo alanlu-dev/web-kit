@@ -61,7 +61,7 @@ async function submitHandler() {
               :options="{
                 rewind: true,
                 pagination: false,
-                perPage: 3,
+                perPage: 2.5,
                 gap: '1rem',
                 cover: true,
                 focus: 'center',
@@ -84,9 +84,21 @@ async function submitHandler() {
             <NotionRender class="mt:3x" :blocks="course?.contents" />
           </div>
 
-          <div class="mt:10x bg:#F2F9FA p:7x|6x">
+          <div class="mt:10x bg:#F2F9FA p:7x|6x" v-for="item in course?.page?.講師資訊" :key="item">
             <h3 class="h3 fg:font-title">講師介紹🚧</h3>
-            {{ course?.page?.講師資訊 }}
+            <div class="flex center-content gap:6x">
+              <div class="flex:2 mt:3x">
+                <p class="lines:1"
+                  ><span>講師姓名：</span><span>{{ item }}</span></p
+                >
+                <p class="mt:3x">
+                  講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹
+                </p>
+              </div>
+              <div class="flex:1 {aspect:inherit;object:cover;w:full}_img aspect:250/271">
+                <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
+              </div>
+            </div>
           </div>
 
           <div class="mt:10x">
