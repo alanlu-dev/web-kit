@@ -9,6 +9,10 @@ definePageMeta({
   },
 })
 
+useSeoMeta({
+  title: '課程資訊',
+})
+
 const route = useRoute()
 
 const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event')

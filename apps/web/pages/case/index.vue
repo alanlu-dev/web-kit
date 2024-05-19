@@ -8,6 +8,10 @@ definePageMeta({
   },
 })
 
+useSeoMeta({
+  title: '實績案例',
+})
+
 const route = useRoute()
 const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case')
 

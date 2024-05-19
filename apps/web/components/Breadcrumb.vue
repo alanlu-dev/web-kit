@@ -1,4 +1,10 @@
 <script setup lang="ts">
+interface IProps {
+  title?: string
+}
+
+defineProps<IProps>()
+
 const links = useBreadcrumbItems()
 </script>
 
@@ -11,7 +17,7 @@ const links = useBreadcrumbItems()
           {{ item.label }}
         </NuxtLink>
         <span v-else>
-          {{ item.label }}
+          {{ title ?? item.label }}
         </span>
       </li>
     </ul>

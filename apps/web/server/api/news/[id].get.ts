@@ -1,5 +1,6 @@
 import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
-import { NotionBlockSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionBlockSchema, NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NewsSchema } from '~/schema/news'
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
@@ -8,13 +9,14 @@ export default defineEventHandler(async (event) => {
     const id = getRouterParam(event, 'id')
     if (!id) return null
 
-    // const page = await notion.pages.retrieve({ page_id: id })
+    const page = await notion.pages.retrieve({ page_id: id })
     const contents = await notion.blocks.children.list({ block_id: id })
 
-    // const parsedPage = NotionPageSchema.parse(page)
+    const parsedPage = NotionPageSchema.parse(page)
     const parsedContents = NotionBlockSchema.array().parse(contents.results)
 
     return {
+      page: NewsSchema.parse(parsedPage.properties),
       contents: parsedContents,
     }
   }

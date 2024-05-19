@@ -5,6 +5,10 @@ definePageMeta({
     label: '關於我們',
   },
 })
+
+useSeoMeta({
+  title: '關於我們',
+})
 </script>
 
 <template>

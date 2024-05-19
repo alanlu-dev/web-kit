@@ -9,6 +9,10 @@ definePageMeta({
   },
 })
 
+useSeoMeta({
+  title: '最新消息',
+})
+
 const route = useRoute()
 
 const { data: news } = await useFetch<NewsSchemaType[]>('/api/news')

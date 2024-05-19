@@ -7,6 +7,10 @@ definePageMeta({
   },
 })
 
+useSeoMeta({
+  title: '常見問答',
+})
+
 useSchemaOrg([
   defineBreadcrumb({
     itemListElement: [

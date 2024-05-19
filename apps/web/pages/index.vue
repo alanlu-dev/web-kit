@@ -7,6 +7,10 @@ definePageMeta({
     label: '首頁',
   },
 })
+
+useSeoMeta({
+  title: '首頁',
+})
 </script>
 
 <template>
