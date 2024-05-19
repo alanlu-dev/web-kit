@@ -15,7 +15,7 @@ const showNav = ref(false)
     <nav class="ml:auto">
       <ul class="b1-r center-content flex@desktop hidden nowrap {ls:0.05em;mr:-0.05em;text:right;~color|300ms|ease}_a fg:primary-hover_a:hover flex:wrap gap-x:8.5x">
         <li><nuxt-link to="/news">最新消息</nuxt-link></li>
-        <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
+        <li><nuxt-link to="/course_event">課程資訊</nuxt-link></li>
         <li><nuxt-link to="/case">實績案例</nuxt-link></li>
         <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
         <li><nuxt-link to="/about">關於我們</nuxt-link></li>
@@ -46,7 +46,7 @@ const showNav = ref(false)
         </button>
         <ul class="b1-r flex {ls:0.05em;mr:-0.05em;text:right;~color|300ms|ease}_a fg:primary-hover_a:hover flex:column gap:6x">
           <li><nuxt-link to="/news">最新消息</nuxt-link></li>
-          <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
+          <li><nuxt-link to="/course_event">課程資訊</nuxt-link></li>
           <li><nuxt-link to="/case">實績案例</nuxt-link></li>
           <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
           <li><nuxt-link to="/about">關於我們</nuxt-link></li>

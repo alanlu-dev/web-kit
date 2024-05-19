@@ -17,7 +17,7 @@
       <div class="flex flex:5 h:full">
         <ul class="b1-r gap:3x|5x gap:5x@xs grid-cols:2 grid-cols:3@tablet grid-cols:5@desktop mx:auto text:center">
           <li><nuxt-link to="/news">最新消息</nuxt-link></li>
-          <li><nuxt-link to="/course">課程資訊</nuxt-link></li>
+          <li><nuxt-link to="/course_event">課程資訊</nuxt-link></li>
           <li><nuxt-link to="/case">實績案例</nuxt-link></li>
           <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
           <li><nuxt-link to="/about">關於我們</nuxt-link></li>

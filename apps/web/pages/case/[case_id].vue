@@ -40,29 +40,34 @@ onMounted(() => {
         ref="main"
         class="mt:5x"
       >
-        <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140">
+        <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
           <img :src="圖片" />
         </SplideSlide>
       </Splide>
 
-      <Splide
-        :options="{
-          rewind: true,
-          pagination: false,
-          perPage: 3,
-          gap: '1rem',
-          cover: true,
-          focus: 'center',
-          isNavigation: true,
-          updateOnMove: true,
-        }"
-        ref="thumbs"
-        class="mt:5x"
-      >
-        <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140">
-          <img :src="圖片" />
-        </SplideSlide>
-      </Splide>
+      <div class="rel">
+        <Splide
+          :options="{
+            rewind: true,
+            pagination: false,
+            perPage: 3,
+            gap: '1rem',
+            cover: true,
+            focus: 'center',
+            isNavigation: true,
+            updateOnMove: true,
+          }"
+          ref="thumbs"
+          class="mt:5x"
+        >
+          <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
+            <img :src="圖片" />
+          </SplideSlide>
+        </Splide>
+        <div class="abs bg:linear-gradient(to|left,base-bg/0,base-bg) bottom:0 left:-1 pointer-events:none top:0 w:1rem z:1"> </div>
+        <div class="abs bg:linear-gradient(to|right,base-bg/0,base-bg) bottom:0 pointer-events:none right:-1 top:0 w:1rem z:1"> </div>
+      </div>
+
       <NotionRender class="mt:10x" :blocks="item?.contents" />
 
       <div class="aspect:16/9 w:full mt:20x">
