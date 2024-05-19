@@ -63,7 +63,7 @@ const filterCases = computed(() => {
           </div>
         </nav>
 
-        <div class="flex flex:column ai:stretch gap:15x px:6x px:0@tablet">
+        <div class="flex flex:column ai:stretch gap:15x px:6x px:0@tablet overflow:hidden">
           <CaseCard v-for="item in filterCases" :key="item.ID" :item="item" />
         </div>
       </div>

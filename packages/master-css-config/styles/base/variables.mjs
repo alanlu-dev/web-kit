@@ -17,6 +17,7 @@ export default {
     'screen': { max: 1920 },
 
     'box-shadow': {
+      all: '0|0|10|0|gray/.25',
       xs: '0|1|2|0|gray/.05',
       sm: '0|1|3|0|gray/.25,0|1|2|-1|gray/.25',
       md: '0|4|6|-1|gray/.25,0|2|4|-2|gray/.25',
@@ -28,7 +29,7 @@ export default {
 
     'z-index': {
       header: 999,
-      footer: 999,
+      footer: 998,
       nav: 999,
       modal: 1000,
       message: 1100,

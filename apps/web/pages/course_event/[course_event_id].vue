@@ -40,7 +40,7 @@ async function submitHandler() {
     <div class="p:5x p:10x@tablet">
       <Breadcrumb :title="courseEvent?.page?.課程標題" />
       <div class="max-w:screen-md mx:auto flex ai:flex-start jc:space-between gap:7.5x mt:5x">
-        <div class="flex:2">
+        <div class="flex:2 overflow:hidden">
           <Splide
             aria-labelledby="封面"
             :options="{
@@ -131,11 +131,13 @@ async function submitHandler() {
           </div>
         </div>
 
-        <div class="bg:base-bg p:5x|6x shadow:md flex:1 sticky z:nav top:59! top:76!@tablet top:82!@desktop">
-          <h2 class="h2">{{ courseEvent?.page?.課程標題 }}</h2>
-          <hr class="h:1 my:3x bg:#C9C9C9" />
-          <CourseLevel :level="courseEvent?.page?.課程標籤" />
-          <div class="my:3x>p">
+        <div class="bg:base-bg p:5x|6x shadow:all w:full flex:1 fixed bottom left {sticky;top:82;left:unset;bottom:unset}@desktop z:nav">
+          <div class="flex jc:flex-start flex:column ai:flex-start {flex:row!;ai:center!}@tablet&<desktop gap:3x">
+            <h2 class="h2">{{ courseEvent?.page?.課程標題 }}</h2>
+            <hr class="h:1 bg:#C9C9C9 w:full hidden@tablet&<desktop" />
+            <CourseLevel :level="courseEvent?.page?.課程標籤" />
+          </div>
+          <div class="mt:2x>p mt:3x>p@desktop">
             <p
               ><span>上課日期：</span><span>{{ courseEvent?.page?.上課日期?.start }}</span></p
             >
@@ -146,10 +148,14 @@ async function submitHandler() {
               ><span>課程地點：</span><span>{{ courseEvent?.page?.教室名稱 }}</span></p
             >
           </div>
-          <div class="mt:5x">
-            <p class="h2 fg:accent!">NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
+
+          <div class="{abs;right:5x;bottom:5x}@tablet&<desktop">
+            <div class="mt:5x text:right@tablet&<desktop">
+              <p class="h2 fg:accent!">NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
+            </div>
+            <Button intent="primary" class="mt:5x w:full w:150!@tablet&<desktop" @click="show = true">立即報名</Button>
           </div>
-          <Button intent="primary" class="mt:5x w:full" @click="show = true">立即報名</Button>
+
           <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
             <p>🚧 TODO 🚧</p>
           </Modal>
