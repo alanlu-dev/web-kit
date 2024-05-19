@@ -21,7 +21,7 @@ const typeCv = cv({
 <template>
   <div class="ai:flex-start flex flex:column flex:row@desktop rel pb:15x@desktop {content:'';bg:$(case-bg);abs;top:10x;left:160;bottom;right;z:-1}::before@desktop" :class="typeCv({ type })">
     <div class="{aspect:489/342;object:cover;w:full}_img aspect:489/342 flex:1">
-      <img :src="item.封面" alt="課程介紹" class="pointer-events:none user-select:none" />
+      <img :src="item.封面[0]" alt="課程介紹" class="pointer-events:none user-select:none" />
     </div>
     <div class="flex:1 p:5x|6x pt:5x pt:15.5x@desktop bg:$(case-bg) bg:none@desktop w:full">
       <CaseTag :tag="item.分類" />
