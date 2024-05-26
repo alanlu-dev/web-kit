@@ -22,7 +22,7 @@ const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case')
             snap: true,
             pagination: false,
             breakpoints: {
-              390: { arrows: false },
+              430: { arrows: false },
             },
           }"
         >

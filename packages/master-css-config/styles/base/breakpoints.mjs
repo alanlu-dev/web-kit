@@ -4,6 +4,6 @@
 /** @type {import('./breakpoints.d').Breakpoints} */
 export default {
   mobile: 0,
-  tablet: 391,
+  tablet: 431,
   desktop: 1025,
 }
