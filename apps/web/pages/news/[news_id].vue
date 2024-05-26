@@ -9,7 +9,7 @@ const { data: news } = await useFetch<{ page: NewsSchemaType; contents: NotionBl
 const { data: newsList } = await useFetch<NewsSchemaType[]>('/api/news?page_size=2')
 
 useSeoMeta({
-  title: () => news.value?.page?.標題!,
+  title: () => news.value?.page?.標題 || '最新消息',
 })
 </script>
 

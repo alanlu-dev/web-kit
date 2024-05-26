@@ -8,7 +8,7 @@ const case_id = route.params.case_id
 const { data: item } = await useFetch<{ page: CaseSchemaType; contents: NotionBlockType[] }>(`/api/case/${case_id}`)
 
 useSeoMeta({
-  title: () => item.value?.page?.標題!,
+  title: () => item.value?.page?.標題 || '實績案例',
 })
 
 const main = ref()

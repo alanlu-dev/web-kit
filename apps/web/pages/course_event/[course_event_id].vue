@@ -12,7 +12,7 @@ const { data: course } = await useFetch<{ page: CourseSchemaType; contents: Noti
 const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event?page_size=2')
 
 useSeoMeta({
-  title: () => courseEvent.value?.page?.課程標題!,
+  title: () => courseEvent.value?.page?.課程標題 || '課程資訊',
 })
 
 const main = ref()
