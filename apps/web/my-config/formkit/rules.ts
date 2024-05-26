@@ -8,8 +8,9 @@ const _messages: Record<string, Record<locale, (...args: any[]) => string>> = {}
 
 // export const email: NonNullable<FormKitProps['validationRules']>[1] = rules_email
 
-// zod's email regex
-const emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_+-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i
+// zod's email regex https://github.com/colinhacks/zod/blob/main/src/types.ts#L599
+// eslint-disable-next-line regexp/no-unused-capturing-group, regexp/no-contradiction-with-assertion
+const emailRegex = /^(?!\.)(?!.*\.\.)([\w'+\-.]*)[\w+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i
 export const email: NonNullable<FormKitProps['validationRules']>[1] = (node) => {
   return emailRegex.test(String(node.value))
 }
