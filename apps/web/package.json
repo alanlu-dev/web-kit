@@ -32,16 +32,16 @@
   "dependencies": {
     "@alanlu-dev/notion-api-zod-schema": "^1.0.3",
     "@alanlu-dev/utils": "^1.0.3",
-    "@formkit/addons": "^1.6.2",
-    "@formkit/core": "^1.6.2",
-    "@formkit/i18n": "^1.6.2",
-    "@formkit/icons": "^1.6.2",
+    "@formkit/addons": "^1.6.3",
+    "@formkit/core": "^1.6.3",
+    "@formkit/i18n": "^1.6.3",
+    "@formkit/icons": "^1.6.3",
     "@formkit/inertia": "^0.1.5",
-    "@formkit/inputs": "^1.6.2",
-    "@formkit/nuxt": "^1.6.2",
-    "@formkit/themes": "^1.6.2",
-    "@formkit/vue": "^1.6.2",
-    "@formkit/zod": "^1.6.2",
+    "@formkit/inputs": "^1.6.3",
+    "@formkit/nuxt": "^1.6.3",
+    "@formkit/themes": "^1.6.3",
+    "@formkit/vue": "^1.6.3",
+    "@formkit/zod": "^1.6.3",
     "@notionhq/client": "^2.2.15",
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "@vue-final-modal/nuxt": "^1.0.3",
@@ -50,14 +50,14 @@
     "vue": "^3.4.27",
     "vue-final-modal": "^4.5.4",
     "vue-router": "^4.3.2",
-    "zod": "^3.23.7"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@alanlu-dev/release-it-config": "^0.0.2",
-    "@alanlu-dev/types": "^1.0.4",
+    "@alanlu-dev/release-it-config": "^0.0.3",
+    "@alanlu-dev/types": "^1.0.5",
     "@jiehousekeeper/master-css-config": "workspace:*",
-    "@master/css.nuxt": "2.0.0-rc.38",
-    "@master/css.vue": "2.0.0-rc.38",
+    "@master/css.nuxt": "2.0.0-rc.39",
+    "@master/css.vue": "2.0.0-rc.39",
     "@master/styled.vue": "^2.0.2",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
@@ -66,6 +66,6 @@
     "meow": "^9.0.0",
     "nuxt": "^3.11.2",
     "nuxt-splide": "1.1.1",
-    "vue-tsc": "^2.0.16"
+    "vue-tsc": "^2.0.19"
   }
 }
