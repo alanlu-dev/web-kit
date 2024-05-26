@@ -6,12 +6,10 @@ const showNav = ref(false)
 
 <template>
   <header v-bind="$attrs" id="header" class="center-content flex sticky bg:base-bg left:0 max-w:inherit p:4x|5x p:4x|10x@tablet top:0 w:full z:header">
-    <div class="center-content flex gap:2x gap:3x@tablet">
-      <nuxt-link class="center-content flex size:6x size:9x@tablet" to="/">
-        <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
-      </nuxt-link>
+    <nuxt-link class="center-content flex gap:2x gap:3x@tablet" to="/">
+      <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
       <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">中華民國職業清潔認證協會</p>
-    </div>
+    </nuxt-link>
     <nav class="ml:auto">
       <ul class="b1-r center-content flex@desktop hidden nowrap {ls:0.05em;mr:-0.05em;text:right;~color|300ms|ease}_a fg:primary-hover_a:hover flex:wrap gap-x:8.5x">
         <li><nuxt-link to="/news">最新消息</nuxt-link></li>
