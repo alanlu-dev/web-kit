@@ -35,5 +35,15 @@ export default {
         scope: '#mcss',
       },
     ),
+    splide__slide: toLine(
+      {
+        '.splide__track--nav>.splide__list>': cls`
+          {b:secondary}.is-active
+        `,
+      },
+      {
+        scope: '#mcss',
+      },
+    ),
   },
 }
