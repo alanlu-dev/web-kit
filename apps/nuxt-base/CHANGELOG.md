@@ -1,5 +1,19 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.10
+
+### Patch Changes
+
+- [`70be450`](https://github.com/alanlu-dev/web-kit/commit/70be45030756b71582fee4f2dad86134167ac942) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
+- [`3ba0612`](https://github.com/alanlu-dev/web-kit/commit/3ba0612a88412f41a5384b2efa1fd22a280305d9) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(nuxt-base): email regex
+
+- Updated dependencies [[`70be450`](https://github.com/alanlu-dev/web-kit/commit/70be45030756b71582fee4f2dad86134167ac942)]:
+  - @alanlu-dev/mastercss-config@1.0.8
+  - @alanlu-dev/types@1.0.5
+  - @alanlu-dev/scss@1.0.4
+  - @alanlu-dev/utils@1.0.3
+
 ## 1.0.9
 
 ### Patch Changes
