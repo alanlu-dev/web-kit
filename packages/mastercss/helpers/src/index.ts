@@ -8,8 +8,8 @@
 function literal(strings: TemplateStringsArray, ...tokens: any[]): string {
   return strings
     .reduce((result, value, index) => result + value + (tokens[index] || ''), '')
-    .replace(/\/\*[\s\S]*?\*\//gm, '') // 允許註解
-    .replace(/(?:\n(?:\s*))+/g, ' ')
+    .replace(/\/\*[\s\S]*?\*\//g, '') // 允許註解
+    .replace(/(?:\n\s*)+/g, ' ')
     .trim()
 }
 
@@ -52,7 +52,8 @@ function group(config: GroupConfig): string {
     // 否則進行群組處理
     else {
       // 先代選擇器 群組樣式 後代選擇器
-      const reg = /^(.+){0,1}{(.+)}(.+){0,1}$/
+      // const reg = /^(.+)?\{(.+)\}(.+)?$/
+      const reg = /^([^{}]*)\{([^{}]*)\}([^{}]*)$/
       const r = target.match(reg)!
 
       // 先代選擇器
