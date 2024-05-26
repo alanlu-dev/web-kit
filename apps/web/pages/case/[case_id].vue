@@ -28,8 +28,9 @@ onMounted(() => {
     <Breadcrumb :title="item?.page?.標題" />
     <div class="max-w:screen-md mx:auto w:full">
       <CaseTag :tag="item?.page?.分類" />
-      <h1 class="h1 mt:3x title-left fg:font-content!">{{ item?.page?.標題 }}</h1>
+      <h1 class="h1 title-left fg:font-content! mt:3x">{{ item?.page?.標題 }}</h1>
       <Splide
+        ref="main"
         aria-labelledby="封面"
         :options="{
           arrows: false,
@@ -37,16 +38,16 @@ onMounted(() => {
           gap: '1rem',
           pagination: false,
         }"
-        ref="main"
         class="mt:5x"
       >
-        <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
+        <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
           <img :src="圖片" />
         </SplideSlide>
       </Splide>
 
       <div class="rel">
         <Splide
+          ref="thumbs"
           :options="{
             rewind: true,
             pagination: false,
@@ -57,10 +58,9 @@ onMounted(() => {
             isNavigation: true,
             updateOnMove: true,
           }"
-          ref="thumbs"
           class="mt:5x"
         >
-          <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
+          <SplideSlide v-for="圖片 in item?.page?.封面" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
             <img :src="圖片" />
           </SplideSlide>
         </Splide>
@@ -70,7 +70,7 @@ onMounted(() => {
 
       <NotionRender class="mt:10x" :blocks="item?.contents" />
 
-      <div class="aspect:16/9 w:full mt:20x">
+      <div class="aspect:16/9 mt:20x w:full">
         <iframe
           class="full"
           :src="item?.page?.影音連結"

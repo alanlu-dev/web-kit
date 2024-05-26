@@ -28,20 +28,21 @@ onMounted(() => {
 
 const show = ref(false)
 
-async function submitHandler() {
-  // Let's pretend this is an ajax request:
-  await new Promise((r) => setTimeout(r, 1000))
-  show.value = true
-}
+// async function submitHandler() {
+//   // Let's pretend this is an ajax request:
+//   await new Promise((r) => setTimeout(r, 1000))
+//   show.value = true
+// }
 </script>
 
 <template>
   <section class="flex flex:column">
     <div class="p:5x p:10x@tablet">
       <Breadcrumb :title="courseEvent?.page?.課程標題" />
-      <div class="max-w:screen-md mx:auto flex ai:flex-start jc:space-between gap:7.5x mt:5x">
+      <div class="flex ai:flex-start gap:7.5x jc:space-between max-w:screen-md mt:5x mx:auto">
         <div class="flex:2 overflow:hidden">
           <Splide
+            ref="main"
             aria-labelledby="封面"
             :options="{
               arrows: false,
@@ -49,15 +50,15 @@ async function submitHandler() {
               gap: '1rem',
               pagination: false,
             }"
-            ref="main"
           >
-            <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
+            <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
               <img :src="圖片" />
             </SplideSlide>
           </Splide>
 
           <div class="rel">
             <Splide
+              ref="thumbs"
               :options="{
                 rewind: true,
                 pagination: false,
@@ -68,10 +69,9 @@ async function submitHandler() {
                 isNavigation: true,
                 updateOnMove: true,
               }"
-              ref="thumbs"
               class="mt:5x"
             >
-              <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 r:2x overflow:hidden">
+              <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
                 <img :src="圖片" />
               </SplideSlide>
             </Splide>
@@ -84,9 +84,9 @@ async function submitHandler() {
             <NotionRender class="mt:3x" :blocks="course?.contents" />
           </div>
 
-          <div class="mt:10x bg:#F2F9FA p:7x|6x" v-for="item in course?.page?.講師資訊" :key="item">
+          <div v-for="item in course?.page?.講師資訊" :key="item" class="bg:#F2F9FA mt:10x p:7x|6x">
             <h3 class="h3 fg:font-title">講師介紹🚧</h3>
-            <div class="flex center-content gap:6x">
+            <div class="center-content flex gap:6x">
               <div class="flex:2 mt:3x">
                 <p class="lines:1"
                   ><span>講師姓名：</span><span>{{ item }}</span></p
@@ -95,7 +95,7 @@ async function submitHandler() {
                   講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹
                 </p>
               </div>
-              <div class="flex:1 {aspect:inherit;object:cover;w:full}_img aspect:250/271">
+              <div class="{aspect:inherit;object:cover;w:full}_img aspect:250/271 flex:1">
                 <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
               </div>
             </div>
@@ -131,10 +131,10 @@ async function submitHandler() {
           </div>
         </div>
 
-        <div class="bg:base-bg p:5x|6x shadow:all w:full flex:1 fixed bottom left {sticky;top:82;left:unset;bottom:unset}@desktop z:nav">
-          <div class="flex jc:flex-start flex:column ai:flex-start {flex:row!;ai:center!}@tablet&<desktop gap:3x">
+        <div class="bottom fixed left {sticky;top:82;left:unset;bottom:unset}@desktop bg:base-bg flex:1 p:5x|6x shadow:all w:full z:nav">
+          <div class="flex {flex:row!;ai:center!}@tablet&<desktop ai:flex-start flex:column gap:3x jc:flex-start">
             <h2 class="h2">{{ courseEvent?.page?.課程標題 }}</h2>
-            <hr class="h:1 bg:#C9C9C9 w:full hidden@tablet&<desktop" />
+            <hr class="hidden@tablet&<desktop bg:#C9C9C9 h:1 w:full" />
             <CourseLevel :level="courseEvent?.page?.課程標籤" />
           </div>
           <div class="mt:2x>p mt:3x>p@desktop">

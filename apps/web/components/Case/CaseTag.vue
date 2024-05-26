@@ -11,13 +11,13 @@ withDefaults(defineProps<IProps>(), {
 const tagCv = cv({
   tag: {
     未知: 'bg:divider fg:white',
-    課堂實作: 'bg:#E1E9F1 fg:#5784B8 b:1|#5784B8',
-    樣品實作: 'bg:#F4ECE7 fg:#CD855D b:1|#CD855D',
-    學生成品: 'bg:#F4F7ED fg:#9EC03C b:1|#9EC03C',
+    課堂實作: 'b:1|#5784B8 bg:#E1E9F1 fg:#5784B8',
+    樣品實作: 'b:1|#CD855D bg:#F4ECE7 fg:#CD855D',
+    學生成品: 'b:1|#9EC03C bg:#F4F7ED fg:#9EC03C',
   },
 })
 </script>
 
 <template>
-  <div class="inline-block b2-r nowrap p:2x r:1x" :class="tagCv({ tag })">{{ tag }} </div>
+  <div class="b2-r inline-block nowrap p:2x r:1x" :class="tagCv({ tag })">{{ tag }} </div>
 </template>

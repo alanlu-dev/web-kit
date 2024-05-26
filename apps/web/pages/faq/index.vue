@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FaqSchemaType } from '~/schema/faq'
+
 definePageMeta({
   title: '常見問答',
   breadcrumb: {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
 import CaseCard from '../Case/CaseCard.vue'
 import type { CaseSchemaType } from '~/schema/case'
 

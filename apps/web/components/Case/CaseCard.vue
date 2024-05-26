@@ -19,16 +19,16 @@ const typeCv = cv({
 </script>
 
 <template>
-  <div class="ai:flex-start flex flex:column flex:row@desktop rel pb:15x@desktop {content:'';bg:$(case-bg);abs;top:10x;left:160;bottom;right;z:-1}::before@desktop" :class="typeCv({ type })">
+  <div class="flex rel {content:'';bg:$(case-bg);abs;top:10x;left:160;bottom;right;z:-1}::before@desktop ai:flex-start flex:column flex:row@desktop pb:15x@desktop" :class="typeCv({ type })">
     <div class="{aspect:489/342;object:cover;w:full}_img aspect:489/342 flex:1">
       <img :src="item.封面[0]" alt="課程介紹" class="pointer-events:none user-select:none" />
     </div>
-    <div class="flex:1 p:5x|6x pt:5x pt:15.5x@desktop bg:$(case-bg) bg:none@desktop w:full">
+    <div class="bg:$(case-bg) bg:none@desktop flex:1 p:5x|6x pt:5x pt:15.5x@desktop w:full">
       <CaseTag :tag="item.分類" />
       <p class="h3 fg:font-title mt:2x">{{ item.標題 }}</p>
-      <p class="b1-r mt:3x lines:4">{{ item.簡介 ?? '(無內容)' }}</p>
-      <div class="text:right mt:7.5x {abs;bottom:5x;right:6x}@desktop">
-        <Iconfiy v-if="type === 'home'" @click="navigateTo(`/case/${item.ID}`)" icon="material-symbols-light:arrow-right-alt">繼續閱讀</Iconfiy>
+      <p class="b1-r lines:4 mt:3x">{{ item.簡介 ?? '(無內容)' }}</p>
+      <div class="{abs;bottom:5x;right:6x}@desktop mt:7.5x text:right">
+        <Iconfiy v-if="type === 'home'" icon="material-symbols-light:arrow-right-alt" @click="navigateTo(`/case/${item.ID}`)">繼續閱讀</Iconfiy>
         <Button v-else intent="primary" class="ml:auto mt:5x" @click="navigateTo(`/case/${item.ID}`)">繼續閱讀</Button>
       </div>
     </div>

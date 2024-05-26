@@ -41,21 +41,21 @@ const filterCases = computed(() => {
     <section class="px:10vw@tablet px:22.5x@desktop">
       <Breadcrumb />
 
-      <div class="flex ai:flex-start jc:space-between flex:column flex:row@tablet gap:5x gap:16x@tablet gap:32.5x@desktop mt:10x">
-        <nav aria-label="Filters" class="sticky z:nav h:full top:59! top:76!@tablet top:82!@desktop b1-r">
-          <div class="hidden block@tablet">
+      <div class="flex ai:flex-start flex:column flex:row@tablet gap:5x gap:16x@tablet gap:32.5x@desktop jc:space-between mt:10x">
+        <nav aria-label="Filters" class="b1-r sticky h:full top:59! top:76!@tablet top:82!@desktop z:nav">
+          <div class="block@tablet hidden">
             <ul
-              class="flex flex:column gap:3x {content:'';abs;top;left;bottom;w:2x;bg:#F2F9FA}::before {content:'';abs;top;left;bottom;w:2x;~background|300ms|ease}_li::before {bg:primary}_li[active=true]::before {p:1x|7.5x;cursor:pointer;nowrap;rel}_li {fg:primary}_li:hover,_li[active=true]"
+              class="flex {p:1x|7.5x;cursor:pointer;nowrap;rel}_li {content:'';abs;top;left;bottom;w:2x;~background|300ms|ease}_li::before {bg:primary}_li[active=true]::before {content:'';abs;top;left;bottom;w:2x;bg:#F2F9FA}::before {fg:primary}_li:hover,_li[active=true] flex:column gap:3x"
             >
               <li v-for="filter in filterOptions" :key="filter.value" :active="caseFilters.category === filter.value" @click="caseFilters.category = filter.value">
                 {{ filter.label }}
               </li>
             </ul>
           </div>
-          <div class="hidden@tablet w:full bg:base-bg mt:-3x px:2x">
+          <div class="hidden@tablet bg:base-bg mt:-3x px:2x w:full">
             <Splide :options="{ drag: 'free', arrows: false, pagination: false, autoWidth: true, gap: 0 }">
               <SplideSlide v-for="filter in filterOptions" :key="filter.value">
-                <p class="p:3x|4x cursor:pointer {fg:primary}[active=true]" @click="caseFilters.category = filter.value" :active="caseFilters.category === filter.value">
+                <p class="{fg:primary}[active=true] cursor:pointer p:3x|4x" :active="caseFilters.category === filter.value" @click="caseFilters.category = filter.value">
                   {{ filter.label }}
                 </p>
               </SplideSlide>
@@ -63,7 +63,7 @@ const filterCases = computed(() => {
           </div>
         </nav>
 
-        <div class="flex flex:column ai:stretch gap:15x px:6x px:0@tablet overflow:hidden">
+        <div class="flex ai:stretch flex:column gap:15x overflow:hidden px:6x px:0@tablet">
           <CaseCard v-for="item in filterCases" :key="item.ID" :item="item" />
         </div>
       </div>
