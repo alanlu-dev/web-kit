@@ -1,5 +1,11 @@
 # @alanlu-dev/types
 
+## 1.0.5
+
+### Patch Changes
+
+- [`70be450`](https://github.com/alanlu-dev/web-kit/commit/70be45030756b71582fee4f2dad86134167ac942) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/mastercss-config",
   "type": "module",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Shareable Master CSS configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",

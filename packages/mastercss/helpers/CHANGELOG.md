@@ -1,5 +1,11 @@
 # @alanlu-dev/mastercss-helpers
 
+## 1.0.8
+
+### Patch Changes
+
+- [`3ba0612`](https://github.com/alanlu-dev/web-kit/commit/3ba0612a88412f41a5384b2efa1fd22a280305d9) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(mastercss-helpers): group regex
+
 ## 1.0.4
 
 ### Patch Changes
