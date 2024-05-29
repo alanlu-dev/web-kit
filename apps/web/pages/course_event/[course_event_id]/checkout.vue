@@ -2,7 +2,6 @@
 import { formatThousand } from '@alanlu-dev/utils'
 import type { NotionBlockType } from '@alanlu-dev/notion-api-zod-schema'
 import type { CourseEventSchemaType } from '~/schema/course_event'
-import type { CourseSchemaType } from '~/schema/course'
 
 const route = useRoute()
 const course_event_id = route.params.course_event_id
@@ -11,17 +10,6 @@ const { data: courseEvent } = await useFetch<{ page: CourseEventSchemaType; cont
 
 useSeoMeta({
   title: () => courseEvent.value?.page?.課程標題 || '結帳',
-})
-
-const main = ref()
-const thumbs = ref()
-
-onMounted(() => {
-  const thumbsSplide = thumbs.value?.splide
-
-  if (thumbsSplide) {
-    main.value?.sync(thumbsSplide)
-  }
 })
 
 const show = ref(false)
@@ -35,7 +23,7 @@ async function submitHandler() {
 
 <template>
   <section class="flex flex:column">
-    <div class="px:6x pt:5x pt:10x@tablet">
+    <div class="pt:5x pt:10x@tablet px:6x">
       <Breadcrumb :title="courseEvent?.page?.課程標題" no-last-page />
       <div class="max-w:screen-md mt:5x mx:auto">
         <div class="flex flex:column gap:10x">
@@ -81,22 +69,22 @@ async function submitHandler() {
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">付款方式</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="flex ai:center flex:column flex:row@tablet bg:#F2F9FA fg:primary gap:2x@tablet jc:flex-start p:3x|5x r:2x">
+            <div class="flex ai:center bg:#F2F9FA fg:primary flex:column flex:row@tablet gap:2x@tablet jc:flex-start p:3x|5x r:2x">
               <iconify-icon class="f:6x" icon="material-symbols-light:security" noobserver />
               <p class="b1-r">你所有的交易資訊皆獲得安全保護</p>
             </div>
             <div class="my:5x">
-              <FormKit type="radio" name="payType" :value="''" :options="[{ value: '', label: '信用卡一次付清' }]">
+              <FormKit type="radio" name="payType" value="" :options="[{ value: '', label: '信用卡一次付清' }]">
                 <template #label>
                   <div class="flex ai:center jc:space-between w:full">
                     <p>信用卡一次付清</p>
-                    <NuxtImg src="/credit-card.png" class="w:74 ml:auto" />
+                    <NuxtImg src="/credit-card.png" class="ml:auto w:74" />
                   </div>
                 </template>
               </FormKit>
             </div>
             <div class="bg:#FAFAFA p:4x r:2x">
-              <div class="{b1-r;fg:font-title;bg:#FAFAFA}_.formkit-label {bg:base-bg}_.formkit-inner max-w:715 mx:auto">
+              <div class="{bg:base-bg}_.formkit-inner {b1-r;fg:font-title;bg:#FAFAFA}_.formkit-label max-w:715 mx:auto">
                 <FormKit type="form" :actions="false">
                   <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
                     <FormKit
@@ -119,7 +107,7 @@ async function submitHandler() {
 
         <div class="center-content flex gap:10x mt:15x@tablet my:10x">
           <Button intent="secondary" @click="$router.back()">取消</Button>
-          <Button intent="primary">確認付款</Button>
+          <Button intent="primary" @click="navigateTo(`/course_event/${course_event_id}/success`)">確認付款</Button>
         </div>
       </div>
     </div>
