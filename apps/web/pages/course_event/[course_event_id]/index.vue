@@ -25,19 +25,11 @@ onMounted(() => {
     main.value?.sync(thumbsSplide)
   }
 })
-
-const show = ref(false)
-
-// async function submitHandler() {
-//   // Let's pretend this is an ajax request:
-//   await new Promise((r) => setTimeout(r, 1000))
-//   show.value = true
-// }
 </script>
 
 <template>
   <section class="flex flex:column">
-    <div class="p:5x p:10x@tablet">
+    <div class="px:6x pt:5x pt:10x@tablet">
       <Breadcrumb :title="courseEvent?.page?.課程標題" />
       <div class="flex ai:flex-start gap:7.5x jc:space-between max-w:screen-md mt:5x mx:auto">
         <div class="flex:2 overflow:hidden">
@@ -135,7 +127,7 @@ const show = ref(false)
             </div>
           </div>
 
-          <div class="mt:10x text:center">
+          <div class="my:10x text:center">
             <nuxt-link to="/course_event">
               <Iconfiy icon="material-symbols-light:arrow-right-alt">返回列表</Iconfiy>
             </nuxt-link>
@@ -149,27 +141,26 @@ const show = ref(false)
             <CourseLevel :level="courseEvent?.page?.課程標籤" />
           </div>
           <div class="mt:2x>p mt:3x>p@desktop">
-            <p
-              ><span>上課日期：</span><span>{{ courseEvent?.page?.上課日期?.start }}</span></p
-            >
-            <p
-              ><span>結訓日期：</span><span>{{ courseEvent?.page?.上課日期?.end }}</span></p
-            >
-            <p
-              ><span>課程地點：</span><span>{{ courseEvent?.page?.教室名稱 }}</span></p
-            >
+            <p>
+              <span>上課日期：</span>
+              <span>{{ courseEvent?.page?.上課日期?.start }}</span>
+            </p>
+            <p>
+              <span>結訓日期：</span>
+              <span>{{ courseEvent?.page?.上課日期?.end }}</span>
+            </p>
+            <p>
+              <span>課程地點：</span>
+              <span>{{ courseEvent?.page?.教室名稱 }}</span>
+            </p>
           </div>
 
           <div class="{abs;right:5x;bottom:5x}@tablet&<desktop">
             <div class="mt:5x text:right@tablet&<desktop">
               <p class="h2 fg:accent!">NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
             </div>
-            <Button intent="primary" class="mt:5x w:full w:150!@tablet&<desktop" @click="show = true">立即報名</Button>
+            <NuxtLink :to="`/course_event/${course_event_id}/checkout`" class="btn btn--primary mt:5x w:full w:150!@tablet&<desktop">立即報名</NuxtLink>
           </div>
-
-          <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
-            <p>🚧 TODO 🚧</p>
-          </Modal>
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ const filterNews = computed(() => {
     <section class="px:6x px:10vw@tablet px:22.5x@desktop">
       <Breadcrumb />
 
-      <FormKit v-model="newsFiltersForm" type="form" :config="{ classes: { wrapper: 'max-w:unset!', outer: 'mb:0!' } }" :actions="false" @submit="submitHandler">
+      <FormKit v-model="newsFiltersForm" type="form" :actions="false" @submit="submitHandler">
         <div class="center-content flex gap:5x">
           <FormKit name="keywords" :classes="{ wrapper: 'w:full w:240@tablet w:345@desktop' }" type="text" label="搜尋關鍵字" />
           <FormKit :classes="{ wrapper: 'text:right nowrap', input: 'p:3x|6x! mr:0!' }" type="submit" label="查詢" />

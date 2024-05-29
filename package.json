@@ -61,6 +61,8 @@
     "@alanlu-dev/types": "^1.0.5",
     "@jiehousekeeper/master-css-config": "workspace:*",
     "@master/css": "^2.0.0-rc.40",
+    "@master/eslint-config-css": "^2.0.0-rc.40",
+    "@master/eslint-plugin-css": "^2.0.0-rc.40",
     "@types/node": "^20.12.12",
     "@vitest/coverage-v8": "^1.6.0",
     "cspell": "^8.8.3",

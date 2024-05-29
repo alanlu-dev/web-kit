@@ -31,8 +31,9 @@ export default defineNuxtConfig({
     /* --- seo --- */
     '@nuxtjs/seo',
 
-    /* --- icon --- */
+    /* --- icon / image --- */
     'nuxt-icon',
+    '@nuxt/image',
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
