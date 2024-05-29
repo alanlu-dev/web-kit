@@ -1,6 +1,6 @@
 /** @type {import('@master/css').Config} */
 export default {
-  queries: {
+  at: {
     // '4xs': 360,
     // '3xs': 480,
     // '2xs': 600,

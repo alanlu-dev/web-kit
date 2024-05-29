@@ -28,7 +28,7 @@
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
-    "@vueuse/core": "^10.9.0",
+    "@vueuse/core": "^10.10.0",
     "class-variant": "^2.0.2",
     "floating-vue": "^5.2.2",
     "i18next": "^23.11.5",
@@ -43,9 +43,9 @@
   },
   "devDependencies": {
     "@alanlu-dev/nuxt-base": "workspace:*",
-    "@formkit/core": "^1.6.3",
-    "@formkit/vue": "^1.6.3",
-    "@gtm-support/vue-gtm": "^2.2.0",
+    "@formkit/core": "^1.6.5",
+    "@formkit/vue": "^1.6.5",
+    "@gtm-support/vue-gtm": "^3.0.0",
     "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/i18n": "^8.3.1",
