@@ -6,8 +6,9 @@ import { GallerySchema } from '~/schema/gallery'
 export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event) => {
   const paramPosition = getRouterParam(event, 'position')
   if (!paramPosition) return []
+  const position = decodeURIComponent(paramPosition)
 
-  const key = `gallery:${paramPosition}`
+  const key = `gallery:${position}`
 
   const { refresh } = getQuery(event)
   if (!refresh) {
@@ -18,8 +19,6 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
 
   try {
     const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
-    const position = decodeURIComponent(paramPosition)
 
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID_GALLERIES!,
@@ -48,8 +47,8 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
       arr.push(GallerySchema.parse(item.properties))
     })
 
-    // await kv.set(key, response, { ex: 300 })
-    await kv.set(key, response)
+    // await kv.set(key, arr, { ex: 300 })
+    await kv.set(key, arr)
 
     return arr
   }
