@@ -13,10 +13,20 @@ useSeoMeta({
 })
 
 const route = useRoute()
-const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: route.query })
+
+const query = ref(route.query)
+watch(
+  () => route.query,
+  (val) => {
+    query.value = val
+  },
+)
+
+const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query })
+const { data: length } = await useFetch<number>('/api/case/length', { query })
 
 const page = computed(() => Number(route.query.page || 1))
-const total = computed(() => (cases.value ? cases.value.length / 10 : 1))
+const total = computed(() => (length.value ? Math.ceil(length.value / 10) : 1))
 
 const caseFilters = useState('caseFilters', () => ({
   category: '',
@@ -40,7 +50,6 @@ const filterCases = computed(() => {
     <Hero title="實績案例" />
     <section class="px:10vw@tablet px:22.5x@desktop">
       <Breadcrumb />
-
       <div class="flex ai:flex-start flex:column flex:row@tablet gap:5x gap:16x@tablet gap:32.5x@desktop jc:space-between mt:10x">
         <nav aria-label="Filters" class="b1-r sticky h:full top:59! top:76!@tablet top:82!@desktop z:nav">
           <div class="block@tablet hidden">

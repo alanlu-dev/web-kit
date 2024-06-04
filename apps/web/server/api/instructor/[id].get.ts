@@ -25,11 +25,12 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
     const parsedContents = NotionBlockSchema.array().parse(contents.results)
 
     const response = {
-      page: parsedPage.properties,
+      page: parsedPage.properties, // TODO: schema parse
       contents: parsedContents,
     }
 
-    await kv.set(key, response, { ex: 300 })
+    // await kv.set(key, response, { ex: 300 })
+    await kv.set(key, response)
 
     return response
   }

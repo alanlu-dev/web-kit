@@ -48,7 +48,8 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
       arr.push(GallerySchema.parse(item.properties))
     })
 
-    await kv.set(key, arr, { ex: 300 })
+    // await kv.set(key, response, { ex: 300 })
+    await kv.set(key, response)
 
     return arr
   }

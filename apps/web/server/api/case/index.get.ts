@@ -20,7 +20,7 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
       if ((await kv.llen(key)) === 0) return []
     }
     else {
-      kv.del(key)
+      await kv.del(key)
     }
 
     const notion = new Client({ auth: process.env.NOTION_API_KEY })
@@ -60,8 +60,6 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         const parseItem = CaseSchema.parse(item.properties)
         parseItem.ID = item.id.replaceAll('-', '')
         allData.push(parseItem)
-
-        kv.rpush(key, parseItem)
       })
 
       if (!response.has_more) {
@@ -70,6 +68,8 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
 
       start_cursor = response.next_cursor!
     }
+
+    await kv.rpush(key, ...allData)
 
     const currentPageData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 

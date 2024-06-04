@@ -15,10 +15,19 @@ useSeoMeta({
 
 const route = useRoute()
 
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: route.query })
+const query = ref(route.query)
+watch(
+  () => route.query,
+  (val) => {
+    query.value = val
+  },
+)
+
+const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query })
+const { data: length } = await useFetch<number>('/api/news/length', { query })
 
 const page = computed(() => Number(route.query.page || 1))
-const total = computed(() => (news.value ? news.value.length / 10 : 1))
+const total = computed(() => (length.value ? Math.ceil(length.value / 10) : 1))
 
 const newsFiltersForm = useState('newsFiltersForm', () => ({
   keywords: '',

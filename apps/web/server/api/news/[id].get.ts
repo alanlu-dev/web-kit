@@ -30,7 +30,8 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
       contents: parsedContents,
     }
 
-    await kv.set(key, response, { ex: 300 })
+    // await kv.set(key, response, { ex: 300 })
+    await kv.set(key, response)
 
     return response
   }

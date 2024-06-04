@@ -1,15 +1,15 @@
 import { APIErrorCode, Client, ClientErrorCode, isFullPage, isNotionClientError } from '@notionhq/client'
 import { kv } from '@vercel/kv'
-import type { FaqSchemaType } from '~/schema/faq'
-import { FaqSchema } from '~/schema/faq'
+import type { NewsSchemaType } from '~/schema/news'
+import { NewsSchema } from '~/schema/news'
 
 export default defineEventHandler<{ query: { page?: string; page_size?: string; refresh?: boolean } }>(async (event) => {
   const { page, page_size, refresh } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
-  const pageSize = page_size ? Number.parseInt(page_size) : 100
+  const pageSize = page_size ? Number.parseInt(page_size) : 10
 
-  const key = `faq`
+  const key = `news`
 
   try {
     if (!refresh) {
@@ -20,43 +20,40 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
       if ((await kv.llen(key)) === 0) return []
     }
     else {
-      kv.del(key)
+      await kv.del(key)
     }
 
     const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
-    const allData: FaqSchemaType[] = []
+    const allData: NewsSchemaType[] = []
     let start_cursor: string | undefined
 
     while (true) {
       const response = await notion.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID_FAQ!,
+        database_id: process.env.NOTION_DATABASE_ID_NEWS!,
         start_cursor,
         page_size: pageSize,
-        // filter: {
-        //   and: [
-        //     { property: '封存', checkbox: { equals: false } },
-        //     { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
-        //   ],
-        // },
+        filter: {
+          and: [
+            { property: '封存', checkbox: { equals: false } },
+            { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+            { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
+          ],
+        },
         filter_properties: [
-          /** 問題 */
+          /** 標題 */
           'title',
-          /** 排序 */
-          'pOz%60',
-          /** 答案 */
-          '%60XV%5D',
+          /** 發布日期 */
+          '%3BqzX',
         ],
-        sorts: [{ property: '排序', direction: 'ascending' }],
-        // page_size: page_size ? Number.parseInt(page_size) : 10,
+        sorts: [{ property: '發布日期', direction: 'descending' }],
       })
+
       response.results.forEach((item) => {
         if (!isFullPage(item)) return false
-        const parseItem = FaqSchema.parse(item.properties)
+        const parseItem = NewsSchema.parse(item.properties)
         parseItem.ID = item.id.replaceAll('-', '')
         allData.push(parseItem)
-
-        kv.rpush(key, parseItem)
       })
 
       if (!response.has_more) {
@@ -65,6 +62,8 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
 
       start_cursor = response.next_cursor!
     }
+
+    await kv.rpush(key, ...allData)
 
     const currentPageData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 
