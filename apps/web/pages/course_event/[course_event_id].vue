@@ -29,7 +29,7 @@ onMounted(() => {
 
 <template>
   <section class="flex flex:column">
-    <div class="px:6x pt:5x pt:10x@tablet">
+    <div class="pt:5x pt:10x@tablet px:6x">
       <Breadcrumb :title="courseEvent?.page?.課程標題" />
       <div class="flex ai:flex-start gap:7.5x jc:space-between max-w:screen-md mt:5x mx:auto">
         <div class="flex:2 overflow:hidden">
@@ -159,7 +159,7 @@ onMounted(() => {
             <div class="mt:5x text:right@tablet&<desktop">
               <p class="h2 fg:accent!">NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
             </div>
-            <NuxtLink :to="`/course_event/${course_event_id}/checkout`" class="btn btn--primary mt:5x w:full w:150!@tablet&<desktop">立即報名</NuxtLink>
+            <NuxtLink :to="`/checkout?course_event_id=${course_event_id}`" class="btn btn--primary mt:5x w:full w:150!@tablet&<desktop">立即報名</NuxtLink>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import type { NotionBlockType } from '@alanlu-dev/notion-api-zod-schema'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
 const route = useRoute()
-const course_event_id = route.params.course_event_id
+const course_event_id = route.query.course_event_id
 
 const { data: courseEvent } = await useFetch<{ page: CourseEventSchemaType; contents: NotionBlockType[] }>(`/api/course_event/${course_event_id}`)
 
@@ -15,17 +15,16 @@ useSeoMeta({
 
 <template>
   <section class="flex flex:column">
-    <div class="px:6x pt:5x pt:10x@tablet">
-      <Breadcrumb :title="courseEvent?.page?.課程標題" no-last-page />
+    <div class="pt:5x pt:10x@tablet px:6x">
       <div class="max-w:screen-md mt:5x mx:auto text:center">
-        <div class="bg:#F2F9FA r:2x px:7.5x py:10x">
+        <div class="bg:#F2F9FA px:7.5x py:10x r:2x">
           <div class="fg:primary">
             <iconify-icon icon="material-symbols-light:check-circle-rounded" class="f:65 f:134@tablet" />
             <h1 class="h1">報名成功！</h1>
           </div>
-          <div class="mx:auto max-w:710">
-            <p class="b1-r text:left mt:5x text:center@tablet">您好，您已報名完成，以下為報名詳細資訊</p>
-            <div class="bg:base-bg r:2x p:5x px:11x@tablet b2-r flex flex:column gap:5x mt:5x">
+          <div class="max-w:710 mx:auto">
+            <p class="b1-r mt:5x text:left text:center@tablet">您好，您已報名完成，以下為報名詳細資訊</p>
+            <div class="b2-r flex bg:base-bg flex:column gap:5x mt:5x p:5x px:11x@tablet r:2x">
               <div class="flex ai:flex-start gap:1x jc:flex-start">
                 <p class="nowrap fg:font-title">訂單編號：</p>
                 <div class="flex ai:center flex:wrap jc:flex-start">
@@ -73,7 +72,7 @@ useSeoMeta({
           </div>
         </div>
 
-        <div class="mx:auto max-w:710 text:left mt:5x mb:20x">
+        <div class="max-w:710 mb:20x mt:5x mx:auto text:left">
           <p class="b1-r px:5x px:11x@tablet">*若有課程相關疑問，請透過客服電話與我們聯繫</p>
         </div>
       </div>
