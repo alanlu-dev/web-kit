@@ -1,13 +1,23 @@
 import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 import { NotionBlockSchema, NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { kv } from '@vercel/kv'
 import { CourseEventSchema } from '~/schema/course_event'
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
+export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event) => {
+  const id = getRouterParam(event, 'id')
+  if (!id) return null
 
-export default defineEventHandler(async (event) => {
+  const key = `course_event:${id}`
+
+  const { refresh } = getQuery(event)
+  if (!refresh) {
+    const data = await kv.get(key)
+    console.log('cache hit', key)
+    if (data) return data
+  }
+
   try {
-    const id = getRouterParam(event, 'id')
-    if (!id) return null
+    const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
     const page = await notion.pages.retrieve({ page_id: id })
     const contents = await notion.blocks.children.list({ block_id: id })
@@ -15,10 +25,14 @@ export default defineEventHandler(async (event) => {
     const parsedPage = NotionPageSchema.parse(page)
     const parsedContents = NotionBlockSchema.array().parse(contents.results)
 
-    return {
+    const response = {
       page: CourseEventSchema.parse(parsedPage.properties),
       contents: parsedContents,
     }
+
+    await kv.set(key, response, { ex: 300 })
+
+    return response
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

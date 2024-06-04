@@ -1,13 +1,23 @@
 import { APIErrorCode, Client, ClientErrorCode, isFullPage, isNotionClientError } from '@notionhq/client'
+import { kv } from '@vercel/kv'
 import type { GallerySchemaType } from '~/schema/gallery'
 import { GallerySchema } from '~/schema/gallery'
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
+export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event) => {
+  const paramPosition = getRouterParam(event, 'position')
+  if (!paramPosition) return []
 
-export default defineEventHandler(async (event) => {
+  const key = `gallery:${paramPosition}`
+
+  const { refresh } = getQuery(event)
+  if (!refresh) {
+    const data = await kv.get(key)
+    console.log('cache hit', key)
+    if (data) return data
+  }
+
   try {
-    const paramPosition = getRouterParam(event, 'position')
-    if (!paramPosition) return []
+    const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
     const position = decodeURIComponent(paramPosition)
 
@@ -37,6 +47,8 @@ export default defineEventHandler(async (event) => {
       if (!isFullPage(item)) return false
       arr.push(GallerySchema.parse(item.properties))
     })
+
+    await kv.set(key, arr, { ex: 300 })
 
     return arr
   }

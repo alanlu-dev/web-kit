@@ -5,7 +5,7 @@ import type { CaseSchemaType } from '~/schema/case'
 const route = useRoute()
 const case_id = route.params.case_id
 
-const { data: item } = await useFetch<{ page: CaseSchemaType; contents: NotionBlockType[] }>(`/api/case/${case_id}`)
+const { data: item } = await useFetch<{ page: CaseSchemaType; contents: NotionBlockType[] }>(`/api/case/${case_id}`, { query: route.query })
 
 useSeoMeta({
   title: () => item.value?.page?.標題 || '實績案例',
