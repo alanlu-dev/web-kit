@@ -45,6 +45,7 @@
     "@notionhq/client": "^2.2.15",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/seo": "^2.0.0-rc.10",
+    "@vercel/edge-config": "^1.1.1",
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vueuse/core": "^10.10.0",
     "pinia": "^2.1.7",
