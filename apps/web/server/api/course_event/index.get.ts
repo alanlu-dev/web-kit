@@ -9,7 +9,7 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
   const currentPage = page ? Number.parseInt(page) : 1
   const pageSize = page_size ? Number.parseInt(page_size) : 10
 
-  const key = `course_event`
+  const key = `course_events`
 
   try {
     if (!refresh) {

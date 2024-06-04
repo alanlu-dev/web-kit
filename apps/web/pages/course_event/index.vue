@@ -23,6 +23,8 @@ watch(
   },
 )
 
+// TODO: 過濾之後的分頁
+
 const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query })
 const { data: length } = await useFetch<number>('/api/news/length', { query })
 

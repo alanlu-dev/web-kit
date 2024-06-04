@@ -23,19 +23,13 @@ watch(
   },
 )
 
+// TODO: 過濾之後的分頁
+
 const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query })
 const { data: length } = await useFetch<number>('/api/news/length', { query })
 
 const page = computed(() => Number(route.query.page || 1))
 const total = computed(() => (length.value ? Math.ceil(length.value / 10) : 1))
-
-const newsFiltersForm = useState('newsFiltersForm', () => ({
-  keywords: '',
-}))
-
-const newsFilters = useState('newsFilters', () => ({
-  keywords: '',
-}))
 
 async function submitHandler() {
   // Let's pretend this is an ajax request:
