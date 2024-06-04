@@ -23,7 +23,8 @@ useSchemaOrg([
   }),
 ])
 
-const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq')
+const route = useRoute()
+const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
 
 // https://www.ripple-ui.com/docs/components/accordion
 // Accordion on click will collapse the other open accordions

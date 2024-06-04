@@ -2,7 +2,8 @@
 import CaseCard from '../Case/CaseCard.vue'
 import type { CaseSchemaType } from '~/schema/case'
 
-const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case')
+const route = useRoute()
+const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: route.query })
 </script>
 
 <template>

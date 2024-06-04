@@ -13,7 +13,7 @@ useSeoMeta({
 })
 
 const route = useRoute()
-const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case')
+const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: route.query })
 
 const page = computed(() => Number(route.query.page || 1))
 const total = computed(() => (cases.value ? cases.value.length / 10 : 1))

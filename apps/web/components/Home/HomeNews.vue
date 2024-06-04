@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { NewsSchemaType } from '~/schema/news'
 
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news/?page_size=4')
+const route = useRoute()
+const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page: 1, page_size: 4 } })
 </script>
 
 <template>

@@ -7,9 +7,9 @@ import type { CourseSchemaType } from '~/schema/course'
 const route = useRoute()
 const course_event_id = route.params.course_event_id
 
-const { data: courseEvent } = await useFetch<{ page: CourseEventSchemaType; contents: NotionBlockType[] }>(`/api/course_event/${course_event_id}`)
-const { data: course } = await useFetch<{ page: CourseSchemaType; contents: NotionBlockType[] }>(`/api/course/${courseEvent.value?.page?.課程}`)
-const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event?page_size=2')
+const { data: courseEvent } = await useFetch<{ page: CourseEventSchemaType; contents: NotionBlockType[] }>(`/api/course_event/${course_event_id}`, { query: route.query })
+const { data: course } = await useFetch<{ page: CourseSchemaType; contents: NotionBlockType[] }>(`/api/course/${courseEvent.value?.page?.課程}`, { query: route.query })
+const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query: { ...route.query, page: 1, page_size: 2 } }) // TODO: 隨機
 
 useSeoMeta({
   title: () => courseEvent.value?.page?.課程標題 || '課程資訊',

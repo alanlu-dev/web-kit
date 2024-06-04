@@ -5,8 +5,8 @@ import type { NewsSchemaType } from '~/schema/news'
 const route = useRoute()
 const news_id = route.params.news_id
 
-const { data: news } = await useFetch<{ page: NewsSchemaType; contents: NotionBlockType[] }>(`/api/news/${news_id}`)
-const { data: newsList } = await useFetch<NewsSchemaType[]>('/api/news?page_size=2')
+const { data: news } = await useFetch<{ page: NewsSchemaType; contents: NotionBlockType[] }>(`/api/news/${news_id}`, { query: route.query })
+const { data: newsList } = await useFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page: 1, page_size: 2 } })
 
 useSeoMeta({
   title: () => news.value?.page?.標題 || '最新消息',

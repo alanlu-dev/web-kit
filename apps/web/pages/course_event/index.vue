@@ -15,7 +15,7 @@ useSeoMeta({
 
 const route = useRoute()
 
-const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event')
+const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query: route.query })
 
 const page = computed(() => Number(route.query.page || 1))
 const total = computed(() => (courseEvents.value ? courseEvents.value.length / 10 : 1))

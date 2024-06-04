@@ -15,7 +15,7 @@ useSeoMeta({
 
 const route = useRoute()
 
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news')
+const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: route.query })
 
 const page = computed(() => Number(route.query.page || 1))
 const total = computed(() => (news.value ? news.value.length / 10 : 1))

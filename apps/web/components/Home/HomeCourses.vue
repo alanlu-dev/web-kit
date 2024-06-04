@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
-const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event')
+const route = useRoute()
+const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query: route.query })
 </script>
 
 <template>

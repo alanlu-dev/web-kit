@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { GallerySchemaType } from '~/schema/gallery'
 
-const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首頁-大B')
+const route = useRoute()
+const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首頁-大B', { query: route.query })
 </script>
 
 <template>
