@@ -1,5 +1,11 @@
 # @alanlu-dev/scss
 
+## 1.0.5
+
+### Patch Changes
+
+- [`68f2b0f`](https://github.com/alanlu-dev/web-kit/commit/68f2b0faa806ef25e3dcd5ec1b11ce4070a0c577) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.4
 
 ### Patch Changes
