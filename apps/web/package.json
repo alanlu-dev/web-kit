@@ -30,7 +30,7 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "@alanlu-dev/notion-api-zod-schema": "^1.0.3",
+    "@alanlu-dev/notion-api-zod-schema": "^1.0.4",
     "@alanlu-dev/utils": "^1.0.3",
     "@formkit/addons": "^1.6.5",
     "@formkit/core": "^1.6.5",
@@ -45,30 +45,29 @@
     "@notionhq/client": "^2.2.15",
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/seo": "^2.0.0-rc.10",
-    "@vercel/edge-config": "^1.1.1",
+    "@vercel/edge-config": "^1.2.0",
     "@vercel/kv": "^2.0.0",
     "@vue-final-modal/nuxt": "^1.0.3",
-    "@vueuse/core": "^10.10.0",
+    "@vueuse/core": "^10.11.0",
     "pinia": "^2.1.7",
-    "vue": "^3.4.27",
+    "vue": "^3.4.30",
     "vue-final-modal": "^4.5.4",
-    "vue-router": "^4.3.2",
+    "vue-router": "^4.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@alanlu-dev/release-it-config": "^0.0.4",
-    "@alanlu-dev/types": "^1.0.5",
+    "@alanlu-dev/release-it-config": "^0.0.5",
+    "@alanlu-dev/types": "^1.0.6",
     "@jiehousekeeper/master-css-config": "workspace:*",
-    "@master/css.nuxt": "2.0.0-rc.40",
-    "@master/css.vue": "2.0.0-rc.40",
+    "@master/css.nuxt": "2.0.0-rc.43",
+    "@master/css.vue": "2.0.0-rc.43",
     "@master/styled.vue": "^2.0.2",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "class-variant": "^2.0.2",
-    "meow": "^9.0.0",
-    "nuxt": "^3.11.2",
+    "nuxt": "^3.12.2",
     "nuxt-splide": "1.1.1",
-    "vue-tsc": "^2.0.19"
+    "vue-tsc": "^2.0.22"
   }
 }
