@@ -25,13 +25,13 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "prettier-plugin-brace-style": "^0.6.2",
-    "prettier-plugin-merge": "^0.6.0"
+    "prettier-plugin-merge": "^0.7.0"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "prettier-plugin-brace-style": "^0.6.2",
-    "prettier-plugin-merge": "^0.6.0"
+    "prettier-plugin-merge": "^0.7.0"
   }
 }
