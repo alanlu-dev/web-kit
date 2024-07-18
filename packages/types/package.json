@@ -27,11 +27,11 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@types/node": "^20.14.8",
-    "typescript": "^5.5.2"
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8",
-    "typescript": "^5.5.2"
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
   }
 }

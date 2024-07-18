@@ -190,7 +190,7 @@ export function getCommitsSinceRef(branch: string) {
       sinceRef = execSync('git describe --tags --abbrev=0').toString().trim().replace(/\n|\r/g, '')
     }
     catch (e) {
-      console.log(`No git tags found, using repo's first commit for automated change detection. Note: this may take a while.`)
+      console.log(`No git tags found, using repo's first commit for automated change detection. Note: this may take a while.`, e)
       sinceRef = execSync('git rev-list --max-parents=0 HEAD').toString().trim().replace(/\n|\r/g, '')
     }
   }
