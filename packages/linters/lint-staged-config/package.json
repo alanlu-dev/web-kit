@@ -26,17 +26,17 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "eslint": "^9.5.0",
+    "eslint": "^9.7.0",
     "lint-staged": "^15.2.7",
     "markdownlint-cli2": "^0.13.0",
-    "prettier": "^3.3.2",
-    "stylelint": "^16.6.1"
+    "prettier": "^3.3.3",
+    "stylelint": "^16.7.0"
   },
   "devDependencies": {
-    "eslint": "^9.5.0",
+    "eslint": "^9.7.0",
     "lint-staged": "^15.2.7",
     "markdownlint-cli2": "^0.13.0",
-    "prettier": "^3.3.2",
-    "stylelint": "^16.6.1"
+    "prettier": "^3.3.3",
+    "stylelint": "^16.7.0"
   }
 }
