@@ -4,10 +4,4 @@ Anson
 antfu
 dbaeumer
 esbenp
-Giraudel
-Indrek
-indrekpaas
 jiehousekeeper
-Paas
-Riethmuller's
-versionrc

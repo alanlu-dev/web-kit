@@ -14,11 +14,11 @@ useSeoMeta({
 
 const show = ref(false)
 
-async function submitHandler() {
-  // Let's pretend this is an ajax request:
-  await new Promise((r) => setTimeout(r, 1000))
-  show.value = true
-}
+// async function submitHandler() {
+//   // Let's pretend this is an ajax request:
+//   await new Promise((r) => setTimeout(r, 1000))
+//   show.value = true
+// }
 </script>
 
 <template>
