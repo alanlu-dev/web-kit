@@ -24,7 +24,7 @@ useSeoMeta({
             <nuxt-link class="center-content flex size:20x" to="/">
               <Icon name="Logo" class="size:full"></Icon>
             </nuxt-link>
-            <div class="nowrap {ls:0.1em;mr:-0.1em;text:right} text:center">
+            <div class="nowrap {ls:0.1em;mr:-0.1em;text:right}">
               <h1 class="h1 f:6vw!@<2xs">中華民國職業清潔認證協會</h1>
               <h2 class="b2-m f:2.5vw!@<2xs">Professional Cleaning Certification Association</h2>
             </div>
@@ -37,7 +37,7 @@ useSeoMeta({
           </p>
         </div>
         <div class="mt:10x mt:20x@tablet">
-          <h3 class="h3 title">合作夥伴</h3>
+          <h3 class="h3 title fg:font-title">合作夥伴</h3>
           <div class="bg:#F2F9FA mt:5x">
             <div class="flex rel ai:flex-start flex:column flex:row@2xs gap:5x jc:space-between p:6x|12x">
               <div class="{aspect:1/1;object:cover;w:full}_img aspect:1/1 flex-basis:200@2xs mx:auto w:80% w:full@2xs">
@@ -63,7 +63,7 @@ useSeoMeta({
           </div>
         </div>
         <div class="mt:10x mt:20x@tablet">
-          <h3 class="h3 title">服務據點</h3>
+          <h3 class="h3 title fg:font-title">服務據點</h3>
           <div class="h:200 text:center">🚧</div>
         </div>
       </div>

@@ -17,20 +17,22 @@ const processLinks = computed(() => {
 </script>
 
 <template>
-  <nav aria-label="Breadcrumbs" class="p:6x">
-    <ul class="b1-r flex">
-      <li v-for="(item, key) in processLinks" :key="key" class="center-content inline-flex" :class="{ 'fg:font-title': key === processLinks.length - 1 }">
-        <span v-if="key > 0" class="f:14 fg:#9E9E9E ls:0.25px px:3x"> / </span>
-        <NuxtLink v-if="key !== processLinks.length - 1" v-bind="item" class="ls:0.02em mr:-0.02em">
-          {{ item.label }}
-        </NuxtLink>
-        <NuxtLink v-else-if="noLastPage" v-bind="item" class="ls:0.02em mr:-0.02em">
-          {{ title ?? item.label }}
-        </NuxtLink>
-        <span v-else>
-          {{ title ?? item.label }}
-        </span>
-      </li>
+  <nav aria-label="Breadcrumbs" class="p:4x|3x">
+    <ul class="b1-r flex ai:center jc:flex-start">
+      <template v-for="(item, key) in processLinks" :key="key">
+        <span v-if="key > 0" class="f:14 fg:#9E9E9E ls:0.25px pointer-events:none user-select:none"> / </span>
+        <li class="{font-title}>span contents {fg:primary-hover}_a:hover ~color|300ms|ease_a p:1x|3x>*">
+          <NuxtLink v-if="key !== processLinks.length - 1" v-bind="item">
+            {{ item.label }}
+          </NuxtLink>
+          <NuxtLink v-else-if="noLastPage" v-bind="item">
+            {{ title ?? item.label }}
+          </NuxtLink>
+          <span v-else>
+            {{ title ?? item.label }}
+          </span>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>

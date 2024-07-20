@@ -7,7 +7,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
 
 <template>
   <section class="flex flex:column py:5x py:10x@tablet">
-    <h1 class="h1 title">課程資訊</h1>
+    <h1 class="h1 title fg:font-title">課程資訊</h1>
     <section class="rel {mt:10x}@tablet mt:5x mx:15vw">
       <ClientOnly>
         <template #fallback>

@@ -24,11 +24,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="flex flex:column p:10x|6x">
+  <section class="flex flex:column max-w:screen-max mx:auto px:6x px:10x@desktop">
     <Breadcrumb :title="item?.page?.標題" />
     <div class="max-w:screen-md mx:auto w:full">
       <CaseTag :tag="item?.page?.分類" />
-      <h1 class="h1 title-left fg:font-content! mt:3x">{{ item?.page?.標題 }}</h1>
+      <h1 class="h1 title-left fg:font-content mt:3x">{{ item?.page?.標題 }}</h1>
       <Splide
         ref="main"
         aria-labelledby="封面"

@@ -7,7 +7,6 @@ fontaine
 formkit
 gtag
 Iconfiy
-iconify
 intlify
 lintstagedrc
 manypkg

@@ -19,7 +19,7 @@ useSeoMeta({
       <div class="max-w:screen-md mt:5x mx:auto text:center">
         <div class="bg:#F2F9FA px:7.5x py:10x r:2x">
           <div class="fg:primary">
-            <iconify-icon icon="material-symbols-light:check-circle-rounded" class="f:65 f:134@tablet" />
+            <Icon name="material-symbols-light:check-circle-rounded" class="f:65 f:134@tablet" />
             <h1 class="h1">報名成功！</h1>
           </div>
           <div class="max-w:710 mx:auto">

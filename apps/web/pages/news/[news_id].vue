@@ -19,12 +19,12 @@ useSeoMeta({
       <Breadcrumb :title="news?.page?.標題" />
       <div class="max-w:screen-md mx:auto">
         <p class="b1-r fg:font-title">{{ news?.page?.發布日期 }}</p>
-        <h1 class="h1 title fg:font-content!">{{ news?.page?.標題 }}</h1>
+        <h1 class="h1 title fg:font-content">{{ news?.page?.標題 }}</h1>
         <NotionRender class="mt:10x" :blocks="news?.contents" />
       </div>
     </div>
     <div class="bg:#F2F9FA mt:10x p:10x|6x">
-      <h3 class="h3 title">更多消息</h3>
+      <h3 class="h3 title fg:font-title">更多消息</h3>
       <div class="b1-r center-content flex flex:column flex:row@desktop gap:10x mt:5x mx:auto">
         <NuxtLink v-for="item in newsList" :key="item.ID" class="bg:base-bg flex:1 max-w:screen-2xs p:5x|10x r:2x" :to="`/news/${item.ID}`">
           <p>{{ item.發布日期 }}</p>

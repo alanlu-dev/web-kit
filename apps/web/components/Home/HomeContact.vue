@@ -10,7 +10,7 @@ async function submitHandler() {
 
 <template>
   <section class="flex flex:column pt:10x@tablet px:7x py:5x">
-    <h1 class="h1 title">聯絡我們</h1>
+    <h1 class="h1 title fg:font-title">聯絡我們</h1>
     <div class="b1-r {mb:8.5x;mt:5x}@tablet mb:6.75x mt:3x text:center">
       <p>有課程相關的問題嗎？</p>
       <p>留下資訊我們將盡快回覆您</p>

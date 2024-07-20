@@ -69,7 +69,7 @@ const show = ref(false)
             <h3 class="h3 fg:font-title">付款方式</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="flex ai:center bg:#F2F9FA fg:primary flex:column flex:row@tablet gap:2x@tablet jc:flex-start p:3x|5x r:2x">
-              <iconify-icon class="f:6x" icon="material-symbols-light:security" noobserver />
+              <Icon class="f:6x" name="material-symbols-light:security" />
               <p class="b1-r">你所有的交易資訊皆獲得安全保護</p>
             </div>
             <div class="my:5x">
