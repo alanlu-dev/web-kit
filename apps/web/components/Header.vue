@@ -24,14 +24,14 @@ const nav = [
       </nuxt-link>
 
       <nav class="ml:auto">
-        <ul class="b1-r flex@>=1200 hidden nowrap {f:bold}_a:hover ai:center flex:wrap jc:flex-start mr:calc(-2.5x-0.05em)">
+        <ul class="b1-r flex@>=1200 hidden nowrap {f:bold}_a:hover ai:center flex:wrap jc:flex-start">
           <li v-for="item in nav" :key="item.name" class="contents">
             <nuxt-link class="{ls:0.05em;mr:-0.05em;text:right} p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>
           </li>
         </ul>
 
         <button
-          class="center-content flex hidden@>=1200 {f:6.75x;size:6.75x;min-w:6.75x} {bg:white/.1}:hover {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop ~300ms|ease b:1|base-bg cursor:pointer fg:base-bg r:1.5x r:2x@tablet"
+          class="center-content flex hidden@>=1200 mr:5x@desktop {f:6.75x;size:6.75x;min-w:6.75x} {bg:white/.1}:hover {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop ~300ms|ease b:1|base-bg cursor:pointer fg:base-bg r:1.5x r:2x@tablet"
           @click="showNav = !showNav"
         >
           <Iconify class="f:0.6em>.icon" icon="material-symbols-light:menu" />
@@ -47,7 +47,7 @@ const nav = [
         content-transition="vfm-slide-right"
         overlay-transition="vfm-fade"
         :lock-scroll="false"
-        class="top:59! top:68!@tablet"
+        class="top:59! top:68!@tablet top:74!@desktop"
         content-class="abs bottom right top vw bg:base-bg fg:font-content w:230@tablet"
       >
         <div class="rel vh bg:base-bg ml:auto pt:15x text:center">
