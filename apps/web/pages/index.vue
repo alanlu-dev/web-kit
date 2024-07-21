@@ -24,16 +24,19 @@ useSeoMeta({
     <!-- 課程價值 -->
     <HomeValue />
 
-    <!-- 最新消息 -->
-    <HomeNews />
-
     <!-- 課程資訊 -->
-    <!-- <HomeCourses /> -->
+    <HomeCourses />
 
-    <!-- 實績案例 -->
-    <!-- <HomeCase /> -->
+    <!-- 師資陣容 -->
+    <!-- <HomeInstructors /> -->
 
-    <!-- 聯絡我們 -->
-    <HomeContact />
+    <!-- 學員滿意度 -->
+    <!-- <HomeReviews /> -->
+
+    <!-- 常見問達 -->
+    <!-- <HomeFaq /> -->
+
+    <!-- 產業消息 -->
+    <!-- <HomeNews /> -->
   </div>
 </template>
