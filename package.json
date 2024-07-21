@@ -43,7 +43,7 @@
     "lint:cspell": "pnpm cspell . --unique --no-progress --no-must-find-files",
     "lint:cspell:only-changed": "git diff --name-only | npx cspell --file-list stdin",
     "web": "pnpm --filter=@jiehousekeeper/web",
-    "web:dev": "turbo run dev --filter=@jiehousekeeper/web --filter=./packages/**",
+    "web:dev": "turbo run dev --filter=./packages/** --filter=@jiehousekeeper/web",
     "taze": "npx taze",
     "commit": "czg",
     "release": "turbo release --concurrency=1"
@@ -70,7 +70,7 @@
     "happy-dom": "^14.12.3",
     "husky": "^9.1.1",
     "playwright-core": "^1.45.2",
-    "tsup": "^8.2.0",
+    "tsup": "^8.2.1",
     "tsx": "^4.16.2",
     "turbo": "^2.0.9",
     "unbuild": "3.0.0-rc.7",
