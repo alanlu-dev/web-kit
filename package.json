@@ -3,7 +3,7 @@
   "type": "module",
   "version": "",
   "private": true,
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.4.0",
   "description": "A monorepo starter template.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
@@ -19,7 +19,7 @@
   },
   "engines": {
     "node": ">=20.14.0",
-    "pnpm": ">=9.5.0",
+    "pnpm": ">=9.4.0",
     "npm": "use pnpm please!",
     "yarn": "use pnpm please!"
   },
