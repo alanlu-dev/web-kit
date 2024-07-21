@@ -37,7 +37,7 @@ useHead({
         </div>
 
         <div>
-          <div class="flex align-self:flex-start@desktop flex:1 flex:column gap:2x">
+          <div class="flex flex:1 flex:column gap:2x">
             <p>聯絡專線：<a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
             <p>營業時間：08:00-22:00</p>
             <div class="flex ai:center gap:4.5x jc:flex-start">

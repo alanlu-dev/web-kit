@@ -1,12 +1,20 @@
 <template>
-  <section class="rel {content:'';abs;inset:0;bg:footer/.8}:before background-size:cover background:url(/section2.png)|no-repeat|center|center|fixed px:6x py:5x py:10x@tablet">
-    <div class="rel fg:white">
-      <h1 class="h1 title">協會介紹</h1>
-      <div class="f:3.5x f:4.5x@tablet font:regular mt:3x mt:7.5x@tablet text:center">
-        <p>中華民國職業清潔認證協會是一個專業組織，</p>
-        <p>致力於提供清潔行業的認證及培訓服務，促進行業發展。</p>
-        <p>我們的目標是確保清潔服務的品質和標準，</p>
-        <p>並提供專業指導，以支持清潔從業人員的專業成長和發展。</p>
+  <section class="center-content flex rel flex:column flex:row@desktop gap:4x gap:10x@desktop mx:auto px:6x px:10x@desktop py:15x">
+    <div class="{aspect:563/283;object:cover;w:full}_img aspect:563/283 max-w:563 overflow:hidden r:2x w:full">
+      <img src="/introduce.jpg" alt="中華民國職業清潔認證協會" />
+    </div>
+    <div>
+      <h1 class="h1 title center-content flex nowrap@tablet {flex:row;gap:unset}@tablet flex:column gap:1x">
+        <span>中華民國職業</span>
+        <span>清潔認證協會</span>
+      </h1>
+      <div class="b1-r nowrap@desktop mt:4x text:center">
+        <p>協會是經由政府核准合法設立,為提升國內清潔產業專業度,</p>
+        <p>致力於推動清潔行業的專業化與發展。</p>
+        <p>秉持「提升清潔服務品質、保障從業人員權益」之宗旨,</p>
+        <br />
+        <p>提供完善的清潔技術培訓、技能認證與人才就業服務,</p>
+        <p>協助清潔人員晉升職涯,打造優質清潔環境。</p>
       </div>
     </div>
   </section>

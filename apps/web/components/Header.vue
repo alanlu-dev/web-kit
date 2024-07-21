@@ -31,7 +31,7 @@ const nav = [
         </ul>
 
         <button
-          class="center-content flex hidden@>=1200 mr:5x@desktop {f:6.75x;size:6.75x;min-w:6.75x} {bg:white/.1}:hover {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop ~300ms|ease b:1|base-bg cursor:pointer fg:base-bg r:1.5x r:2x@tablet"
+          class="center-content flex hidden@>=1200 {f:6.75x;size:6.75x;min-w:6.75x} {bg:white/.1}:hover {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop ~300ms|ease b:1|base-bg cursor:pointer fg:base-bg mr:5x@desktop r:1.5x r:2x@tablet"
           @click="showNav = !showNav"
         >
           <Iconify class="f:0.6em>.icon" icon="material-symbols-light:menu" />

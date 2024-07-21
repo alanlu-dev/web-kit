@@ -18,11 +18,11 @@ useSeoMeta({
     <!-- 輪播 -->
     <HomeBanner />
 
-    <!-- 最新消息 -->
-    <HomeNews />
-
     <!-- 協會介紹 -->
     <HomeIntroduce />
+
+    <!-- 最新消息 -->
+    <HomeNews />
 
     <!-- 課程資訊 -->
     <!-- <HomeCourses /> -->
