@@ -28,7 +28,7 @@ const processLinks = computed(() => {
           <NuxtLink v-else-if="noLastPage" v-bind="item">
             {{ title ?? item.label }}
           </NuxtLink>
-          <span v-else>
+          <span v-else class="fg:font-title">
             {{ title ?? item.label }}
           </span>
         </li>
