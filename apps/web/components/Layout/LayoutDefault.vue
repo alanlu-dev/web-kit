@@ -26,7 +26,7 @@ useEventListener(window, 'keydown', (event) => {
     <ClientOnly>
       <Button
         intent="secondary"
-        class="center-content fixed flex invisible rounded! {opacity:1;visible}[show=true] ~300ms|ease ~property:opacity,visibility bottom:30 bottom:60@2xs opacity:0 p:0! right:30 size:9x size:11.5x@2xs z:nav"
+        class="center-content fixed flex invisible rounded! {opacity:1;visible}[show=true] ~300ms|ease ~property:opacity,visibility right:3x bottom:50x bottom:60x@tablet opacity:0 p:0! right:2x@tablet right:5x@desktop {f:6.75x;size:6.75x;min-w:6.75x} {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop z:nav"
         :show="common.scrollY > 200"
         @click="common.scrollY = 0"
       >

@@ -1,36 +1,76 @@
+<script setup lang="ts">
+useHead({
+  script: [
+    {
+      src: 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v20.0&appId=895271347480268',
+      async: true,
+      defer: true,
+      crossorigin: 'anonymous',
+      nonce: '5RIUbDff',
+    },
+  ],
+})
+</script>
+
 <template>
-  <footer class="rel bg:footer/.8 fg:white overflow:hidden rtr:100 z:footer">
-    <img class="abs block@xs hidden bottom:0 left:0 pointer-events:none w:170" src="/footer.svg" />
-    <div class="flex {flex:row;ai:center}@xs ai:flex-start flex:column flex:wrap gap:5x jc:space-between p:7x|12x p:10x|20x@xs p:10x|40x@desktop">
-      <div class="flex flex:1 gap:3x jc:flex-end@xs min-w:206">
-        <div class="center-content flex gap:3x">
-          <div class="center-content flex size:10x size:9x@tablet">
-            <Icon name="Logo" class="f:10x f:9x@tablet fg:white"></Icon>
-          </div>
-          <div class="flex {flex:row;gap:0.2em}@2xs&<xs flex:column">
-            <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@2xs font:bold">中華民國職業</p>
-            <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@2xs font:bold">清潔認證協會</p>
+  <footer class="rel bg:footer fg:white overflow:hidden z:footer">
+    <div class="flex ai:center flex:1>* flex:column flex:row@tablet flex:wrap gap:5x jc:space-between max-w:screen-max mx:auto px:6x px:10x@desktop py:5x">
+      <div class="flex ai:center flex:row flex:column@tablet gap:3x gap:2x@tablet jc:flex-start jc:center@tablet w:full w:unset@tablet">
+        <div class="center-content flex {size:9x;min-w:9x}@tablet min-w:6x size:6x">
+          <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
+        </div>
+        <div class="flex {flex:column;gap:2x}@tablet gap:0.1em">
+          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">中華民國職業</p>
+          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">清潔認證協會</p>
+        </div>
+      </div>
+
+      <div class="b2-r flex nowrap ai:flex-start flex:2 flex:1>* gap:5x w:full w:unset@tablet">
+        <div>
+          <ul class="flex align-self:flex-start flex:column gap:2x mx:auto w:unset w:70@tablet w:100@desktop">
+            <li><nuxt-link to="/course_event">找課程</nuxt-link></li>
+            <li><nuxt-link to="/instructor">找講師</nuxt-link></li>
+            <li><nuxt-link to="/about">關於我們</nuxt-link></li>
+            <li><nuxt-link to="/about">協會介紹</nuxt-link></li>
+            <li><nuxt-link to="/about">合作夥伴</nuxt-link></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="flex align-self:flex-start@desktop flex:1 flex:column gap:2x">
+            <p>聯絡專線：<a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
+            <p>營業時間：08:00-22:00</p>
+            <div class="flex ai:center gap:4.5x jc:flex-start">
+              <Iconify icon="ic:baseline-facebook"></Iconify>
+              <Iconify icon="ri:line-fill"></Iconify>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="flex flex:5 h:full">
-        <ul class="b1-r gap:3x|5x gap:5x@xs grid-cols:2 grid-cols:3@tablet grid-cols:5@desktop mx:auto text:center">
-          <li><nuxt-link to="/news">最新消息</nuxt-link></li>
-          <li><nuxt-link to="/course_event">課程資訊</nuxt-link></li>
-          <li><nuxt-link to="/case">實績案例</nuxt-link></li>
-          <li><nuxt-link to="/faq">常見問答</nuxt-link></li>
-          <li><nuxt-link to="/about">關於我們</nuxt-link></li>
-        </ul>
-      </div>
-
-      <div class="b1-r flex:1 min-w:206">
-        <p>賀捷實業有限公司</p>
-        <p>營業時間 08:00~22:00</p>
-        <p>客服電話 <a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
-        <p>2024 © 潔管家 版權所有</p>
+      <div class="w:full w:unset@tablet">
+        <div class="h:full mx:auto@tablet w:242">
+          <div id="fb-root"></div>
+          <div
+            class="fb-page"
+            data-href="https://www.facebook.com/facebook"
+            data-tabs=""
+            data-width="242"
+            data-height="102"
+            data-small-header="false"
+            data-adapt-container-width="true"
+            data-hide-cover="false"
+            data-show-facepile="false"
+          >
+            <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a> </blockquote>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="abs bg:#245464 bottom:0 h:3x left:0 right:0"></div>
+
+    <div class="b2-r center-content flex nowrap bg:#245464 flex:wrap gap:1x max-w:screen-max mx:auto px:6x px:10x@desktop py:2x text:center">
+      <span>{{ new Date().getFullYear() }} © 中華民國職業清潔認證協會</span>
+      <span>版權所有</span>
+    </div>
   </footer>
 </template>

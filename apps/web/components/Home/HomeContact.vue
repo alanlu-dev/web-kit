@@ -29,9 +29,6 @@ async function submitHandler() {
       </FormKit>
     </div>
 
-    <div class="block@xs hidden mb:-4x ml:auto mr:100@desktop mt:-15x w:155">
-      <img src="/cleaning-utensils.png" />
-    </div>
     <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
       <p>已收到您的留言，</p>
       <p>我們將盡快與您聯絡。</p>
