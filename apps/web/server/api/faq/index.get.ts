@@ -14,10 +14,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
   try {
     if (!refresh) {
       const data = await kv.lrange(key, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
-      console.log('cache hit', key)
-      if (data) return data
-
-      if ((await kv.llen(key)) === 0) return []
+      if (data.length) {
+        console.log('cache hit', key, data)
+        return data
+      }
     }
     else {
       await kv.del(key)
@@ -50,6 +50,7 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         sorts: [{ property: '排序', direction: 'ascending' }],
         // page_size: page_size ? Number.parseInt(page_size) : 10,
       })
+
       response.results.forEach((item) => {
         if (!isFullPage(item)) return false
         const parseItem = FaqSchema.parse(item.properties)

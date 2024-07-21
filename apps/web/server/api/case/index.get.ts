@@ -14,10 +14,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
   try {
     if (!refresh) {
       const data = await kv.lrange(key, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
-      console.log('cache hit', key)
-      if (data) return data
-
-      if ((await kv.llen(key)) === 0) return []
+      if (data.length) {
+        console.log('cache hit', key)
+        return data
+      }
     }
     else {
       await kv.del(key)
@@ -59,6 +59,7 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         if (!isFullPage(item)) return false
         const parseItem = CaseSchema.parse(item.properties)
         parseItem.ID = item.id.replaceAll('-', '')
+        parseItem.封面 = parseItem.封面.map((img) => mapImgUrl(img, item.id))
         allData.push(parseItem)
       })
 

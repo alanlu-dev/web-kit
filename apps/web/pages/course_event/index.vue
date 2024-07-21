@@ -109,7 +109,7 @@ const filterCourseEvents = computed(() => {
 
                 <div class="flex ai:flex-start gap:1x jc:flex-start mt:2x">
                   <div class="center-content flex fg:font-title gap:1x">
-                    <Icon class="f:5x" name="material-symbols-light:date-range-outline-rounded" />
+                    <Iconfiy class="f:5x" icon="material-symbols-light:date-range-outline-rounded" />
                     <p class="nowrap">上課日期：</p>
                   </div>
                   <div class="flex ai:center flex:wrap jc:flex-start">
@@ -121,7 +121,7 @@ const filterCourseEvents = computed(() => {
 
                 <div class="flex ai:flex-start gap:1x jc:flex-start mt:2x">
                   <div class="center-content flex fg:font-title gap:1x">
-                    <Icon class="f:5x" name="material-symbols-light:location-on-outline" />
+                    <Iconfiy class="f:5x" icon="material-symbols-light:location-on-outline" />
                     <p class="nowrap">上課地點：</p>
                   </div>
                   <div class="flex ai:center flex:wrap jc:flex-start">
@@ -131,7 +131,7 @@ const filterCourseEvents = computed(() => {
 
                 <div class="flex ai:flex-start gap:1x jc:flex-start mt:2x">
                   <div class="center-content flex fg:font-title gap:1x">
-                    <Icon class="f:5x" name="ph:user-thin" />
+                    <Iconfiy class="f:5x" icon="ph:user-thin" />
                     <p class="nowrap">報名人數：</p>
                   </div>
                   <div class="flex ai:center flex:wrap jc:flex-start">
@@ -141,7 +141,7 @@ const filterCourseEvents = computed(() => {
 
                 <div class="flex ai:flex-start gap:1x jc:flex-start mt:2x">
                   <div class="center-content flex fg:font-title gap:1x">
-                    <Icon class="f:5x" name="material-symbols-light:cleaning-services-outline-rounded" />
+                    <Iconfiy class="f:5x" icon="material-symbols-light:cleaning-services-outline-rounded" />
                     <p class="nowrap">課程內容：</p>
                   </div>
                   <div class="flex ai:center flex:wrap jc:flex-start">

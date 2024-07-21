@@ -6,7 +6,7 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/é¦–é 
 </script>
 
 <template>
-  <section class="rel {aspect:1440/481;object:cover;w:full}_img aspect:1440/481 bg:footer/.8">
+  <section class="rel {aspect:1440/481;object:cover;w:full}_img aspect:1440/481 bg:primary/.1">
     <ClientOnly>
       <template #fallback>
         <img v-if="images" v-bind="images[0]" />
@@ -19,6 +19,6 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/é¦–é 
         </SplideSlide>
       </Splide>
     </ClientOnly>
-    <span class="abs bg:secondary bottom:0 fg:white p:1x right:0 rtl:2x">1440:481</span>
+    <span class="abs hidden .dev_{block} bg:secondary bottom:0 fg:white p:1x right:0 rtl:2x">1440:481</span>
   </section>
 </template>

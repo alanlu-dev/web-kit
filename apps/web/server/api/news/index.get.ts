@@ -14,10 +14,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
   try {
     if (!refresh) {
       const data = await kv.lrange(key, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
-      console.log('cache hit', key)
-      if (data) return data
-
-      if ((await kv.llen(key)) === 0) return []
+      if (data.length) {
+        console.log('cache hit', key)
+        return data
+      }
     }
     else {
       await kv.del(key)

@@ -13,8 +13,10 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
   const { refresh } = getQuery(event)
   if (!refresh) {
     const data = await kv.get(key)
-    console.log('cache hit', key)
-    if (data) return data
+    if (data) {
+      console.log('cache hit', key)
+      return data
+    }
   }
 
   try {
@@ -44,7 +46,9 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
     const arr: GallerySchemaType[] = []
     response.results.forEach((item) => {
       if (!isFullPage(item)) return false
-      arr.push(GallerySchema.parse(item.properties))
+      const gallery = GallerySchema.parse(item.properties)
+      gallery.圖片 = mapImgUrl(gallery.圖片, item.id)
+      arr.push(gallery)
     })
 
     // await kv.set(key, arr, { ex: 300 })

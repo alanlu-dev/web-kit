@@ -4,7 +4,6 @@ import { useEventListener } from '@vueuse/core'
 const showDevPanel = useState('showDevPanel', () => false)
 
 const common = useCommonStore()
-const activeBreakpoint = common.breakpoints.active()
 
 useEventListener(window, 'keydown', (event) => {
   if (event.key === 'G' && event.shiftKey) {
@@ -14,15 +13,7 @@ useEventListener(window, 'keydown', (event) => {
 </script>
 
 <template>
-  <div
-    class="flex rel flex:column min-h:100vh mx:auto"
-    :class="{
-      dev: showDevPanel,
-      mobile: activeBreakpoint === 'mobile',
-      tablet: activeBreakpoint === 'tablet',
-      desktop: activeBreakpoint === 'desktop',
-    }"
-  >
+  <div class="flex rel flex:column min-h:100vh mx:auto" :class="{ dev: showDevPanel }">
     <Header />
 
     <main class="flex:1">
@@ -39,7 +30,7 @@ useEventListener(window, 'keydown', (event) => {
         :show="common.scrollY > 200"
         @click="common.scrollY = 0"
       >
-        <Icon name="material-symbols-light:keyboard-arrow-up-rounded" />
+        <Iconfiy icon="material-symbols-light:keyboard-arrow-up-rounded" />
       </Button>
     </ClientOnly>
   </div>

@@ -14,10 +14,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
   try {
     if (!refresh) {
       const data = await kv.lrange(key, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
-      console.log('cache hit', key)
-      if (data) return data
-
-      if ((await kv.llen(key)) === 0) return []
+      if (data.length) {
+        console.log('cache hit', key)
+        return data
+      }
     }
     else {
       await kv.del(key)
@@ -74,7 +74,7 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
 
             const response = await notion.pages.properties.retrieve({ page_id: parseItem.課程!, property_id: 'r%3ENY' })
             if (response.type === 'files' && response.files[0].type === 'file') {
-              parseItem.課程圖片連結 = response.files[0].file.url
+              parseItem.課程圖片連結 = mapImgUrl(response.files[0].file.url, parseItem.課程!)
             }
             return parseItem
           }),

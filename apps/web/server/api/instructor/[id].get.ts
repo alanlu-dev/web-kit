@@ -11,8 +11,10 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
   const { refresh } = getQuery(event)
   if (!refresh) {
     const data = await kv.get(key)
-    console.log('cache hit', key)
-    if (data) return data
+    if (data) {
+      console.log('cache hit', key)
+      return data
+    }
   }
 
   try {

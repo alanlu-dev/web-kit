@@ -34,7 +34,7 @@ const nav = [
           class="center-content flex hidden@>=1200 {f:6.75x;size:6.75x;min-w:6.75x} {bg:white/.1}:hover {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop ~300ms|ease b:1|base-bg cursor:pointer fg:base-bg r:1.5x r:2x@tablet"
           @click="showNav = !showNav"
         >
-          <Icon class="f:0.6em" name="material-symbols-light:menu" />
+          <Iconfiy class="f:0.6em>.icon" icon="material-symbols-light:menu" />
         </button>
       </nav>
     </div>
@@ -51,9 +51,8 @@ const nav = [
         content-class="abs bottom right top vw bg:base-bg fg:font-content w:230@tablet"
       >
         <div class="rel vh bg:base-bg ml:auto pt:15x text:center">
-          <button class="abs cursor:pointer f:6x fg:primary-hover:hover right:5x top:5x" @click="showNav = false">
-            <Icon name="material-symbols-light:close-small-outline-rounded" />
-          </button>
+          <Iconfiy icon="material-symbols-light:close-small-outline-rounded" class="abs cursor:pointer f:6x fg:primary-hover:hover right:5x top:5x" @click="showNav = false" />
+
           <ul class="b1-r flex flex:column gap:2x">
             <li v-for="item in nav" :key="item.name" class="contents">
               <nuxt-link class="~color|300ms|ease fg:primary-hover:hover p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>

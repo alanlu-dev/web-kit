@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <LayoutSimple>
+  <LayoutDefault>
     <slot />
-  </LayoutSimple>
+  </LayoutDefault>
 </template>

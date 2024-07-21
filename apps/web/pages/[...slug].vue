@@ -36,7 +36,7 @@ function goHome() {
     <p class="mt:4x">糟糕，我們找不到您要查找的頁面，可能網頁過期或發生了無法預期的錯誤</p>
     <Button intent="primary" class="mt:8x w:full" @click="goHome">回首頁</Button>
     <ClientOnly>
-      <div class="fg:gray mt:4x t:center">
+      <div class="fg:divider mt:4x t:center">
         <p v-if="timer > 0">
           {{ timer }} 秒後回首頁
           <!-- <span v-for="idx in dot" :key="idx">.</span> -->

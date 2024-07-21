@@ -12,8 +12,11 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
   const { refresh } = getQuery(event)
   if (!refresh) {
     const data = await kv.get(key)
-    console.log('cache hit', key)
-    if (data) return data
+
+    if (data) {
+      console.log('cache hit', key)
+      return data
+    }
   }
 
   try {
@@ -22,11 +25,13 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
     const page = await notion.pages.retrieve({ page_id: id })
     const contents = await notion.blocks.children.list({ block_id: id })
 
-    const parsedPage = NotionPageSchema.parse(page)
+    const parsedPage = CaseSchema.parse(NotionPageSchema.parse(page).properties)
     const parsedContents = NotionBlockSchema.array().parse(contents.results)
 
+    parsedPage.封面 = parsedPage.封面.map((img) => mapImgUrl(img, id))
+
     const response = {
-      page: CaseSchema.parse(parsedPage.properties),
+      page: parsedPage,
       contents: parsedContents,
     }
     // await kv.set(key, response, { ex: 300 })
