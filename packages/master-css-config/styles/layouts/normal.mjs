@@ -19,6 +19,10 @@ export default {
       m: cls`font:medium f:3.5x f:4x@tablet`,
       r: cls`font:regular f:3.5x f:4x@tablet`,
     },
+    b3: {
+      m: cls`font:medium f:3x f:3.5x@tablet`,
+      r: cls`font:regular f:3x f:3.5x@tablet`,
+    },
     title: {
       '': cls`
         text:center
