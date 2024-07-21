@@ -68,7 +68,7 @@ useHead({
       </div>
     </div>
 
-    <div class="b2-r center-content flex nowrap bg:#245464 flex:wrap gap:1x max-w:screen-max mx:auto px:6x px:10x@desktop py:2x text:center">
+    <div class="b2-r center-content flex nowrap bg:#245464 flex:wrap gap:1x mx:auto px:6x px:10x@desktop py:2x text:center">
       <span>{{ new Date().getFullYear() }} © 中華民國職業清潔認證協會</span>
       <span>版權所有</span>
     </div>
