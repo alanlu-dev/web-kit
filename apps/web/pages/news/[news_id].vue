@@ -33,7 +33,7 @@ useSeoMeta({
       </div>
       <div class="mt:10x text:center">
         <nuxt-link to="/news">
-          <Iconfiy icon="material-symbols-light:arrow-right-alt">返回列表</Iconfiy>
+          <Iconify icon="material-symbols-light:arrow-right-alt">返回列表</Iconify>
         </nuxt-link>
       </div>
     </div>

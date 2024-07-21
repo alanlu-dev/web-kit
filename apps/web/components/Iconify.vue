@@ -8,7 +8,7 @@ defineProps<IProps>()
 </script>
 
 <template>
-  <div class="iconfiy {f:6x}_:where(svg)" :class="{ 'iconfiy-text': $slots.default }">
+  <div class="iconify {f:6x}_:where(svg)" :class="{ 'iconify-text': $slots.default }">
     <Icon v-if="isPrefix" :name="icon" />
     <slot />
     <Icon v-if="!isPrefix" :name="icon" />

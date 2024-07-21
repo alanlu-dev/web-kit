@@ -25,7 +25,7 @@ const emit = defineEmits<{
       <slot />
     </div>
     <button class="abs right:5x top:5x" @click="emit('confirm')">
-      <Iconfiy icon="material-symbols-light:close-small-outline-rounded" />
+      <Iconify icon="material-symbols-light:close-small-outline-rounded" />
     </button>
   </VueFinalModal>
 </template>

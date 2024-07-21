@@ -12,7 +12,7 @@ export default {
           line-h:1.375 ls:0.02em
           cursor:pointer
           ~300ms|ease
-          {transition:none!}_.iconfiy
+          {transition:none!}_.iconify
         `,
       }),
       '-primary': toLine({

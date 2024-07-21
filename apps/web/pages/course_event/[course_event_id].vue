@@ -66,10 +66,10 @@ onMounted(() => {
             >
               <div class="splide__arrows splide__arrows--ltr">
                 <Button intent="secondary" class="splide__arrow splide__arrow--prev rounded! {size:11.5x!}@2xs p:0! size:9x">
-                  <Iconfiy icon="material-symbols-light:chevron-left" />
+                  <Iconify icon="material-symbols-light:chevron-left" />
                 </Button>
                 <Button intent="secondary" class="splide__arrow splide__arrow--next rounded! {size:11.5x!}@2xs p:0! size:9x">
-                  <Iconfiy icon="material-symbols-light:chevron-right" />
+                  <Iconify icon="material-symbols-light:chevron-right" />
                 </Button>
               </div>
               <SplideTrack>
@@ -129,7 +129,7 @@ onMounted(() => {
 
           <div class="my:10x text:center">
             <nuxt-link to="/course_event">
-              <Iconfiy icon="material-symbols-light:arrow-right-alt">返回列表</Iconfiy>
+              <Iconify icon="material-symbols-light:arrow-right-alt">返回列表</Iconify>
             </nuxt-link>
           </div>
         </div>

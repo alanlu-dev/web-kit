@@ -30,7 +30,7 @@ useEventListener(window, 'keydown', (event) => {
         :show="common.scrollY > 200"
         @click="common.scrollY = 0"
       >
-        <Iconfiy icon="material-symbols-light:keyboard-arrow-up-rounded" />
+        <Iconify class="flex!" icon="material-symbols-light:keyboard-arrow-up-rounded" />
       </Button>
     </ClientOnly>
   </div>

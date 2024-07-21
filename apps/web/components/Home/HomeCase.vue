@@ -29,10 +29,10 @@ const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: r
         >
           <div class="splide__arrows splide__arrows--ltr">
             <Button intent="secondary" class="splide__arrow splide__arrow--prev rounded! {size:11.5x!;left:-5em!}@2xs left:-2.5em! p:0! size:9x">
-              <Iconfiy icon="material-symbols-light:chevron-left" />
+              <Iconify icon="material-symbols-light:chevron-left" />
             </Button>
             <Button intent="secondary" class="splide__arrow splide__arrow--next rounded! {size:11.5x!;right:-5em!}@2xs p:0! right:-2.5em! size:9x">
-              <Iconfiy icon="material-symbols-light:chevron-right" />
+              <Iconify icon="material-symbols-light:chevron-right" />
             </Button>
           </div>
           <SplideTrack>
@@ -46,7 +46,7 @@ const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: r
 
     <!-- <div class="mb:1.5x mt:7.5x text:center">
       <nuxt-link to="/case">
-        <Iconfiy icon="material-symbols-light:arrow-right-alt">更多案例</Iconfiy>
+        <Iconify icon="material-symbols-light:arrow-right-alt">更多案例</Iconify>
       </nuxt-link>
     </div> -->
   </section>

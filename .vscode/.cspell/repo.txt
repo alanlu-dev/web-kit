@@ -6,8 +6,9 @@ deepmerge
 fontaine
 formkit
 gtag
-Iconfiy
+iconify
 intlify
+jiti
 lintstagedrc
 manypkg
 maska
@@ -30,4 +31,3 @@ Turborepo
 unplugin
 unstorage
 vueuse
-jiti

@@ -17,7 +17,7 @@ const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { 
 
     <div class="{mt:7.5x}@tablet mb:1.5x mt:6x text:center">
       <nuxt-link to="/news">
-        <Iconfiy icon="material-symbols-light:arrow-right-alt">更多消息</Iconfiy>
+        <Iconify icon="material-symbols-light:arrow-right-alt">更多消息</Iconify>
       </nuxt-link>
     </div>
   </section>

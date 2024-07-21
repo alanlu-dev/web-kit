@@ -58,7 +58,7 @@ onMounted(() => {
           <label class="pointer b1-r flex ai:flex-start fg:primary gap:2x jc:space-between p:5x|6x" :for="`faq-${item.排序}`">
             <div>{{ item.排序 }}. {{ item.問題 }}</div>
             <div class="size:24">
-              <Iconfiy icon="material-symbols-light:add" />
+              <Iconify icon="material-symbols-light:add" />
             </div>
           </label>
           <input :id="`faq-${item.排序}`" name="faq" :type="focusable ? `radio` : `checkbox`" class="hidden" />
