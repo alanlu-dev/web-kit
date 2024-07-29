@@ -12,10 +12,10 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
 
   const { refresh } = getQuery(event)
   if (!refresh) {
-    const data = await kv.get(key)
+    const data = await kv.get<GallerySchemaType[]>(key)
     if (data) {
       console.log('cache hit', key)
-      return data
+      return data.filter((item) => isWithinDateRange(item.發布期間))
     }
   }
 
@@ -35,10 +35,14 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
       filter_properties: [
         /** 標題 */
         'title',
-        /** 圖片 */
+        /** 圖片_PC */
         'x%60DM',
+        /** 圖片_M */
+        'yjny',
         /** 導轉連結 */
         'f%3Eo%60',
+        /** 發布期間 */
+        'X%5DbD',
       ],
       sorts: [{ property: '排序', direction: 'ascending' }],
     })
@@ -47,14 +51,15 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
     response.results.forEach((item) => {
       if (!isFullPage(item)) return false
       const gallery = GallerySchema.parse(item.properties)
-      gallery.圖片 = mapImgUrl(gallery.圖片, item.id)
+      gallery.圖片_PC = mapImgUrl(gallery.圖片_PC, item.id)
+      gallery.圖片_M = mapImgUrl(gallery.圖片_M, item.id)
       arr.push(gallery)
     })
 
     // await kv.set(key, arr, { ex: 300 })
     await kv.set(key, arr)
 
-    return arr
+    return arr.filter((item) => isWithinDateRange(item.發布期間))
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {
