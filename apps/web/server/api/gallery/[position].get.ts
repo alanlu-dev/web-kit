@@ -46,7 +46,7 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
         /** 發布期間 */
         'X%5DbD',
       ],
-      sorts: [{ property: '排序', direction: 'ascending' }],
+      sorts: [{ property: '排序', direction: 'descending' }],
     })
 
     const arr: GallerySchemaType[] = []
