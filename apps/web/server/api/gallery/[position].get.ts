@@ -41,6 +41,8 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
         'yjny',
         /** 導轉連結 */
         'f%3Eo%60',
+        /** 另開視窗 */
+        'K%5CmR',
         /** 發布期間 */
         'X%5DbD',
       ],

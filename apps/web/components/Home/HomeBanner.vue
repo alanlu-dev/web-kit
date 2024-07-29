@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components'
 import type { GallerySchemaType } from '~/schema/gallery'
 
 const route = useRoute()
@@ -17,12 +18,12 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首�
         </template>
         <Splide :options="{ arrows: false, autoplay: true, interval: 5000, type: 'loop' }">
           <SplideSlide v-for="image in images" :key="image.圖片_PC">
-            <nuxt-link :to="image.導轉連結 || undefined" class="rel">
+            <component :is="image.導轉連結 ? NuxtLink : 'div'" :to="image.導轉連結 || undefined" :target="image.另開視窗 ? '_blank' : '_self'" class="rel">
               <picture>
                 <source media="(max-width: 430px)" :srcset="image.圖片_M" />
                 <nuxt-img :src="image.圖片_PC" :alt="image.標題" :title="image.標題" />
               </picture>
-            </nuxt-link>
+            </component>
           </SplideSlide>
         </Splide>
       </ClientOnly>
