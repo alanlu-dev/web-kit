@@ -50,8 +50,9 @@ const filterCases = computed(() => {
 <template>
   <div>
     <Hero title="實績案例" />
-    <section class="px:10vw@tablet px:22.5x@desktop">
-      <Breadcrumb />
+    <Breadcrumb />
+
+    <section>
       <div class="flex ai:flex-start flex:column flex:row@tablet gap:5x gap:16x@tablet gap:32.5x@desktop jc:space-between mt:10x">
         <nav aria-label="Filters" class="b1-r sticky h:full top:59! top:76!@tablet top:82!@desktop z:nav">
           <div class="block@tablet hidden">

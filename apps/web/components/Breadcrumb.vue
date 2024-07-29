@@ -17,7 +17,7 @@ const processLinks = computed(() => {
 </script>
 
 <template>
-  <nav aria-label="Breadcrumbs" class="p:4x|3x">
+  <nav aria-label="Breadcrumbs" class="max-w:screen-max mx:auto p:4x|3x pl:6x pl:22.5x@tablet">
     <ul class="b1-r flex ai:center jc:flex-start">
       <template v-for="(item, key) in processLinks" :key="key">
         <span v-if="key > 0" class="f:14 fg:#9E9E9E ls:0.25px pointer-events:none user-select:none"> / </span>

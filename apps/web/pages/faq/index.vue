@@ -51,8 +51,9 @@ onMounted(() => {
 <template>
   <div>
     <Hero title="常見問答" />
-    <section class="px:6x px:10vw@tablet px:22.5x@desktop">
-      <Breadcrumb />
+    <Breadcrumb />
+
+    <section class="px:6x">
       <div ref="htmlEl" class="flex flex:column gap:5x gap:10x@tablet max-w:screen-md mx:auto my:5x my:10x@tablet">
         <div v-for="item in list" :key="item.排序!" class="bg:#F2F9FA p:0!">
           <label class="pointer b1-r flex ai:flex-start fg:primary gap:2x jc:space-between p:5x|6x" :for="`faq-${item.排序}`">

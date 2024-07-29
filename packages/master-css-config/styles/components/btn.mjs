@@ -9,6 +9,7 @@ export default {
           inline-block text:center
           p:3x|6x r:1.5x
           f:4x font:bold
+          bg:transparent
           line-h:1.375 ls:0.02em
           cursor:pointer
           ~300ms|ease

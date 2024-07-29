@@ -18,6 +18,9 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         console.log('cache hit', key)
         return data
       }
+      else if (currentPage > 1) {
+        return data
+      }
     }
     else {
       await kv.del(key)
@@ -35,14 +38,16 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         page_size: pageSize,
         filter: {
           and: [
-            { property: '封存', checkbox: { equals: false } },
+            // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
             { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
-            { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
+            { property: '封存', checkbox: { equals: false } },
           ],
         },
         filter_properties: [
           /** 標題 */
           'title',
+          /** 內容 */
+          'F%3BRG',
           /** 發布日期 */
           '%3BqzX',
         ],

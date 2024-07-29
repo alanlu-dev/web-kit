@@ -37,6 +37,6 @@ useSeoMeta({
     <!-- <HomeFaq /> -->
 
     <!-- 產業消息 -->
-    <!-- <HomeNews /> -->
+    <HomeNews />
   </div>
 </template>

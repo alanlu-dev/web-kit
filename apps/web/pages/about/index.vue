@@ -14,8 +14,9 @@ useSeoMeta({
 <template>
   <div>
     <Hero title="關於我們" />
-    <section class="px:6x px:10vw@tablet px:22.5x@desktop">
-      <Breadcrumb />
+    <Breadcrumb />
+
+    <section class="px:6x">
       <div class="max-w:screen-md mx:auto my:5x my:10x@tablet">
         <div
           class="center-content flex rel {content:'';abs;inset:0;bg:footer/.8}:before aspect:342/210 aspect:824/277@tablet aspect:1040/322@desktop background-size:cover background:url(/about/cover.png)no-repeat|center|center fg:white p:5x"

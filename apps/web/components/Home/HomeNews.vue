@@ -2,22 +2,20 @@
 import type { NewsSchemaType } from '~/schema/news'
 
 const route = useRoute()
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page: 1, page_size: 4 } })
+const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page_size: 3 } })
 </script>
 
 <template>
-  <section class="flex flex:column px:7x py:5x py:10x@tablet">
-    <h1 class="h1 title fg:font-title">最新消息</h1>
-    <div class="center-content inline-flex flex:column flex:row@tablet flex:wrap gap:5x gap:12x|6x@tablet gap:12x|11x@desktop mt:5x mt:8x@tablet mx:auto">
-      <nuxt-link v-for="i in news" :key="i.ID" class="~color|300ms|ease bb:1|divider fg:primary-hover:hover flex:1|0|45% max-w:400@tablet max-w:500@desktop" :to="`/news/${i.ID}`">
-        <p class="b1-r fg:font-title">{{ i.發布日期 }}</p>
-        <h3 class="b1-r lines:1 my:2x my:3x@tablet">{{ i.標題 }}</h3>
-      </nuxt-link>
-    </div>
+  <section class="rel bg:#F2F9FA">
+    <div class="max-w:screen-max mx:auto px:6x px:10x@desktop py:10x text:center">
+      <h1 class="h1 title fg:font-title">產業消息</h1>
 
-    <div class="{mt:7.5x}@tablet mb:1.5x mt:6x text:center">
-      <nuxt-link to="/news">
-        <Iconify icon="material-symbols-light:arrow-right-alt">更多消息</Iconify>
+      <div class="flex flex:column gap:5x max-w:1080 mt:5x mx:auto px:5x@desktop">
+        <NewsCard v-for="i in news" :key="i.ID" :news="i" />
+      </div>
+
+      <nuxt-link to="/news" class="block mt:5x text:center">
+        <Iconify icon="material-symbols-light:arrow-right-alt">更多產業消息</Iconify>
       </nuxt-link>
     </div>
   </section>

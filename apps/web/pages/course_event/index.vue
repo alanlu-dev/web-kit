@@ -44,10 +44,9 @@ const filterCourseEvents = computed(() => {
 <template>
   <div>
     <Hero title="課程資訊" />
+    <Breadcrumb />
+
     <section>
-      <div class="px:6x px:10vw@tablet px:22.5x@desktop">
-        <Breadcrumb />
-      </div>
       <div class="center-content flex@desktop hidden bg:#F2F9FA gap:5x mb:14x mx:auto px:6vw py:5x">
         <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
           <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />

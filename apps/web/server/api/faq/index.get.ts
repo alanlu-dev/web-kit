@@ -18,6 +18,9 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         console.log('cache hit', key)
         return data
       }
+      else if (currentPage > 1) {
+        return data
+      }
     }
     else {
       await kv.del(key)
