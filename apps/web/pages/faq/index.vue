@@ -41,9 +41,9 @@ onMounted(() => {
     })
   })
 
-  const firstInput = htmlEl.value!.querySelector('input')
+  const firstInput = htmlEl.value!.querySelector('input') as HTMLInputElement | null
   if (firstInput) {
-    ;(firstInput as HTMLInputElement).checked = true
+    firstInput.checked = true
   }
 })
 </script>

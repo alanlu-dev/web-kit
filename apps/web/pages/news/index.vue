@@ -37,8 +37,8 @@ const total = computed(() => (length.value ? Math.ceil(length.value / PAGE_SIZE)
     <Hero title="產業消息" />
     <Breadcrumb />
 
-    <div class="center-content flex rel {content:'';abs;inset:0;bg:#363636CC}:before background-size:cover background:url(/news/cover.jpg)no-repeat|center|center fg:white">
-      <div class="flex rel flex:column gap:5x gap:8x@desktop max-w:1080 mx:auto p:5x p:10x@tablet">
+    <div class="center-content flex rel {content:'';abs;inset:0;bg:#363636CC}:before background-size:cover background:url(/news/cover.jpg)no-repeat|center|center fg:white p:6x p:10x@tablet">
+      <div class="flex rel flex:column gap:5x gap:8x@desktop max-w:1080 mx:auto">
         <h1 class="h1 flex flex:column flex:row@desktop">
           <span>清潔人員市場需求夯!</span>
           <span>9 成企業徵才指定須要清潔認證</span>
@@ -64,7 +64,7 @@ const total = computed(() => (length.value ? Math.ceil(length.value / PAGE_SIZE)
       </div>
     </div>
 
-    <section class="bg:home pt:10x px:6x">
+    <section class="bg:home p:6x p:10x@tablet pt:10x">
       <div class="flex flex:column gap:5x max-w:1080 mx:auto px:5x@desktop">
         <NewsCard v-for="i in news" :key="i.ID" :news="i" />
       </div>

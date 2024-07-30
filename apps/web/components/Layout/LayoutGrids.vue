@@ -6,7 +6,7 @@ const activeBreakpoint = common.breakpoints.active()
 <template>
   <ClientOnly>
     <!-- Grids -->
-    <div class="center fixed hidden middle inset:0 full .dev_{block} b:1|dotted|primary/.5 max-w:screen-max pointer-events:none px:6x px:10x@desktop z:devPanel">
+    <div class="center fixed full hidden middle .dev_{block} b:1|dotted|primary/.5 inset:0 max-w:screen-max pointer-events:none px:6x px:10x@desktop z:devPanel">
       <div class="flex full b:1|dotted|black/.25">
         <div v-for="i in 12" :key="i" class="bg:primary/.1:odd flex:1"></div>
       </div>

@@ -31,6 +31,7 @@ export default {
         'transition': cls`~.2s|ease transition-property:grid-template-rows,opacity,padding`,
         ':checked~': cls`grid-template-rows:1fr opacity:1`,
       }),
+      'content--open': cls`grid-template-rows:1fr opacity:1`,
     },
   },
 }
