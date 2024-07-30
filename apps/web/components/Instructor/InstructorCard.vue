@@ -8,7 +8,7 @@ defineProps<IProps>()
 </script>
 
 <template>
-  <nuxt-link class=".is-active>{pointer-events:unset} pointer-events:none scale(1.05):hover_img" to="/instructors">
+  <nuxt-link class=".is-active>{pointer-events:unset} pointer-events:none scale(1.05):hover_img" to="/instructor">
     <div class="flex rel {content:'';bg:white;abs;top:10x;left:30x;bottom;right;z:-1;r:2x}::before@xs flex:column flex:row@xs pb:5x@xs">
       <div class="flex:1">
         <div class="{aspect:357/254;object:cover;w:full}_img aspect:357/254 overflow:hidden r:2x">

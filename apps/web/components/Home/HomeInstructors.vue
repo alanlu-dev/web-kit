@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { InstructorSchemaType } from '~/schema/instructor.js'
+import type { InstructorSchemaType } from '~/schema/instructor'
 
 const route = useRoute()
 const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
@@ -62,7 +62,7 @@ const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instr
         </ClientOnly>
       </div>
 
-      <nuxt-link to="/instructors" class="block mt:10x text:center">
+      <nuxt-link to="/instructor" class="block mt:10x text:center">
         <Iconify icon="material-symbols-light:arrow-right-alt">更多師資陣容</Iconify>
       </nuxt-link>
     </section>
