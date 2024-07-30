@@ -87,7 +87,7 @@ onMounted(() => {
             <NotionRender class="mt:3x" :blocks="course?.contents" />
           </div>
 
-          <div v-for="item in course?.page?.講師資訊" :key="item" class="bg:#F2F9FA mt:10x p:7x|6x">
+          <div v-for="item in course?.page?.講師資訊" :key="item" class="bg:home mt:10x p:7x|6x">
             <h3 class="h3 fg:font-title">講師介紹🚧</h3>
             <div class="center-content flex gap:6x">
               <div class="flex:2 mt:3x">

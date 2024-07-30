@@ -47,7 +47,7 @@ const filterCourseEvents = computed(() => {
     <Breadcrumb />
 
     <section>
-      <div class="center-content flex@desktop hidden bg:#F2F9FA gap:5x mb:14x mx:auto px:6vw py:5x">
+      <div class="center-content flex@desktop hidden bg:home gap:5x mb:14x mx:auto px:6vw py:5x">
         <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
           <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
           <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
@@ -93,7 +93,7 @@ const filterCourseEvents = computed(() => {
             <nuxt-link
               v-for="event in filterCourseEvents"
               :key="event.ID"
-              class="flex bg:base-bg flex:column flex:row@tablet overflow:hidden r:2x scale(1.1):hover_img shadow:md"
+              class="flex bg:base-bg flex:column flex:row@tablet overflow:hidden r:2x scale(1.05):hover_img shadow:md"
               :to="`/course_event/${event.ID}`"
             >
               <div class="rel {max-w:312;aspect:312/260}@tablet {max-w:387;aspect:387/260}@desktop aspect:342/133 flex:1 overflow:hidden">

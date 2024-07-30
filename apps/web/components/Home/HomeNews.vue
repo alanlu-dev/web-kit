@@ -6,7 +6,7 @@ const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { 
 </script>
 
 <template>
-  <section class="rel bg:#F2F9FA">
+  <section class="rel bg:home">
     <div class="max-w:screen-max mx:auto px:6x px:10x@desktop py:10x text:center">
       <h1 class="h1 title fg:font-title">產業消息</h1>
 

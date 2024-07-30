@@ -68,7 +68,7 @@ const show = ref(false)
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">付款方式</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="flex ai:center bg:#F2F9FA fg:primary flex:column flex:row@tablet gap:2x@tablet jc:flex-start p:3x|5x r:2x">
+            <div class="flex ai:center bg:home fg:primary flex:column flex:row@tablet gap:2x@tablet jc:flex-start p:3x|5x r:2x">
               <Iconify icon="material-symbols-light:security" />
               <p class="b1-r">你所有的交易資訊皆獲得安全保護</p>
             </div>

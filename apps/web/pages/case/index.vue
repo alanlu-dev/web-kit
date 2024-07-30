@@ -57,7 +57,7 @@ const filterCases = computed(() => {
         <nav aria-label="Filters" class="b1-r sticky h:full top:59! top:76!@tablet top:82!@desktop z:nav">
           <div class="block@tablet hidden">
             <ul
-              class="flex {p:1x|7.5x;cursor:pointer;nowrap;rel}_li {content:'';abs;top;left;bottom;w:2x;~background|300ms|ease}_li::before {bg:primary}_li[active=true]::before {content:'';abs;top;left;bottom;w:2x;bg:#F2F9FA}::before {fg:primary}_li:hover,_li[active=true] flex:column gap:3x"
+              class="flex {p:1x|7.5x;cursor:pointer;nowrap;rel}_li {content:'';abs;top;left;bottom;w:2x;~background|300ms|ease}_li::before {bg:primary}_li[active=true]::before {content:'';abs;top;left;bottom;w:2x;bg:home}::before {fg:primary}_li:hover,_li[active=true] flex:column gap:3x"
             >
               <li v-for="filter in filterOptions" :key="filter.value" :active="caseFilters.category === filter.value" @click="caseFilters.category = filter.value">
                 {{ filter.label }}

@@ -23,7 +23,7 @@ useSeoMeta({
         <NotionRender class="mt:10x" :blocks="news?.contents" />
       </div>
     </div>
-    <div class="bg:#F2F9FA mt:10x p:10x|6x">
+    <div class="bg:home mt:10x p:10x|6x">
       <h3 class="h3 title fg:font-title">更多消息</h3>
       <div class="b1-r center-content flex flex:column flex:row@desktop gap:10x mt:5x mx:auto">
         <NuxtLink v-for="item in newsList" :key="item.ID" class="bg:base-bg flex:1 max-w:screen-2xs p:5x|10x r:2x" :to="`/news/${item.ID}`">

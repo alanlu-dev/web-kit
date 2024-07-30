@@ -1,5 +1,5 @@
 <template>
-  <section class="rel bg:#F2F9FA">
+  <section class="rel bg:home">
     <div class="max-w:screen-max mx:auto px:6x px:10x@desktop py:10x text:center">
       <h1 class="h1 title center-content flex nowrap@tablet fg:font-title flex:column gap:1x">
         <span>提升清潔專業度</span>

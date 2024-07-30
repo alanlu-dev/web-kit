@@ -43,7 +43,6 @@ export function customMapImageUrl(url: string | undefined, id: string, block: st
 }
 
 export function mapImgUrl(img: string | undefined, id: string, type: string = 'block', needCompress: boolean = true): string | undefined {
-  console.log(img)
   if (!img) return undefined
 
   if (img.startsWith('data:')) return img

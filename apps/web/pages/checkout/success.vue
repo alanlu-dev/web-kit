@@ -17,7 +17,7 @@ useSeoMeta({
   <section class="flex flex:column">
     <div class="pt:5x pt:10x@tablet px:6x">
       <div class="max-w:screen-md mt:5x mx:auto text:center">
-        <div class="bg:#F2F9FA px:7.5x py:10x r:2x">
+        <div class="bg:home px:7.5x py:10x r:2x">
           <div class="fg:primary">
             <Iconify icon="material-symbols-light:check-circle-rounded" class="f:65 f:134@tablet" />
             <h1 class="h1">報名成功！</h1>

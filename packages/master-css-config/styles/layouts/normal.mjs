@@ -9,7 +9,7 @@ export default {
     `,
     h1: cls`font:medium f:7x f:8x@tablet`,
     h2: cls`font:medium f:6x f:7x@tablet`,
-    h3: cls`font:medium f:5x f:6x@tablet`,
+    h3: cls`font:medium f:4.5x f:6x@tablet`,
     b1: {
       b: cls`font:bold f:4x f:4.5x@tablet`,
       m: cls`font:medium f:4x f:4.5x@tablet`,

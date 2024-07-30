@@ -64,7 +64,7 @@ const total = computed(() => (length.value ? Math.ceil(length.value / PAGE_SIZE)
       </div>
     </div>
 
-    <section class="bg:#F2F9FA pt:10x px:6x">
+    <section class="bg:home pt:10x px:6x">
       <div class="flex flex:column gap:5x max-w:1080 mx:auto px:5x@desktop">
         <NewsCard v-for="i in news" :key="i.ID" :news="i" />
       </div>

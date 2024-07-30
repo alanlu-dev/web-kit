@@ -28,7 +28,7 @@ useSeoMeta({
     <HomeCourses />
 
     <!-- 師資陣容 -->
-    <!-- <HomeInstructors /> -->
+    <HomeInstructors />
 
     <!-- 學員滿意度 -->
     <!-- <HomeReviews /> -->

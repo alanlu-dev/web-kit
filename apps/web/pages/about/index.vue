@@ -39,7 +39,7 @@ useSeoMeta({
         </div>
         <div class="mt:10x mt:20x@tablet">
           <h3 class="h3 title fg:font-title">合作夥伴</h3>
-          <div class="bg:#F2F9FA mt:5x">
+          <div class="bg:home mt:5x">
             <div class="flex rel ai:flex-start flex:column flex:row@2xs gap:5x jc:space-between p:6x|12x">
               <div class="{aspect:1/1;object:cover;w:full}_img aspect:1/1 flex-basis:200@2xs mx:auto w:80% w:full@2xs">
                 <img src="/jie_housekeeper.png" alt="潔管家" />
@@ -51,7 +51,7 @@ useSeoMeta({
               </div>
             </div>
           </div>
-          <div class="bg:#F2F9FA mt:5x">
+          <div class="bg:home mt:5x">
             <div class="flex rel ai:flex-start flex:column flex:row@2xs gap:5x jc:space-between p:6x|12x">
               <div class="{aspect:1/1;object:cover;w:full}_img aspect:1/1 flex-basis:200@2xs mx:auto w:80% w:full@2xs">
                 <img src="/洪瑞霞.png" alt="巧收納易整理主理人" />

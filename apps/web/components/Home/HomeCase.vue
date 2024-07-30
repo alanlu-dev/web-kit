@@ -7,7 +7,7 @@ const { data: cases } = await useFetch<CaseSchemaType[]>('/api/case', { query: r
 </script>
 
 <template>
-  <section class="flex bg:#F2F9FA flex:column py:5x py:10x@tablet">
+  <section class="flex bg:home flex:column py:5x py:10x@tablet">
     <h1 class="h1 title fg:font-title">實績案例</h1>
     <section class="rel {mt:10x}@tablet mt:5x mx:15vw">
       <ClientOnly>

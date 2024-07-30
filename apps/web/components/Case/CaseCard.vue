@@ -12,7 +12,7 @@ withDefaults(defineProps<IProps>(), {
 
 const typeCv = cv({
   type: {
-    '': '$case-bg:#F2F9FA',
+    '': '$case-bg:$(home)',
     'home': '$case-bg:#4D8293CC fg:white fg:white_.h3,_.icon',
   },
 })
