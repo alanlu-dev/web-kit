@@ -34,7 +34,7 @@ useSeoMeta({
     <!-- <HomeReviews /> -->
 
     <!-- 常見問達 -->
-    <!-- <HomeFaq /> -->
+    <HomeFaq />
 
     <!-- 產業消息 -->
     <HomeNews />
