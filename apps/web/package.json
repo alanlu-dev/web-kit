@@ -50,7 +50,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "^2.0.0-rc.16",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
-    "@pinia/nuxt": "^0.5.1",
+    "@pinia/nuxt": "^0.5.2",
     "@vercel/edge-config": "^1.2.1",
     "@vercel/kv": "^2.0.0",
     "@vue-final-modal/nuxt": "^1.0.3",
@@ -59,12 +59,13 @@
     "floating-vue": "^5.2.2",
     "maska": "^3.0.0",
     "nuxt-aos": "^1.2.5",
-    "nuxt-gtag": "^2.0.7",
+    "nuxt-gtag": "^2.1.0",
     "nuxt-icon": "^0.6.10",
     "nuxt-mail": "^5.0.1",
     "nuxt-security": "^1.4.3",
     "nuxt-splide": "^1.1.1",
-    "pinia": "^2.1.7",
+    "pinia": "^2.2.0",
+    "plyr-vue": "^2.6.8",
     "vue": "3.4.31",
     "vue-final-modal": "^4.5.4",
     "vue-router": "^4.4.0",
@@ -77,6 +78,6 @@
     "@alanlu-dev/types": "^1.0.7",
     "@jiehousekeeper/master-css-config": "workspace:*",
     "nuxt": "3.12.3",
-    "vue-tsc": "^2.0.26"
+    "vue-tsc": "^2.0.29"
   }
 }

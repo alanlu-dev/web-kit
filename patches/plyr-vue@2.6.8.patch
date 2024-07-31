@@ -1,0 +1,14 @@
+diff --git a/package.json b/package.json
+index 806b8eb8c547a5643235d5874dc22b672911e9e9..f518860968dc10a856ae91846eee40ca142b8b86 100644
+--- a/package.json
++++ b/package.json
+@@ -24,7 +24,8 @@
+   "exports": {
+     ".": {
+       "import": "./dist/plyr-vue.js",
+-      "require": "./dist/plyr-vue.umd.cjs"
++      "require": "./dist/plyr-vue.umd.cjs",
++      "types": "./dist/index.d.ts"
+     },
+     "./dist/plyr-vue.css": "./dist/plyr-vue.css"
+   },

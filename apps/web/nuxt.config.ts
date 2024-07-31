@@ -43,6 +43,8 @@ export default defineNuxtConfig({
     // formkit
     '@formkit/themes/genesis',
     '@formkit/addons/css/floatingLabels',
+    // plyr
+    'plyr-vue/dist/plyr-vue.css',
   ],
 
   googleFonts: {

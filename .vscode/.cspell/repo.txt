@@ -19,6 +19,7 @@ nuxt
 nuxtjs
 persistedstate
 pinia
+plyr
 resvg
 splide
 splidejs
@@ -30,4 +31,5 @@ tsup
 Turborepo
 unplugin
 unstorage
+videojs
 vueuse
