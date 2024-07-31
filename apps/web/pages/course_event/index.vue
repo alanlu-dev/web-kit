@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
 definePageMeta({
@@ -66,8 +65,61 @@ watch(
     <Hero title="課程資訊 🚧" />
     <Breadcrumb />
 
-    <section>
-      <div class="center-content flex@desktop hidden bg:home gap:5x mb:14x mx:auto px:6vw py:5x">
+    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet">
+      <div class="center-content flex flex:column flex:row@desktop gap:15x py:8x">
+        <div>
+          <h2 class="h2 title flex fg:font-title flex:column">
+            <span>不限入行門檻,</span>
+            <span>滿足不同階段學習需求</span>
+          </h2>
+        </div>
+        <div>
+          <div class="{f:16x}_svg {bg:#FAFAFA;p:6x|3x;flex;center-content;gap:3x}>div gap:5x grid-cols:2">
+            <div>
+              <div>
+                <Icon name="hugeicons:money-bag-02" />
+              </div>
+              <p class="b2-r flex flex:column">
+                <span>想開啟斜槓人生,</span>
+                <span>創造自己的多元收入之路! 🚧</span>
+              </p>
+            </div>
+
+            <div>
+              <div>
+                <Icon name="fluent:prompt-16-regular" />
+              </div>
+              <p class="b2-r flex flex:column">
+                <span>想精進自己的專業技能,</span>
+                <span>晉升家事職人!</span>
+              </p>
+            </div>
+            <div>
+              <div>
+                <Icon name="material-symbols-light:mop-outline" />
+              </div>
+              <p class="b2-r flex flex:column">
+                <span>想學習高效技巧,</span>
+                <span>為自己愛家維持居家整潔!</span>
+              </p>
+            </div>
+            <div>
+              <div>
+                <Icon name="clarity:tools-line" />
+              </div>
+              <p class="b2-r flex flex:column">
+                <span>想轉換跑道、二度就業,</span>
+                <span>尋找新的職涯方向</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg:home mb:14x mx:auto p:15x">
+      <h2 class="h2 title fg:font-title">獨家課程安排三步驟,不藏私教學助你快速出班 🚧</h2>
+      <div class="center-content flex@desktop hidden gap:5x mt:10x">
         <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
           <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
           <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
