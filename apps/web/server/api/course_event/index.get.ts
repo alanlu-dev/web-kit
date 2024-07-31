@@ -39,8 +39,8 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         filter: {
           and: [
             { property: '封存', checkbox: { equals: false } },
-            { property: '課程驗證', formula: { string: { equals: '✅' } } },
             { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+            { property: '課程驗證', formula: { string: { equals: '✅' } } },
           ],
         },
         filter_properties: [
@@ -54,6 +54,8 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
           '%5BYP%5B',
           /** 課程標籤 */
           'ZBzH',
+          /** 課程摘要 */
+          'ofgL',
           /** 最終價格 */
           'KF%3FY',
           /** 教室名稱 */
@@ -96,6 +98,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
     }
 
     await kv.rpush(key, ...allData)
+
+    allData.map(async (item) => {
+      await kv.set(`${key}:${item.ID}`, item)
+    })
 
     const currentPageData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 

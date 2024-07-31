@@ -38,9 +38,9 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
         page_size: pageSize,
         filter: {
           and: [
-            // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
-            { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
             { property: '封存', checkbox: { equals: false } },
+            { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+            // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
           ],
         },
         filter_properties: [
@@ -69,6 +69,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
     }
 
     await kv.rpush(key, ...allData)
+
+    allData.map(async (item) => {
+      await kv.set(`${key}:${item.ID}`, item)
+    })
 
     const currentPageData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 

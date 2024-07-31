@@ -21,6 +21,7 @@ export const CourseEventSchema = z.object({
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined,
   ),
   課程標籤: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'select' ? o.rollup.array[0].select?.name : undefined)),
+  課程摘要: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
   課程圖片連結: z.string().optional(),
   最終價格: NotionFormulaSchema.transform((o) => (o.formula.type === 'number' ? o.formula.number : undefined)),
   教室名稱: NotionDatabaseRollupSchema.transform(

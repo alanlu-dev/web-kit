@@ -13,7 +13,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <Hero title="關於我們" />
+    <Hero title="關於我們 🚧" />
     <Breadcrumb />
 
     <section class="px:6x">

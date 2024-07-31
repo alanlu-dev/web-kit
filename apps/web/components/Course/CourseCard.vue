@@ -18,7 +18,7 @@ defineProps<IProps>()
 
     <div class="p:2x|4x text:left">
       <p class="b1-b fg:primary lines:1">{{ event.課程標題 }} | {{ event.教室名稱 }}</p>
-      <p class="b2-r lines:2 lines:3@tablet mt:2x">TODO: 認識居家清潔劑、清潔工具運用、客戶溝通技巧、模擬真實居家案場演練</p>
+      <p class="b2-r lines:2 lines:3@tablet mt:2x">{{ event.課程摘要 }}</p>
       <p class="b2-r f:12@<=mobile fg:font-title lines:1 mt:3x mt:8x@tablet">中華民國職業清潔認証協會</p>
       <hr class="bg:#DBD9D9 h:1 mt:2x" />
       <div class="mt:2x text:left">

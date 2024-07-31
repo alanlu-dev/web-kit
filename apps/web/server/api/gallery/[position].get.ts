@@ -26,10 +26,10 @@ export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event
       database_id: process.env.NOTION_DATABASE_ID_GALLERIES!,
       filter: {
         and: [
-          { property: '位置', select: { equals: position } },
-          { property: '資料驗證', formula: { string: { equals: '✅' } } },
-          { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
           { property: '封存', checkbox: { equals: false } },
+          { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+          { property: '資料驗證', formula: { string: { equals: '✅' } } },
+          { property: '位置', select: { equals: position } },
         ],
       },
       filter_properties: [

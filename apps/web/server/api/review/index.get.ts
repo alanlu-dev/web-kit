@@ -44,19 +44,19 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
           ],
         },
         filter_properties: [
-          /* 發布日期 */
+          /** 發布日期 */
           '%3AFip',
-          /* 學員 */
+          /** 學員 */
           'title',
-          /* 課程 */
+          /** 課程 */
           'xHXH',
-          /* 課程名稱 */
+          /** 課程名稱 */
           'Qti%5E',
-          /* 評價 */
+          /** 評價 */
           'F%3EQ%5D',
-          /* 照片 */
+          /** 照片 */
           '%3Dyos',
-          /* 影音連結 */
+          /** 影音連結 */
           'Qr%3AT',
         ],
         sorts: [{ property: '發布日期', direction: 'descending' }],
@@ -78,6 +78,10 @@ export default defineEventHandler<{ query: { page?: string; page_size?: string; 
     }
 
     await kv.rpush(key, ...allData)
+
+    allData.map(async (item) => {
+      await kv.set(`${key}:${item.ID}`, item)
+    })
 
     const currentPageData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize)
 
