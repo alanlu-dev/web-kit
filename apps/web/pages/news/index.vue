@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useDateFormat } from '@vueuse/core'
 import type { NewsSchemaType } from '~/schema/news'
 
 definePageMeta({

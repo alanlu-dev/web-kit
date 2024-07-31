@@ -36,5 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <PlyrVue @register="registerIframePlayer"></PlyrVue>
+  <ClientOnly>
+    <PlyrVue v-bind="$attrs" @register="registerIframePlayer"></PlyrVue>
+  </ClientOnly>
 </template>

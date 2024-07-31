@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import HomeCase from '~/components/Home/HomeCase.vue'
-
 definePageMeta({
   title: '首頁',
   breadcrumb: {
@@ -31,7 +29,7 @@ useSeoMeta({
     <HomeInstructors />
 
     <!-- 學員滿意度 -->
-    <!-- <HomeReviews /> -->
+    <HomeReviews />
 
     <!-- 常見問達 -->
     <HomeFaq />

@@ -7,6 +7,18 @@ export default {
       font:sans.normal font:mono_:where(code,pre)
       fg:font-content line-h:1.5 ls:0.05em
     `,
+    // 滾動軸
+    scrollbar: {
+      '': cls`
+          {size:2x}::scrollbar
+          {rounded}::scrollbar,::scrollbar-thumb
+          bg:footer/.2::scrollbar
+          bg:footer/.6::scrollbar-thumb
+          bg:footer/.8::scrollbar-thumb:hover@hover
+          bg:footer::scrollbar-thumb:active
+          bg:transparent::scrollbar-corner
+        `,
+    },
     h1: cls`font:medium f:7x f:8x@tablet`,
     h2: cls`font:medium f:6x f:7x@tablet`,
     h3: cls`font:medium f:4.5x f:6x@tablet`,

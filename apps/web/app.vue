@@ -6,7 +6,7 @@ useHead({
     id: 'mcss',
   },
   bodyAttrs: {
-    class: 'normal',
+    class: 'normal scrollbar',
   },
   link: [
     {

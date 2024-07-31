@@ -1,9 +1,10 @@
 import config from '@jiehousekeeper/master-css-config'
 import splide from '@jiehousekeeper/master-css-config/vendors/splide'
+import plyr from '@jiehousekeeper/master-css-config/vendors/plyr'
 
 /** @type {import('@master/css').Config} */
 export default {
-  extends: [config, splide],
+  extends: [config, splide, plyr],
   styles: {
     formkit: {
       outer: `
