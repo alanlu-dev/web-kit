@@ -54,7 +54,7 @@ watch(
     <Hero title="學員評價" />
     <Breadcrumb />
 
-    <section class="px:6x px:10x@tablet">
+    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet">
       <div class="rel overflow:hidden r:5x">
         <div class="{content:'';abs;inset:0;bg:home/.8}:before background-size:100% background:url(/review/cover.jpg)no-repeat|center|36% blur(3px) h:160 h:244@tablet"> </div>
         <div class="abs center center-content flex middle p:5x|7x">
