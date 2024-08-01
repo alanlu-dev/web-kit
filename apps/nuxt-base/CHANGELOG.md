@@ -1,5 +1,16 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.14
+
+### Patch Changes
+
+- [`8dddb72`](https://github.com/alanlu-dev/web-kit/commit/8dddb7230bc226b6d145379426a59507d47a2ef8) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
+- Updated dependencies [[`8dddb72`](https://github.com/alanlu-dev/web-kit/commit/8dddb7230bc226b6d145379426a59507d47a2ef8)]:
+  - @alanlu-dev/types@1.0.8
+  - @alanlu-dev/scss@1.0.6
+  - @alanlu-dev/utils@1.0.3
+
 ## 1.0.13
 
 ### Patch Changes
