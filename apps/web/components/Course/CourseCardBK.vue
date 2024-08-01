@@ -11,7 +11,7 @@ defineProps<IProps>()
 <template>
   <nuxt-link :key="event.ID" class="flex bg:base-bg flex:column flex:row@tablet overflow:hidden r:2x scale(1.05):hover_img shadow:md" :to="`/course_event/${event.ID}`">
     <div class="rel {max-w:312;aspect:312/260}@tablet {max-w:387;aspect:387/260}@desktop aspect:342/133 flex:1 overflow:hidden">
-      <img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
+      <nuxt-img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
     </div>
     <div class="b2-r flex:1 p:3x|6x">
       <div class="flex ai:center gap:2x jc:flex-start">

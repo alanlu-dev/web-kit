@@ -8,13 +8,7 @@ useHead({
   bodyAttrs: {
     class: 'normal scrollbar',
   },
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: '/logo.svg',
-    },
-  ],
+  link: [{ rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
 })
 
 const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@master/css.vue')).CSSRuntimeProvider)

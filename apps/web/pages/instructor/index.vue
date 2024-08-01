@@ -37,12 +37,12 @@ const focusable = ref(false)
     <Breadcrumb />
 
     <div class="mb:10x mb:20x@tablet px:6x px:10x@desktop">
-      <section class="max-w:1080 mx:auto">
-        <div v-for="instructor in instructors" :key="instructor.ID" class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x">
+      <section class="max-w:screen-main mx:auto">
+        <div v-for="instructor in instructors" :key="instructor.ID" class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x" data-aos="fade-up">
           <div class="flex {flex:row;gap:10x}@tablet flex:column">
             <div class="flex:1">
               <div class="{aspect:382/262;object:cover;w:full}_img aspect:382/262 overflow:hidden r:2x">
-                <img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
+                <nuxt-img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
               </div>
               <h2 class="h2 fg:primary mt:3x">{{ instructor.名稱 }} {{ instructor.英文名 }}</h2>
               <h3 class="h3 mt:1x">{{ instructor.頭銜 }}</h3>

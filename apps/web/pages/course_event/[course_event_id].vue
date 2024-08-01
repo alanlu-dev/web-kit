@@ -44,7 +44,7 @@ onMounted(() => {
             }"
           >
             <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
-              <img :src="圖片" />
+              <nuxt-img :src="圖片" />
             </SplideSlide>
           </Splide>
 
@@ -74,7 +74,7 @@ onMounted(() => {
               </div>
               <SplideTrack>
                 <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
-                  <img :src="圖片" />
+                  <nuxt-img :src="圖片" />
                 </SplideSlide>
               </SplideTrack>
             </Splide>
@@ -87,7 +87,7 @@ onMounted(() => {
             <NotionRender class="mt:3x" :blocks="course?.contents" />
           </div>
 
-          <div v-for="item in course?.page?.講師資訊" :key="item" class="bg:home mt:10x p:7x|6x">
+          <div v-for="item in course?.page?.講師" :key="item" class="bg:home mt:10x p:7x|6x">
             <h3 class="h3 fg:font-title">講師介紹🚧</h3>
             <div class="center-content flex gap:6x">
               <div class="flex:2 mt:3x">
@@ -99,7 +99,7 @@ onMounted(() => {
                 </p>
               </div>
               <div class="{aspect:inherit;object:cover;w:full}_img aspect:250/271 flex:1">
-                <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
+                <nuxt-img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
               </div>
             </div>
           </div>

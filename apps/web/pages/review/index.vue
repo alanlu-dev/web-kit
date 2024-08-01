@@ -18,6 +18,7 @@ const router = useRouter()
 const common = useCommonStore()
 const activeBreakpoint = common.breakpoints.active()
 
+// const page_size = ref(1)
 const page_size = computed(() => (activeBreakpoint.value === 'mobile' ? 10 : activeBreakpoint.value === 'tablet' ? 20 : 30))
 
 interface QueryType {
@@ -54,22 +55,22 @@ watch(
     <Hero title="學員評價" />
     <Breadcrumb />
 
-    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet">
-      <div class="rel overflow:hidden r:5x">
-        <div class="{content:'';abs;inset:0;bg:home/.8}:before background-size:100% background:url(/review/cover.jpg)no-repeat|center|36% blur(3px) h:160 h:244@tablet"> </div>
+    <section class="max-w:screen-max mx:auto pb:10x px:6x px:10x@tablet">
+      <div class="rel overflow:hidden r:5x" data-aos="fade-up">
+        <div class="{content:'';abs;inset:0;bg:home/.8}::before bg:cover bg:url(/review/cover.jpg)|no-repeat|center|36% blur(1x) h:40x h:50x@tablet h:60x@desktop"> </div>
         <div class="abs center center-content flex middle p:5x|7x">
-          <div class="f:5x f:7x@tablet f:8x@desktop font:medium ls:0.1em">
+          <div class="f:5x f:6.5x@tablet f:8x@desktop font:medium ls:0.1em">
             <h1>模擬真實案場,手把手教學,學習效率更高!</h1>
             <h1>超過 <span class="fg:accent">500+</span> 則真實評價,上過課的學員們這麼說:</h1>
           </div>
         </div>
       </div>
 
-      <div class="gap:5x grid-cols:1 grid-cols:2@tablet grid-cols:3@desktop max-w:1080 mt:10x mx:auto">
+      <div class="{grid-cols:1;gap:6x} {grid-cols:2;gap:5x}@tablet {grid-cols:3;gap:5x|8x}@desktop max-w:screen-main mt:5x mt:10x@tablet mx:auto" data-aos="fade-up" data-aos-delay="200">
         <ReviewCard v-for="review in reviews" :key="review.ID" :review="review" />
       </div>
 
-      <Pagination :page="page" :total="total" :range="1" />
+      <Pagination class="mt:7x mt:10x@tablet" :page="page" :total="total" :range="1" />
     </section>
   </div>
 </template>

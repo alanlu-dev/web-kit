@@ -17,24 +17,24 @@ useSeoMeta({
     <HomeBanner />
 
     <!-- 協會介紹 -->
-    <HomeIntroduce />
+    <HomeIntroduce data-aos="fade" />
 
     <!-- 課程價值 -->
-    <HomeValue />
+    <HomeValue data-aos="fade-up" />
 
     <!-- 課程資訊 -->
-    <HomeCourses />
+    <HomeCourses data-aos="fade-up" />
 
     <!-- 師資陣容 -->
-    <HomeInstructors />
+    <HomeInstructors data-aos="fade-up" />
 
     <!-- 學員滿意度 -->
-    <HomeReviews />
+    <HomeReviews data-aos="fade-up" />
 
     <!-- 常見問達 -->
-    <HomeFaq />
+    <HomeFaq data-aos="fade-up" />
 
     <!-- 產業消息 -->
-    <HomeNews />
+    <HomeNews data-aos="fade-up" />
   </div>
 </template>

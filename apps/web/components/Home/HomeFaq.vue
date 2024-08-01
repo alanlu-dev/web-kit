@@ -17,7 +17,7 @@ const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', {
     <div class="max-w:screen-max mx:auto px:6x px:10x@desktop py:10x text:center">
       <h1 class="h1 title fg:font-title">常見問答</h1>
 
-      <div class="flex flex:column gap:5x max-w:1080 mt:5x mx:auto px:10x@desktop text:left">
+      <div class="flex flex:column gap:5x max-w:screen-main mt:5x mx:auto px:10x@desktop text:left">
         <div v-for="item in list" :key="item.排序!" class="bg:home p:0!">
           <label class="pointer b1-r flex ai:flex-start fg:primary gap:2x jc:space-between p:5x|6x" :for="`faq-${item.排序}`">
             <div>{{ item.排序 }}. {{ item.問題 }}</div>

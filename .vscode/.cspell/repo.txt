@@ -5,6 +5,7 @@ conventionalcommits
 deepmerge
 fontaine
 formkit
+gsap
 gtag
 iconify
 intlify

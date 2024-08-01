@@ -9,7 +9,7 @@ const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/cou
   <section class="max-w:screen-max mx:auto px:6x px:10x@desktop py:10x text:center">
     <h1 class="h1 title fg:font-title">課程資訊</h1>
 
-    <div class="{grid-cols:1;gap:5x} {grid-cols:2;gap:10x|5x}@tablet {grid-cols:3;gap:10x|15x}@desktop max-w:1080 mt:7x mt:10x@tablet mx:auto">
+    <div class="{grid-cols:1;gap:5x} {grid-cols:2;gap:10x|5x}@tablet {grid-cols:3;gap:10x|15x}@desktop max-w:screen-main mt:7x mt:10x@tablet mx:auto">
       <CourseCard v-for="event in courseEvents" :key="event.ID" :event="event" />
     </div>
 

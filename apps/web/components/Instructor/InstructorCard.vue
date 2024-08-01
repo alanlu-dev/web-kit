@@ -12,7 +12,7 @@ defineProps<IProps>()
     <div class="flex rel {content:'';bg:white;abs;top:10x;left:30x;bottom;right;z:-1;r:2x}::before@xs flex:column flex:row@xs pb:5x@xs">
       <div class="flex:1">
         <div class="{aspect:357/254;object:cover;w:full}_img aspect:357/254 overflow:hidden r:2x">
-          <img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
+          <nuxt-img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
         </div>
       </div>
       <div class="{pt:15x;pl:9x}@xs bg:none@xs bg:white flex:1 p:4x|5x r:2x text:left w:full">

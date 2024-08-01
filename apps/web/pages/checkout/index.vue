@@ -77,7 +77,7 @@ const show = ref(false)
                 <template #label>
                   <div class="flex ai:center jc:space-between w:full">
                     <p>信用卡一次付清</p>
-                    <NuxtImg src="/credit-card.png" class="ml:auto w:74" />
+                    <NuxtImg src="/other/credit-card.png" class="ml:auto w:74" />
                   </div>
                 </template>
               </FormKit>

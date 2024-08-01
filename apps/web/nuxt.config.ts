@@ -34,6 +34,10 @@ export default defineNuxtConfig({
     /* --- icon / image --- */
     'nuxt-icon',
     '@nuxt/image',
+
+    /* --- aos + gsap --- */
+    'nuxt-aos',
+    // '@hypernym/nuxt-gsap',
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
@@ -63,4 +67,14 @@ export default defineNuxtConfig({
     description: 'Welcome to my awesome site!',
     defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
   },
+
+  aos: {
+    // once: true,
+  },
+
+  // gsap: {
+  //   extraPlugins: {
+  //     scrollTrigger: true,
+  //   },
+  // },
 })

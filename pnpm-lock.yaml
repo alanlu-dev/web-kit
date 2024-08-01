@@ -98,8 +98,8 @@ importers:
   apps/web:
     dependencies:
       '@alanlu-dev/notion-api-zod-schema':
-        specifier: ^1.0.5
-        version: 1.0.5(zod@3.23.8)
+        specifier: ^1.0.6
+        version: 1.0.6(zod@3.23.8)
       '@alanlu-dev/utils':
         specifier: ^1.0.3
         version: 1.0.3
@@ -133,6 +133,9 @@ importers:
       '@formkit/zod':
         specifier: ^1.6.5
         version: 1.6.5(zod@3.23.8)
+      '@hypernym/nuxt-gsap':
+        specifier: ^2.4.2
+        version: 2.4.2
       '@master/css.nuxt':
         specifier: 2.0.0-rc.44
         version: 2.0.0-rc.44(magicast@0.3.4)(rollup@4.19.1)(vue@3.4.31(typescript@5.5.4))
@@ -172,6 +175,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.11.0
         version: 10.11.0(vue@3.4.31(typescript@5.5.4))
+      aos:
+        specifier: ^2.3.4
+        version: 2.3.4
       class-variant:
         specifier: ^2.0.2
         version: 2.0.2
@@ -295,8 +301,8 @@ packages:
   '@alanlu-dev/mastercss-helpers@1.0.8':
     resolution: {integrity: sha512-ah679LI4mStLdPk5Z/8xGc4SEjVaWIVJnw6QNQW5n3J2g7mX87buWjl193sUDsNP++/28d6Tyh3v4JeWxsUqTw==}
 
-  '@alanlu-dev/notion-api-zod-schema@1.0.5':
-    resolution: {integrity: sha512-Or9R4vpihHCPKwKAtuST9uQNrwYGcFdGTv/thABTeb9z2SLLRB1kThjb+Bs3V3n04h7D4aG+t4/XQLtjU9tFhg==}
+  '@alanlu-dev/notion-api-zod-schema@1.0.6':
+    resolution: {integrity: sha512-8/G9NPgJUJ89fN70jDsc+1t1zUMBXW1OfYRw81TyViRuTnvAKgzi1/KMeYpryTSbriYxEordbq6Jyegc0x/7Kw==}
     peerDependencies:
       zod: ^3.23.8
 
@@ -1642,6 +1648,9 @@ packages:
   '@hutson/parse-repository-url@5.0.0':
     resolution: {integrity: sha512-e5+YUKENATs1JgYHMzTr2MW/NDcXGfYFAuOQU8gJgF/kEh4EqKgfGrfLI67bMD4tbhZVlkigz/9YYwWcbOFthg==}
     engines: {node: '>=10.13.0'}
+
+  '@hypernym/nuxt-gsap@2.4.2':
+    resolution: {integrity: sha512-Oep+0ABn58PbJo4tX8A8ja2hGjjBtyFE7DJAF/q8DIDGXMFaZlTbvcreCmMdKhuJ5NR8ODE0fEObUEYci901gg==}
 
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
@@ -4591,6 +4600,9 @@ packages:
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
+
+  gsap@3.12.5:
+    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
 
   gzip-size@7.0.0:
     resolution: {integrity: sha512-O1Ld7Dr+nqPnmGpdhzLmMTQ4vAsD+rHwMm1NLUmoUFFymBOMKxCCrtDxqdBRYXdeEPEi3SyoR4TizJLQrnKBNA==}
@@ -8041,7 +8053,7 @@ snapshots:
 
   '@alanlu-dev/mastercss-helpers@1.0.8': {}
 
-  '@alanlu-dev/notion-api-zod-schema@1.0.5(zod@3.23.8)':
+  '@alanlu-dev/notion-api-zod-schema@1.0.6(zod@3.23.8)':
     dependencies:
       zod: 3.23.8
 
@@ -9314,6 +9326,10 @@ snapshots:
   '@humanwhocodes/retry@0.3.0': {}
 
   '@hutson/parse-repository-url@5.0.0': {}
+
+  '@hypernym/nuxt-gsap@2.4.2':
+    dependencies:
+      gsap: 3.12.5
 
   '@iarna/toml@2.2.5': {}
 
@@ -13042,6 +13058,8 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   graphemer@1.4.0: {}
+
+  gsap@3.12.5: {}
 
   gzip-size@7.0.0:
     dependencies:

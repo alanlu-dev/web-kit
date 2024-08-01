@@ -10,6 +10,6 @@ export default {
       '.plyr:hover>': cls`opacity:1`,
     }),
     'plyr__video-wrapper': cls`bg:transparent!`,
-    'plyr__poster': cls`background-size:cover! bg:transparent!`,
+    'plyr__poster': cls`bg:cover! bg:transparent!`,
   },
 }

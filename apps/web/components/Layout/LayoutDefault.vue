@@ -10,6 +10,22 @@ useEventListener(window, 'keydown', (event) => {
     showDevPanel.value = !showDevPanel.value
   }
 })
+
+const { $refreshAos } = useNuxtApp()
+onMounted(() => {
+  nextTick(() => {
+    $refreshAos()
+  })
+})
+
+const route = useRoute()
+
+watch(
+  () => route.fullPath,
+  () => {
+    $refreshAos()
+  },
+)
 </script>
 
 <template>

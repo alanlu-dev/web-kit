@@ -18,7 +18,7 @@ const { class: cls, ...filteredAttrs } = useAttrs()
 <template>
   <div class="rel" :class="cls">
     <label class="block rel {object:cover;w:full}_img,_.plyr__video-wrapper" :class="`{aspect:${aspect}!}_img,_.plyr__video-wrapper aspect:${aspect}`">
-      <img :src="cover" alt="影片封面" class="abs full" />
+      <nuxt-img :src="cover" alt="影片封面" class="abs full" />
       <input type="radio" class="hidden" />
       <div class="abs :checked~{hidden} inset:0 z:1"></div>
       <VideoPlayer v-bind="filteredAttrs" :src="src" class=":checked~{opacity:1}_iframe opacity:0_iframe" :options="options"></VideoPlayer>

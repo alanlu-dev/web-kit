@@ -11,7 +11,7 @@ defineProps<IProps>()
   <div class="bg:#F6F7F7 overflow:hidden r:2x">
     <div class="aspect:340/235">
       <VideoPlayerCover v-if="review.影音連結" aspect="340/235" :src="review.影音連結" />
-      <img v-else class="{aspect:340/235;object:cover;w:full}" :src="review.照片[0]" alt="學員評價" />
+      <nuxt-img v-else class="{aspect:340/235;object:cover;w:full}" :src="review.照片[0]" />
     </div>
     <div class="p:5x|6x">
       <p class="b1-m fg:font-title">學員 {{ review.學員 }}</p>

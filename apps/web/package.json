@@ -30,7 +30,7 @@
     "release": "release-it --ci"
   },
   "dependencies": {
-    "@alanlu-dev/notion-api-zod-schema": "^1.0.5",
+    "@alanlu-dev/notion-api-zod-schema": "^1.0.6",
     "@alanlu-dev/utils": "^1.0.3",
     "@formkit/addons": "^1.6.5",
     "@formkit/core": "^1.6.5",
@@ -42,6 +42,7 @@
     "@formkit/themes": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "@formkit/zod": "^1.6.5",
+    "@hypernym/nuxt-gsap": "^2.4.2",
     "@master/css.nuxt": "2.0.0-rc.44",
     "@master/css.vue": "2.0.0-rc.44",
     "@master/styled.vue": "^2.0.2",
@@ -55,6 +56,7 @@
     "@vercel/kv": "^2.0.0",
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vueuse/core": "^10.11.0",
+    "aos": "^2.3.4",
     "class-variant": "^2.0.2",
     "floating-vue": "^5.2.2",
     "maska": "^3.0.0",

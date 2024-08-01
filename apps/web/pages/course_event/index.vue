@@ -65,12 +65,12 @@ watch(
     <Hero title="課程資訊 🚧" />
     <Breadcrumb />
 
-    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet">
+    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet" data-aos="fade-up">
       <div class="center-content flex flex:column flex:row@desktop gap:15x py:8x">
         <div>
           <h2 class="h2 title flex fg:font-title flex:column">
             <span>不限入行門檻,</span>
-            <span>滿足不同階段學習需求</span>
+            <span>滿足不同階段學習需求🚧</span>
           </h2>
         </div>
         <div>
@@ -81,7 +81,7 @@ watch(
               </div>
               <p class="b2-r flex flex:column">
                 <span>想開啟斜槓人生,</span>
-                <span>創造自己的多元收入之路! 🚧</span>
+                <span>創造自己的多元收入之路!</span>
               </p>
             </div>
 
@@ -118,33 +118,36 @@ watch(
     </section>
 
     <section class="bg:home mb:14x mx:auto p:15x">
-      <h2 class="h2 title fg:font-title">獨家課程安排三步驟,不藏私教學助你快速出班 🚧</h2>
-      <div class="center-content flex@desktop hidden gap:5x mt:10x">
-        <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-          <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-          <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-            <p class="b1-m">課堂上課</p>
-            <p class="b2-r nowrap">教室講解建材特性</p>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h2 class="h2 title fg:font-title">獨家課程安排三步驟,不藏私教學助你快速出班 🚧</h2>
+        <div class="center-content flex@desktop hidden gap:5x mt:10x">
+          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
+            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
+            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
+              <p class="b1-m">課堂上課</p>
+              <p class="b2-r nowrap">教室講解建材特性</p>
+            </div>
           </div>
-        </div>
-        <img src="/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
-        <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-          <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-          <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-            <p class="b1-m">樣品實作</p>
-            <p class="b2-r nowrap">前往真實教室清潔練習</p>
+          <nuxt-img src="/course_event/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
+          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
+            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
+            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
+              <p class="b1-m">樣品實作</p>
+              <p class="b2-r nowrap">前往真實教室清潔練習</p>
+            </div>
           </div>
-        </div>
-        <img src="/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
-        <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-          <img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-          <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-            <p class="b1-m">實際演練</p>
-            <p class="b2-r nowrap">至客戶案場，老師陪同作業</p>
+          <nuxt-img src="/course_event/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
+          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
+            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
+            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
+              <p class="b1-m">實際演練</p>
+              <p class="b2-r nowrap">至客戶案場，老師陪同作業</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="mt:5x mt:6x@tablet px:6x px:10vw@tablet px:22.5x@desktop">
+
+      <div class="mt:5x mt:6x@tablet px:6x px:10vw@tablet px:22.5x@desktop" data-aos="fade-up">
         <div class="max-w:screen-md mx:auto">
           <h1 class="h1 title fg:font-title">所有課程</h1>
           <!-- <div class="inline-flex {flex;ai:center;jc:space-between;flex:row}@tablet flex:column gap:5x my:5x">

@@ -28,6 +28,7 @@ export default {
       // '3xl': 1920,
       // '4xl': 2560,
       ...breakpoints,
+      main: 1080,
       max: 1920,
     },
 

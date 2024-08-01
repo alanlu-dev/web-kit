@@ -24,7 +24,7 @@ const emit = defineEmits<{
     <div class="b1-r mt:4x text:center">
       <slot />
     </div>
-    <button class="abs right:5x top:5x" @click="emit('confirm')">
+    <button class="abs cursor:pointer right:5x top:5x" @click="emit('confirm')">
       <Iconify icon="material-symbols-light:close-small-outline-rounded" />
     </button>
   </VueFinalModal>
