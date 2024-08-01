@@ -26,18 +26,18 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@antfu/eslint-config": "^2.23.0",
+    "@antfu/eslint-config": "^2.24.1",
     "@master/eslint-config-css": "2.0.0-rc.44",
     "@master/eslint-plugin-css": "2.0.0-rc.44",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.23.0",
+    "@antfu/eslint-config": "^2.24.1",
     "@master/eslint-config-css": "2.0.0-rc.44",
     "@master/eslint-plugin-css": "2.0.0-rc.44",
-    "eslint": "^9.7.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1"
   }
