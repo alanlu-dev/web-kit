@@ -13,7 +13,7 @@ const activeBreakpoint = common.breakpoints.active()
     </div>
 
     <!-- Breakpoints -->
-    <div class="hidden .dev_{block} {fixed;bottom:1x} max-w:screen-max pointer-events:none z:devPanel">
+    <div class="hidden .dev_{block} {fixed;bottom:1x;right:1x} max-w:screen-max pointer-events:none z:devPanel">
       <div class="b1-b rounded bg:primary/.5 fg:white m:1x p:1x|2x">
         {{ activeBreakpoint }}
       </div>

@@ -65,12 +65,13 @@ const data2 = [
 // 間隙公式: (gap * (perPage - 1) / perPage)
 // 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
 const ratio = cv(
-  'mr:100px>li ',
+  'mr:80px>li mr:100px>li@md ',
   {
-    base: { '': `{w:calc((100%/2)-(100px*(2-1)/2))}>li` },
+    base: { '': `{w:60%}>li` },
+    xs: { '': `{w:calc((100%/3)-(80px*(3-1)/3))}>li@xs` },
     md: { '': `{w:calc((100%/3)-(100px*(3-1)/3))}>li@md` },
   },
-  ({ base, md }) => base && md,
+  ({ base, xs, md }) => base && xs && md,
 )
 
 const splideOption = {
@@ -82,7 +83,11 @@ const splideOption = {
   perPage: 3,
   breakpoints: {
     1024: {
-      perPage: 2,
+      gap: '80px',
+    },
+    768: {
+      perPage: 1,
+      fixedWidth: '60%',
     },
   },
 }
@@ -116,7 +121,7 @@ const splideOption = {
         <span>不藏私教學助你快速出班</span>
       </h2>
       <div class="rel {max-w:screen-main;mx:auto} mt:6x mt:10x@tablet">
-        <div class="hidden@md {abs;top;bottom;right} bg:linear-gradient(to|right,home/0,home) pointer-events:none w:10vw z:1"> </div>
+        <div class="hidden@md {abs;top;bottom;right:0} bg:linear-gradient(to|right,home/0,home) pointer-events:none w:4x z:1"> </div>
 
         <ClientOnly>
           <template #fallback>
@@ -134,6 +139,7 @@ const splideOption = {
               </ul>
             </div>
           </template>
+
           <Splide :options="splideOption">
             <SplideSlide v-for="(i, idx) in data2" :key="i.h1" class="{flex;flex:col;center-content} text:center">
               <CourseStep :item="i" :last="idx === data2.length - 1" />
