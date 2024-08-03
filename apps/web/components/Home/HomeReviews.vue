@@ -69,11 +69,11 @@ const splideOption = {
 
           <Splide :has-track="false" :options="splideOption">
             <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {left:-20x;right:-20x;max-w:calc(100vw-10x)}!">
-              <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:8x;f:8x}! {size:10x;f:10x}!@tablet">
-                <Iconify class="flex! {f:.6em;transform:unset}!>svg" icon="material-symbols-light:chevron-left" />
+              <Button intent="secondary" class="splide__arrow splide__arrow--prev left! round! {size:8x;f:8x}! {size:10x;f:10x}!@tablet p:0!">
+                <Iconify class="flex! {f:.6em;transform:unset}!>svg size:inherit" icon="material-symbols-light:chevron-left" />
               </Button>
-              <Button intent="secondary" class="splide__arrow splide__arrow--next right! {size:8x;f:8x}! {size:10x;f:10x}!@tablet">
-                <Iconify class="flex! {f:.6em;transform:unset}!>svg {f:11x}!>svg@desktop" icon="material-symbols-light:chevron-right" />
+              <Button intent="secondary" class="splide__arrow splide__arrow--next right! round! {size:8x;f:8x}! {size:10x;f:10x}!@tablet p:0!">
+                <Iconify class="flex! {f:.6em;transform:unset}!>svg size:inherit" icon="material-symbols-light:chevron-right" />
               </Button>
             </div>
 

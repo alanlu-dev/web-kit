@@ -65,11 +65,11 @@ onMounted(() => {
               class="mt:5x"
             >
               <div class="splide__arrows splide__arrows--ltr">
-                <Button intent="secondary" class="splide__arrow splide__arrow--prev rounded! {size:11.5x!}@2xs p:0! size:9x">
-                  <Iconify icon="material-symbols-light:chevron-left" />
+                <Button intent="secondary" class="splide__arrow splide__arrow--prev round! {size:9x;f:11.5x} {f:11.5x;size:11.5x!}@2xs p:0!">
+                  <Iconify class="flex! {f:.6em;transform:unset}!>svg size:inherit" icon="material-symbols-light:chevron-left" />
                 </Button>
-                <Button intent="secondary" class="splide__arrow splide__arrow--next rounded! {size:11.5x!}@2xs p:0! size:9x">
-                  <Iconify icon="material-symbols-light:chevron-right" />
+                <Button intent="secondary" class="splide__arrow splide__arrow--next round! {size:9x;f:11.5x} {f:11.5x;size:11.5x!}@2xs p:0!">
+                  <Iconify class="flex! {f:.6em;transform:unset}!>svg size:inherit" icon="material-symbols-light:chevron-right" />
                 </Button>
               </div>
               <SplideTrack>
