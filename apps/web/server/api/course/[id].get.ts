@@ -1,43 +1,20 @@
-import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
-import { NotionBlockSchema, NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
-import { kv } from '@vercel/kv'
-import { CourseSchema } from '~/schema/course'
+import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
 export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event) => {
   const id = getRouterParam(event, 'id')
   if (!id) return null
 
-  const key = `course:${id}`
-
   const { refresh } = getQuery(event)
-  if (!refresh) {
-    const data = await kv.get(key)
-    if (data) {
-      console.log('cache hit', key)
-      return data
-    }
-  }
 
   try {
-    const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
-    const page = await notion.pages.retrieve({ page_id: id })
-    const contents = await notion.blocks.children.list({ block_id: id })
-
-    const parsedPage = CourseSchema.parse(NotionPageSchema.parse(page).properties)
-    const parsedContents = NotionBlockSchema.array().parse(contents.results)
-
-    parsedPage.課程照片 = parsedPage.課程照片.map((img) => mapImgUrl(img, id))
-
-    const response = {
-      page: parsedPage,
-      contents: parsedContents,
+    const item = await getCourseByIdAsync(null, +id, refresh)
+    if (!item) {
+      const responseData = { rc: 404, rm: 'Not Found' }
+      event.node.res.statusCode = responseData.rc
+      return responseData
     }
 
-    // await kv.set(key, response, { ex: 300 })
-    await kv.set(key, response)
-
-    return response
+    return item
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

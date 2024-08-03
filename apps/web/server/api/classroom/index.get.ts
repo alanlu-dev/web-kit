@@ -1,13 +1,19 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{ query: { page?: string; page_size?: string; refresh?: boolean } }>(async (event) => {
+export default defineEventHandler<{
+  query: {
+    page?: string
+    page_size?: string
+    refresh?: boolean
+  }
+}>(async (event) => {
   const { page, page_size, refresh } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
-  const pageSize = page_size ? Number.parseInt(page_size) : 100
+  const pageSize = page_size ? Number.parseInt(page_size) : 10
 
   try {
-    return await getFaqAsync(null, currentPage, pageSize, refresh)
+    return await getClassroomsAsync(null, currentPage, pageSize, refresh)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

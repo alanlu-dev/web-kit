@@ -1,5 +1,7 @@
 import { z } from 'zod'
 import { NotionCheckboxSchema, NotionDateSchema, NotionFilesSchema, NotionTitleSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import type { AndFilterType } from '~/types/notion'
 
 export const GallerySchema = z.object({
   // 位置: NotionSelectSchema.transform((o) => o.select?.name),
@@ -14,5 +16,30 @@ export const GallerySchema = z.object({
   // 資料驗證: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
   // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
 })
-
 export type GallerySchemaType = z.infer<typeof GallerySchema>
+
+export const galleryKey = 'gallery'
+export const galleryFilters: AndFilterType = [
+  { property: '封存', checkbox: { equals: false } },
+  { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
+]
+export const galleryQuery: QueryDatabaseParameters = {
+  database_id: process.env.NOTION_DATABASE_ID_GALLERIES!,
+  sorts: [{ property: '排序', direction: 'descending' }],
+  filter: { and: galleryFilters },
+  filter_properties: [
+    /** 標題 */
+    'title',
+    /** 圖片_PC */
+    'x%60DM',
+    /** 圖片_M */
+    'yjny',
+    /** 導轉連結 */
+    'f%3Eo%60',
+    /** 另開視窗 */
+    'K%5CmR',
+    /** 發布期間 */
+    'X%5DbD',
+  ],
+}

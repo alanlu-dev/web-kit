@@ -1,13 +1,24 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{ query: { page?: string; page_size?: string; refresh?: boolean } }>(async (event) => {
-  const { page, page_size, refresh } = getQuery(event)
+export default defineEventHandler<{
+  query: {
+    refresh?: boolean
+  }
+}>(async (event) => {
+  const id = getRouterParam(event, 'id')
+  if (!id) return null
 
-  const currentPage = page ? Number.parseInt(page) : 1
-  const pageSize = page_size ? Number.parseInt(page_size) : 100
+  const { refresh } = getQuery(event)
 
   try {
-    return await getFaqAsync(null, currentPage, pageSize, refresh)
+    const item = await getClassroomByIdAsync(null, +id, refresh)
+    if (!item) {
+      const responseData = { rc: 404, rm: 'Not Found' }
+      event.node.res.statusCode = responseData.rc
+      return responseData
+    }
+
+    return item
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

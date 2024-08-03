@@ -7,5 +7,4 @@ export const ContactSchema = z.object({
   title: z.string(),
   message: z.string(),
 })
-
 export type ContactSchemaType = z.infer<typeof ContactSchema>
