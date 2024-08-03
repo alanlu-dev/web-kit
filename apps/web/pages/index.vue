@@ -17,7 +17,7 @@ useSeoMeta({
     <HomeBanner />
 
     <!-- 協會介紹 -->
-    <HomeIntroduce data-aos="fade" />
+    <HomeIntroduce />
 
     <!-- 課程價值 -->
     <HomeValue data-aos="fade-up" />

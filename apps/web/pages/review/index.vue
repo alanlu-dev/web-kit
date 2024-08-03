@@ -55,22 +55,24 @@ watch(
     <Hero title="學員評價" />
     <Breadcrumb />
 
-    <section class="max-w:screen-max mx:auto pb:10x px:6x px:10x@tablet">
-      <div class="rel overflow:hidden r:5x" data-aos="fade-up">
+    <div class="px:6x px:10x@desktop">
+      <section class="rel {max-w:screen-max;mx:auto} overflow:hidden r:5x" data-aos="fade-up">
         <div class="{content:'';abs;inset:0;bg:home/.8}::before bg:cover bg:url(/review/cover.jpg)|no-repeat|center|36% blur(1x) h:40x h:50x@tablet h:60x@desktop"> </div>
-        <div class="abs center center-content flex middle p:5x|7x">
+        <div class="{abs;center;middle} {flex;center-content} p:5x|7x">
           <div class="f:5x f:6.5x@tablet f:8x@desktop font:medium ls:0.1em">
             <h1>模擬真實案場,手把手教學,學習效率更高!</h1>
             <h1>超過 <span class="fg:accent">500+</span> 則真實評價,上過課的學員們這麼說:</h1>
           </div>
         </div>
-      </div>
+      </section>
+    </div>
 
-      <div class="{grid-cols:1;gap:6x} {grid-cols:2;gap:5x}@tablet {grid-cols:3;gap:5x|8x}@desktop max-w:screen-main mt:5x mt:10x@tablet mx:auto" data-aos="fade-up" data-aos-delay="200">
+    <div class="px:6x px:10x@desktop">
+      <section class="{grid-cols:1;gap:6x} {max-w:screen-main;mx:auto} {grid-cols:2;gap:5x}@tablet {grid-cols:3;gap:5x|8x}@desktop mt:5x mt:10x@tablet" data-aos="fade-up" data-aos-delay="200">
         <ReviewCard v-for="review in reviews" :key="review.ID" :review="review" />
-      </div>
+      </section>
 
-      <Pagination class="mt:7x mt:10x@tablet" :page="page" :total="total" :range="1" />
-    </section>
+      <Pagination class="my:10x" :page="page" :total="total" :range="1" />
+    </div>
   </div>
 </template>

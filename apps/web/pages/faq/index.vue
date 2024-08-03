@@ -23,29 +23,12 @@ useSchemaOrg([
   }),
 ])
 
-const route = useRoute()
-const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
-
 // https://www.ripple-ui.com/docs/components/accordion
 // Accordion on click will collapse the other open accordions
 const focusable = ref(true)
 
-const router = useRouter()
-const htmlEl = ref<HTMLDivElement | null>(null)
-onMounted(() => {
-  const links = htmlEl.value!.querySelectorAll('a')
-  links.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault() // 阻止默認行為
-      router.push(link.getAttribute('href')!)
-    })
-  })
-
-  const firstInput = htmlEl.value!.querySelector('input') as HTMLInputElement | null
-  if (firstInput) {
-    firstInput.checked = true
-  }
-})
+const route = useRoute()
+const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
 </script>
 
 <template>
@@ -53,30 +36,12 @@ onMounted(() => {
     <Hero title="常見問答" />
     <Breadcrumb />
 
-    <section class="px:6x" data-aos="fade-up">
-      <div ref="htmlEl" class="flex flex:column gap:5x gap:10x@tablet max-w:screen-md mx:auto my:5x my:10x@tablet">
-        <div v-for="item in list" :key="item.排序!" class="bg:home p:0!">
-          <label class="pointer b1-r flex ai:flex-start fg:primary gap:2x jc:space-between p:5x|6x" :for="`faq-${item.排序}`">
-            <div>{{ item.排序 }}. {{ item.問題 }}</div>
-            <div class="size:24">
-              <Iconify icon="material-symbols-light:add" />
-            </div>
-          </label>
-          <input :id="`faq-${item.排序}`" name="faq" :type="focusable ? `radio` : `checkbox`" class="hidden" />
-          <div class="accordion-content :checked~{pb:5x}">
-            <div class="px:5x">
-              <hr class="bt:1|dashed|divider mb:5x" />
-              <div class="flex gap:2x">
-                <div v-html="item.答案"></div>
-              </div>
-            </div>
-          </div>
-          <SchemaOrgQuestion>
-            <template #name>{{ item.問題 }}</template>
-            <template #acceptedAnswer>{{ item.答案 }}</template>
-          </SchemaOrgQuestion>
-        </div>
-      </div>
-    </section>
+    <div class="p:5x|6x px:10x@desktop py:10x@tablet">
+      <section class="{flex;flex:col;gap:5x} {max-w:screen-main;mx:auto} {gap:10x}@tablet px:20x@desktop" data-aos="fade-up">
+        <FaqCard v-for="(item, idx) in list" :key="item.排序!" :checked="idx === 0" :faq="item" :focusable="focusable"> </FaqCard>
+      </section>
+
+      <div class="pb:10x pb:15x@tablet"></div>
+    </div>
   </div>
 </template>

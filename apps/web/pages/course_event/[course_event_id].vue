@@ -28,10 +28,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="flex flex:column">
-    <div class="pt:5x pt:10x@tablet px:6x">
+  <section class="{flex;flex:col}">
+    <div class="pt:5x pt:10x@tablet px:6x px:10x@desktop">
       <Breadcrumb :title="courseEvent?.page?.課程標題" />
-      <div class="flex ai:flex-start gap:7.5x jc:space-between max-w:screen-md mt:5x mx:auto">
+      <div class="{flex;ai:flex-start;jc:space-between;gap:7.5x} {max-w:screen-main;mx:auto} mt:5x">
         <div class="flex:2 overflow:hidden">
           <Splide
             ref="main"
@@ -43,7 +43,7 @@ onMounted(() => {
               pagination: false,
             }"
           >
-            <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
+            <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover}_img aspect:280/140 overflow:hidden r:2x">
               <nuxt-img :src="圖片" />
             </SplideSlide>
           </Splide>
@@ -73,7 +73,7 @@ onMounted(() => {
                 </Button>
               </div>
               <SplideTrack>
-                <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover;w:full}_img aspect:280/140 overflow:hidden r:2x">
+                <SplideSlide v-for="圖片 in course?.page?.課程照片" :key="圖片" class="{aspect:inherit;object:cover}_img aspect:280/140 overflow:hidden r:2x">
                   <nuxt-img :src="圖片" />
                 </SplideSlide>
               </SplideTrack>
@@ -89,7 +89,7 @@ onMounted(() => {
 
           <div v-for="item in course?.page?.講師" :key="item" class="bg:home mt:10x p:7x|6x">
             <h3 class="h3 fg:font-title">講師介紹🚧</h3>
-            <div class="center-content flex gap:6x">
+            <div class="{flex;center-content;gap:6x}">
               <div class="flex:2 mt:3x">
                 <p class="lines:1"
                   ><span>講師姓名：</span><span>{{ item }}</span></p
@@ -98,7 +98,7 @@ onMounted(() => {
                   講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹講師介紹
                 </p>
               </div>
-              <div class="{aspect:inherit;object:cover;w:full}_img aspect:250/271 flex:1">
+              <div class="{aspect:inherit;object:cover}_img aspect:250/271 flex:1">
                 <nuxt-img src="/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
               </div>
             </div>
@@ -123,7 +123,7 @@ onMounted(() => {
               <!-- <div
                 class="abs bg:linear-gradient(to|left,base-bg/0,base-bg) bottom:0 left:-1 pointer-events:none top:0 w:1rem z:1">
               </div> -->
-              <div class="abs bg:linear-gradient(to|right,base-bg/0,base-bg) bottom:0 pointer-events:none right:-1 top:0 w:1rem z:1"> </div>
+              <div class="{abs;bottom;top;right:-1} bg:linear-gradient(to|right,base-bg/0,base-bg) pointer-events:none w:1rem z:1"> </div>
             </div>
           </div>
 
@@ -134,8 +134,8 @@ onMounted(() => {
           </div>
         </div>
 
-        <div class="bottom fixed left {sticky;top:82;left:unset;bottom:unset}@desktop bg:base-bg flex:1 p:5x|6x shadow:all w:full z:nav">
-          <div class="flex {flex:row!;ai:center!}@tablet&<desktop ai:flex-start flex:column gap:3x jc:flex-start">
+        <div class="{fixed;bottom;left} {sticky;top:82;left:unset;bottom:unset}@desktop bg:base-bg flex:1 p:5x|6x shadow:all w:full z:nav">
+          <div class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:3x} {flex:row!;ai:center!}@tablet&<desktop">
             <h2 class="h2">{{ courseEvent?.page?.課程標題 }}</h2>
             <hr class="hidden@tablet&<desktop bg:#C9C9C9 h:1 w:full" />
             <CourseLevel :level="courseEvent?.page?.課程標籤" />

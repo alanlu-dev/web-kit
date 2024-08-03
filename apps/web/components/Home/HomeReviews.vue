@@ -1,76 +1,94 @@
 <script setup lang="ts">
+import cv from 'class-variant'
 import type { ReviewSchemaType } from '~/schema/review'
+
+// TODO: 設定檔
+const title = ['學員滿意度 93.8%']
+const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學員提供更好的學習體驗']
 
 const route = useRoute()
 const { data: reviews } = await useFetch<ReviewSchemaType[]>('/api/review', { query: { ...route.query, page_size: 10 } })
+
+// 間隙公式: (gap * (perPage - 1) / perPage)
+// 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
+const ratio = cv(
+  'mr:20px>li mr:40px>li@md ',
+  {
+    base: { '': `{w:100%}>li` },
+    tablet: { '': `{w:calc(50%-10px)}>li@tablet` },
+    md: { '': `{w:calc(50%-20px)}>li@md` },
+  },
+  ({ base, tablet, md }) => base && tablet && md,
+)
+
+const splideOption = {
+  arrows: true,
+  type: 'loop',
+  drag: 'free',
+  snap: true,
+  pagination: false,
+  perPage: 2,
+  gap: '40px',
+  breakpoints: {
+    1024: {
+      gap: '20px',
+    },
+    430: {
+      perPage: 1,
+    },
+  },
+}
 </script>
 
 <template>
-  <div class="rel">
-    <section class="max-w:screen-max mx:auto py:10x text:center">
-      <h1 class="h1 title fg:font-title">學員滿意度 93.8%</h1>
-      <h3 class="h3 center-content flex flex:column flex:row@desktop mt:4x">
-        <span>致力營造優質的學習環境,</span>
-        <span>持續精進教學,為學員提供更好的學習體驗</span>
-      </h3>
+  <section>
+    <div class="{max-w:screen-max;mx:auto;overflow:hidden} p:10x|6x px:10x@desktop text:center">
+      <div>
+        <h1 class="h1 title fg:font-title">
+          <span v-for="(t, idx) in title" :key="idx">{{ t }}</span>
+        </h1>
+        <h3 class="h3 {flex;jc:center;flex:wrap} mt:4x">
+          <span v-for="(t, idx) in title2" :key="idx" class="px:.5x">{{ t }}</span>
+        </h3>
+      </div>
 
-      <div class="rel mt:5x mt:10x@tablet">
+      <div class="{max-w:screen-main;mx:auto} mt:5x mt:10x@tablet w:80% w:full@desktop">
         <ClientOnly>
           <template #fallback>
-            <div class="text:center"> loading </div>
+            <div class="splide__track">
+              <ul v-if="reviews?.length" class="splide__list" :class="ratio()">
+                <li class="splide__slide">
+                  <ReviewCardHome :review="reviews[0]" />
+                </li>
+                <li class="splide__slide">
+                  <ReviewCardHome :review="reviews[1]" />
+                </li>
+              </ul>
+            </div>
           </template>
 
-          <Splide
-            :has-track="false"
-            :options="{
-              arrows: true,
-              type: 'loop',
-              snap: true,
-              pagination: false,
-              perPage: 2,
-              gap: '40px',
-              breakpoints: {
-                1024: {
-                  perPage: 1,
-                  gap: '20px',
-                },
-              },
-            }"
-          >
-            <div class="splide__arrows splide__arrows--ltr abs middle w:full">
-              <div class="rel h:full max-w:screen-lg mx:auto w:full">
-                <Button intent="secondary" class="splide__arrow splide__arrow--prev round! {f:6.75x;size:6.75x}! {f:9x;size:9x}!@tablet {f:10x;size:10x}!@desktop p:0!">
-                  <Iconify class="flex! {f:.6em;transform:unset}!>svg" icon="material-symbols-light:chevron-left" />
-                </Button>
-                <Button intent="secondary" class="splide__arrow splide__arrow--next round! {f:6.75x;size:6.75x}! {f:9x;size:9x}!@tablet {f:10x;size:10x}!@desktop p:0!">
-                  <Iconify class="flex! {f:.6em;transform:unset}!>svg" icon="material-symbols-light:chevron-right" />
-                </Button>
-              </div>
+          <Splide :has-track="false" :options="splideOption">
+            <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {left:-20x;right:-20x;max-w:calc(100vw-10x)}!">
+              <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:8x;f:8x}! {size:10x;f:10x}!@tablet">
+                <Iconify class="flex! {f:.6em;transform:unset}!>svg" icon="material-symbols-light:chevron-left" />
+              </Button>
+              <Button intent="secondary" class="splide__arrow splide__arrow--next right! {size:8x;f:8x}! {size:10x;f:10x}!@tablet">
+                <Iconify class="flex! {f:.6em;transform:unset}!>svg {f:11x}!>svg@desktop" icon="material-symbols-light:chevron-right" />
+              </Button>
             </div>
-            <SplideTrack class="max-w:screen-main mx:auto w:60% w:full@desktop">
+
+            <SplideTrack>
               <SplideSlide v-for="review in reviews" :key="review.ID">
-                <div class="flex bg:#FAFAFA flex:column flex:row@2xs gap:3x p:3x r:2x">
-                  <div>
-                    <div class="{aspect:1/1!;object:cover;w:full}_img aspect:1/1 overflow:hidden r:2x">
-                      <VideoPlayerCover v-if="review.影音連結" aspect="1/1" :src="review.影音連結" />
-                      <nuxt-img v-else :src="review.照片[0]" alt="學員評價" />
-                    </div>
-                  </div>
-                  <div class="b2-r text:left">
-                    <p class="fg:font-title">學員 {{ review.學員 }}</p>
-                    <p class="fg:font-title mt:1x">{{ review.課程名稱 }}</p>
-                    <p class="mt:10x">{{ review.評價 }}</p>
-                  </div>
-                </div>
+                <ReviewCardHome :review="review" />
               </SplideSlide>
             </SplideTrack>
           </Splide>
         </ClientOnly>
       </div>
 
-      <nuxt-link to="/review" class="block mt:10x text:center">
+      <nuxt-link to="/review" class="inline-block mt:10x text:center">
         <Iconify icon="material-symbols-light:arrow-right-alt">更多學員評價</Iconify>
       </nuxt-link>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>

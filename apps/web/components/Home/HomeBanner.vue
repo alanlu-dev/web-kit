@@ -1,14 +1,34 @@
 <script setup lang="ts">
+import cv from 'class-variant'
 import { NuxtLink } from '#components'
 import type { GallerySchemaType } from '~/schema/gallery'
 
 const route = useRoute()
 const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首頁-大B', { query: route.query })
+
+// 比例
+const imgRatio = {
+  m: '1/1',
+  pc: '1440/481',
+}
+const ratio = cv(
+  '{object:cover;w:full}_img',
+  {
+    m: { '': `{aspect:${imgRatio.m}}_img aspect:${imgRatio.m}` },
+    pc: { '': `{aspect:${imgRatio.pc}}_img@tablet aspect:${imgRatio.pc}@tablet` },
+  },
+  ({ m, pc }) => m && pc,
+)
 </script>
 
 <template>
-  <section class="max-w:screen-3xl mx:auto">
-    <div class="rel {aspect:1/1;object:cover;w:full}_img {aspect:1440/481}_img@tablet aspect:1/1 aspect:1440/481@tablet bg:primary/.1">
+  <section>
+    <div class="rel {max-w:screen-3xl;mx:auto;overflow:hidden} bg:primary/.1" :class="ratio()">
+      <div class="hidden .dev_{block} {abs;top;right} bg:secondary/.8 fg:white p:1x rbl:2x z:1">
+        <span class="hidden@tablet">ratio: {{ imgRatio.m }}</span>
+        <span class="block@tablet hidden">ratio: {{ imgRatio.pc }}</span>
+      </div>
+
       <ClientOnly>
         <template #fallback>
           <picture v-if="images">
@@ -27,11 +47,6 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首�
           </SplideSlide>
         </Splide>
       </ClientOnly>
-
-      <span class="abs hidden .dev_{block} bg:secondary bottom:0 fg:white p:1x right:0 rtl:2x">
-        <span class="hidden@tablet">1:1</span>
-        <span class="block@tablet hidden">1440:481</span>
-      </span>
     </div>
   </section>
 </template>

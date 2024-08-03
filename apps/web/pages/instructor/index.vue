@@ -36,12 +36,12 @@ const focusable = ref(false)
     <Hero title="師資陣容" />
     <Breadcrumb />
 
-    <div class="mb:10x mb:20x@tablet px:6x px:10x@desktop">
-      <section class="max-w:screen-main mx:auto">
-        <div v-for="instructor in instructors" :key="instructor.ID" class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x" data-aos="fade-up">
-          <div class="flex {flex:row;gap:10x}@tablet flex:column">
+    <section class="mb:10x mb:20x@tablet px:6x px:10x@desktop" data-aos="fade-up">
+      <div class="{max-w:screen-main;mx:auto}">
+        <div v-for="instructor in instructors" :key="instructor.ID" class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x">
+          <div class="{flex;flex:col} {flex:row;gap:10x}@tablet">
             <div class="flex:1">
-              <div class="{aspect:382/262;object:cover;w:full}_img aspect:382/262 overflow:hidden r:2x">
+              <div class="{aspect:inherit;object:cover}_img aspect:382/262 overflow:hidden r:2x">
                 <nuxt-img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
               </div>
               <h2 class="h2 fg:primary mt:3x">{{ instructor.名稱 }} {{ instructor.英文名 }}</h2>
@@ -53,7 +53,6 @@ const focusable = ref(false)
                 </ul>
               </div>
             </div>
-
             <div class="flex:2">
               <input :id="`i-${instructor.ID}`" name="i" :type="focusable ? `radio` : `checkbox`" class="hidden" />
               <div class="accordion-content {accordion-content--open}@tablet">
@@ -96,7 +95,7 @@ const focusable = ref(false)
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </div>
 </template>

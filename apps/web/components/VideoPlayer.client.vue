@@ -18,6 +18,7 @@ const [registerIframePlayer, iframePlayerInstance] = usePlyrVue({
     enablejsapi: 1,
     origin: window.location.origin,
   },
+  autoplay: true,
   ...props.options,
 })
 
@@ -28,10 +29,15 @@ function initIframePlayer() {
   }
 }
 
-onMounted(() => {
-  if (import.meta.client) {
-    nextTick(initIframePlayer)
-  }
+// onMounted(() => {
+//   if (import.meta.client) {
+//     nextTick(initIframePlayer)
+//   }
+// })
+
+// 暴露方法給父層組件
+defineExpose({
+  initIframePlayer,
 })
 </script>
 

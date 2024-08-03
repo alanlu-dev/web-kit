@@ -15,7 +15,7 @@ const emit = defineEmits<{
   <VueFinalModal
     class="center-content flex"
     overlay-transition="vfm-fade"
-    content-class="flex rel b:1|divider bg:base-bg flex:col max:screen-3xs px:16x py:10x r:2x"
+    content-class="rel {flex;flex:col} b:1|divider bg:base-bg max:screen-3xs p:10x|16x r:2x"
     @update:model-value="(val) => emit('update:modelValue', val)"
   >
     <h2 class="h2 title">
@@ -24,7 +24,7 @@ const emit = defineEmits<{
     <div class="b1-r mt:4x text:center">
       <slot />
     </div>
-    <button class="abs cursor:pointer right:5x top:5x" @click="emit('confirm')">
+    <button class="{abs;right:5x;top:5x} cursor:pointer" @click="emit('confirm')">
       <Iconify icon="material-symbols-light:close-small-outline-rounded" />
     </button>
   </VueFinalModal>

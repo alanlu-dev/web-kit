@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import cv from 'class-variant'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
 definePageMeta({
@@ -32,8 +33,6 @@ watch(
   },
 )
 
-// TODO: 過濾之後的分頁
-
 const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query })
 const { data: length } = await useFetch<number>('/api/course_event/length', { query })
 
@@ -43,130 +42,117 @@ const page = computed(() => {
   return currentPage > total.value ? total.value : currentPage
 })
 
-// const courseFilters = useState('courseFilters', () => ({
-//   category: '',
-// }))
-
-// const filterCourseEvents = computed(() => {
-//   if (courseFilters.value.category === '') return courseEvents.value
-//   return courseEvents.value?.filter((event) => event.課程標籤 === courseFilters.value.category) || []
-// })
-
 watch(
   () => page.value,
   (newPage) => {
     router.push({ query: { ...route.query, page: newPage } })
   },
 )
+
+const data = [
+  { icon: 'hugeicons:money-bag-02', title: ['想開啟斜槓人生,', '創造自己的多元收入之路!'] },
+  { icon: 'fluent:prompt-16-regular', title: ['想精進自己的專業技能,', '晉升家事職人!'] },
+  { icon: 'material-symbols-light:mop-outline', title: ['想學習高效技巧,', '為自己愛家維持居家整潔!'] },
+  { icon: 'clarity:tools-line', title: ['想轉換跑道、二度就業,', '尋找新的職涯方向'] },
+]
+
+const data2 = [
+  { img: '/course_event/step1.jpg', h1: '課堂上課', h2: '教室講解建材特性' },
+  { img: '/course_event/step2.jpg', h1: '樣品實作', h2: '前往真實教室清潔練習' },
+  { img: '/course_event/step3.jpg', h1: '實際演練', h2: '至客戶案場，老師陪同作業' },
+]
+
+// 間隙公式: (gap * (perPage - 1) / perPage)
+// 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
+const ratio = cv(
+  'mr:100px>li ',
+  {
+    base: { '': `{w:calc((100%/2)-(100px*(2-1)/2))}>li` },
+    md: { '': `{w:calc((100%/3)-(100px*(3-1)/3))}>li@md` },
+  },
+  ({ base, md }) => base && md,
+)
+
+const splideOption = {
+  arrows: false,
+  pagination: false,
+  drag: 'free',
+  gap: '100px',
+  snap: true,
+  perPage: 3,
+  breakpoints: {
+    1024: {
+      perPage: 2,
+    },
+  },
+}
 </script>
 
 <template>
   <div>
-    <Hero title="課程資訊 🚧" />
+    <Hero title="課程資訊" />
     <Breadcrumb />
 
-    <section class="max-w:screen-max mx:auto px:6x px:10x@tablet" data-aos="fade-up">
-      <div class="center-content flex flex:column flex:row@desktop gap:15x py:8x">
-        <div>
-          <h2 class="h2 title flex fg:font-title flex:column">
-            <span>不限入行門檻,</span>
-            <span>滿足不同階段學習需求🚧</span>
-          </h2>
-        </div>
-        <div>
-          <div class="{f:16x}_svg {bg:#FAFAFA;p:6x|3x;flex;center-content;gap:3x}>div gap:5x grid-cols:2">
-            <div>
-              <div>
-                <Icon name="hugeicons:money-bag-02" />
-              </div>
-              <p class="b2-r flex flex:column">
-                <span>想開啟斜槓人生,</span>
-                <span>創造自己的多元收入之路!</span>
-              </p>
-            </div>
-
-            <div>
-              <div>
-                <Icon name="fluent:prompt-16-regular" />
-              </div>
-              <p class="b2-r flex flex:column">
-                <span>想精進自己的專業技能,</span>
-                <span>晉升家事職人!</span>
-              </p>
-            </div>
-            <div>
-              <div>
-                <Icon name="material-symbols-light:mop-outline" />
-              </div>
-              <p class="b2-r flex flex:column">
-                <span>想學習高效技巧,</span>
-                <span>為自己愛家維持居家整潔!</span>
-              </p>
-            </div>
-            <div>
-              <div>
-                <Icon name="clarity:tools-line" />
-              </div>
-              <p class="b2-r flex flex:column">
-                <span>想轉換跑道、二度就業,</span>
-                <span>尋找新的職涯方向</span>
-              </p>
-            </div>
+    <section class="{max-w:screen-max;mx:auto} px:6x px:10x@tablet" data-aos="fade-up">
+      <div class="{flex;flex:col;center-content;gap:3x;py:5x} {gap:5x;py:10x}@tablet {flex:row;gap:15x}@desktop">
+        <h2 class="h2 title {flex;flex:col} fg:font-title">
+          <span>不限入行門檻,</span>
+          <span>滿足不同階段學習需求</span>
+        </h2>
+        <div class="{grid-cols:2;gap:5x}">
+          <div v-for="(i, idx) in data" :key="`${i.icon}-${idx}`" class="{flex;flex:col;jc:flex-start;gap:1x} {flex:row;gap:3x}@tablet bg:#FAFAFA p:6x|3x r:2x">
+            <Icon class="f:8x f:16x@tablet" :name="i.icon" />
+            <p class="b2-r {flex;flex:col}">
+              <span v-for="(p, pIdx) in i.title" :key="`${i.icon}-p-${pIdx}`">{{ p }}</span>
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg:home mb:14x mx:auto p:15x">
-      <div data-aos="fade-up" data-aos-delay="200">
-        <h2 class="h2 title fg:font-title">獨家課程安排三步驟,不藏私教學助你快速出班 🚧</h2>
-        <div class="center-content flex@desktop hidden gap:5x mt:10x">
-          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-              <p class="b1-m">課堂上課</p>
-              <p class="b2-r nowrap">教室講解建材特性</p>
+    <section data-aos="fade-up" data-aos-delay="200" class="bg:home p:15x|6x px:10x@desktop text:center">
+      <h2 class="h2 {flex;flex:col;center-content} {flex:row}@desktop fg:font-title">
+        <span>獨家課程安排三步驟,</span>
+        <span>不藏私教學助你快速出班</span>
+      </h2>
+      <div class="rel {max-w:screen-main;mx:auto} mt:6x mt:10x@tablet">
+        <div class="hidden@md {abs;top;bottom;right} bg:linear-gradient(to|right,home/0,home) pointer-events:none w:10vw z:1"> </div>
+
+        <ClientOnly>
+          <template #fallback>
+            <div class="splide__track">
+              <ul v-if="data2?.length" class="splide__list" :class="ratio()">
+                <li class="splide__slide">
+                  <CourseStep :item="data2[0]" />
+                </li>
+                <li class="splide__slide">
+                  <CourseStep :item="data2[1]" />
+                </li>
+                <li class="splide__slide">
+                  <CourseStep :item="data2[2]" />
+                </li>
+              </ul>
             </div>
-          </div>
-          <nuxt-img src="/course_event/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
-          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-              <p class="b1-m">樣品實作</p>
-              <p class="b2-r nowrap">前往真實教室清潔練習</p>
-            </div>
-          </div>
-          <nuxt-img src="/course_event/arrow.svg" alt="箭頭" class="pointer-events:none size:40 user-select:none" />
-          <div class="rel {aspect:349/225;object:cover;w:full}_img aspect:349/225 overflow:hidden r:2x">
-            <nuxt-img src="/course_event/course1.png" alt="課程介紹" class="pointer-events:none user-select:none" />
-            <div class="abs bottom left bg:linear-gradient(90deg,#304A55,#677D8633) fg:white p:2x|3x">
-              <p class="b1-m">實際演練</p>
-              <p class="b2-r nowrap">至客戶案場，老師陪同作業</p>
-            </div>
-          </div>
+          </template>
+          <Splide :options="splideOption">
+            <SplideSlide v-for="(i, idx) in data2" :key="i.h1" class="{flex;flex:col;center-content} text:center">
+              <CourseStep :item="i" :last="idx === data2.length - 1" />
+            </SplideSlide>
+          </Splide>
+        </ClientOnly>
+      </div>
+    </section>
+
+    <section class="pt:5x pt:6x@tablet px:6x px:10x@desktop" data-aos="fade-up">
+      <div class="{max-w:screen-main;mx:auto}">
+        <h1 class="h1 title fg:font-title">所有課程</h1>
+        <p class="b1-r my:3x my:5x@desktop text:right">共 {{ courseEvents?.length }} 堂課程</p>
+        <div class="{grid-cols:1;gap:5x} {grid-cols:2}@tablet {grid-cols:3;gap:10x|5x}@sm {grid-cols:3;gap:10x|15x}@desktop">
+          <CourseCard v-for="event in courseEvents" :key="event.ID" :event="event" />
         </div>
       </div>
 
-      <div class="mt:5x mt:6x@tablet px:6x px:10vw@tablet px:22.5x@desktop" data-aos="fade-up">
-        <div class="max-w:screen-md mx:auto">
-          <h1 class="h1 title fg:font-title">所有課程</h1>
-          <!-- <div class="inline-flex {flex;ai:center;jc:space-between;flex:row}@tablet flex:column gap:5x my:5x">
-            <div></div>
-            <FormKit v-model="courseFilters.category" :classes="{ outer: { 'mb:0!': true } }" type="select"
-              placeholder="分類" name="category" :options="[
-                { value: '', label: '分類' },
-                { value: '初階', label: '初階' },
-                { value: '進階', label: '進階' },
-              ]" />
-            <p class="b1-r">共 {{ courseEvents?.length }} 堂課程</p>
-          </div> -->
-          <p class="b1-r my:5x text:right">共 {{ courseEvents?.length }} 堂課程</p>
-          <div class="{grid-cols:1;gap:5x} {grid-cols:2;gap:10x|5x}@tablet {grid-cols:3;gap:10x|15x}@desktop">
-            <CourseCard v-for="event in courseEvents" :key="event.ID" :event="event" />
-          </div>
-          <Pagination :page="page" :total="total" :range="1" />
-        </div>
-      </div>
+      <Pagination class="my:10x" :page="page" :total="total" :range="1" />
     </section>
   </div>
 </template>

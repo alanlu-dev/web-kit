@@ -31,7 +31,7 @@ function goHome() {
 </script>
 
 <template>
-  <div class="max-w:screen-4xs mx:auto my:40x">
+  <div class="{max-w:screen-4xs;mx:auto} my:40x">
     <h2 class="h2 title fg:font-title">404</h2>
     <p class="mt:4x">糟糕，我們找不到您要查找的頁面，可能網頁過期或發生了無法預期的錯誤</p>
 

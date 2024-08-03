@@ -9,10 +9,10 @@ defineProps<IProps>()
 </script>
 
 <template>
-  <nuxt-link class="flex bg:base-bg flex:row flex:column@tablet overflow:hidden r:2x@tablet scale(1.05):hover_img shadow:md@tablet" :to="`/course_event/${event.ID}`">
-    <div class="min-w:40% min-w:unset@tablet pt:2x pt:unset@tablet">
+  <nuxt-link class="{flex;flex:row} {flex:col}@tablet bg:base-bg overflow:hidden r:2x@tablet scale(1.05):hover_img shadow:md@tablet" :to="`/course_event/${event.ID}`">
+    <div class="{min-w:40%;pt:2x} {min-w:unset;pt:unset}@tablet">
       <div class="rel aspect:147/102 aspect:316/133@tablet overflow:hidden r:2x r:unset@tablet">
-        <nuxt-img class="abs full ~300ms|ease inset:0 object-fit:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
+        <nuxt-img class="{abs;inset:0;full} ~300ms|ease object:cover" :src="event.課程圖片連結" :alt="event.課程標題" />
       </div>
     </div>
 

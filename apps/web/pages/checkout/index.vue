@@ -22,30 +22,30 @@ const show = ref(false)
 </script>
 
 <template>
-  <section class="flex flex:column">
-    <div class="pt:5x pt:10x@tablet px:6x">
-      <div class="max-w:screen-md mt:5x mx:auto">
-        <div class="flex flex:column gap:10x">
+  <section class="{flex;flex:col}">
+    <div class="p:5x|6x pt:10x@tablet px:10x@desktop">
+      <div class="{max-w:screen-main;mx:auto} mt:5x">
+        <div class="{flex;flex:col;gap:10x}">
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">購買明細</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="b1-r flex ai:center jc:space-between">
+            <div class="b1-r {flex;ai:center;jc:space-between}">
               <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${course_event_id}`">{{ courseEvent?.page?.課程標題 }}</NuxtLink>
               <p>NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
             </div>
-            <div class="b2-r flex flex:column gap:2x mt:4x">
-              <div class="flex ai:flex-start gap:1x jc:flex-start">
+            <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
+              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課日期：</p>
-                <div class="flex ai:center flex:wrap jc:flex-start">
+                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
                   <span>{{ courseEvent?.page.上課日期?.start }}</span>
                   <span>～</span>
                   <span>{{ courseEvent?.page.上課日期?.end }}</span>
                 </div>
               </div>
 
-              <div class="flex ai:flex-start gap:1x jc:flex-start">
+              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課地點：</p>
-                <div class="flex ai:center flex:wrap jc:flex-start">
+                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
                   <span>{{ courseEvent?.page.教室名稱 }}</span>
                 </div>
               </div>
@@ -56,7 +56,7 @@ const show = ref(false)
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {fg:font-title}_.formkit-label">
               <FormKit type="form" :actions="false">
-                <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
+                <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                   <FormKit type="text" name="name" label="姓名" placeholder="王小明" validation="required" :floating-label="false" />
                   <FormKit type="email" name="email" label="聯絡用電子信箱" placeholder="wang@example.com" validation="email" :floating-label="false" />
                   <FormKit type="text" name="mobile" label="手機" placeholder="09xxxxxxxxxx" validation="required|phone" :floating-label="false" />
@@ -68,14 +68,14 @@ const show = ref(false)
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">付款方式</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="flex ai:center bg:home fg:primary flex:column flex:row@tablet gap:2x@tablet jc:flex-start p:3x|5x r:2x">
+            <div class="{flex;flex:col;ai:center;jc:flex-start} {flex:row;gap:2x}@tablet bg:home fg:primary p:3x|5x r:2x">
               <Iconify icon="material-symbols-light:security" />
               <p class="b1-r">你所有的交易資訊皆獲得安全保護</p>
             </div>
             <div class="my:5x">
               <FormKit type="radio" name="payType" value="" :options="[{ value: '', label: '信用卡一次付清' }]">
                 <template #label>
-                  <div class="flex ai:center jc:space-between w:full">
+                  <div class="{flex;ai:center;jc:space-between} w:full">
                     <p>信用卡一次付清</p>
                     <NuxtImg src="/other/credit-card.png" class="ml:auto w:74" />
                   </div>
@@ -83,9 +83,9 @@ const show = ref(false)
               </FormKit>
             </div>
             <div class="bg:#FAFAFA p:4x r:2x">
-              <div class="b1-r {bg:base-bg}_.formkit-inner {fg:font-title;bg:#FAFAFA}_.formkit-label max-w:715 mx:auto">
+              <div class="b1-r {max-w:715;mx:auto} {bg:base-bg}_.formkit-inner {fg:font-title;bg:#FAFAFA}_.formkit-label">
                 <FormKit type="form" :actions="false">
-                  <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
+                  <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                     <FormKit
                       type="text"
                       name="cardNo"
@@ -104,7 +104,7 @@ const show = ref(false)
           </div>
         </div>
 
-        <div class="center-content flex gap:10x mt:15x@tablet my:10x">
+        <div class="{flex;center-content;gap:10x} mt:15x@tablet my:10x">
           <Button intent="secondary" @click="navigateTo(`/course_event/${course_event_id}`)">取消</Button>
           <Button intent="primary" @click="navigateTo(`/checkout/success?course_event_id=${course_event_id}`)">確認付款</Button>
         </div>

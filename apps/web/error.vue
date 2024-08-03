@@ -15,7 +15,7 @@ const handleError = () => clearError({ redirect: '/' })
 
 <template>
   <LayoutDefault>
-    <div class="max-w:screen-4xs mx:auto my:40x">
+    <div class="{max-w:screen-4xs;mx:auto} my:40x">
       <h2 class="h2 title fg:font-title">{{ error!.statusCode }}</h2>
       <div class="f:medium mt:4x t:center">很抱歉，伺服器發生了未預期的錯誤</div>
 

@@ -22,7 +22,7 @@ const bgCls = `background-image:url(${bg.value})`
 <template>
   <section class="rel">
     <div class="{content:'';abs;inset:0;bg:footer/.8}::before bg:cover bg:no-repeat|center|65% h:100 h:152@tablet" :class="[bgCls]"></div>
-    <div class="abs center center-content flex middle">
+    <div class="{abs;center;middle} {flex;center-content}">
       <h1 class="h1 title fg:white">{{ title }}</h1>
     </div>
   </section>

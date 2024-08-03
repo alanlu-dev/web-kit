@@ -15,16 +15,16 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
 </script>
 
 <template>
-  <section class="flex flex:column max-w:screen-2xs mx:auto">
-    <h1 class="h3 title @fadeInUpBig fg:font-title">聯絡我們</h1>
-    <div class="b1-r mt:3x mt:4x@tablet text:center">
-      <p>有課程相關的問題嗎？</p>
-      <p>留下資訊我們將盡快回覆您</p>
+  <section class="{flex;flex:col} {max-w:screen-2xs;mx:auto}">
+    <h1 class="h3 title fg:font-title">聯絡我們</h1>
+    <div class="b1-r {flex;flex:wrap;jc:center} mt:3x mt:4x@tablet text:center">
+      <span>有課程相關的問題嗎？</span>
+      <span>留下資訊我們將盡快回覆您</span>
     </div>
 
-    <div class="{mt:4x;text:right}_.formkit-actions mt:7x mt:5x@tablet">
+    <div class="{mt:4x;text:right}_.formkit-actions mt:5x">
       <FormKit v-model="data" type="form" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
-        <div class="gap:4x|6x grid-cols:1 grid-cols:2@tablet">
+        <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
           <FormKit type="text" name="mobile" label="聯絡電話" validation="required|phone" />
           <FormKit type="email" name="email" label="電子信箱" validation="required|email" />

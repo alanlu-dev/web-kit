@@ -18,7 +18,7 @@ export default {
       }),
       // 標題
       'title': toLine({
-        '': cls`rel pointer`,
+        '': cls`rel cursor:pointer`,
         '::after': toLine({
           '': `content:'+' abs right:2x`,
           ':checked~': `content:'-'`,

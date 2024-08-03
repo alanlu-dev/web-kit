@@ -80,8 +80,8 @@ function jumpPages(page: number | string) {
 </script>
 
 <template>
-  <div class="center-content flex {size:6x;f:14;p:0;rounded;fg:font-title;font:regular}>button {size:7x;f:16}>button@tablet {size:8x}>button@desktop gap:2x gap:3x@tablet gap:5x@desktop">
-    <Button intent="text" class="center-content flex!" :disabled="currentPage === 1" @click="jumpPages(currentPage - 1)">
+  <div class="{flex;center-content;gap:2x} {gap:3x}@tablet {gap:5x}@desktop {size:6x;f:14;p:0;rounded;fg:font-title;font:regular}>button {size:7x;f:16}>button@tablet {size:8x}>button@desktop">
+    <Button intent="text" class="{flex!;center-content}" :disabled="currentPage === 1" @click="jumpPages(currentPage - 1)">
       <Iconify icon="material-symbols-light:chevron-left" />
     </Button>
     <Button
@@ -92,7 +92,7 @@ function jumpPages(page: number | string) {
     >
       {{ targetPage }}
     </Button>
-    <Button intent="text" class="center-content flex!" :disabled="currentPage === totalPage" @click="jumpPages(currentPage + 1)">
+    <Button intent="text" class="{flex!;center-content}" :disabled="currentPage === totalPage" @click="jumpPages(currentPage + 1)">
       <Iconify icon="material-symbols-light:chevron-right" />
     </Button>
   </div>
