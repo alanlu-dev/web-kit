@@ -18,10 +18,10 @@ const processLinks = computed(() => {
 
 <template>
   <nav aria-label="Breadcrumbs" class="{max-w:screen-max;mx:auto} p:4x|3x pl:6x pl:22.5x@desktop">
-    <ul class="b1-r {flex;ai:center;jc:flex-start}">
+    <ul class="b1-r {flex;ai:center;jc:flex-start;flex:wrap}">
       <template v-for="(item, key) in processLinks" :key="key">
         <span v-if="key > 0" class="f:14 fg:#9E9E9E ls:0.25px pointer-events:none user-select:none"> / </span>
-        <li class="{font-title}>span contents {fg:primary-hover}_a:hover ~color|300ms|ease_a p:1x|3x>*">
+        <li class="{font-title}>span contents nowrap {fg:primary-hover}_a:hover ~color|300ms|ease_a p:1x|3x>*">
           <NuxtLink v-if="key !== processLinks.length - 1" v-bind="item">
             {{ item.label }}
           </NuxtLink>

@@ -26,7 +26,7 @@ const { class: cls, ...filteredAttrs } = useAttrs()
 
 <template>
   <div class="rel overflow:hidden" :class="`${cls} aspect:${aspect}`">
-    <label class="block rel {object:cover}_img,_.plyr__video-wrapper" :class="`{aspect:${aspect}!}_img,_.plyr__video-wrapper`">
+    <label class="block rel {object:cover;w:full}_img,_.plyr__video-wrapper" :class="`{aspect:${aspect}!}_img,_.plyr__video-wrapper`">
       <nuxt-img :src="cover" alt="影片封面" />
       <input type="radio" class="hidden" />
       <div v-if="video" class=":checked~{hidden} {abs;inset:0} cursor:pointer z:1" @click="callInitIframePlayer"></div>
