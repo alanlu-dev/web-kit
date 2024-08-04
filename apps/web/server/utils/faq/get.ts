@@ -3,9 +3,9 @@ import { kv } from '@vercel/kv'
 import type { FaqSchemaType } from '~/schema/faq'
 import { FaqSchema, faqKey, faqQuery } from '~/schema/faq'
 
-export async function getFaqAsync(notion: Client | null, currentPage: number | undefined = 1, pageSize: number | undefined = 10, refresh: boolean | undefined = false): Promise<FaqSchemaType[]> {
+export async function getFaqAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<FaqSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheAsync<FaqSchemaType>(faqKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheAsync<FaqSchemaType>(faqKey, currentPage, pageSize)
     if (items !== null) return items
   }
 

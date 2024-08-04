@@ -24,9 +24,9 @@ export async function getNewsByIdAsync(notion: Client | null, id: number, refres
   return item
 }
 
-export async function getNewsAsync(notion: Client | null, currentPage: number | undefined = 1, pageSize: number | undefined = 10, refresh: boolean | undefined = false): Promise<NewsSchemaType[]> {
+export async function getNewsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<NewsSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<NewsSchemaType>(newsKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<NewsSchemaType>(newsKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<NewsSchemaType>(notion, { ...newsQuery, page_size: pageSize }, processNewsDataAsync)

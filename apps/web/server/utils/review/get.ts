@@ -24,14 +24,9 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
   return item
 }
 
-export async function getReviewsAsync(
-  notion: Client | null,
-  currentPage: number | undefined = 1,
-  pageSize: number | undefined = 10,
-  refresh: boolean | undefined = false,
-): Promise<ReviewSchemaType[]> {
+export async function getReviewsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<ReviewSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<ReviewSchemaType>(reviewKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<ReviewSchemaType>(reviewKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<ReviewSchemaType>(notion, { ...reviewQuery, page_size: pageSize }, processReviewDataAsync)

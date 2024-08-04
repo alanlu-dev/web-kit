@@ -24,14 +24,9 @@ export async function getClassroomByIdAsync(notion: Client | null, id: number, r
   return item
 }
 
-export async function getClassroomsAsync(
-  notion: Client | null,
-  currentPage: number | undefined = 1,
-  pageSize: number | undefined = 10,
-  refresh: boolean | undefined = false,
-): Promise<ClassroomSchemaType[]> {
+export async function getClassroomsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<ClassroomSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<ClassroomSchemaType>(classroomKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<ClassroomSchemaType>(classroomKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<ClassroomSchemaType>(notion, { ...classroomQuery, page_size: pageSize }, processClassroomDataAsync)

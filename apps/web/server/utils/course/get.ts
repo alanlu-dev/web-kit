@@ -38,14 +38,9 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
   return item
 }
 
-export async function getCoursesAsync(
-  notion: Client | null,
-  currentPage: number | undefined = 1,
-  pageSize: number | undefined = 10,
-  refresh: boolean | undefined = false,
-): Promise<CourseSchemaType[]> {
+export async function getCoursesAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<CourseSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<CourseSchemaType>(courseKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<CourseSchemaType>(courseKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<CourseSchemaType>(notion, { ...courseQuery, page_size: pageSize }, processCourseDataAsync)

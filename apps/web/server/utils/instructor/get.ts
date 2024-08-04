@@ -25,14 +25,9 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
   return item
 }
 
-export async function getInstructorsAsync(
-  notion: Client | null,
-  currentPage: number | undefined = 1,
-  pageSize: number | undefined = 10,
-  refresh: boolean | undefined = false,
-): Promise<InstructorSchemaType[]> {
+export async function getInstructorsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<InstructorSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<InstructorSchemaType>(instructorKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<InstructorSchemaType>(instructorKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<InstructorSchemaType>(notion, { ...instructorQuery, page_size: pageSize }, processInstructorDataAsync)

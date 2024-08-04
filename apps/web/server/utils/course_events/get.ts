@@ -33,14 +33,9 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   return item
 }
 
-export async function getCourseEventsAsync(
-  notion: Client | null,
-  currentPage: number | undefined = 1,
-  pageSize: number | undefined = 10,
-  refresh: boolean | undefined = false,
-): Promise<CourseEventSchemaType[]> {
+export async function getCourseEventsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<CourseEventSchemaType[]> {
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<CourseEventSchemaType>(courseEventKey, (currentPage - 1) * pageSize, currentPage * pageSize - 1)
+    const items = await fetchFromCacheIdAsync<CourseEventSchemaType>(courseEventKey, currentPage, pageSize)
     if (items !== null) {
       await Promise.all(
         items.map(async (item) => {
