@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { formatThousand } from '@alanlu-dev/utils'
-import type { NotionBlockType } from '@alanlu-dev/notion-api-zod-schema'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
 const route = useRoute()
 const course_event_id = route.query.course_event_id
 
-const { data: courseEvent } = await useFetch<{ page: CourseEventSchemaType; contents: NotionBlockType[] }>(`/api/course_event/${course_event_id}`, { query: route.query })
+const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${course_event_id}`, { query: route.query })
 
 useSeoMeta({
-  title: () => courseEvent.value?.page?.課程標題 || '結帳',
+  title: () => courseEvent.value?.課程?.課程名稱 || '結帳',
 })
 
 const show = ref(false)
@@ -29,24 +28,27 @@ const show = ref(false)
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">購買明細</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="b1-r {flex;ai:center;jc:space-between}">
-              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${course_event_id}`">{{ courseEvent?.page?.課程標題 }}</NuxtLink>
-              <p>NT$ {{ courseEvent?.page?.最終價格 ? formatThousand(courseEvent?.page?.最終價格) : '???' }} </p>
+            <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
+              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${course_event_id}`">{{ courseEvent?.課程?.課程名稱 }}</NuxtLink>
+              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程?.價格 || 99999) }}</p>
             </div>
             <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課日期：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.page.上課日期?.start }}</span>
-                  <span>～</span>
-                  <span>{{ courseEvent?.page.上課日期?.end }}</span>
+                  <span>{{ courseEvent?.上課日期?.[0] }}</span>
                 </div>
               </div>
-
+              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+                <p class="nowrap fg:font-title">上課時間：</p>
+                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                  <span>{{ courseEvent?.上課日期?.[1] }}</span>
+                </div>
+              </div>
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課地點：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.page.教室名稱 }}</span>
+                  <span>{{ courseEvent?.教室?.地址 }}</span>
                 </div>
               </div>
             </div>
