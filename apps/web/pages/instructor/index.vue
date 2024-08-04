@@ -62,26 +62,26 @@ const focusable = ref(false)
                   </div>
 
                   <div v-if="instructor.專業認證資訊?.length" class="mt:4x mt:7x@tablet">
-                    <p class="b1-m flex {content:'';w:1.5x;bg:font-title/.2;list-item;h:full;mr:2x}::before fg:font-title"> 專業認證</p>
+                    <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 專業認證</p>
                     <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
                       <ul>
-                        <li v-for="item in instructor.專業認證資訊" :key="item?.ID">{{ item?.專業認證 }}</li>
+                        <li v-for="item in instructor.專業認證資訊" :key="item?.PAGE_ID">{{ item?.專業認證 }}</li>
                       </ul>
                     </div>
                   </div>
 
                   <div v-if="instructor?.服務經驗" class="mt:4x mt:7x@tablet">
-                    <p class="b1-m flex {content:'';w:1.5x;bg:font-title/.2;list-item;h:full;mr:2x}::before fg:font-title"> 服務經驗</p>
+                    <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 服務經驗</p>
                     <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
                       {{ instructor?.服務經驗 }}
                     </div>
                   </div>
 
                   <div v-if="instructor.受邀講座資訊?.length" class="mt:4x mt:7x@tablet">
-                    <p class="b1-m flex {content:'';w:1.5x;bg:font-title/.2;list-item;h:full;mr:2x}::before fg:font-title"> 受邀講座</p>
+                    <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 受邀講座</p>
                     <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
                       <ul>
-                        <li v-for="item in instructor.受邀講座資訊" :key="item?.ID">{{ item?.受邀講座 }}</li>
+                        <li v-for="item in instructor.受邀講座資訊" :key="item?.PAGE_ID">{{ item?.受邀講座 }}</li>
                       </ul>
                     </div>
                   </div>

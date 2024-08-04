@@ -69,9 +69,9 @@ export const CourseSchema = z.object({
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
   價格: NotionNumberSchema.transform((o) => o.number),
-  單元數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'number' && o.rollup.array[0].number ? o.rollup.array[0].number : undefined)),
-  課程時長: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'number' && o.rollup.array[0].number ? o.rollup.array[0].number : undefined)),
-  結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'number' && o.rollup.array[0].number ? o.rollup.array[0].number : undefined)),
+  單元數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
+  課程時長: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
+  結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
   講師ID: NotionDatabaseRollupSchema.transform((o) =>

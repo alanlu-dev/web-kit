@@ -14,13 +14,29 @@ export const CourseEventSchema = z.object({
 
   上課日期: NotionDateSchema.transform((o) => {
     if (!o.date) return null
-    const startDate = o.date.start.replace(/-/g, '/')
-    const endDate = o.date.end ? o.date.end.replace(/-/g, '/') : null
+    const startDate = new Date(o.date.start)
+    const endDate = o.date.end ? new Date(o.date.end) : null
 
-    return {
-      start: startDate,
-      end: endDate,
-    }
+    const formattedDate = `${startDate
+      .toLocaleDateString('zh-TW', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        weekday: 'short',
+      })
+      .replace('週', '')}`
+
+    const startTime = startDate.toLocaleTimeString('zh-TW', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })
+
+    const endTime = endDate ? endDate.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', hour12: false }) : null
+
+    const formattedTime = endTime ? `${startTime}~${endTime}` : startTime
+
+    return [formattedDate, formattedTime]
   }),
   // 課程: NotionRelationSchema.transform((o) => o.relation[0]?.id),
   課程ID: NotionDatabaseRollupSchema.transform(
@@ -49,7 +65,7 @@ export const CourseEventSchema = z.object({
   // ),
 
   名額限制: NotionNumberSchema.transform((o) => o.number),
-  // 報名人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' ? o.rollup.number : undefined)),
+  // 報名人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
   // 發布狀態: NotionStatusSchema.transform((o) => o.status),
