@@ -135,7 +135,7 @@ onMounted(() => {
           </nuxt-link>
         </div>
 
-        <div class="{sticky;bottom;left} {top:82;left:unset;bottom:unset;max-w:screen-tablet;mr:10x;r:2x}@desktop bg:base-bg p:5x|6x shadow:all text:left w:full z:nav">
+        <div class="{sticky;bottom;left} {top:calc(74+2x);left:unset;bottom:unset;max-w:screen-tablet;mb:4x;mr:10x;r:2x}@desktop bg:base-bg p:5x|6x shadow:all text:left w:full z:nav">
           <input id="Registration" name="Registration" type="checkbox" class="hidden {accordion-content--open}:checked~div_.accordion-content" />
 
           <div class="accordion-content {accordion-content--open}@desktop">
