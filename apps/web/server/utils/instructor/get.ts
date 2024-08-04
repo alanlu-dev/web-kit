@@ -10,11 +10,7 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
 
   if (!refresh) {
     const item = await redis.get<InstructorSchemaType>(key)
-
-    if (item) {
-      console.log('cache hit', key)
-      return item
-    }
+    if (item) return item
   }
 
   const item = await fetchNotionDataByIdAsync<InstructorSchemaType>(notion, instructorQuery, instructorFilters, id, processInstructorDataAsync)

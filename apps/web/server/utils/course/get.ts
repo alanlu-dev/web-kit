@@ -12,13 +12,7 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
     const item = await redis.get<CourseSchemaType>(key)
 
     if (item) {
-      console.log('cache hit', key)
-
-      if (!item.講師資訊) item.講師資訊 = []
-
-      const instructorInfos = await fetchInstructorInfos(notion, item.講師ID)
-      item.講師資訊!.push(...instructorInfos)
-
+      if (item.講師ID) item.講師資訊 = await fetchInstructorInfos(notion, item.講師ID)
       return item
     }
   }
@@ -28,10 +22,7 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
   if (item) {
     await redis.set(key, item)
 
-    if (!item.講師資訊) item.講師資訊 = []
-
-    const instructorInfos = await fetchInstructorInfos(notion, item.講師ID)
-    item.講師資訊!.push(...instructorInfos)
+    if (item.講師ID) item.講師資訊 = await fetchInstructorInfos(notion, item.講師ID)
   }
 
   return item

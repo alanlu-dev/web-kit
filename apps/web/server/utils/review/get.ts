@@ -9,11 +9,7 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
 
   if (!refresh) {
     const item = await redis.get<ReviewSchemaType>(key)
-
-    if (item) {
-      console.log('cache hit', key)
-      return item
-    }
+    if (item) return item
   }
 
   const item = await fetchNotionDataByIdAsync<ReviewSchemaType>(notion, reviewQuery, reviewFilters, id, processReviewDataAsync)

@@ -9,11 +9,7 @@ export async function getNewsByIdAsync(notion: Client | null, id: number, refres
 
   if (!refresh) {
     const item = await redis.get<NewsSchemaType>(key)
-
-    if (item) {
-      console.log('cache hit', key)
-      return item
-    }
+    if (item) return item
   }
 
   const item = await fetchNotionDataByIdAsync<NewsSchemaType>(notion, newsQuery, newsFilters, id, processNewsDataAsync)

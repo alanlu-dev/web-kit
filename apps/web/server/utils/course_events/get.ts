@@ -11,11 +11,8 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
     const item = await redis.get<CourseEventSchemaType>(key)
 
     if (item) {
-      console.log('cache hit', key)
-
       if (item.課程ID) item.課程 = await getCourseByIdAsync(notion, item.課程ID)
       if (item.教室ID) item.教室 = await getClassroomByIdAsync(notion, item.教室ID)
-
       return item
     }
   }

@@ -1,6 +1,13 @@
 import { createClient } from 'redis'
 import { kv } from '@vercel/kv'
 
+const isDev = process.env.VERCEL_ENV === 'preview'
+
+function log(message?: any, ...optionalParams: any[]) {
+  if (!isDev) return
+  console.log(`${message}`, ...optionalParams)
+}
+
 const client = createClient({
   password: process.env.REDIS_PASSWORD,
   socket: {
@@ -15,7 +22,7 @@ client.on('error', (err) => {
 
 const STORAGE_TYPE = process.env.STORAGE_TYPE || 'kv'
 let currentStorageType = STORAGE_TYPE
-console.log('currentStorageType', currentStorageType, process.env.REDIS_HOST)
+log('currentStorageType', currentStorageType, process.env.REDIS_HOST)
 
 async function ensureRedisConnection() {
   if (!client.isOpen) {
@@ -44,6 +51,7 @@ async function clearAllData() {
     await kv.flushall() // 清除 KV 中的所有資料
   }
 }
+
 async function handleError<T>(operation: () => Promise<T>): Promise<T> {
   try {
     if (currentStorageType === 'redis') {
@@ -68,7 +76,7 @@ async function handleError<T>(operation: () => Promise<T>): Promise<T> {
 }
 
 async function set(key: string, data: any) {
-  // console.log(`Setting data to key: ${key}, data: ${data}`)
+  log(`Setting data to key: ${key}, data: ${data}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
       return await client.set(key, JSON.stringify(data))
@@ -80,24 +88,28 @@ async function set(key: string, data: any) {
 }
 
 async function get<T>(key: string): Promise<T | null> {
-  // console.log(`Getting data from key: ${key}`)
+  // log(`Getting data from key: ${key}`)
   return handleError(async () => {
+    let data: T | null = null
     if (currentStorageType === 'redis') {
       const result = await client.get(key)
-      return result ? JSON.parse(result) : null
+      data = result ? JSON.parse(result) : null
     }
     else {
-      return await kv.get<T>(key)
+      data = await kv.get<T>(key)
     }
+
+    if (data) log('cache hit', key)
+    return data
   })
 }
 
 async function mGet<T>(keys: string[]): Promise<T[]> {
-  // console.log(`Getting data from keys: ${keys}`)
+  // log(`Getting data from keys: ${keys}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
       const result = await client.mGet(keys)
-      return result.map<T>((item) => (item ? JSON.parse(item) : null))
+      return (result ?? []).map((item) => (item ? JSON.parse(item) : null)) as T[]
     }
     else {
       return await kv.mget<T[]>(keys)
@@ -106,7 +118,7 @@ async function mGet<T>(keys: string[]): Promise<T[]> {
 }
 
 async function del(key: string) {
-  // console.log(`Deleting data from key: ${key}`)
+  log(`Deleting data from key: ${key}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
       await client.del(key)
@@ -118,7 +130,7 @@ async function del(key: string) {
 }
 
 async function lRange<T>(key: string, currentPage: number, pageSize: number): Promise<T[]> {
-  // console.log(`Getting data from list key: ${key}, currentPage: ${currentPage}, pageSize: ${pageSize}`)
+  // log(`Getting data from list key: ${key}, currentPage: ${currentPage}, pageSize: ${pageSize}`)
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = currentPage * pageSize - 1
   return handleError(async () => {
@@ -133,7 +145,7 @@ async function lRange<T>(key: string, currentPage: number, pageSize: number): Pr
 }
 
 async function rPush(key: string, ...data: any[]): Promise<number> {
-  // console.log(`Pushing data to list key: ${key}, data: ${data}`)
+  log(`Pushing data to list key: ${key}, data: ${data}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
       await ensureRedisConnection()
@@ -141,18 +153,18 @@ async function rPush(key: string, ...data: any[]): Promise<number> {
         key,
         data.map((item) => JSON.stringify(item)),
       ) // 展開數組參數
-      console.log('Using Redis to push data to list', result)
+      log('Using Redis to push data to list', result)
       return result
     }
     else {
-      console.log('Using kv to push data to list')
+      log('Using kv to push data to list')
       return await kv.rpush(key, data)
     }
   })
 }
 
 async function lLen(key: string): Promise<number> {
-  // console.log(`Getting list length from key: ${key}`)
+  // log(`Getting list length from key: ${key}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
       return await client.lLen(key)

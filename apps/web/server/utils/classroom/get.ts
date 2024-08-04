@@ -9,11 +9,7 @@ export async function getClassroomByIdAsync(notion: Client | null, id: number, r
 
   if (!refresh) {
     const item = await redis.get<ClassroomSchemaType>(key)
-
-    if (item) {
-      console.log('cache hit', key)
-      return item
-    }
+    if (item) return item
   }
 
   const item = await fetchNotionDataByIdAsync<ClassroomSchemaType>(notion, classroomQuery, classroomFilters, id, processClassroomDataAsync)

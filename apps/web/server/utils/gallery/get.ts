@@ -9,11 +9,7 @@ export async function getGalleryByPositionAsync(notion: Client | null, position:
 
   if (!refresh) {
     const items = await redis.get<GallerySchemaType[]>(key)
-
-    if (items) {
-      console.log('cache hit', key)
-      return items.filter((item) => isWithinDateRange(item.發布期間))
-    }
+    if (items) return items.filter((item) => isWithinDateRange(item.發布期間))
   }
 
   const items = await fetchNotionDataAsync<GallerySchemaType>(
