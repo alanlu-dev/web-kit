@@ -1,6 +1,5 @@
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { type Client, isFullPage } from '@notionhq/client'
-import { kv } from '@vercel/kv'
 import type { CourseSchemaType } from '~/schema/course'
 import { AchievementSchema, CourseSchema, FeaturesSchema, LearnSchema, OutlineSchema, PreparationSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
 
@@ -10,7 +9,7 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
   const key = `${courseKey}:${id}`
 
   if (!refresh) {
-    const item = await kv.get<CourseSchemaType>(key)
+    const item = await redis.get<CourseSchemaType>(key)
 
     if (item) {
       console.log('cache hit', key)
@@ -27,7 +26,7 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
   const item = await fetchNotionDataByIdAsync<CourseSchemaType>(notion, courseQuery, courseFilters, id, processCourseDataAsync)
 
   if (item) {
-    await kv.set(key, item)
+    await redis.set(key, item)
 
     if (!item.講師資訊) item.講師資訊 = []
 
@@ -38,17 +37,17 @@ export async function getCourseByIdAsync(notion: Client | null, id: number, refr
   return item
 }
 
-export async function getCoursesAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<CourseSchemaType[]> {
+export async function getCoursesAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<CourseSchemaType[]> {
   if (!refresh) {
     const items = await fetchFromCacheIdAsync<CourseSchemaType>(courseKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<CourseSchemaType>(notion, { ...courseQuery, page_size: pageSize }, processCourseDataAsync)
 
-  await kv.del(courseKey)
+  await redis.del(courseKey)
   items.map(async (item) => {
-    await kv.rpush(courseKey, item.ID)
-    await kv.set(`${courseKey}:${item.ID}`, item)
+    await redis.rPush(courseKey, item.ID)
+    await redis.set(`${courseKey}:${item.ID}`, item)
   })
 
   const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)

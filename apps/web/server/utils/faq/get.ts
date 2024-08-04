@@ -1,9 +1,8 @@
 import { type Client, isFullPage } from '@notionhq/client'
-import { kv } from '@vercel/kv'
 import type { FaqSchemaType } from '~/schema/faq'
 import { FaqSchema, faqKey, faqQuery } from '~/schema/faq'
 
-export async function getFaqAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<FaqSchemaType[]> {
+export async function getFaqAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<FaqSchemaType[]> {
   if (!refresh) {
     const items = await fetchFromCacheAsync<FaqSchemaType>(faqKey, currentPage, pageSize)
     if (items !== null) return items
@@ -11,8 +10,8 @@ export async function getFaqAsync(notion: Client | null, currentPage: number, pa
 
   const items = await fetchNotionDataAsync<FaqSchemaType>(notion, { ...faqQuery, page_size: pageSize }, processFaqDataAsync)
 
-  await kv.del(faqKey)
-  await kv.rpush(faqKey, ...items)
+  await redis.del(faqKey)
+  await redis.rPush(faqKey, ...items)
 
   const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
   return pageData

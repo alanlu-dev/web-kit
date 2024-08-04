@@ -1,6 +1,5 @@
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { type Client, isFullPage } from '@notionhq/client'
-import { kv } from '@vercel/kv'
 import type { InstructorSchemaType } from '~/schema/instructor'
 import { CertificationSchema, InstructorSchema, InvitedLectureSchema, instructorFilters, instructorKey, instructorQuery } from '~/schema/instructor'
 
@@ -10,7 +9,7 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
   const key = `${instructorKey}:${id}`
 
   if (!refresh) {
-    const item = await kv.get<InstructorSchemaType>(key)
+    const item = await redis.get<InstructorSchemaType>(key)
 
     if (item) {
       console.log('cache hit', key)
@@ -20,22 +19,22 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
 
   const item = await fetchNotionDataByIdAsync<InstructorSchemaType>(notion, instructorQuery, instructorFilters, id, processInstructorDataAsync)
 
-  if (item) await kv.set(key, item)
+  if (item) await redis.set(key, item)
 
   return item
 }
 
-export async function getInstructorsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<InstructorSchemaType[]> {
+export async function getInstructorsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<InstructorSchemaType[]> {
   if (!refresh) {
     const items = await fetchFromCacheIdAsync<InstructorSchemaType>(instructorKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<InstructorSchemaType>(notion, { ...instructorQuery, page_size: pageSize }, processInstructorDataAsync)
 
-  await kv.del(instructorKey)
+  await redis.del(instructorKey)
   items.map(async (item) => {
-    await kv.rpush(instructorKey, item.ID)
-    await kv.set(`${instructorKey}:${item.ID}`, item)
+    await redis.rPush(instructorKey, item.ID)
+    await redis.set(`${instructorKey}:${item.ID}`, item)
   })
 
   const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)

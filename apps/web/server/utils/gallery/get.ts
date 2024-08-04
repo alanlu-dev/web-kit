@@ -1,5 +1,4 @@
 import { type Client, isFullPage } from '@notionhq/client'
-import { kv } from '@vercel/kv'
 import type { GallerySchemaType } from '~/schema/gallery'
 import { GallerySchema, galleryFilters, galleryKey, galleryQuery } from '~/schema/gallery'
 
@@ -9,7 +8,7 @@ export async function getGalleryByPositionAsync(notion: Client | null, position:
   const key = `${galleryKey}:${position}`
 
   if (!refresh) {
-    const items = await kv.get<GallerySchemaType[]>(key)
+    const items = await redis.get<GallerySchemaType[]>(key)
 
     if (items) {
       console.log('cache hit', key)
@@ -28,7 +27,7 @@ export async function getGalleryByPositionAsync(notion: Client | null, position:
     processGalleryDataAsync,
   )
 
-  await kv.set(key, items)
+  await redis.set(key, items)
 
   return items.filter((item) => isWithinDateRange(item.發布期間))
 }

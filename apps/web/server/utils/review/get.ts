@@ -1,5 +1,4 @@
 import { type Client, isFullPage } from '@notionhq/client'
-import { kv } from '@vercel/kv'
 import type { ReviewSchemaType } from '~/schema/review'
 import { ReviewSchema, reviewFilters, reviewKey, reviewQuery } from '~/schema/review'
 
@@ -9,7 +8,7 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
   const key = `${reviewKey}:${id}`
 
   if (!refresh) {
-    const item = await kv.get<ReviewSchemaType>(key)
+    const item = await redis.get<ReviewSchemaType>(key)
 
     if (item) {
       console.log('cache hit', key)
@@ -19,22 +18,22 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
 
   const item = await fetchNotionDataByIdAsync<ReviewSchemaType>(notion, reviewQuery, reviewFilters, id, processReviewDataAsync)
 
-  if (item) await kv.set(key, item)
+  if (item) await redis.set(key, item)
 
   return item
 }
 
-export async function getReviewsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<ReviewSchemaType[]> {
+export async function getReviewsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<ReviewSchemaType[]> {
   if (!refresh) {
     const items = await fetchFromCacheIdAsync<ReviewSchemaType>(reviewKey, currentPage, pageSize)
     if (items !== null) return items
   }
   const items = await fetchNotionDataAsync<ReviewSchemaType>(notion, { ...reviewQuery, page_size: pageSize }, processReviewDataAsync)
 
-  await kv.del(reviewKey)
+  await redis.del(reviewKey)
   items.map(async (item) => {
-    await kv.rpush(reviewKey, item.ID)
-    await kv.set(`${reviewKey}:${item.ID}`, item)
+    await redis.rPush(reviewKey, item.ID)
+    await redis.set(`${reviewKey}:${item.ID}`, item)
   })
 
   const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
