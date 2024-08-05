@@ -23,7 +23,7 @@ const card = [
 
 <template>
   <section class="bg:home">
-    <div class="{max-w:screen-max;mx:auto;overflow:hidden} p:10x|6x px:10x@desktop text:center">
+    <div class="{max-w:screen-lg;mx:auto;overflow:hidden} p:10x|6x px:10x@desktop text:center">
       <div>
         <h1 class="h1 title {flex;flex:col} fg:font-title">
           <span v-for="(t, idx) in title" :key="idx">{{ t }}</span>

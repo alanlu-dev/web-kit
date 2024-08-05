@@ -62,14 +62,13 @@ const data2 = [
   { img: '/course_event/step3.jpg', h1: '實際演練', h2: '至客戶案場，老師陪同作業' },
 ]
 
-// 間隙公式: (gap * (perPage - 1) / perPage)
-// 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
+// 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
   'mr:80px>li mr:100px>li@md ',
   {
     base: { '': `{w:60%}>li` },
-    xs: { '': `{w:calc((100%/3)-(80px*(3-1)/3))}>li@xs` },
-    md: { '': `{w:calc((100%/3)-(100px*(3-1)/3))}>li@md` },
+    xs: { '': `{w:calc((100%+80px)/3-80px)}>li@xs` },
+    md: { '': `{w:calc((100%+100px)/3-100px)}>li@md` },
   },
   ({ base, xs, md }) => base && xs && md,
 )

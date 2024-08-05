@@ -9,14 +9,13 @@ const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學
 const route = useRoute()
 const { data: reviews } = await useFetch<ReviewSchemaType[]>('/api/review', { query: { ...route.query, page_size: 10 } })
 
-// 間隙公式: (gap * (perPage - 1) / perPage)
-// 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
+// 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
   'mr:20px>li mr:40px>li@md ',
   {
-    base: { '': `{w:100%}>li` },
-    tablet: { '': `{w:calc(50%-10px)}>li@tablet` },
-    md: { '': `{w:calc(50%-20px)}>li@md` },
+    base: { '': `{w:calc((100%+20px)/1-20px)}>li` },
+    tablet: { '': `{w:calc((100%+20px)/2-20px)}>li@tablet` },
+    md: { '': `{w:calc((100%+40px)/2-40px)}>li@md` },
   },
   ({ base, tablet, md }) => base && tablet && md,
 )

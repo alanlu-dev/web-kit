@@ -9,16 +9,15 @@ const title2 = ['精選產業優良業師', '提供高品質專業課程']
 const route = useRoute()
 const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
 
-// 間隙公式: (gap * (perPage - 1) / perPage)
-// 寬度公式: calc((100% / perPage) - (gap * (perPage - 1) / perPage))
+// 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 // 第一置中位移公式: calc((100% - 元素寬度) / 2)
-// 第二個置中位移公式: calc((100% - 元素寬度) / 2 - 元素寬度 - 間隙公式)
+// 第二個置中位移公式: calc((100% - 元素寬度) / 2 - 元素寬度 - gap)
 const ratio = cv(
   'mr:8px>li mr:80px>li@tablet ',
   {
-    base: { '': `{w:calc((100%/1.3)-(8px*(1.3-1)/1.3))}>li translateX(calc(((100%-((100%/1.3)-(8px*(1.3-1)/1.3)))/2)-(100%/1.3)-(8px*(1.3-1)/1.3)*2))` },
-    tablet: { '': `{w:calc((100%/1.5)-(80px*(1.5-1)/1.5))}>li@tablet translateX(calc(((100%-((100%/1.5)-(80px*(1.5-1)/1.5)))/2)-(100%/1.5)-(80px*(1.5-1)/1.5)*2))@tablet` },
-    md: { '': `{w:calc((100%/2)-(80px*(2-1)/2))}>li@md translateX(calc(((100%-((100%/2)-(80px*(2-1)/2)))/2)-(100%/2)-(80px*(2-1)/2)))@md` },
+    base: { '': `{w:calc((75%+8px)/1-8px)}>li translateX(calc((((100%-((75%+8px)/1-8px)))/2)-((75%+8px)/1-8px)-8px))` },
+    tablet: { '': `{w:calc((65%+80px)/1-80px)}>li@tablet translateX(calc((((100%-((65%+80px)/1-80px)))/2)-((65%+80px)/1-80px)-80px))@tablet` },
+    md: { '': `{w:calc((100%+80px)/2-80px)}>li@md translateX(calc((((100%-((100%+80px)/2-80px)))/2)-((100%+80px)/2-80px)-80px))@md` },
   },
   ({ base, tablet, md }) => base && tablet && md,
 )
@@ -34,11 +33,12 @@ const splideOption = {
   focus: 'center',
   breakpoints: {
     1024: {
-      perPage: 1.5,
+      perPage: 1,
+      fixedWidth: '65%',
     },
     430: {
-      perPage: 1.3,
       gap: '8px',
+      fixedWidth: '75%',
     },
   },
 }
@@ -59,6 +59,7 @@ const splideOption = {
       <div class="rel mt:5x mt:10x@tablet">
         <div class="{abs;top;bottom;left} bg:linear-gradient(to|left,home/0,home) pointer-events:none w:10vw w:30vw@desktop z:1"> </div>
         <div class="{abs;top;bottom;right} bg:linear-gradient(to|right,home/0,home) pointer-events:none w:10vw w:30vw@desktop z:1"> </div>
+
         <ClientOnly>
           <template #fallback>
             <div class="splide__track">
