@@ -1,6 +1,10 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{ query: { refresh?: boolean } }>(async (event) => {
+export default defineEventHandler<{
+  query: {
+    refresh?: boolean
+  }
+}>(async (event) => {
   const id = getRouterParam(event, 'id')
   if (!id) return null
 

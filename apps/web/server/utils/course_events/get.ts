@@ -3,6 +3,7 @@ import type { CourseEventSchemaType } from '~/schema/course_event'
 import { CourseEventSchema, courseEventFilters, courseEventKey, courseEventQuery } from '~/schema/course_event'
 
 export async function getCourseEventByIdAsync(notion: Client | null, id: number, refresh: boolean | undefined = false): Promise<CourseEventSchemaType | null> {
+  console.log('getCourseEventByIdAsync', id)
   if (!id) return null
 
   const key = `${courseEventKey}:${id}`
@@ -10,6 +11,7 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   if (!refresh) {
     const item = await redis.get<CourseEventSchemaType>(key)
 
+    console.log(key, item)
     if (item) {
       if (item.課程ID) item.課程 = await getCourseByIdAsync(notion, item.課程ID)
       if (item.教室ID) item.教室 = await getClassroomByIdAsync(notion, item.教室ID)

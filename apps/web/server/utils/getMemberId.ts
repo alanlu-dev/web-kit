@@ -1,7 +1,7 @@
 import type { Client } from '@notionhq/client'
-import type { ContactSchemaType } from '~/schema/contact'
+import type { MemberSchemaType } from '~/schema/member'
 
-export async function getMemberIdAsync(notion: Client, data: ContactSchemaType): Promise<string> {
+export async function getMemberIdAsync(notion: Client, data: MemberSchemaType): Promise<string> {
   // 尋找會員是否已經存在
   const queryMember = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID_MEMBERS!,

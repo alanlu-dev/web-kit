@@ -1,27 +1,28 @@
 import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
-import type { ContactSchemaType } from '~/schema/contact'
 
 export default defineEventHandler<{
-  body: ContactSchemaType
+  body: any
 }>(async (event) => {
+  const order_page_id = getRouterParam(event, 'order_page_id')!
   const data = await readBody(event)
 
   try {
     const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
-    const memberId = await getMemberIdAsync(notion, data)
-
     // 新增聯絡紀錄
-    const page = await notion.pages.create({
-      parent: { database_id: process.env.NOTION_DATABASE_ID_CONTACTS! },
+    await notion.pages.update({
+      page_id: order_page_id,
       properties: {
-        主旨: { type: 'title', title: [{ type: 'text', text: { content: data.title } }] },
-        問題描述: { type: 'rich_text', rich_text: [{ type: 'text', text: { content: data.message } }] },
-        會員: { type: 'relation', relation: [{ id: memberId }] },
+        付款狀態: { status: { name: '待請款' } },
       },
     })
 
-    return page.id
+    await notion.blocks.children.append({
+      block_id: order_page_id,
+      children: [{ paragraph: { rich_text: [{ text: { content: JSON.stringify(data) } }] } }],
+    })
+
+    return '1|OK'
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

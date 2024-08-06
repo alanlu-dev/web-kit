@@ -1,9 +1,7 @@
 import { z } from 'zod'
+import { MemberSchema } from './member'
 
-export const ContactSchema = z.object({
-  name: z.string(),
-  mobile: z.string(),
-  email: z.string().email(),
+export const ContactSchema = MemberSchema.extend({
   title: z.string(),
   message: z.string(),
 })

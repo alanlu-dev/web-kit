@@ -6,6 +6,7 @@ export async function fetchNotionDataAsync<T>(notion: Client | null, query: Quer
   const allResult: QueryDatabaseResponse['results'] = []
   let start_cursor: string | undefined
 
+  console.log(query)
   if (!notion) {
     notion = new Client({ auth: process.env.NOTION_API_KEY })
   }

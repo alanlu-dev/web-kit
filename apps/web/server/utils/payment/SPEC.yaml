@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: ECPay All-in-One Payment API
+  description: API for creating orders and redirecting to ECPay's payment page, allowing various payment methods.
+  version: 1.0.0
+servers:
+  - url: https://payment-stage.ecpay.com.tw
+    description: Test Environment
+  - url: https://payment.ecpay.com.tw
+    description: Production Environment
+paths:
+  /Cashier/AioCheckOut/V5:
+    post:
+      summary: Create an order and redirect to ECPay's payment page
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                MerchantID:
+                  type: string
+                  maxLength: 10
+                  description: Merchant ID
+                  example: '2000132'
+                MerchantTradeNo:
+                  type: string
+                  maxLength: 20
+                  description: Unique merchant trade number
+                  example: '1234567890'
+                MerchantTradeDate:
+                  type: string
+                  format: date-time
+                  description: Merchant trade date and time
+                  example: '2024/05/27 12:34:56'
+                PaymentType:
+                  type: string
+                  description: Payment type (fixed as aio)
+                  example: aio
+                  enum: [aio]
+                TotalAmount:
+                  type: integer
+                  description: Total transaction amount (in TWD)
+                  example: 1000
+                TradeDesc:
+                  type: string
+                  maxLength: 200
+                  description: Transaction description
+                  example: Test transaction
+                ItemName:
+                  type: string
+                  maxLength: 400
+                  description: Names of the items
+                  example: 'Item1#Item2'
+                ReturnURL:
+                  type: string
+                  maxLength: 200
+                  description: URL for payment completion notification
+                  example: 'https://www.yourdomain.com/receive'
+                ChoosePayment:
+                  type: string
+                  maxLength: 20
+                  description: Default payment method
+                  example: Credit
+                  enum: [Credit, WebATM, ATM, CVS, BARCODE, ApplePay, TWQR, BNPL]
+                CheckMacValue:
+                  type: string
+                  description: Check Mac value for security
+                  example: 6A7A8F08F6BCB08C3B0E60C90B7A8F14
+                EncryptType:
+                  type: integer
+                  description: Encryption type (fixed as 1)
+                  example: 1
+                  enum: [1]
+                ClientBackURL:
+                  type: string
+                  maxLength: 200
+                  description: URL to redirect client back to the merchant's site
+                  example: 'https://www.yourdomain.com'
+                ItemURL:
+                  type: string
+                  maxLength: 200
+                  description: URL of the item being sold
+                  example: 'https://www.yourdomain.com/item'
+                Remark:
+                  type: string
+                  maxLength: 100
+                  description: Remark field
+                  example: Additional notes
+                OrderResultURL:
+                  type: string
+                  maxLength: 200
+                  description: URL to send payment result to client
+                  example: 'https://www.yourdomain.com/result'
+                NeedExtraPaidInfo:
+                  type: string
+                  maxLength: 1
+                  description: Whether extra payment info is needed (Y/N)
+                  example: Y
+                  enum: [Y, N]
+                IgnorePayment:
+                  type: string
+                  maxLength: 100
+                  description: Payment methods to hide
+                  example: 'ATM#CVS'
+                PlatformID:
+                  type: string
+                  maxLength: 10
+                  description: Platform ID for partnership
+                  example: ''
+                CustomField1:
+                  type: string
+                  maxLength: 50
+                  description: Custom field 1
+                  example: Custom value 1
+                CustomField2:
+                  type: string
+                  maxLength: 50
+                  description: Custom field 2
+                  example: Custom value 2
+                CustomField3:
+                  type: string
+                  maxLength: 50
+                  description: Custom field 3
+                  example: Custom value 3
+                CustomField4:
+                  type: string
+                  maxLength: 50
+                  description: Custom field 4
+                  example: Custom value 4
+                Language:
+                  type: string
+                  maxLength: 3
+                  description: Language setting (default is CHI)
+                  example: ENG
+                  enum: [ENG, KOR, JPN, CHI]
+              required:
+                - MerchantID
+                - MerchantTradeNo
+                - MerchantTradeDate
+                - PaymentType
+                - TotalAmount
+                - TradeDesc
+                - ItemName
+                - ReturnURL
+                - ChoosePayment
+                - CheckMacValue
+                - EncryptType

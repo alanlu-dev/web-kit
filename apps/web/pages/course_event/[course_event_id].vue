@@ -3,9 +3,9 @@ import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 
 const route = useRoute()
-const course_event_id = route.params.course_event_id
+const id = route.params.course_event_id
 
-const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${course_event_id}`, { query: route.query })
+const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
 
 useSeoMeta({
   title: () => courseEvent.value?.課程?.課程名稱 || '課程資訊',
@@ -171,7 +171,7 @@ onMounted(() => {
 
                 <div class="{mt:0}@desktop {w:30%}@tablet&<desktop w:full">
                   <p class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程?.價格 || 99999) }} </p>
-                  <NuxtLink :to="`/checkout?course_event_id=${course_event_id}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full">立即報名</NuxtLink>
+                  <NuxtLink :to="`/checkout/${id}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full">立即報名</NuxtLink>
                 </div>
               </div>
             </div>

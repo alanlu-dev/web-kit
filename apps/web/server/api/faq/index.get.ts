@@ -1,6 +1,12 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{ query: { page?: string; page_size?: string; refresh?: boolean } }>(async (event) => {
+export default defineEventHandler<{
+  query: {
+    page?: string
+    page_size?: string
+    refresh?: boolean
+  }
+}>(async (event) => {
   const { page, page_size, refresh } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
