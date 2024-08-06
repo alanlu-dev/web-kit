@@ -3,7 +3,6 @@ import { Client } from '@notionhq/client'
 import { z } from 'zod'
 import type { OrderParamsSchemaType } from '~/schema/order'
 
-const isDev = process.env.VERCEL_ENV === 'preview'
 const site_rul = process.env.NUXT_PUBLIC_SITE_URL
 
 export const PaymentMethods = {
@@ -116,7 +115,7 @@ function getMerchantTradeDate(): string {
   return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`
 }
 
-const APIURL = `https://payment${isDev ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
+const APIURL = `https://payment${+process.env.ECPAY_STAGE! ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
 
 // 付款完成通知回傳網址
 // - ReturnURL為付款結果通知回傳網址，為特店server或主機的URL，用來接收綠界後端回傳的付款結果通知。
