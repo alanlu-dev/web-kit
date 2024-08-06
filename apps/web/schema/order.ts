@@ -24,6 +24,7 @@ export const OrderSchema = z.object({
 
   訂單編號: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
   留言備註: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
 
   // 會員: NotionRelationSchema.transform((o) => o.relation[0]?.id),
   會員ID: NotionDatabaseRollupSchema.transform(
@@ -67,6 +68,8 @@ export const orderQuery: QueryDatabaseParameters = {
     '%3DFp%5E',
     /** 留言備註 */
     'huBu',
+    /** 金流訊息 */
+    'pRO%5D',
     /** 付款金額 */
     'LXf%5E',
     /** 付款狀態 */
