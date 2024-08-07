@@ -97,7 +97,7 @@ export default defineEventHandler<{
           },
         )
         const rendered = renderCSS(html, config)
-
+        console.log(process.env.GMAIL_USE, process.env.GMAIL_PASS)
         const { sendMail } = useNodeMailer()
         const emailResult = await sendMail({
           subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程安排資訊?.課程資訊?.課程名稱}】`,
