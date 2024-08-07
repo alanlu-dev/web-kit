@@ -77,6 +77,7 @@ export default defineEventHandler<{
             orderNumber: order.訂單編號,
             paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
             paymentDate: new Date().toLocaleDateString('zh-TW', {
+              timeZone: 'Asia/Taipei',
               year: 'numeric',
               month: '2-digit',
               day: '2-digit',
@@ -85,6 +86,7 @@ export default defineEventHandler<{
             courseTime: order.課程安排資訊!.上課日期![1]!,
             // 課程⽇期減 7 天
             courseDateMinus7: new Date(new Date(order.課程安排資訊!.上課日期![2]!).getTime() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('zh-TW', {
+              timeZone: 'Asia/Taipei',
               year: 'numeric',
               month: '2-digit',
               day: '2-digit',

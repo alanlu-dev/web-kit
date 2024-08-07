@@ -19,6 +19,7 @@ export const CourseEventSchema = z.object({
 
     const formattedDate = `${startDate
       .toLocaleDateString('zh-TW', {
+        timeZone: 'Asia/Taipei',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -27,12 +28,13 @@ export const CourseEventSchema = z.object({
       .replace('週', '')}`
 
     const startTime = startDate.toLocaleTimeString('zh-TW', {
+      timeZone: 'Asia/Taipei',
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
     })
 
-    const endTime = endDate ? endDate.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', hour12: false }) : null
+    const endTime = endDate ? endDate.toLocaleTimeString('zh-TW', { timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', hour12: false }) : null
 
     const formattedTime = endTime ? `${startTime}~${endTime}` : startTime
 
