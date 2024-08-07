@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Img, Link, Section, Text, p } from '@vue-email/components'
+import { Img, Link, Section, Text } from '@vue-email/components'
 
 defineProps({
   siteUrl: String,

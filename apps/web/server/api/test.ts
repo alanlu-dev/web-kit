@@ -62,15 +62,15 @@ export default defineEventHandler(async () => {
       pretty: true,
     },
   )
-
   const rendered = renderCSS(html, config)
 
-  const { sendMail } = useNodeMailer()
-
   console.log(process.env.NUXT_NODEMAILER_AUTH_USER, process.env.NUXT_NODEMAILER_AUTH_PASS)
-  return sendMail({
+  const { sendMail } = useNodeMailer()
+  const emailResult = await sendMail({
     subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程安排資訊?.課程資訊?.課程名稱}】`,
-    html: rendered,
+    html: rendered.html,
     to: order.會員信箱,
   })
+
+  return emailResult
 })

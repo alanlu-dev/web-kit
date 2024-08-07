@@ -97,6 +97,7 @@ export default defineEventHandler<{
           },
         )
         const rendered = renderCSS(html, config)
+
         console.log(process.env.NUXT_NODEMAILER_AUTH_USER, process.env.NUXT_NODEMAILER_AUTH_PASS)
         const { sendMail } = useNodeMailer()
         const emailResult = await sendMail({
