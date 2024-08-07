@@ -73,7 +73,7 @@ export default defineNuxtConfig({
   },
 
   nodemailer: {
-    from: `"${process.env.NUXT_PUBLIC_SITE_NAME}" <${process.env.NUXT_NODEMAILER_AUTH_USER}>`,
+    from: `"${process.env.NUXT_NODEMAILER_FROM_NAME}" <${process.env.NUXT_NODEMAILER_FROM_MAIL}>`,
     service: 'gmail',
     auth: {
       user: process.env.NUXT_NODEMAILER_AUTH_USER,
