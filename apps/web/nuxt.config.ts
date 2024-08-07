@@ -67,17 +67,17 @@ export default defineNuxtConfig({
   },
 
   site: {
-    name: '中華民國職業清潔認證協會',
+    name: process.env.NUXT_PUBLIC_SITE_NAME,
     description: 'Welcome to my awesome site!',
     defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
   },
 
   nodemailer: {
-    from: `"${process.env.GMAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
+    from: `"${process.env.NUXT_PUBLIC_SITE_NAME}" <${process.env.NUXT_NODEMAILER_AUTH_USER}>`,
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
+      user: process.env.NUXT_NODEMAILER_AUTH_USER,
+      pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
     },
   },
 
