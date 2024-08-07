@@ -218,7 +218,7 @@ export async function processOrder(order: OrderParamsSchemaType): Promise<{ rc: 
   const notion = new Client({ auth: process.env.NOTION_API_KEY })
 
   const courseEvent = await getCourseEventByIdAsync(notion, order.courseEventId)
-  if (!courseEvent || !courseEvent.課程 || !courseEvent.教室) {
+  if (!courseEvent || !courseEvent.課程資訊 || !courseEvent.教室資訊) {
     return { rc: 404, rm: 'Not Found' }
   }
   // 已截止報名
@@ -227,9 +227,9 @@ export async function processOrder(order: OrderParamsSchemaType): Promise<{ rc: 
   }
 
   const paymentOrder: PaymentOrder = {
-    TotalAmount: (courseEvent.指定價格 || courseEvent.課程.價格!).toString(),
-    ItemName: courseEvent.課程.課程名稱!,
-    TradeDesc: `上課地點: ${courseEvent.教室.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
+    TotalAmount: (courseEvent.指定價格 || courseEvent.課程資訊.價格!).toString(),
+    ItemName: courseEvent.課程資訊.課程名稱!,
+    TradeDesc: `上課地點: ${courseEvent.教室資訊.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
     ChoosePayment: PaymentType.enum.Credit,
   }
 

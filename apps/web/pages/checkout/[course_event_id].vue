@@ -12,7 +12,7 @@ const id = route.params.course_event_id
 const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
 
 useSeoMeta({
-  title: () => courseEvent.value?.課程?.課程名稱 || '結帳',
+  title: () => courseEvent.value?.課程資訊?.課程名稱 || '結帳',
 })
 
 const show = ref(false)
@@ -70,8 +70,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
             <h3 class="h3 fg:font-title">購買明細</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
-              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程?.課程名稱 }}</NuxtLink>
-              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程?.價格 || 99999) }}</p>
+              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊?.課程名稱 }}</NuxtLink>
+              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊?.價格 || 99999) }}</p>
             </div>
             <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
@@ -89,7 +89,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課地點：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.教室?.地址 }}</span>
+                  <span>{{ courseEvent?.教室資訊?.地址 }}</span>
                 </div>
               </div>
             </div>

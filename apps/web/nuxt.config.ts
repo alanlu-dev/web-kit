@@ -1,5 +1,6 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -30,6 +31,9 @@ export default defineNuxtConfig({
 
     /* --- seo --- */
     '@nuxtjs/seo',
+
+    /* --- mail --- */
+    'nuxt-nodemailer',
 
     /* --- icon / image --- */
     'nuxt-icon',
@@ -68,6 +72,15 @@ export default defineNuxtConfig({
     defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
   },
 
+  nodemailer: {
+    from: `"${process.env.GMAIL_FROM_NAME}" <${process.env.GMAIL_USER}>`,
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  },
+
   aos: {
     // once: true,
   },
@@ -77,4 +90,10 @@ export default defineNuxtConfig({
   //     scrollTrigger: true,
   //   },
   // },
+
+  nitro: {
+    rollupConfig: {
+      plugins: [vue()],
+    },
+  },
 })

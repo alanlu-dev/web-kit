@@ -27,15 +27,19 @@ export const OrderSchema = z.object({
   金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
 
   // 會員: NotionRelationSchema.transform((o) => o.relation[0]?.id),
-  會員ID: NotionDatabaseRollupSchema.transform(
-    (o) => o.rollup.type === 'array' && (o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined),
+  會員ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
+  會員名稱: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].text?.content : undefined,
+  ),
+  會員信箱: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'email' && o.rollup.array[0].email ? o.rollup.array[0].email : undefined)),
 
   // 課程安排: NotionRelationSchema.transform((o) => o.relation[0]?.id),
-  課程安排ID: NotionDatabaseRollupSchema.transform(
-    (o) => o.rollup.type === 'array' && (o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined),
+  課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
-  課程安排: CourseEventSchema.optional().nullable(),
+  課程安排資訊: CourseEventSchema.optional().nullable(),
 
   付款金額: NotionNumberSchema.transform((o) => o.number),
 
@@ -62,6 +66,10 @@ export const orderQuery: QueryDatabaseParameters = {
     // 'j_Pj',
     /** 會員ID */
     'mxR%3F',
+    /** 會員名稱 */
+    '%5Eyuo',
+    /** 會員信箱 */
+    '%3E~Wm',
     /** 課程安排 */
     // 'UYf%3A',
     /** 課程安排ID */
@@ -77,4 +85,42 @@ export const orderQuery: QueryDatabaseParameters = {
     /** 聯絡狀態 */
     'Ti%5DJ',
   ],
+}
+
+const _keysAndIds = {
+  ID: 'rebb',
+  訂單編號: 'title',
+
+  會員: 'j_Pj',
+  會員ID: 'mxR%3F',
+  會員名稱: '%5Eyuo',
+  會員信箱: '%3E~Wm',
+  會員手機: 'Y%60q%3C',
+
+  留言備註: 'huBu',
+
+  課程安排: 'UYf%3A',
+  課程安排ID: '%3DFp%5E',
+
+  上課日期: 'ym%5DS',
+  上課地點: '%7Cisg',
+
+  課程: 'iZps',
+  課程價格: 'N%40Pj',
+  __課程價格: 'QVa%3B',
+
+  付款金額: 'LXf%5E',
+  實收金額: '%5CE_i',
+
+  付款狀態: 'ayf%5B',
+  聯絡狀態: 'Ti%5DJ',
+
+  金流訊息: 'pRO%5D',
+  金流代碼: '%5DtVD',
+
+  建立時間: 'bkdx',
+  建立者: 'v%3C%3E%40',
+  更新時間: 'vMYF',
+  更新者: 'e%40%7C%5D',
+  封存: 'fp%3Ex',
 }

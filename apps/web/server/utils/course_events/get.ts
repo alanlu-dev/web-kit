@@ -13,8 +13,8 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
 
     console.log(key, item)
     if (item) {
-      if (item.課程ID) item.課程 = await getCourseByIdAsync(notion, item.課程ID)
-      if (item.教室ID) item.教室 = await getClassroomByIdAsync(notion, item.教室ID)
+      if (item.課程ID) item.課程資訊 = await getCourseByIdAsync(notion, item.課程ID)
+      if (item.教室ID) item.教室資訊 = await getClassroomByIdAsync(notion, item.教室ID)
       return item
     }
   }
@@ -24,8 +24,8 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   if (item) {
     await redis.set(key, item)
 
-    if (item.課程ID) item.課程 = await getCourseByIdAsync(notion, item.課程ID)
-    if (item.教室ID) item.教室 = await getClassroomByIdAsync(notion, item.教室ID)
+    if (item.課程ID) item.課程資訊 = await getCourseByIdAsync(notion, item.課程ID)
+    if (item.教室ID) item.教室資訊 = await getClassroomByIdAsync(notion, item.教室ID)
   }
 
   return item
@@ -42,8 +42,8 @@ export async function getCourseEventsAsync(notion: Client | null, currentPage: n
 
           const [course, classroom] = await Promise.all([coursePromise, classroomPromise])
 
-          if (course) item.課程 = course
-          if (classroom) item.教室 = classroom
+          if (course) item.課程資訊 = course
+          if (classroom) item.教室資訊 = classroom
         }),
       )
 
@@ -67,8 +67,8 @@ export async function getCourseEventsAsync(notion: Client | null, currentPage: n
 
       const [course, classroom] = await Promise.all([coursePromise, classroomPromise])
 
-      if (course) item.課程 = course
-      if (classroom) item.教室 = classroom
+      if (course) item.課程資訊 = course
+      if (classroom) item.教室資訊 = classroom
     }),
   )
 

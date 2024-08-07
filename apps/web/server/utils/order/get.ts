@@ -31,7 +31,7 @@ export async function processOrderDataAsync(item: any): Promise<OrderSchemaType 
   const parseItem: OrderSchemaType = OrderSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id!.replaceAll('-', '')
 
-  if (parseItem.課程安排ID) parseItem.課程安排 = await getCourseEventByIdAsync(null, parseItem.課程安排ID)
+  if (parseItem.課程安排ID) parseItem.課程安排資訊 = await getCourseEventByIdAsync(null, parseItem.課程安排ID)
 
   return parseItem
 }
