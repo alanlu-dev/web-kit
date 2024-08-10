@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
+import { version } from './package.json'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -28,6 +29,10 @@ export default defineNuxtConfig({
 
     /* --- formkit --- */
     ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
+
+    /* --- gtag --- */
+    'nuxt-gtag',
+    '@zadigetvoltaire/nuxt-gtm',
 
     /* --- seo --- */
     '@nuxtjs/seo',
@@ -90,6 +95,26 @@ export default defineNuxtConfig({
   //     scrollTrigger: true,
   //   },
   // },
+
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    // Additional configuration for the Google Analytics 4 property
+    config: {
+      page_title: process.env.NUXT_PUBLIC_SITE_NAME,
+    },
+  },
+
+  gtm: {
+    id: process.env.NUXT_PUBLIC_GTM_ID,
+  },
+
+  // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
+  runtimeConfig: {
+    // Keys within public are also exposed client-side
+    public: {
+      version,
+    },
+  },
 
   nitro: {
     rollupConfig: {

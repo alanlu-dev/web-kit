@@ -83,6 +83,7 @@
     "@alanlu-dev/release-it-config": "^0.0.6",
     "@alanlu-dev/types": "^1.0.8",
     "@jiehousekeeper/master-css-config": "workspace:*",
+    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
     "nuxt": "3.12.3",
     "vue-tsc": "^2.0.29"
   }
