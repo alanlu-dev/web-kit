@@ -11,7 +11,7 @@ export default defineEventHandler<{
   const { refresh } = getQuery(event)
 
   try {
-    const item = await getCourseEventByIdAsync(null, +id, refresh)
+    const item = await getCourseEventByIdAsync(null, +id, !!refresh)
     if (!item) {
       const responseData = { rc: 404, rm: 'Not Found' }
       event.node.res.statusCode = responseData.rc

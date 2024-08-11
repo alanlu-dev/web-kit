@@ -1,6 +1,16 @@
 import { z } from 'zod'
-import { NotionDateSchema, NotionFilesSchema, NotionRelationSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import {
+  NotionDatabaseRollupSchema,
+  NotionDateSchema,
+  NotionFilesSchema,
+  NotionRelationSchema,
+  NotionRichTextSchema,
+  NotionTitleSchema,
+  NotionUniqueIdSchema,
+  NotionUrlSchema,
+} from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { CourseSchema } from './course'
 import type { AndFilterType } from '~/types/notion'
 
 export const ReviewSchema = z.object({
@@ -13,6 +23,11 @@ export const ReviewSchema = z.object({
   // 課程名稱: NotionDatabaseRollupSchema.transform((o) =>
   //   o.rollup.type === 'array' && o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined,
   // ),
+  課程ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
+  ),
+  // 課程資訊: CourseSchema.optional().nullable(),
+  課程資訊_名稱: z.string().optional(),
 
   評價: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
@@ -43,6 +58,8 @@ export const reviewQuery: QueryDatabaseParameters = {
     'title',
     /** 課程 */
     'xHXH',
+    /** 課程ID */
+    'q%7C%40q',
     /** 課程名稱 */
     'Qti%5E',
     /** 評價 */

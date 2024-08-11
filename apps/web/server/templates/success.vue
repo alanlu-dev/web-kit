@@ -8,6 +8,7 @@ defineProps({
   studentName: String,
   orderNumber: String,
   paymentAmount: String,
+  paymentType: String,
   paymentDate: String,
   courseDate: String,
   courseTime: String,
@@ -57,7 +58,9 @@ defineProps({
       <Text
         >付款金額：<span>{{ paymentAmount }}</span></Text
       >
-      <Text>付款方式：<span>信用卡</span></Text>
+      <Text
+        >付款方式：<span>{{ paymentType }}</span></Text
+      >
       <Text
         >付款日期：<span>{{ paymentDate }}</span></Text
       >

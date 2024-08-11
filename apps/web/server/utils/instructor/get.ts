@@ -3,41 +3,59 @@ import { type Client, isFullPage } from '@notionhq/client'
 import type { InstructorSchemaType } from '~/schema/instructor'
 import { CertificationSchema, InstructorSchema, InvitedLectureSchema, instructorFilters, instructorKey, instructorQuery } from '~/schema/instructor'
 
-export async function getInstructorByIdAsync(notion: Client | null, id: number, refresh: boolean | undefined = false): Promise<InstructorSchemaType | null> {
+export async function getInstructorByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<InstructorSchemaType | null> {
   if (!id) return null
 
   const key = `${instructorKey}:${id}`
 
+  let item: InstructorSchemaType | null = null
+
   if (!refresh) {
-    const item = await redis.get<InstructorSchemaType>(key)
-    if (item) return item
+    item = await redis.get<InstructorSchemaType>(key)
   }
 
-  const item = await fetchNotionDataByIdAsync<InstructorSchemaType>(notion, instructorQuery, instructorFilters, id, processInstructorDataAsync)
-
-  if (item) await redis.set(key, item)
+  if (!item) {
+    item = await fetchNotionDataByIdAsync<InstructorSchemaType>(notion, instructorQuery, instructorFilters, id, processInstructorDataAsync)
+    if (item) await redis.set(key, item)
+  }
 
   return item
 }
 
-export async function getInstructorsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<InstructorSchemaType[]> {
+export async function getInstructorsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<InstructorSchemaType[]> {
+  let items: InstructorSchemaType[] | null = null
+
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<InstructorSchemaType>(instructorKey, currentPage, pageSize)
-    if (items !== null) return items
+    items = await fetchFromCacheIdAsync<InstructorSchemaType>(instructorKey, currentPage, pageSize)
   }
-  const items = await fetchNotionDataAsync<InstructorSchemaType>(notion, { ...instructorQuery, page_size: pageSize }, processInstructorDataAsync)
 
-  await redis.del(instructorKey)
-  items.map(async (item) => {
-    await redis.rPush(instructorKey, item.ID)
-    await redis.set(`${instructorKey}:${item.ID}`, item)
-  })
+  if (items === null) {
+    items = await fetchNotionDataAsync<InstructorSchemaType>(notion, { ...instructorQuery, page_size: pageSize }, processInstructorDataAsync)
 
-  const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
-  return pageData
+    if (items.length) {
+      await redis.del(instructorKey)
+      items.map(async (item) => {
+        await redis.rPush(instructorKey, item.ID)
+        await redis.set(`${instructorKey}:${item.ID}`, item)
+      })
+
+      items = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+    }
+  }
+
+  return items
 }
 
-export async function processInstructorDataAsync(item: any, notion?: Client): Promise<InstructorSchemaType | null> {
+export async function fetchInstructors(notion: Client | null, instructorIds: number[], refresh: boolean): Promise<InstructorSchemaType[]> {
+  const uniqueInstructorIds = Array.from(new Set(instructorIds))
+
+  const instructorPromises = uniqueInstructorIds.map((id) => getInstructorByIdAsync(notion, id, refresh))
+
+  const instructors = await Promise.all(instructorPromises)
+  return instructors.filter((info): info is InstructorSchemaType => info !== null)
+}
+
+export async function processInstructorDataAsync(notion: Client | null, item: any): Promise<InstructorSchemaType | null> {
   if (!item || !isFullPage(item) || !notion) return null
 
   const parseItem: InstructorSchemaType = InstructorSchema.parse(item.properties)
@@ -61,7 +79,7 @@ export async function processInstructorDataAsync(item: any, notion?: Client): Pr
       return parsedPage
     })
     parseItem.專業認證資訊 = (await Promise.all(certificationPromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -87,7 +105,7 @@ export async function processInstructorDataAsync(item: any, notion?: Client): Pr
       return parsedPage
     })
     parseItem.受邀講座資訊 = (await Promise.all(lecturePromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -97,14 +115,4 @@ export async function processInstructorDataAsync(item: any, notion?: Client): Pr
   }
 
   return parseItem
-}
-
-export async function fetchInstructorInfos(notion: Client | null, instructorIds: number[]): Promise<InstructorSchemaType[]> {
-  // 去重 instructorIds
-  const uniqueInstructorIds = Array.from(new Set(instructorIds))
-
-  const instructorPromises = uniqueInstructorIds.map((id) => getInstructorByIdAsync(notion, id))
-
-  const instructorInfos = await Promise.all(instructorPromises)
-  return instructorInfos.filter((info): info is InstructorSchemaType => info !== null)
 }

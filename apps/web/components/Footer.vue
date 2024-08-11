@@ -28,7 +28,7 @@ useHead({
       <div class="b2-r nowrap {flex;ai:flex-start;gap:5x} flex:2 flex:1>* w:full w:unset@tablet">
         <div>
           <ul class="{flex;flex:col;gap:2x} align-self:flex-start mx:auto w:unset w:70@tablet w:100@desktop">
-            <li><nuxt-link to="/course_event">找課程</nuxt-link></li>
+            <li><nuxt-link to="/course">找課程</nuxt-link></li>
             <li><nuxt-link to="/instructor">找講師</nuxt-link></li>
             <li><nuxt-link to="/about">關於我們</nuxt-link></li>
             <li><nuxt-link to="/about">協會介紹</nuxt-link></li>

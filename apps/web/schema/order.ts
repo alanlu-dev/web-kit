@@ -1,13 +1,5 @@
 import { z } from 'zod'
-import {
-  NotionDatabaseRollupSchema,
-  NotionNumberSchema,
-  NotionRelationSchema,
-  NotionRichTextSchema,
-  NotionStatusSchema,
-  NotionTitleSchema,
-  NotionUniqueIdSchema,
-} from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDatabaseRollupSchema, NotionNumberSchema, NotionRichTextSchema, NotionStatusSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { MemberSchema } from './member'
 import { CourseEventSchema } from './course_event'
@@ -24,6 +16,7 @@ export const OrderSchema = z.object({
 
   訂單編號: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
   留言備註: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  付款方式: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
 
   // 會員: NotionRelationSchema.transform((o) => o.relation[0]?.id),
@@ -76,6 +69,8 @@ export const orderQuery: QueryDatabaseParameters = {
     '%3DFp%5E',
     /** 留言備註 */
     'huBu',
+    /** 付款方式 */
+    '%3FI%7Bq',
     /** 金流訊息 */
     'pRO%5D',
     /** 付款金額 */
@@ -115,8 +110,9 @@ const _keysAndIds = {
   付款狀態: 'ayf%5B',
   聯絡狀態: 'Ti%5DJ',
 
-  金流訊息: 'pRO%5D',
+  付款方式: '%3FI%7Bq',
   金流代碼: '%5DtVD',
+  金流訊息: 'pRO%5D',
 
   建立時間: 'bkdx',
   建立者: 'v%3C%3E%40',

@@ -3,50 +3,66 @@ import { type Client, isFullPage } from '@notionhq/client'
 import type { CourseSchemaType } from '~/schema/course'
 import { AchievementSchema, CourseSchema, FeaturesSchema, LearnSchema, OutlineSchema, PreparationSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
 
-export async function getCourseByIdAsync(notion: Client | null, id: number, refresh: boolean | undefined = false): Promise<CourseSchemaType | null> {
+interface needType {
+  needCourseEvents?: boolean
+  needInstructor?: boolean
+}
+
+export async function getCourseByIdAsync(notion: Client | null, id: number, refresh: boolean, need: needType = { needCourseEvents: true, needInstructor: true }): Promise<CourseSchemaType | null> {
   if (!id) return null
 
   const key = `${courseKey}:${id}`
 
-  if (!refresh) {
-    const item = await redis.get<CourseSchemaType>(key)
+  let item: CourseSchemaType | null = null
 
-    if (item) {
-      if (item.講師ID) item.講師資訊 = await fetchInstructorInfos(notion, item.講師ID)
-      return item
-    }
+  if (!refresh) {
+    item = await redis.get<CourseSchemaType>(key)
   }
 
-  const item = await fetchNotionDataByIdAsync<CourseSchemaType>(notion, courseQuery, courseFilters, id, processCourseDataAsync)
+  if (!item) {
+    item = await fetchNotionDataByIdAsync<CourseSchemaType>(notion, courseQuery, courseFilters, id, processCourseDataAsync)
+    if (item) await redis.set(key, item)
+  }
 
   if (item) {
-    await redis.set(key, item)
-
-    if (item.講師ID) item.講師資訊 = await fetchInstructorInfos(notion, item.講師ID)
+    item = await processCourseRelationAsync(notion, item, need)
   }
 
   return item
 }
 
-export async function getCoursesAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean | undefined = false): Promise<CourseSchemaType[]> {
+export async function getCoursesAsync(
+  notion: Client | null,
+  currentPage: number,
+  pageSize: number,
+  refresh: boolean,
+  need: needType = { needCourseEvents: true, needInstructor: true },
+): Promise<CourseSchemaType[]> {
+  let items: CourseSchemaType[] | null = null
+
   if (!refresh) {
-    const items = await fetchFromCacheIdAsync<CourseSchemaType>(courseKey, currentPage, pageSize)
-    if (items !== null) return items
+    items = await fetchFromCacheIdAsync<CourseSchemaType>(courseKey, currentPage, pageSize)
   }
-  const items = await fetchNotionDataAsync<CourseSchemaType>(notion, { ...courseQuery, page_size: pageSize }, processCourseDataAsync)
 
-  await redis.del(courseKey)
-  items.map(async (item) => {
-    await redis.rPush(courseKey, item.ID)
-    await redis.set(`${courseKey}:${item.ID}`, item)
-  })
+  if (items === null) {
+    items = await fetchNotionDataAsync<CourseSchemaType>(notion, { ...courseQuery, page_size: pageSize }, processCourseDataAsync)
 
-  const pageData = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+    if (items.length) {
+      await redis.del(courseKey)
+      items.map(async (item) => {
+        await redis.rPush(courseKey, item.ID)
+        await redis.set(`${courseKey}:${item.ID}`, item)
+      })
 
-  return pageData
+      items = items.slice((currentPage - 1) * pageSize, currentPage * pageSize)
+    }
+  }
+
+  items = await Promise.all(items.map((item) => processCourseRelationAsync(notion, item, need)))
+  return items
 }
 
-export async function processCourseDataAsync(item: any, notion?: Client): Promise<CourseSchemaType | null> {
+export async function processCourseDataAsync(notion: Client | null, item: any): Promise<CourseSchemaType | null> {
   if (!item || !isFullPage(item) || !notion) return null
 
   const parseItem: CourseSchemaType = CourseSchema.parse(item.properties)
@@ -62,7 +78,7 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       return parsedPage
     })
     parseItem.課程特色資訊 = (await Promise.all(featuresPromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -80,7 +96,7 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       return parsedPage
     })
     parseItem.可以學到資訊 = (await Promise.all(learnPromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -98,7 +114,7 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       return parsedPage
     })
     parseItem.課程大綱資訊 = (await Promise.all(outlinePromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -116,7 +132,7 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       return parsedPage
     })
     parseItem.課前準備資訊 = (await Promise.all(preparationPromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -134,7 +150,7 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       return parsedPage
     })
     parseItem.結業獲得資訊 = (await Promise.all(achievementPromises))
-      .filter((item) => item !== null)
+      .filter((item) => item != null)
       .sort((a, b) => {
         if (a.排序 == null && b.排序 == null) return 0
         if (a.排序 == null) return 1
@@ -143,4 +159,26 @@ export async function processCourseDataAsync(item: any, notion?: Client): Promis
       })
   }
   return parseItem
+}
+
+export async function processCourseRelationAsync(notion: Client | null, item: CourseSchemaType, need: needType = { needCourseEvents: true, needInstructor: true }): Promise<CourseSchemaType> {
+  const courseEventsPromise = item.課程安排ID && need.needCourseEvents ? fetchCourseEvents(notion, item.課程安排ID, { needCourse: false }) : Promise.resolve([])
+  const instructorPromise = item.講師ID && need.needInstructor ? fetchInstructors(notion, item.講師ID, false) : Promise.resolve(null)
+
+  const [courseEvents, instructor] = await Promise.all([courseEventsPromise, instructorPromise])
+
+  if (courseEvents) {
+    item.課程安排資訊 = courseEvents
+      .filter((events) => {
+        // 要判斷當前日期是否在課程日期前一天之前，以確定是否可以報名
+        return events.上課日期 && new Date() < new Date(new Date(events.上課日期[2]).getTime() - 24 * 60 * 60 * 1000)
+      })
+      .sort((a, b) => {
+        if (a.上課日期 && b.上課日期) return new Date(a.上課日期[2]).getTime() - new Date(b.上課日期[2]).getTime()
+        return 0
+      })
+  }
+  if (instructor) item.講師資訊 = instructor
+
+  return item
 }

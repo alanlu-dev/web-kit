@@ -11,6 +11,7 @@ import {
 } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { InstructorSchema } from './instructor'
+import { CourseEventSchema } from './course_event'
 import type { AndFilterType } from '~/types/notion'
 
 // 課程特色
@@ -71,6 +72,7 @@ export const CourseSchema = z.object({
   價格: NotionNumberSchema.transform((o) => o.number),
   單元數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
   課程時長: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
+  // TODO: 從課程安排資訊取得
   結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
@@ -80,6 +82,11 @@ export const CourseSchema = z.object({
   講師資訊: z.array(InstructorSchema.optional()).optional(),
 
   課程安排: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
+  課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type !== 'array' ? [] : o.rollup.array.map((item) => (item?.type === 'unique_id' && item.unique_id ? item.unique_id.number : undefined)).filter((id): id is number => id !== undefined),
+  ),
+  課程安排資訊: z.array(CourseEventSchema.optional()).optional(),
+
   學員評價: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
 
   課程特色: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
@@ -131,6 +138,8 @@ export const courseQuery: QueryDatabaseParameters = {
     '%5DjEY',
     /** 課程安排 */
     'VS%7CO',
+    /** 課程安排ID */
+    'p%5C~t',
     /** 學員評價 */
     '%5E%7CLt',
     /** 課程特色 */

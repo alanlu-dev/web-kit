@@ -25,13 +25,13 @@ export async function getOrderByTransNoAsync(notion: Client | null, trans_no: st
   return items ? items[0] : null
 }
 
-export async function processOrderDataAsync(item: any): Promise<OrderSchemaType | null> {
+export async function processOrderDataAsync(notion: Client | null, item: any): Promise<OrderSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: OrderSchemaType = OrderSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id!.replaceAll('-', '')
 
-  if (parseItem.課程安排ID) parseItem.課程安排資訊 = await getCourseEventByIdAsync(null, parseItem.課程安排ID)
+  if (parseItem.課程安排ID) parseItem.課程安排資訊 = await getCourseEventByIdAsync(notion, parseItem.課程安排ID, false)
 
   return parseItem
 }

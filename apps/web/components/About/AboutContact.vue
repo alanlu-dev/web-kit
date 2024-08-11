@@ -8,8 +8,7 @@ const show = ref(false)
 const data = ref<ContactSchemaType>()
 const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formData) => {
   // await new Promise((r) => setTimeout(r, 2000))
-  const result = await $fetch('/api/contact', { method: 'post', body: formData })
-  console.log(result)
+  await $fetch('/api/contact', { method: 'post', body: formData })
   show.value = true
 })
 </script>

@@ -12,7 +12,7 @@ export default defineEventHandler<{
   const { refresh } = getQuery(event)
 
   try {
-    return await getGalleryByPositionAsync(null, position, refresh)
+    return await getGalleryByPositionAsync(null, position, !!refresh)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

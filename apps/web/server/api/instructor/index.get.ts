@@ -13,7 +13,7 @@ export default defineEventHandler<{
   const pageSize = page_size ? Number.parseInt(page_size) : 10
 
   try {
-    return await getInstructorsAsync(null, currentPage, pageSize, refresh)
+    return await getInstructorsAsync(null, currentPage, pageSize, !!refresh)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

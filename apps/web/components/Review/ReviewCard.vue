@@ -14,7 +14,7 @@ defineProps<IProps>()
     </div>
     <div class="p:5x|6x">
       <p class="b1-m fg:font-title">學員 {{ review.學員 }}</p>
-      <p class="b1-m fg:primary mt:1x">{{ review.課程名稱 }}</p>
+      <nuxt-link :to="`/course/${review.課程ID}`" class="b1-m fg:primary mt:1x">{{ review.課程資訊_名稱 }}</nuxt-link>
       <p class="b1-r scrollbar h:82 mt:2x overflow-y:auto">{{ review.評價 }}</p>
     </div>
   </div>

@@ -34,7 +34,7 @@ useSeoMeta({
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">課程名稱：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程安排資訊?.課程資訊?.課程名稱 }}</span>
+                  <span>{{ order?.課程安排資訊?.課程資訊_名稱 }}</span>
                 </div>
               </div>
 
@@ -61,7 +61,7 @@ useSeoMeta({
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">付款方式：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ `信用卡一次付清` }}</span>
+                  <span>{{ order?.付款方式 }}</span>
                 </div>
               </div>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import cv from 'class-variant'
-import type { CourseEventSchemaType } from '~/schema/course_event'
+import type { CourseSchemaType } from '~/schema/course'
 
 definePageMeta({
   title: '課程資訊',
@@ -33,8 +33,8 @@ watch(
   },
 )
 
-const { data: courseEvents } = await useFetch<CourseEventSchemaType[]>('/api/course_event', { query })
-const { data: length } = await useFetch<number>('/api/course_event/length', { query })
+const { data: courses } = await useFetch<CourseSchemaType[]>('/api/course', { query })
+const { data: length } = await useFetch<number>('/api/course/length', { query })
 
 const total = computed(() => (length.value ? Math.ceil(length.value / page_size.value) : 1))
 const page = computed(() => {
@@ -57,9 +57,9 @@ const data = [
 ]
 
 const data2 = [
-  { img: '/course_event/step1.jpg', h1: '課堂上課', h2: '教室講解建材特性' },
-  { img: '/course_event/step2.jpg', h1: '樣品實作', h2: '前往真實教室清潔練習' },
-  { img: '/course_event/step3.jpg', h1: '實際演練', h2: '至客戶案場，老師陪同作業' },
+  { img: '/course/step1.jpg', h1: '課堂上課', h2: '教室講解建材特性' },
+  { img: '/course/step2.jpg', h1: '樣品實作', h2: '前往真實教室清潔練習' },
+  { img: '/course/step3.jpg', h1: '實際演練', h2: '至客戶案場，老師陪同作業' },
 ]
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
@@ -151,9 +151,9 @@ const splideOption = {
     <section class="pt:5x pt:6x@tablet px:6x px:10x@desktop" data-aos="fade-up">
       <div class="{max-w:screen-main;mx:auto}">
         <h1 class="h1 title fg:font-title">所有課程</h1>
-        <p class="b1-r my:3x my:5x@desktop text:right">共 {{ courseEvents?.length }} 堂課程</p>
+        <p class="b1-r my:3x my:5x@desktop text:right">共 {{ courses?.length }} 堂課程</p>
         <div class="{grid-cols:1;gap:5x} {grid-cols:2}@tablet {grid-cols:3;gap:10x|5x}@sm {grid-cols:3;gap:10x|15x}@desktop">
-          <CourseCard v-for="event in courseEvents" :key="event.ID" :event="event" />
+          <CourseCard v-for="course in courses" :key="course.ID" :course="course" />
         </div>
       </div>
 

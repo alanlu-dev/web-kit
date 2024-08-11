@@ -20,11 +20,6 @@ defineProps<IProps>()
       <p class="b1-r mt:2x">{{ item.h2 }}</p>
     </div>
 
-    <nuxt-img
-      :hide="last"
-      src="/course_event/arrow.svg"
-      alt="箭頭"
-      class="{abs;middle} {size:8x;right:-13.5x} {size:10x;right:-17.5x}@md opacity:0[hide='true'] pointer-events:none user-select:none"
-    />
+    <nuxt-img :hide="last" src="/course/arrow.svg" alt="箭頭" class="{abs;middle} {size:8x;right:-13.5x} {size:10x;right:-17.5x}@md opacity:0[hide='true'] pointer-events:none user-select:none" />
   </div>
 </template>

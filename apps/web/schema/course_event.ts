@@ -44,7 +44,9 @@ export const CourseEventSchema = z.object({
   課程ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
-  課程資訊: CourseSchema.optional().nullable(),
+  // 課程資訊: CourseSchema.optional().nullable(),
+  課程資訊_名稱: z.string().optional(),
+  課程資訊_價格: z.number().optional().nullable(),
   // 課程標題: NotionDatabaseRollupSchema.transform((o) =>
   //   o.rollup.type === 'array' && o.rollup.array[0]?.type === 'title' && o.rollup.array[0].title[0]?.type === 'text' ? o.rollup.array[0].title[0].plain_text : undefined,
   // ),
@@ -66,6 +68,7 @@ export const CourseEventSchema = z.object({
   //   o.rollup.type === 'array' && o.rollup.array[0]?.type === 'rich_text' && o.rollup.array[0].rich_text[0]?.type === 'text' ? o.rollup.array[0].rich_text[0].plain_text : undefined,
   // ),
 
+  // TODO: 從教室資訊取得名額限制
   名額限制: NotionNumberSchema.transform((o) => o.number),
   // 報名人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 

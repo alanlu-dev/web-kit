@@ -12,7 +12,7 @@ const id = route.params.course_event_id
 const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
 
 useSeoMeta({
-  title: () => courseEvent.value?.課程資訊?.課程名稱 || '結帳',
+  title: () => courseEvent.value?.課程資訊_名稱 || '結帳',
 })
 
 const show = ref(false)
@@ -37,7 +37,6 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
 
   if (result.rc !== 200) {
     isLoading.value = false
-    console.log(result.rm)
     return
   }
   const paymentRequest = result.data!
@@ -70,8 +69,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
             <h3 class="h3 fg:font-title">購買明細</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
-              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊?.課程名稱 }}</NuxtLink>
-              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊?.價格 || 99999) }}</p>
+              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
+              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格 || 99999) }}</p>
             </div>
             <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">

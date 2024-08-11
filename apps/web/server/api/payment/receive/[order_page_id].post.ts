@@ -51,6 +51,7 @@ export default defineEventHandler<{
       page_id: order_page_id,
       properties: {
         付款狀態: { status: { name: data?.RtnCode === '1' ? '待請款' : '付款失敗' } },
+        付款方式: { rich_text: [{ text: { content: data?.PaymentType || 'null' } }] },
         金流代碼: { rich_text: [{ text: { content: data?.RtnCode || 'null' } }] },
         金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
       },
@@ -64,18 +65,19 @@ export default defineEventHandler<{
     if (data?.RtnCode === '1') {
       const parsedPage = NotionPageSchema.parse(page)
       const order = OrderSchema.parse(parsedPage.properties)
-      order.課程安排資訊 = await getCourseEventByIdAsync(notion, order.課程安排ID!)
+      order.課程安排資訊 = await getCourseEventByIdAsync(notion, order.課程安排ID!, false)
 
       try {
         const html = await render(
           MyTemplate,
           {
             siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-            courseName: order.課程安排資訊?.課程資訊?.課程名稱,
+            courseName: order.課程安排資訊?.課程資訊_名稱,
             courseLink: `${process.env.NUXT_PUBLIC_SITE_URL}/course_event/${order.課程安排ID}`,
             studentName: maskName(order.會員名稱),
             orderNumber: order.訂單編號,
             paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
+            paymentType: order.付款方式,
             paymentDate: new Date().toLocaleDateString('zh-TW', {
               timeZone: 'Asia/Taipei',
               year: 'numeric',
@@ -103,7 +105,7 @@ export default defineEventHandler<{
         console.log(process.env.NUXT_NODEMAILER_AUTH_USER, process.env.NUXT_NODEMAILER_AUTH_PASS)
         const { sendMail } = useNodeMailer()
         const emailResult = await sendMail({
-          subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程安排資訊?.課程資訊?.課程名稱}】`,
+          subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程安排資訊?.課程資訊_名稱}】`,
           html: rendered.html,
           to: order.會員信箱,
         })

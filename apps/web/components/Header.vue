@@ -4,7 +4,7 @@ import { VueFinalModal } from 'vue-final-modal'
 const showNav = ref(false)
 
 const nav = [
-  { name: '課程資訊', path: '/course_event' },
+  { name: '課程資訊', path: '/course' },
   { name: '師資陣容', path: '/instructor' },
   { name: '學員評價', path: '/review' },
   { name: '常見問答', path: '/faq' },
