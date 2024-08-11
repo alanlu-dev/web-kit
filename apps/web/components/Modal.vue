@@ -13,19 +13,19 @@ const emit = defineEmits<{
 
 <template>
   <VueFinalModal
-    class="flex center-content"
+    class="center-content flex"
     overlay-transition="vfm-fade"
-    content-class="rel flex flex:col max:3xs px:16x py:10x  bg:base-bg r:2x b:1|divider"
+    content-class="rel {flex;flex:col} b:1|divider bg:base-bg max:screen-3xs p:10x|16x r:2x"
     @update:model-value="(val) => emit('update:modelValue', val)"
   >
     <h2 class="h2 title">
       {{ title }}
     </h2>
-    <div class="b1-r text:center mt:4x">
+    <div class="b1-r mt:4x text:center">
       <slot />
     </div>
-    <button class="abs right:5x top:5x" @click="emit('confirm')">
-      <Icon icon="material-symbols-light:close-small-outline-rounded" />
+    <button class="{abs;right:5x;top:5x} cursor:pointer" @click="emit('confirm')">
+      <Iconify icon="material-symbols-light:close-small-outline-rounded" />
     </button>
   </VueFinalModal>
 </template>

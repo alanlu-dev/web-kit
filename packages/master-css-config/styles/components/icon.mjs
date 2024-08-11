@@ -3,7 +3,7 @@ import { cls, toLine } from '@alanlu-dev/mastercss-helpers'
 /** @type {import('@master/css').Config} */
 export default {
   styles: {
-    icon: {
+    iconify: {
       '': toLine({
         '': cls`
           inline-flex center-content

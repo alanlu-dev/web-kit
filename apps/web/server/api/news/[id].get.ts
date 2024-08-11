@@ -1,22 +1,24 @@
-import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
-import { NotionBlockSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY })
+export default defineEventHandler<{
+  query: {
+    refresh?: boolean
+  }
+}>(async (event) => {
+  const id = getRouterParam(event, 'id')
+  if (!id) return null
 
-export default defineEventHandler(async (event) => {
+  const { refresh } = getQuery(event)
+
   try {
-    const id = getRouterParam(event, 'id')
-    if (!id) return null
-
-    // const page = await notion.pages.retrieve({ page_id: id })
-    const contents = await notion.blocks.children.list({ block_id: id })
-
-    // const parsedPage = NotionPageSchema.parse(page)
-    const parsedContents = NotionBlockSchema.array().parse(contents.results)
-
-    return {
-      contents: parsedContents,
+    const item = await getNewsByIdAsync(null, +id, refresh)
+    if (!item) {
+      const responseData = { rc: 404, rm: 'Not Found' }
+      event.node.res.statusCode = responseData.rc
+      return responseData
     }
+
+    return item
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

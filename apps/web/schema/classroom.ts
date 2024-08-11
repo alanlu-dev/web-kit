@@ -1,0 +1,34 @@
+import { z } from 'zod'
+import { NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import type { AndFilterType } from '~/types/notion'
+
+export const ClassroomSchema = z.object({
+  ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
+  PAGE_ID: z.string().optional(),
+  名稱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+  地址: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+})
+export type ClassroomSchemaType = z.infer<typeof ClassroomSchema>
+
+export const classroomKey = 'classrooms'
+export const classroomFilters: AndFilterType = [
+  // { property: '封存', checkbox: { equals: false } },
+  // { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
+]
+export const classroomQuery: QueryDatabaseParameters = {
+  database_id: process.env.NOTION_DATABASE_ID_CLASSROOMS!,
+  // sorts: [{ property: '排序', direction: 'descending' }],
+  filter: { and: classroomFilters },
+  filter_properties: [
+    /** ID */
+    '%3D%5Cvr',
+    /** 名稱 */
+    'title',
+    /** 地址 */
+    'PKIR',
+    // /** 課程安排 */
+    // 'kPb%5D',
+  ],
+}

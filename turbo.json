@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "globalDependencies": [".env"],
+  "tasks": {
     "app:prepare": {
       "cache": false
     },
@@ -8,32 +9,36 @@
       "dependsOn": ["^pkg:prepare"],
       "cache": false
     },
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
     "cleanup": {
       "cache": false
     },
     "build:clean": {
       "cache": false
     },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "inputs": ["$TURBO_DEFAULT$", ".env.development.local", ".env.local", ".env.development", ".env"]
+    },
     "build": {
       "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env.production.local", ".env.local", ".env.production", ".env"],
       "outputs": ["dist/**", ".output/**"]
     },
-    "deploy": {
-      "dependsOn": ["build", "test", "lint"]
+    "test": {
+      "inputs": ["$TURBO_DEFAULT$", ".env.development.local", ".env.local", ".env.development", ".env"]
     },
-    "test": {},
     "lint": {},
     "typecheck": {},
     "coverage": {
       "outputs": ["coverage/**"]
     },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"]
+    },
     "release": {
       "dependsOn": ["^release"],
-      "outputMode": "new-only"
+      "outputLogs": "new-only"
     }
   }
 }

@@ -1,5 +1,7 @@
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
+import { version } from './package.json'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -27,6 +29,24 @@ export default defineNuxtConfig({
 
     /* --- formkit --- */
     ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
+
+    /* --- gtag --- */
+    'nuxt-gtag',
+    '@zadigetvoltaire/nuxt-gtm',
+
+    /* --- seo --- */
+    '@nuxtjs/seo',
+
+    /* --- mail --- */
+    'nuxt-nodemailer',
+
+    /* --- icon / image --- */
+    'nuxt-icon',
+    '@nuxt/image',
+
+    /* --- aos + gsap --- */
+    'nuxt-aos',
+    // '@hypernym/nuxt-gsap',
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
@@ -36,6 +56,8 @@ export default defineNuxtConfig({
     // formkit
     '@formkit/themes/genesis',
     '@formkit/addons/css/floatingLabels',
+    // plyr
+    'plyr-vue/dist/plyr-vue.css',
   ],
 
   googleFonts: {
@@ -45,19 +67,58 @@ export default defineNuxtConfig({
     },
   },
 
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => tag === 'iconify-icon',
+  ogImage: {
+    enabled: false,
+  },
+
+  site: {
+    name: process.env.NUXT_PUBLIC_SITE_NAME,
+    description: 'Welcome to my awesome site!',
+    defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
+  },
+
+  nodemailer: {
+    from: `"${process.env.NUXT_NODEMAILER_FROM_NAME}" <${process.env.NUXT_NODEMAILER_FROM_MAIL}>`,
+    service: 'gmail',
+    auth: {
+      user: process.env.NUXT_NODEMAILER_AUTH_USER,
+      pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
     },
   },
-  app: {
-    head: {
-      script: [
-        {
-          src: 'https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js',
-          key: 'iconify-icon',
-        },
-      ],
+
+  aos: {
+    // once: true,
+  },
+
+  // gsap: {
+  //   extraPlugins: {
+  //     scrollTrigger: true,
+  //   },
+  // },
+
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    // Additional configuration for the Google Analytics 4 property
+    config: {
+      page_title: process.env.NUXT_PUBLIC_SITE_NAME,
+    },
+  },
+
+  gtm: {
+    id: process.env.NUXT_PUBLIC_GTM_ID,
+  },
+
+  // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
+  runtimeConfig: {
+    // Keys within public are also exposed client-side
+    public: {
+      version,
+    },
+  },
+
+  nitro: {
+    rollupConfig: {
+      plugins: [vue()],
     },
   },
 })

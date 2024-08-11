@@ -13,7 +13,7 @@ import { genesisIcons } from '@formkit/icons'
 // import '@formkit/addons/css/multistep'
 
 import inputs from './inputs'
-import { babushkaPlugin } from './plugins'
+import { addAsteriskPlugin, babushkaPlugin } from './plugins'
 import { messages, rules } from './rules'
 
 export default defineFormKitConfig(() => {
@@ -43,6 +43,7 @@ export default defineFormKitConfig(() => {
       createFloatingLabelsPlugin({
         useAsDefault: true, // defaults to false
       }),
+      addAsteriskPlugin,
       babushkaPlugin,
     ],
 
@@ -57,7 +58,11 @@ export default defineFormKitConfig(() => {
       // classes: generateClasses(mcssTheme),
       classes: generateClasses({
         global: {
-          inner: 'user-select:none',
+          wrapper: 'max-w:unset!',
+          outer: 'mb:0!',
+          label: 'bg:base-bg nowrap',
+          fieldset: '$reset',
+          asterisk: `fg:accent`,
         },
         submit: {
           input: '$reset btn btn--primary',

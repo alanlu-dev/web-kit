@@ -1,23 +1,13 @@
 # Custom Dictionary Words
-abjad
-akar
-autorestart
-bluewood
-breakline
-datetime
-evenodd
+astrisks
 Fira
-fullname
-infile
-jiti
+llen
+lrange
 multistep
-noborder
 noobserver
 Noto
-Overriden
 preinstall
-stroustrup
+rpush
 typecheck
-unref
 wght
 zod's

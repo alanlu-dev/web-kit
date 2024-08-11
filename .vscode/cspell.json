@@ -14,12 +14,17 @@
       "addWords": true
     },
     {
+      "name": "notion_key",
+      "path": "./.cspell/notion_key.txt",
+      "addWords": true
+    },
+    {
       "name": "other",
       "path": "./.cspell/other.txt",
       "addWords": true
     }
   ],
-  "dictionaries": ["name", "repo", "other"],
+  "dictionaries": ["name", "repo", "notion_key", "other"],
   "words": [],
   "ignoreWords": [],
   "import": []
