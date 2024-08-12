@@ -150,7 +150,7 @@ export default defineNuxtConfig({
   // https://github.com/danielroe/nuxt-vercel-isr
   routeRules: {
     // all routes (by default) generated on demand, revalidates in background, cached on CDN for 60 seconds
-    '/**': { isr: 3600 },
+    '/**': { isr: 60 },
 
     // this page will be generated on demand once until next deployment, cached on CDN
     // '/': { isr: true },
