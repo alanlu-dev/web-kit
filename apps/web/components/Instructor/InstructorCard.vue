@@ -5,27 +5,68 @@ interface IProps {
   instructor: InstructorSchemaType
 }
 defineProps<IProps>()
+
+// https://www.ripple-ui.com/docs/components/accordion
+// Accordion on click will collapse the other open accordions
+const focusable = ref(false)
 </script>
 
 <template>
-  <nuxt-link class=".is-active>{pointer-events:unset} pointer-events:none scale(1.05):hover_img" to="/instructor">
-    <div class="rel {flex;flex:col} {flex:row}@xs {content:'';bg:white;abs;top:10x;left:30x;bottom;right;z:-1;r:2x}::before@xs overflow:hidden pb:5x@xs r:2x">
+  <div class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x">
+    <div class="{flex;flex:col} {flex:row;gap:10x}@tablet">
       <div class="flex:1">
-        <div class="{aspect:inherit;object:cover}_img aspect:357/254 overflow:hidden r:2x@xs">
+        <div class="{aspect:inherit;object:cover}_img aspect:382/262 overflow:hidden r:2x">
           <nuxt-img :src="instructor.照片[0]" alt="講師" class="~300ms|ease pointer-events:none user-select:none" />
         </div>
-      </div>
-      <div class="{pt:15x;pl:9x}@xs bg:none@xs bg:white flex:1 p:4x|5x r:2x@xs text:left w:full">
-        <h3 class="h3 fg:primary">{{ instructor.名稱 }} {{ instructor.英文名 }}</h3>
-        <p class="b1-m mt:1x">{{ instructor.頭銜 }}</p>
-        <div class="list b2-r mt:5x mt:10x@xs">
+        <h2 class="h2 fg:primary mt:3x">{{ instructor.名稱 }} {{ instructor.英文名 }}</h2>
+        <h3 class="h3 mt:1x">{{ instructor.頭銜 }}</h3>
+        <div class="list b1-r mt:4x">
           <ul>
             <li>{{ instructor.工作經驗 }} 年收納工作經驗</li>
             <li>{{ instructor.工作經驗 }} 年教學經驗</li>
-            <li>{{ instructor.標語 }}</li>
           </ul>
         </div>
       </div>
+      <div class="flex:2">
+        <input :id="`i-${instructor.ID}`" name="i" :type="focusable ? `radio` : `checkbox`" class="hidden" />
+        <div class="accordion-content {accordion-content--open}@tablet">
+          <div>
+            <div class="b1-m bg:home fg:primary mt:4x mt:0@tablet p:5x|6x r:5x">
+              {{ instructor.標語 }}
+            </div>
+
+            <div v-if="instructor.專業認證資訊?.length" class="mt:4x mt:7x@tablet">
+              <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 專業認證</p>
+              <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
+                <ul>
+                  <li v-for="item in instructor.專業認證資訊" :key="item?.PAGE_ID">{{ item?.專業認證 }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div v-if="instructor?.服務經驗" class="mt:4x mt:7x@tablet">
+              <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 服務經驗</p>
+              <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
+                {{ instructor?.服務經驗 }}
+              </div>
+            </div>
+
+            <div v-if="instructor.受邀講座資訊?.length" class="mt:4x mt:7x@tablet">
+              <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 受邀講座</p>
+              <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
+                <ul>
+                  <li v-for="item in instructor.受邀講座資訊" :key="item?.PAGE_ID">{{ item?.受邀講座 }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <label :for="`i-${instructor.ID}`" class="block hidden@tablet :checked~{block!}>.close :checked~{hidden}>.open mt:2x text:center">
+          <Iconify class="open" icon="material-symbols-light:keyboard-arrow-down">展開詳細介紹</Iconify>
+          <Iconify class="close hidden!" icon="material-symbols-light:keyboard-arrow-up">收合詳細介紹</Iconify>
+        </label>
+      </div>
     </div>
-  </nuxt-link>
+  </div>
 </template>

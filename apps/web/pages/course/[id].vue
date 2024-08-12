@@ -59,21 +59,21 @@ onMounted(() => {
               <div>
                 <p>課程時長</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.課程時長 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.課程時長 || 0 }} </p>
                   <p>小時</p>
                 </div>
               </div>
               <div>
                 <p>單元數</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.單元數 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.單元數 || 0 }} </p>
                   <p>單元</p>
                 </div>
               </div>
               <div>
                 <p>結業人數</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.結業人數 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.結業人數 || 0 }} </p>
                   <p>人</p>
                 </div>
               </div>
@@ -100,6 +100,8 @@ onMounted(() => {
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 關於講師</h3>
+            <!-- <InstructorCard v-for="instructor in course?.講師資訊" :key="instructor?.ID" :instructor="instructor!" /> -->
+
             <div v-for="instructor in course?.講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:2x mt:3x@tablet">
               <div class="flex:1 order:2@desktop overflow:hidden r:2x">
                 <nuxt-img :src="instructor?.照片[0]" :alt="instructor?.名稱" />

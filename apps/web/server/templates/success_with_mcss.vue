@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { Container, Html, Img, Link } from '@vue-email/components'
 
-defineProps({
-  siteUrl: String,
-  courseName: String,
-  courseLink: String,
-  studentName: String,
-  orderNumber: String,
-  paymentAmount: String,
-  paymentType: String,
-  paymentDate: String,
-  courseDate: String,
-  courseTime: String,
-  courseDateMinus7: String,
-  courseLocation: String,
-  logoSrc: String,
-})
+interface IPros {
+  siteUrl: string
+  courseName: string
+  courseLink: string
+  studentName: string
+  orderNumber: string
+  paymentAmount: string
+  paymentType: string
+  paymentDate: string
+  courseDate: string
+  courseTime: string
+  courseDateMinus7: string
+  courseLocation: string
+  logoSrc: string
+}
+
+defineProps<IPros>()
 </script>
 
 <template>

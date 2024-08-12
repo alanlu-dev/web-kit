@@ -71,13 +71,13 @@ export default defineEventHandler<{
         const html = await render(
           MyTemplate,
           {
-            siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-            courseName: order.課程安排資訊?.課程資訊_名稱,
+            siteUrl: process.env.NUXT_PUBLIC_SITE_URL!,
+            courseName: order.課程安排資訊!.課程資訊_名稱!,
             courseLink: `${process.env.NUXT_PUBLIC_SITE_URL}/course_event/${order.課程安排ID}`,
             studentName: maskName(order.會員名稱),
-            orderNumber: order.訂單編號,
+            orderNumber: order.訂單編號!,
             paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
-            paymentType: order.付款方式,
+            paymentType: order.付款方式!,
             paymentDate: new Date().toLocaleDateString('zh-TW', {
               timeZone: 'Asia/Taipei',
               year: 'numeric',
@@ -93,7 +93,7 @@ export default defineEventHandler<{
               month: '2-digit',
               day: '2-digit',
             }),
-            courseLocation: order.課程安排資訊?.教室資訊?.地址,
+            courseLocation: order.課程安排資訊!.教室資訊!.地址!,
             logoSrc: `${process.env.NUXT_PUBLIC_SITE_URL}/about/jie_housekeeper.png`,
           },
           {

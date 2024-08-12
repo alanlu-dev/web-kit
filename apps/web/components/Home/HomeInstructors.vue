@@ -65,13 +65,13 @@ const splideOption = {
             <div class="splide__track">
               <ul v-if="instructors?.length" class="splide__list" :class="ratio()">
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[instructors.length - 1]" />
+                  <InstructorHomeCard :instructor="instructors[instructors.length - 1]" />
                 </li>
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[0]" />
+                  <InstructorHomeCard :instructor="instructors[0]" />
                 </li>
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[1]" />
+                  <InstructorHomeCard :instructor="instructors[1]" />
                 </li>
               </ul>
             </div>
@@ -89,7 +89,7 @@ const splideOption = {
 
             <SplideTrack>
               <SplideSlide v-for="instructor in instructors" :key="instructor.ID">
-                <InstructorCard :instructor="instructor" />
+                <InstructorHomeCard :instructor="instructor" />
               </SplideSlide>
             </SplideTrack>
           </Splide>
