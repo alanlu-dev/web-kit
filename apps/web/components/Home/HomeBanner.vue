@@ -9,7 +9,7 @@ const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首�
 // 比例
 const imgRatio = {
   m: '430/270',
-  pc: '1440/481',
+  pc: '1440/480',
 }
 const ratio = cv(
   '{object:cover;w:full}_img',
