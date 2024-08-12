@@ -150,7 +150,7 @@ export default defineNuxtConfig({
   // https://github.com/danielroe/nuxt-vercel-isr
   routeRules: {
     // all routes (by default) generated on demand, revalidates in background, cached on CDN for 60 seconds
-    '/**': { isr: 60 },
+    '/**': { isr: 3600 },
 
     // this page will be generated on demand once until next deployment, cached on CDN
     // '/': { isr: true },
@@ -193,6 +193,12 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    vercel: {
+      config: {
+        // https://nitro.unjs.io/deploy/providers/vercel#on-demand-incremental-static-regeneration-isr
+        bypassToken: process.env.VERCEL_BYPASS_TOKEN,
+      },
+    },
     rollupConfig: {
       plugins: [vue()],
     },
