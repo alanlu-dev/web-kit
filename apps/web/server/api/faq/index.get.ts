@@ -4,16 +4,17 @@ export default defineEventHandler<{
   query: {
     page?: string
     page_size?: string
-    refresh?: boolean
   }
 }>(async (event) => {
-  const { page, page_size, refresh } = getQuery(event)
+  const { page, page_size } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
   const pageSize = page_size ? Number.parseInt(page_size) : 100
 
+  const refresh = event.node.req.headers['x-prerender-revalidate'] != null
+
   try {
-    return await getFaqAsync(null, currentPage, pageSize, !!refresh)
+    return await getFaqAsync(null, currentPage, pageSize, refresh)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

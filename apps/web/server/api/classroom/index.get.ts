@@ -4,16 +4,15 @@ export default defineEventHandler<{
   query: {
     page?: string
     page_size?: string
-    refresh?: boolean
   }
 }>(async (event) => {
-  const { page, page_size, refresh } = getQuery(event)
+  const { page, page_size } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
   const pageSize = page_size ? Number.parseInt(page_size) : 10
 
   try {
-    return await getClassroomsAsync(null, currentPage, pageSize, !!refresh)
+    return await getClassroomsAsync(null, currentPage, pageSize, false)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

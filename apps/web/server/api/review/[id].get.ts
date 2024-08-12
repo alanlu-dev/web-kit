@@ -1,17 +1,11 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{
-  query: {
-    refresh?: boolean
-  }
-}>(async (event) => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   if (!id) return null
 
-  const { refresh } = getQuery(event)
-
   try {
-    const item = await getReviewByIdAsync(null, +id, !!refresh)
+    const item = await getReviewByIdAsync(null, +id, false)
     if (!item) {
       const responseData = { rc: 404, rm: 'Not Found' }
       event.node.res.statusCode = responseData.rc

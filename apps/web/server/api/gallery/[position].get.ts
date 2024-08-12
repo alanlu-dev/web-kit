@@ -1,18 +1,12 @@
 import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 
-export default defineEventHandler<{
-  query: {
-    refresh?: boolean
-  }
-}>(async (event) => {
+export default defineEventHandler(async (event) => {
   const paramPosition = getRouterParam(event, 'position')
   if (!paramPosition) return []
   const position = decodeURIComponent(paramPosition)
 
-  const { refresh } = getQuery(event)
-
   try {
-    return await getGalleryByPositionAsync(null, position, !!refresh)
+    return await getGalleryByPositionAsync(null, position, false)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {
