@@ -185,10 +185,11 @@ export default defineNuxtConfig({
     public: {
       isDev,
       version,
-      siteName: process.env.NUXT_PUBLIC_SITE_NAME,
-      gtmId: process.env.NUXT_PUBLIC_GTM_ID,
-      fbUrl: process.env.FB_URL,
-      region: process.env.VERCEL_REGION,
+      siteName: '',
+      siteUrl: '',
+      gtmId: '',
+      fbUrl: '',
+      region: process.env.VERCEL_REGION || '',
     },
   },
 
