@@ -5,50 +5,69 @@ import { version } from './package.json'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
+const isDev = process.env.VERCEL_ENV === 'preview'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   telemetry: false,
 
+  experimental: {
+    defaults: {
+      useAsyncData: {
+        deep: false,
+      },
+      // https://github.com/unjs/ofetch?tab=readme-ov-file#%EF%B8%8F-auto-retry
+      useFetch: {
+        retry: false, // default 1
+        timeout: 5000, // default is disabled
+      },
+    },
+  },
+
   // https://nuxt.com/docs/api/configuration/nuxt-config#modules
   modules: [
-    /* --- ui --- */
-    '@master/css.nuxt',
-
-    /* --- fonts --- */
-    '@nuxtjs/google-fonts',
-
-    /* --- pinia --- */
-    '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
-
-    /* --- splide --- */
-    ['nuxt-splide', { theme: 'default' }],
-
-    /* --- modal --- */
-    '@vue-final-modal/nuxt',
-
-    /* --- formkit --- */
-    ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
-
     /* --- gtag --- */
     'nuxt-gtag',
-    '@zadigetvoltaire/nuxt-gtm',
 
     /* --- seo --- */
     '@nuxtjs/seo',
 
-    /* --- mail --- */
-    'nuxt-nodemailer',
+    /* --- fonts --- */
+    '@nuxtjs/google-fonts',
+
+    /* --- ui --- */
+    '@master/css.nuxt',
 
     /* --- icon / image --- */
     'nuxt-icon',
     '@nuxt/image',
 
+    /* --- components --- */
+    '@vue-final-modal/nuxt',
+    ['nuxt-splide', { theme: 'default' }],
+    ['@formkit/nuxt', { autoImport: true, configFile: resolve(currentDir, './my-config/formkit/formkit.config.ts') }],
+    // 'floating-vue/nuxt',
+
+    /* --- utils --- */
+    '@vueuse/nuxt',
+
+    /* --- pinia --- */
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+
+    /* --- mail --- */
+    'nuxt-nodemailer',
+
     /* --- aos + gsap --- */
     'nuxt-aos',
     // '@hypernym/nuxt-gsap',
   ],
+
+  // https://nuxt.com/docs/api/configuration/nuxt-config#imports
+  imports: {
+    dirs: ['constants'],
+  },
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
   css: [
@@ -72,10 +91,73 @@ export default defineNuxtConfig({
     enabled: false,
   },
 
+  // https://github.com/johannschopplich/nuxt-gtag
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+    // Additional configuration for the Google Analytics 4 property
+    config: {
+      page_title: process.env.NUXT_PUBLIC_SITE_NAME,
+    },
+  },
+
   site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL,
     name: process.env.NUXT_PUBLIC_SITE_NAME,
     description: 'Welcome to my awesome site!',
     defaultLocale: 'zh-TW', // not needed if you have @nuxtjs/i18n installed
+    trailingSlash: false,
+    indexable: true,
+    debug: isDev,
+  },
+
+  schemaOrg: {
+    identity: {
+      type: 'Organization',
+      name: process.env.NUXT_PUBLIC_SITE_NAME!,
+      url: process.env.NUXT_PUBLIC_SITE_URL, // main website
+      logo: `${process.env.NUXT_PUBLIC_SITE_URL}/logo.svg`,
+      sameAs: [
+        // social/authoritative profiles
+        process.env.FB_URL!,
+      ],
+    },
+  },
+
+  sitemap: {
+    // manually chunk into multiple sitemaps
+    sitemaps: {
+      pages: {
+        includeAppSources: true,
+      },
+      courses: {
+        sources: ['/api/__sitemap__/urls/courses'],
+      },
+    },
+  },
+
+  // https://nuxtseo.com/link-checker/getting-started/installation
+  linkChecker: {
+    enabled: isDev,
+    showLiveInspections: isDev,
+    // skipInspections: ['missing-hash', 'no-error-response', 'no-baseless', 'no-javascript', 'trailing-slash', 'absolute-site-urls', 'redirects'],
+    // excludeLinks: ['/course/**'],
+  },
+
+  robots: {
+    disallow: ['/checkout'],
+  },
+
+  // https://github.com/danielroe/nuxt-vercel-isr
+  routeRules: {
+    // all routes (by default) generated on demand, revalidates in background, cached on CDN for 60 seconds
+    '/**': { isr: 3600 },
+
+    // this page will be generated on demand once until next deployment, cached on CDN
+    // '/': { isr: true },
+    // '/faq': { isr: true },
+
+    // this page will be always fresh
+    '/checkout/**': { isr: false },
   },
 
   nodemailer: {
@@ -97,23 +179,16 @@ export default defineNuxtConfig({
   //   },
   // },
 
-  gtag: {
-    id: process.env.NUXT_PUBLIC_GTAG_ID,
-    // Additional configuration for the Google Analytics 4 property
-    config: {
-      page_title: process.env.NUXT_PUBLIC_SITE_NAME,
-    },
-  },
-
-  gtm: {
-    id: process.env.NUXT_PUBLIC_GTM_ID,
-  },
-
   // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
   runtimeConfig: {
     // Keys within public are also exposed client-side
     public: {
+      isDev,
       version,
+      siteName: process.env.NUXT_PUBLIC_SITE_NAME,
+      gtmId: process.env.NUXT_PUBLIC_GTM_ID,
+      fbUrl: process.env.FB_URL,
+      region: process.env.VERCEL_REGION,
     },
   },
 

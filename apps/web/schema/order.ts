@@ -3,7 +3,6 @@ import { NotionDatabaseRollupSchema, NotionNumberSchema, NotionRichTextSchema, N
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { MemberSchema } from './member'
 import { CourseEventSchema } from './course_event'
-import type { AndFilterType } from '~/types/notion'
 
 export const OrderParamsSchema = MemberSchema.extend({
   courseEventId: z.number(),
@@ -41,9 +40,11 @@ export const OrderSchema = z.object({
 })
 export type OrderSchemaType = z.infer<typeof OrderSchema>
 
+// const runtimeConfig = useRuntimeConfig()
+
 export const orderFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
 export const orderQuery: QueryDatabaseParameters = {

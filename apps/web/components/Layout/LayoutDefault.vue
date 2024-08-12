@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/nuxt'
+import { ModalsContainer } from 'vue-final-modal'
 import { useEventListener } from '@vueuse/core'
 
 const showDevPanel = useState('showDevPanel', () => false)
@@ -14,17 +16,22 @@ useEventListener(window, 'keydown', (event) => {
 const { $refreshAos } = useNuxtApp()
 const route = useRoute()
 
-watch(
-  () => route.fullPath,
-  () => {
-    $refreshAos()
-  },
-)
+onMounted(() => {
+  watch(
+    () => route.fullPath,
+    () => {
+      $refreshAos()
+    },
+  )
+})
 </script>
 
 <template>
   <div class="rel {flex;flex:col} min-h:100vh mx:auto" :class="{ dev: showDevPanel }">
     <Header />
+
+    <SpeedInsights />
+    <ModalsContainer />
 
     <main class="flex:1">
       <LayoutGrids />

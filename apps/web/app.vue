@@ -1,14 +1,30 @@
 <script lang="ts" setup>
-import { ModalsContainer } from 'vue-final-modal'
+const siteConfig = useSiteConfig()
+
+// const config = useConfigStore()
+// await callOnce(async () => {
+//   await config.fetchWebConfig()
+// })
 
 useHead({
   htmlAttrs: {
     id: 'mcss',
+    lang: siteConfig.defaultLocale,
   },
   bodyAttrs: {
-    class: 'normal scrollbar',
+    class: 'normal scrollbar {top:59}_.Toastify__toast-container {top:68}_.Toastify__toast-container@tablet {top:74}_.Toastify__toast-container@lg',
   },
   link: [{ rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+  templateParams: {
+    schemaOrg: {
+      host: siteConfig.url,
+      inLanguage: siteConfig.defaultLocale, // locale.value, refs are supported
+    },
+  },
+})
+
+useSeoMeta({
+  ogImage: '/about/jie_housekeeper.png',
 })
 
 const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@master/css.vue')).CSSRuntimeProvider)
@@ -19,7 +35,6 @@ const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@mast
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
-      <ModalsContainer />
     </NuxtLayout>
   </CSSRuntimeProvider>
 </template>

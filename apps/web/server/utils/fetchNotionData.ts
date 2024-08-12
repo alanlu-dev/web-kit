@@ -1,6 +1,5 @@
 import { Client } from '@notionhq/client'
 import type { QueryDatabaseParameters, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
-import type { AndFilterType } from '~/types/notion'
 
 export async function fetchNotionDataAsync<T>(notion: Client | null, query: QueryDatabaseParameters, processData: (notion: Client | null, item: any) => Promise<T | null>): Promise<T[]> {
   const allResult: QueryDatabaseResponse['results'] = []

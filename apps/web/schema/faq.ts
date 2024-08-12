@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { NotionNumberSchema, NotionRichTextSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import type { AndFilterType } from '~/types/notion'
 
 export const FaqSchema = z.object({
   // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -12,10 +11,12 @@ export const FaqSchema = z.object({
 })
 export type FaqSchemaType = z.infer<typeof FaqSchema>
 
+// const runtimeConfig = useRuntimeConfig()
+
 export const faqKey = 'faq'
 export const faqFilters: AndFilterType = [
   // { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
 ]
 export const faqQuery: QueryDatabaseParameters = {
   database_id: process.env.NOTION_DATABASE_ID_FAQ!,

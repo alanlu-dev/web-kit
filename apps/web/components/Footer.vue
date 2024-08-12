@@ -3,10 +3,10 @@ useHead({
   script: [
     {
       src: 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v20.0&appId=895271347480268',
-      async: true,
+      // async: true,
       defer: true,
       crossorigin: 'anonymous',
-      nonce: '5RIUbDff',
+      nonce: 'JIbORIoG',
     },
   ],
 })
@@ -49,20 +49,22 @@ useHead({
       </div>
 
       <div class="w:full w:unset@tablet">
-        <div class="h:full mx:auto@tablet w:242">
+        <div class="h:full mx:auto@tablet w:300@lg">
           <div id="fb-root"></div>
           <div
             class="fb-page"
-            data-href="https://www.facebook.com/facebook"
+            data-href="https://www.facebook.com/profile.php?id=100083157557892"
             data-tabs=""
-            data-width="242"
-            data-height="102"
+            data-width="500px"
+            data-height=""
             data-small-header="false"
             data-adapt-container-width="true"
             data-hide-cover="false"
             data-show-facepile="false"
           >
-            <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a> </blockquote>
+            <blockquote cite="https://www.facebook.com/profile.php?id=100083157557892" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/profile.php?id=100083157557892">中華民國職業清潔認證協會 PCCA</a>
+            </blockquote>
           </div>
         </div>
       </div>

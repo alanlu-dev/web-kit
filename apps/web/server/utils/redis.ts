@@ -1,10 +1,10 @@
 import { createClient } from 'redis'
 import { kv } from '@vercel/kv'
 
-const isDev = process.env.VERCEL_ENV === 'preview'
+const runtimeConfig = useRuntimeConfig()
 
 function log(message?: any, ...optionalParams: any[]) {
-  if (!isDev) return
+  if (!runtimeConfig.public.isDev) return
   console.log(`${message}`, ...optionalParams)
 }
 
@@ -75,7 +75,19 @@ async function handleError<T>(operation: () => Promise<T>): Promise<T> {
   }
 }
 
+function processKey(key: string): string {
+  if (runtimeConfig.public.isDev) {
+    return `dev:${key}`
+  }
+  return key
+}
+
+function processKeys(keys: string[]): string[] {
+  return keys.map(processKey)
+}
+
 async function set(key: string, data: any) {
+  key = processKey(key)
   log(`Setting data to key: ${key}, data: ${data}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
@@ -88,6 +100,7 @@ async function set(key: string, data: any) {
 }
 
 async function get<T>(key: string): Promise<T | null> {
+  key = processKey(key)
   // log(`Getting data from key: ${key}`)
   return handleError(async () => {
     let data: T | null = null
@@ -105,6 +118,7 @@ async function get<T>(key: string): Promise<T | null> {
 }
 
 async function mGet<T>(keys: string[]): Promise<T[]> {
+  keys = processKeys(keys)
   // log(`Getting data from keys: ${keys}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
@@ -118,6 +132,7 @@ async function mGet<T>(keys: string[]): Promise<T[]> {
 }
 
 async function del(key: string) {
+  key = processKey(key)
   log(`Deleting data from key: ${key}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
@@ -130,6 +145,7 @@ async function del(key: string) {
 }
 
 async function lRange<T>(key: string, currentPage: number, pageSize: number): Promise<T[]> {
+  key = processKey(key)
   // log(`Getting data from list key: ${key}, currentPage: ${currentPage}, pageSize: ${pageSize}`)
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = currentPage * pageSize - 1
@@ -145,6 +161,7 @@ async function lRange<T>(key: string, currentPage: number, pageSize: number): Pr
 }
 
 async function rPush(key: string, ...data: any[]): Promise<number> {
+  key = processKey(key)
   log(`Pushing data to list key: ${key}, data: ${data}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {
@@ -164,6 +181,7 @@ async function rPush(key: string, ...data: any[]): Promise<number> {
 }
 
 async function lLen(key: string): Promise<number> {
+  key = processKey(key)
   // log(`Getting list length from key: ${key}`)
   return handleError(async () => {
     if (currentStorageType === 'redis') {

@@ -1,5 +1,6 @@
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { formatThousand } from '@alanlu-dev/utils'
+import { addDay, format } from '@formkit/tempo'
 import { APIErrorCode, Client, ClientErrorCode, isNotionClientError } from '@notionhq/client'
 import { render } from '@vue-email/render'
 import { render as renderCSS } from '@master/css-server'
@@ -78,21 +79,11 @@ export default defineEventHandler<{
             orderNumber: order.訂單編號!,
             paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
             paymentType: order.付款方式!,
-            paymentDate: new Date().toLocaleDateString('zh-TW', {
-              timeZone: 'Asia/Taipei',
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-            }),
+            paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
             courseDate: order.課程安排資訊!.上課日期![0]!,
             courseTime: order.課程安排資訊!.上課日期![1]!,
             // 課程⽇期減 7 天
-            courseDateMinus7: new Date(new Date(order.課程安排資訊!.上課日期![2]!).getTime() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString('zh-TW', {
-              timeZone: 'Asia/Taipei',
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-            }),
+            courseDateMinus7: format({ date: addDay(order.課程安排資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
             courseLocation: order.課程安排資訊!.教室資訊!.地址!,
             logoSrc: `${process.env.NUXT_PUBLIC_SITE_URL}/about/jie_housekeeper.png`,
           },

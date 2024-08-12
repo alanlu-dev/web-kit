@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { NotionDateSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import type { AndFilterType } from '~/types/notion'
 
 export const NewsSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -16,10 +15,12 @@ export const NewsSchema = z.object({
 })
 export type NewsSchemaType = z.infer<typeof NewsSchema>
 
+const runtimeConfig = useRuntimeConfig()
+
 export const newsKey = 'news'
 export const newsFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
 export const newsQuery: QueryDatabaseParameters = {

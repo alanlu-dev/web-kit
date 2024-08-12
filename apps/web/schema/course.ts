@@ -12,7 +12,6 @@ import {
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { InstructorSchema } from './instructor'
 import { CourseEventSchema } from './course_event'
-import type { AndFilterType } from '~/types/notion'
 
 // 課程特色
 export const FeaturesSchema = z.object({
@@ -102,10 +101,12 @@ export const CourseSchema = z.object({
 })
 export type CourseSchemaType = z.infer<typeof CourseSchema>
 
+const runtimeConfig = useRuntimeConfig()
+
 export const courseKey = 'courses'
 export const courseFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
 ]
 export const courseQuery: QueryDatabaseParameters = {
   database_id: process.env.NOTION_DATABASE_ID_COURSES!,

@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { SpeedInsights } from '@vercel/speed-insights/nuxt'
+import { useTimeAgo } from '@vueuse/core'
+
+const runtimeConfig = useRuntimeConfig()
 
 const common = useCommonStore()
 const activeBreakpoint = common.breakpoints.active()
+
+const generatedAt = useState(() => new Date().toISOString())
+const timeAgo = useTimeAgo(new Date(generatedAt.value))
 </script>
 
 <template>
   <ClientOnly>
-    <SpeedInsights />
-
     <!-- Grids -->
     <div class="full hidden .dev_{block} {fixed;center;middle} b:1|dotted|primary/.5 max-w:screen-max pointer-events:none px:6x px:10x@desktop z:devPanel">
       <div class="flex full b:1|dotted|black/.25">
@@ -18,6 +21,11 @@ const activeBreakpoint = common.breakpoints.active()
 
     <!-- Breakpoints -->
     <div class="hidden .dev_{block} {fixed;bottom:1x;right:1x} max-w:screen-max pointer-events:none z:devPanel">
+      <div>
+        <p>版本資訊 v{{ runtimeConfig.public.version }}</p>
+        <p>Server by {{ runtimeConfig.public.region }}</p>
+        <p>Generated {{ timeAgo }}</p>
+      </div>
       <div class="b1-b rounded bg:primary/.5 fg:white m:1x p:1x|2x">
         {{ activeBreakpoint }}
       </div>

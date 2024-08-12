@@ -3,4 +3,8 @@ import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-end
 // 提取 and 的型別
 type ExtractAnd<T> = T extends { and: infer U } ? U : never
 
-export type AndFilterType = ExtractAnd<NonNullable<QueryDatabaseParameters['filter']>>
+export {}
+
+declare global {
+  type AndFilterType = ExtractAnd<NonNullable<QueryDatabaseParameters['filter']>>
+}

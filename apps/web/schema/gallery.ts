@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { NotionCheckboxSchema, NotionDateSchema, NotionFilesSchema, NotionTitleSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import type { AndFilterType } from '~/types/notion'
 
 export const GallerySchema = z.object({
   // 位置: NotionSelectSchema.transform((o) => o.select?.name),
@@ -18,10 +17,12 @@ export const GallerySchema = z.object({
 })
 export type GallerySchemaType = z.infer<typeof GallerySchema>
 
+const runtimeConfig = useRuntimeConfig()
+
 export const galleryKey = 'gallery'
 export const galleryFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const galleryQuery: QueryDatabaseParameters = {

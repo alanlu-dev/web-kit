@@ -1,10 +1,11 @@
 import { z } from 'zod'
 import { NotionDatabaseRollupSchema, NotionDateSchema, NotionNumberSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { format } from '@formkit/tempo'
 
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { CourseSchema } from './course'
 import { ClassroomSchema } from './classroom.js'
-import type { AndFilterType } from '~/types/notion'
+
+const runtimeConfig = useRuntimeConfig()
 
 export const CourseEventSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -17,24 +18,9 @@ export const CourseEventSchema = z.object({
     const startDate = new Date(o.date.start)
     const endDate = o.date.end ? new Date(o.date.end) : null
 
-    const formattedDate = `${startDate
-      .toLocaleDateString('zh-TW', {
-        timeZone: 'Asia/Taipei',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        weekday: 'short',
-      })
-      .replace('週', '')}`
-
-    const startTime = startDate.toLocaleTimeString('zh-TW', {
-      timeZone: 'Asia/Taipei',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })
-
-    const endTime = endDate ? endDate.toLocaleTimeString('zh-TW', { timeZone: 'Asia/Taipei', hour: '2-digit', minute: '2-digit', hour12: false }) : null
+    const formattedDate = format({ date: startDate, format: 'YYYY/MM/DD (d)', locale: 'zh-TW', tz: 'Asia/Taipei' })
+    const startTime = format({ date: startDate, format: 'HH:mm', locale: 'zh-TW', tz: 'Asia/Taipei' })
+    const endTime = endDate ? format({ date: endDate, format: 'HH:mm', locale: 'zh-TW', tz: 'Asia/Taipei' }) : null
 
     const formattedTime = endTime ? `${startTime}~${endTime}` : startTime
 
@@ -80,7 +66,7 @@ export type CourseEventSchemaType = z.infer<typeof CourseEventSchema>
 export const courseEventKey = 'course_events'
 export const courseEventFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   { property: '課程驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseEventQuery: QueryDatabaseParameters = {

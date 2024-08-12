@@ -130,6 +130,9 @@ importers:
       '@formkit/nuxt':
         specifier: ^1.6.5
         version: 1.6.5(esbuild@0.23.0)(magicast@0.3.4)(rollup@4.20.0)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue@3.4.37(typescript@5.5.4))
+      '@formkit/tempo':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@formkit/themes':
         specifier: ^1.6.5
         version: 1.6.5
@@ -139,6 +142,9 @@ importers:
       '@formkit/zod':
         specifier: ^1.6.5
         version: 1.6.5(zod@3.23.8)
+      '@gtm-support/vue-gtm':
+        specifier: ^3.0.1
+        version: 3.0.1(vue@3.4.37(typescript@5.5.4))
       '@master/css.nuxt':
         specifier: 2.0.0-rc.45
         version: 2.0.0-rc.45(magicast@0.3.4)(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
@@ -260,9 +266,9 @@ importers:
       '@jiehousekeeper/master-css-config':
         specifier: workspace:*
         version: link:../../packages/master-css-config
-      '@zadigetvoltaire/nuxt-gtm':
-        specifier: ^0.0.13
-        version: 0.0.13(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4)))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
+      '@vueuse/nuxt':
+        specifier: ^10.11.1
+        version: 10.11.1(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4)))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
       nuxt:
         specifier: 3.12.4
         version: 3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4))
@@ -1606,6 +1612,9 @@ packages:
   '@formkit/rules@1.6.5':
     resolution: {integrity: sha512-j9ylAibBvNx+3tEAkYzl2HjQwDzWV2mRPmFH7GTAmtxijFiktPS8HTU9H88H/x2stkYk9S13/MMeqDgZnc3VrQ==}
 
+  '@formkit/tempo@0.1.2':
+    resolution: {integrity: sha512-jNPPbjL8oj7hK3eHX++CwbR6X4GKQt+x00/q4yeXkwynXHGKL27dylYhpEgwrmediPP4y7s0XtN1if/M/JYujg==}
+
   '@formkit/themes@1.6.5':
     resolution: {integrity: sha512-C+ANzH6qw4zS7niv+RamJAqpASOPfrZvMURVj5HQcT1XlcYB7ULvA9UmDW/AKOqP/OGf/OL6WvOzA7B16UkiiA==}
     peerDependencies:
@@ -1639,11 +1648,11 @@ packages:
   '@github/markdownlint-github@0.6.3':
     resolution: {integrity: sha512-3kneJRtM7istp9kxMZCbYTNaTrdJ+pR5Pox449Tb911gRcRhoy9I1G6D0/aZ2c/iD25mSC3X64qleOqEYukOKA==}
 
-  '@gtm-support/core@2.3.1':
-    resolution: {integrity: sha512-eD0hndQjhgKm5f/7IA9fZYujmHiVMY+fnYv4mdZSmz5XJQlS4TiTmpdZx2l7I2A9rI9J6Ysz8LpXYYNo/Xq4LQ==}
+  '@gtm-support/core@3.0.1':
+    resolution: {integrity: sha512-SctcoqvvAbGAgZzOb7DZ4wjbZF3ZS7Las3qIEByv6g7mzPf4E9LpRXcQzjmywYLcUx2jys7PWJAa3s5slvj/0w==}
 
-  '@gtm-support/vue-gtm@2.2.0':
-    resolution: {integrity: sha512-7nhBTRkTG0mD+7r7JvNalJz++YwszZk0oP1HIY6fCgz6wNKxT6LuiXCqdPrZmNPe/WbPIKuqxGZN5s+i6NZqow==}
+  '@gtm-support/vue-gtm@3.0.1':
+    resolution: {integrity: sha512-SeLN3R+5gHJ+1AtJPP4/+2lJ6vOfXo1pL094//GcKY7RrMk3ltxIS/CJ3PSlL2Dpxjr9UAov0m4K1SdvYj3Xzw==}
     peerDependencies:
       vue: '>= 3.2.0 < 4.0.0'
 
@@ -2942,16 +2951,16 @@ packages:
   '@vueuse/metadata@11.0.0-beta.2':
     resolution: {integrity: sha512-Gz4L5KQDCgmRBiDdvqsrMIWRmETWrgF/2lZq+k2sa/O6N5RfFNqBa1T/hpGH9s5Q44ZEC/uXv6e7NHbv9dB8mg==}
 
+  '@vueuse/nuxt@10.11.1':
+    resolution: {integrity: sha512-UiaYSIwOkmUVn8Gl1AqtLWYR12flO+8sEu9X0Y1fNjSR7EWy9jMuiCvOGqwtoeTsqfHrivl0d5HfMzr11GFnMA==}
+    peerDependencies:
+      nuxt: ^3.0.0
+
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
   '@vueuse/shared@11.0.0-beta.2':
     resolution: {integrity: sha512-NQ9fLd/OmJYhfY6nMGYk6EQ6WgAVB7AdWIgjU2/9Y7R+qL1+yI21scj6lFVdlW5TNeePVxhnCBJmV+TzuA4vlQ==}
-
-  '@zadigetvoltaire/nuxt-gtm@0.0.13':
-    resolution: {integrity: sha512-7SgXtIB8uLdLGJaoUAQSGCSbRnNzplNkNVFKIHaVI4We0vqghstBoVPlJCJ9VdwsfdNyk3/C+Lh1uKpzTrtEuw==}
-    peerDependencies:
-      nuxt: ^3.0.0
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -9417,6 +9426,8 @@ snapshots:
       '@formkit/utils': 1.6.5
       '@formkit/validation': 1.6.5
 
+  '@formkit/tempo@0.1.2': {}
+
   '@formkit/themes@1.6.5':
     dependencies:
       '@formkit/core': 1.6.5
@@ -9455,11 +9466,11 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  '@gtm-support/core@2.3.1': {}
+  '@gtm-support/core@3.0.1': {}
 
-  '@gtm-support/vue-gtm@2.2.0(vue@3.4.37(typescript@5.5.4))':
+  '@gtm-support/vue-gtm@3.0.1(vue@3.4.37(typescript@5.5.4))':
     dependencies:
-      '@gtm-support/core': 2.3.1
+      '@gtm-support/core': 3.0.1
       vue: 3.4.37(typescript@5.5.4)
     optionalDependencies:
       vue-router: 4.4.3(vue@3.4.37(typescript@5.5.4))
@@ -11176,6 +11187,21 @@ snapshots:
 
   '@vueuse/metadata@11.0.0-beta.2': {}
 
+  '@vueuse/nuxt@10.11.1(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4)))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))':
+    dependencies:
+      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
+      '@vueuse/core': 10.11.1(vue@3.4.37(typescript@5.5.4))
+      '@vueuse/metadata': 10.11.1
+      local-pkg: 0.5.0
+      nuxt: 3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4))
+      vue-demi: 0.14.10(vue@3.4.37(typescript@5.5.4))
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - magicast
+      - rollup
+      - supports-color
+      - vue
+
   '@vueuse/shared@10.11.1(vue@3.4.37(typescript@5.5.4))':
     dependencies:
       vue-demi: 0.14.10(vue@3.4.37(typescript@5.5.4))
@@ -11188,19 +11214,6 @@ snapshots:
       vue-demi: 0.14.10(vue@3.4.37(typescript@5.5.4))
     transitivePeerDependencies:
       - '@vue/composition-api'
-      - vue
-
-  '@zadigetvoltaire/nuxt-gtm@0.0.13(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4)))(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))':
-    dependencies:
-      '@gtm-support/vue-gtm': 2.2.0(vue@3.4.37(typescript@5.5.4))
-      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
-      defu: 6.1.4
-      nuxt: 3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(eslint@8.57.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.20.0)(sass@1.77.8)(stylelint@16.8.1(typescript@5.5.4))(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(sass@1.77.8)(terser@5.31.5))(vue-tsc@2.0.29(typescript@5.5.4))
-      sirv: 2.0.4
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
       - vue
 
   JSONStream@1.3.5:

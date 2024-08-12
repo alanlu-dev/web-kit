@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import { NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import type { AndFilterType } from '~/types/notion'
+
+// const runtimeConfig = useRuntimeConfig()
 
 export const ClassroomSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -14,7 +15,7 @@ export type ClassroomSchemaType = z.infer<typeof ClassroomSchema>
 export const classroomKey = 'classrooms'
 export const classroomFilters: AndFilterType = [
   // { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
 export const classroomQuery: QueryDatabaseParameters = {

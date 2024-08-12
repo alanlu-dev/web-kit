@@ -39,9 +39,11 @@
     "@formkit/inertia": "^0.1.5",
     "@formkit/inputs": "^1.6.5",
     "@formkit/nuxt": "^1.6.5",
+    "@formkit/tempo": "^0.1.2",
     "@formkit/themes": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "@formkit/zod": "^1.6.5",
+    "@gtm-support/vue-gtm": "^3.0.1",
     "@master/css.nuxt": "2.0.0-rc.45",
     "@master/css.vue": "2.0.0-rc.45",
     "@master/styled.vue": "^2.0.2",
@@ -84,7 +86,7 @@
     "@alanlu-dev/release-it-config": "^0.0.6",
     "@alanlu-dev/types": "^1.0.8",
     "@jiehousekeeper/master-css-config": "workspace:*",
-    "@zadigetvoltaire/nuxt-gtm": "^0.0.13",
+    "@vueuse/nuxt": "^10.11.1",
     "nuxt": "3.12.4",
     "vue-tsc": "^2.0.29"
   }
