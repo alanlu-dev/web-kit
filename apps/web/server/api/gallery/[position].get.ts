@@ -5,8 +5,10 @@ export default defineEventHandler(async (event) => {
   if (!paramPosition) return []
   const position = decodeURIComponent(paramPosition)
 
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === process.env.VERCEL_BYPASS_TOKEN
+
   try {
-    return await getGalleryByPositionAsync(null, position, false)
+    return await getGalleryByPositionAsync(null, position, refresh)
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

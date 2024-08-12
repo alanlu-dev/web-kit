@@ -11,7 +11,7 @@ export default defineEventHandler<{
   const currentPage = page ? Number.parseInt(page) : 1
   const pageSize = page_size ? Number.parseInt(page_size) : 100
 
-  const refresh = event.node.req.headers['x-prerender-revalidate'] != null
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === process.env.VERCEL_BYPASS_TOKEN
 
   try {
     return await getFaqAsync(null, currentPage, pageSize, refresh)

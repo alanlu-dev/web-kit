@@ -11,8 +11,10 @@ export default defineEventHandler<{
   const currentPage = page ? Number.parseInt(page) : 1
   const pageSize = page_size ? Number.parseInt(page_size) : 10
 
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === process.env.VERCEL_BYPASS_TOKEN
+
   try {
-    return getCoursesAsync(null, currentPage, pageSize, false, { needCourseEvents: false, needInstructor: false })
+    return getCoursesAsync(null, currentPage, pageSize, refresh, { needCourseEvents: false, needInstructor: false })
   }
   catch (error: unknown) {
     if (isNotionClientError(error)) {

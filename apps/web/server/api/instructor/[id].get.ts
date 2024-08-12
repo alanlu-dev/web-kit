@@ -4,8 +4,10 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   if (!id) return null
 
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === process.env.VERCEL_BYPASS_TOKEN
+
   try {
-    const item = await getInstructorByIdAsync(null, +id, false)
+    const item = await getInstructorByIdAsync(null, +id, refresh)
     if (!item) {
       const responseData = { rc: 404, rm: 'Not Found' }
       event.node.res.statusCode = responseData.rc
