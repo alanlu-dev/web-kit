@@ -69,10 +69,10 @@ const splideOption = {
           <Splide :has-track="false" :options="splideOption">
             <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {left:-20x;right:-20x;max-w:calc(100vw-10x)}!">
               <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em size:unset! transform:unset!" name="material-symbols-light:chevron-left" />
+                <Icon class="f:0.6em {block;size:unset;transform:unset}!" name="material-symbols-light:chevron-left" />
               </Button>
               <Button intent="secondary" class="splide__arrow splide__arrow--next right! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em size:unset! transform:unset!" name="material-symbols-light:chevron-right" />
+                <Icon class="f:0.6em {block;size:unset;transform:unset}!" name="material-symbols-light:chevron-right" />
               </Button>
             </div>
 
