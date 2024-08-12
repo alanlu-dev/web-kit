@@ -105,7 +105,7 @@ function isEmoji(str: string) {
  * 2. UnPlash 图片可以通过api q=50 控制压缩质量 width=400 控制图片尺寸
  * @param {*} image
  */
-function compressImage(image: string | undefined, width: number = 1280, quality: number = 50, fmt: string = 'webp'): string | undefined {
+function compressImage(image: string | undefined, width: number = 1440, quality: number = 50, fmt: string = 'webp'): string | undefined {
   if (!image || image.indexOf('http') !== 0) {
     return image
   }
