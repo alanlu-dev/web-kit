@@ -31,7 +31,6 @@ export default defineEventHandler<{
 
   try {
     const res = await $fetch(url, {
-      hostname: event.node.req.headers.host!,
       method: 'GET', // MUST be "GET" or "HEAD" ("POST" method will not work)
       headers: {
         'x-prerender-revalidate': process.env.VERCEL_BYPASS_TOKEN,
