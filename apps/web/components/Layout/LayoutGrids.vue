@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/nuxt'
+
 const common = useCommonStore()
 const activeBreakpoint = common.breakpoints.active()
 </script>
 
 <template>
   <ClientOnly>
+    <SpeedInsights />
+
     <!-- Grids -->
     <div class="full hidden .dev_{block} {fixed;center;middle} b:1|dotted|primary/.5 max-w:screen-max pointer-events:none px:6x px:10x@desktop z:devPanel">
       <div class="flex full b:1|dotted|black/.25">

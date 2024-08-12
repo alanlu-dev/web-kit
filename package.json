@@ -80,7 +80,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "plyr-vue@2.6.8": "patches/plyr-vue@2.6.8.patch"
+      "plyr-vue@2.6.8": "patches/plyr-vue@2.6.8.patch",
+      "@vercel/speed-insights@1.0.12": "patches/@vercel__speed-insights@1.0.12.patch"
     }
   }
 }

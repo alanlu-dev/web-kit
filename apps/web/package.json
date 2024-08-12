@@ -53,6 +53,7 @@
     "@pinia/nuxt": "^0.5.3",
     "@vercel/edge-config": "^1.2.1",
     "@vercel/kv": "^2.0.0",
+    "@vercel/speed-insights": "^1.0.12",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue-email/components": "^0.0.19",
     "@vue-email/render": "^0.0.9",
