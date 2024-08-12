@@ -118,7 +118,7 @@ export default defineNuxtConfig({
       logo: `${process.env.NUXT_PUBLIC_SITE_URL}/logo.svg`,
       sameAs: [
         // social/authoritative profiles
-        process.env.FB_URL!,
+        process.env.NUXT_PUBLIC_FB_URL!,
       ],
     },
   },
@@ -197,6 +197,7 @@ export default defineNuxtConfig({
     vercel: {
       config: {
         // https://nitro.unjs.io/deploy/providers/vercel#on-demand-incremental-static-regeneration-isr
+        // https://github.com/vercel/examples/tree/main/build-output-api/on-demand-isr
         bypassToken: process.env.VERCEL_BYPASS_TOKEN,
       },
     },
