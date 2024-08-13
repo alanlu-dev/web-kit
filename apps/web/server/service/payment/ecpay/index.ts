@@ -46,7 +46,8 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
   const ecPayPaymentOrder: ecpayPaymentOrder = {
     TotalAmount: (courseEvent.指定價格 || courseEvent.課程資訊_價格!).toString(),
     ItemName: courseEvent.課程資訊_名稱!,
-    TradeDesc: `上課地點: ${courseEvent.教室資訊.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
+    TradeDesc: '課程',
+    // TradeDesc: `上課地點: ${courseEvent.教室資訊.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
     ChoosePayment: ecpayPaymentType.enum.ALL,
   }
 
