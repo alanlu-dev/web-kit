@@ -152,7 +152,9 @@ export default defineNuxtConfig({
     // all routes (by default) generated on demand, revalidates in background, cached on CDN for 60 seconds
     '/**': { isr: 3600 },
     '/api/revalidate': { isr: false },
+    '/api/contact': { isr: false },
     '/api/contact/**': { isr: false },
+    '/api/payment': { isr: false },
     '/api/payment/**': { isr: false },
 
     // this page will be generated on demand once until next deployment, cached on CDN
