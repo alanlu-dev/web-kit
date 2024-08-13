@@ -1,36 +1,19 @@
-import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
+import { getNewsByIdAsync } from '~/server/service/news/get'
 
-export default defineEventHandler(async (event) => {
+export default defineWrappedResponseHandler(async (event) => {
   const id = getRouterParam(event, 'id')
-  if (!id) return null
-
-  const refresh = event.node.req.headers['x-prerender-revalidate'] === process.env.VERCEL_BYPASS_TOKEN
-
-  try {
-    const item = await getNewsByIdAsync(null, +id, refresh)
-    if (!item) {
-      const responseData = { rc: 404, rm: 'Not Found' }
-      event.node.res.statusCode = responseData.rc
-      return responseData
-    }
-
-    return item
+  if (!id) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '請傳入產業消息編號')
   }
-  catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          // ...
-          break
-        case APIErrorCode.ObjectNotFound:
-          // ...
-          break
-        case APIErrorCode.Unauthorized:
-          // ...
-          break
-      }
-    }
-    return error
+
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === useRuntimeConfig().vercel.bypassToken
+
+  const item = await getNewsByIdAsync(null, +id, refresh)
+  if (!item) {
+    setResponseStatus(event, ErrorCodes.NOT_FOUND)
+    return createApiError(event.node.res.statusCode, '找不到該產業消息')
   }
+
+  return createApiResponse(200, 'OK', item)
 })

@@ -33,8 +33,8 @@ watch(
   },
 )
 
-const { data: reviews } = await useFetch<ReviewSchemaType[]>('/api/review', { query })
-const { data: length } = await useFetch<number>('/api/review/length', { query })
+const { data: reviews } = await useApiFetch<ReviewSchemaType[]>('/api/review', { query })
+const { data: length } = await useApiFetch<number>('/api/review/length', { query })
 
 const total = computed(() => (length.value ? Math.ceil(length.value / page_size.value) : 1))
 const page = computed(() => {

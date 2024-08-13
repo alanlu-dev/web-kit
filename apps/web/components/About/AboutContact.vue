@@ -5,11 +5,14 @@ import type { ContactSchemaType } from '~/schema/contact'
 
 const show = ref(false)
 
-const data = ref<ContactSchemaType>()
+const contactData = ref<ContactSchemaType>()
 const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formData) => {
   // await new Promise((r) => setTimeout(r, 2000))
-  await $fetch('/api/contact', { method: 'post', body: formData })
-  show.value = true
+  const { error } = await useApiFetch('/api/contact', { method: 'post', body: formData })
+
+  if (!error.value) {
+    show.value = true
+  }
 })
 </script>
 
@@ -22,7 +25,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
     </div>
 
     <div class="{mt:4x;text:right}_.formkit-actions mt:5x">
-      <FormKit v-model="data" type="form" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
+      <FormKit v-model="contactData" type="form" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
         <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
           <FormKit type="text" name="mobile" label="聯絡電話" validation="required|phone" />

@@ -5,7 +5,7 @@ import type { CourseSchemaType } from '~/schema/course'
 const route = useRoute()
 const id = route.params.id
 
-const { data: course } = await useFetch<CourseSchemaType>(`/api/course/${id}`, { query: route.query })
+const { data: course } = await useApiFetch<CourseSchemaType>(`/api/course/${id}`, { query: route.query })
 
 useSeoMeta({
   title: () => course.value?.課程名稱 || '課程資訊',

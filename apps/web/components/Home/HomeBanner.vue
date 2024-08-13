@@ -4,7 +4,7 @@ import { NuxtLink } from '#components'
 import type { GallerySchemaType } from '~/schema/gallery'
 
 const route = useRoute()
-const { data: images } = await useFetch<GallerySchemaType[]>('/api/gallery/首頁-大B', { query: route.query })
+const { data: images } = await useApiFetch<GallerySchemaType[]>('/api/gallery/首頁-大B', { query: route.query })
 
 // 比例
 const imgRatio = {

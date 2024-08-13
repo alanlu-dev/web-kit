@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTimeAgo } from '@vueuse/core'
 
-const runtimeConfig = useRuntimeConfig()
+const config = useRuntimeConfig()
 
 const common = useCommonStore()
 const activeBreakpoint = common.breakpoints.active()
@@ -22,8 +22,7 @@ const timeAgo = useTimeAgo(new Date(generatedAt.value))
     <!-- Breakpoints -->
     <div class="hidden .dev_{block} {fixed;bottom:1x;right:1x} max-w:screen-max pointer-events:none z:devPanel">
       <div>
-        <p>版本資訊 v{{ runtimeConfig.public.version }}</p>
-        <p>Server by {{ runtimeConfig.public.region }}</p>
+        <p>版本資訊 v{{ config.public.version }}</p>
         <p>Generated {{ timeAgo }}</p>
       </div>
       <div class="b1-b rounded bg:primary/.5 fg:white m:1x p:1x|2x">

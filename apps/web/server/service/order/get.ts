@@ -1,6 +1,7 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { OrderSchemaType } from '~/schema/order'
 import { OrderSchema, orderFilters, orderQuery } from '~/schema/order'
+import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
 
 export async function getOrderByIdAsync(notion: Client | null, id: number): Promise<OrderSchemaType | null> {
   if (!id) return null

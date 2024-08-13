@@ -33,8 +33,8 @@ watch(
   },
 )
 
-const { data: courses } = await useFetch<CourseSchemaType[]>('/api/course', { query })
-const { data: length } = await useFetch<number>('/api/course/length', { query })
+const { data: courses } = await useApiFetch<CourseSchemaType[]>('/api/course', { query })
+const { data: length } = await useApiFetch<number>('/api/course/length', { query })
 
 const total = computed(() => (length.value ? Math.ceil(length.value / page_size.value) : 1))
 const page = computed(() => {

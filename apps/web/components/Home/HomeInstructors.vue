@@ -7,7 +7,7 @@ const title = ['實戰派師資陣容']
 const title2 = ['精選產業優良業師', '提供高品質專業課程']
 
 const route = useRoute()
-const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
+const { data: instructors } = await useApiFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 // 第一置中位移公式: calc((100% - 元素寬度) / 2)
@@ -80,10 +80,10 @@ const splideOption = {
           <Splide :has-track="false" :options="splideOption">
             <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {w:80%}@tablet {w:60%;max-w:screen-md}@desktop w:90%">
               <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em {block;size:unset;transform:unset}!" name="material-symbols-light:chevron-left" />
+                <Icon class="{block;size:unset;transform:unset}! f:0.6em" name="material-symbols-light:chevron-left" />
               </Button>
               <Button intent="secondary" class="splide__arrow splide__arrow--next right! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em {block;size:unset;transform:unset}!" name="material-symbols-light:chevron-right" />
+                <Icon class="{block;size:unset;transform:unset}! f:0.6em" name="material-symbols-light:chevron-right" />
               </Button>
             </div>
 

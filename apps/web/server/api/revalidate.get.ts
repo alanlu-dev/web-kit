@@ -1,49 +1,39 @@
-export default defineEventHandler<{
+export default defineWrappedResponseHandler<{
   query: {
-    secret: string
     path: string
+    secret: string
   }
 }>(async (event) => {
-  const { secret, path: pathToRevalidate } = getQuery(event)
+  const { path: pathToRevalidate, secret } = getQuery(event)
 
-  console.log(secret, process.env.VERCEL_BYPASS_TOKEN)
   if (!pathToRevalidate) {
-    // 400
-    event.node.res.statusCode = 400
-    return {
-      rc: 400,
-      rm: 'Bad Request',
-    }
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '請傳入欲重新整理的路徑')
   }
 
-  if (secret !== process.env.VERCEL_BYPASS_TOKEN) {
-    // 403
-    event.node.res.statusCode = 403
-    return {
-      rc: 403,
-      rm: 'Forbidden',
-    }
+  const config = useRuntimeConfig()
+
+  if (secret !== config.vercel.bypassToken) {
+    setResponseStatus(event, ErrorCodes.FORBIDDEN)
+    return createApiError(event.node.res.statusCode, '禁止存取')
   }
 
   const url = `https://${event.node.req.headers.host!}${pathToRevalidate}`
 
   console.log(`Revalidating ${url}...`)
 
-  try {
-    const res = await $fetch(url, {
-      method: 'GET', // MUST be "GET" or "HEAD" ("POST" method will not work)
-      headers: {
-        'x-prerender-revalidate': process.env.VERCEL_BYPASS_TOKEN,
-      },
-    })
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'x-prerender-revalidate': config.vercel.bypassToken,
+    },
+  })
 
-    return res
+  const isJsonResponse = res.headers.get('content-type')?.includes('application/json')
+  if (isJsonResponse) {
+    const data = await res.json()
+    return createApiResponse(200, '重新整理成功', data)
   }
-  catch (error) {
-    event.node.res.statusCode = 500
-    return {
-      rc: 500,
-      rm: error,
-    }
-  }
+
+  return createApiResponse(200, '重新整理成功')
 })

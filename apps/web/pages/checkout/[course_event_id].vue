@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { toast } from 'vue3-toastify'
 import { createZodPlugin } from '@formkit/zod'
 import type { FormKitContext } from '@formkit/core'
 import { formatThousand } from '@alanlu-dev/utils'
@@ -9,7 +10,7 @@ import { MemberSchema } from '~/schema/member'
 const route = useRoute()
 const id = route.params.course_event_id
 
-const { data: courseEvent } = await useFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
+const { data: courseEvent } = await useApiFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
 
 useSeoMeta({
   title: () => courseEvent.value?.課程資訊_名稱 || '結帳',
@@ -25,7 +26,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
   if (isLoading.value) return
   isLoading.value = true
 
-  const result = await $fetch<{ rc: number; rm?: string; data?: IPaymentRequest }>('/api/payment', {
+  const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
     method: 'POST',
     body: JSON.stringify({
       courseEventId: id,
@@ -35,11 +36,14 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
     }),
   })
 
-  if (result.rc !== 200) {
+  if (error.value) {
     isLoading.value = false
     return
   }
-  const paymentRequest = result.data!
+
+  toast.loading('導轉至付款頁')
+
+  const paymentRequest = data.value!
   const form = document.createElement('form')
   form.method = 'post'
   form.action = paymentRequest.ApiUrl
@@ -55,8 +59,6 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
 
   document.body.appendChild(form)
   form.submit()
-
-  isLoading.value = false
 })
 </script>
 
@@ -142,10 +144,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
 </div> -->
         </div>
 
-        <div class="{flex;center-content;gap:10x} mt:15x@tablet my:10x">
-          <Button intent="secondary" @click="navigateTo(`/course_event/${id}`)">取消</Button>
+        <div class="{flex;center-content;gap:10x} mt:15x@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
+          <Button intent="secondary" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
           <Button intent="primary" :disabled="isLoading" @click="formRef?.node.context?.node.submit()">前往付款</Button>
-          {{ isLoading }}
         </div>
       </div>
     </div>

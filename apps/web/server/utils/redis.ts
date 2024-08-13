@@ -1,18 +1,18 @@
 import { createClient } from 'redis'
 import { kv } from '@vercel/kv'
 
-const runtimeConfig = useRuntimeConfig()
+const config = useRuntimeConfig()
 
 function log(message?: any, ...optionalParams: any[]) {
-  if (!runtimeConfig.public.isDev) return
+  if (!config.public.isDev) return
   console.log(`${message}`, ...optionalParams)
 }
 
 const client = createClient({
-  password: process.env.REDIS_PASSWORD,
+  password: config.redis.password,
   socket: {
-    host: process.env.REDIS_HOST,
-    port: +process.env.REDIS_PORT!,
+    host: config.redis.host,
+    port: +config.redis.port,
   },
 })
 
@@ -20,9 +20,8 @@ client.on('error', (err) => {
   console.error('Redis Client Error', err)
 })
 
-const STORAGE_TYPE = process.env.STORAGE_TYPE || 'kv'
-let currentStorageType = STORAGE_TYPE
-log('currentStorageType', currentStorageType, process.env.REDIS_HOST)
+let currentStorageType = config.storageType || 'kv'
+log('currentStorageType', currentStorageType, config.redis.host)
 
 async function ensureRedisConnection() {
   if (!client.isOpen) {
@@ -76,10 +75,10 @@ async function handleError<T>(operation: () => Promise<T>): Promise<T> {
 }
 
 function processKey(key: string): string {
-  if (runtimeConfig.public.isDev) {
+  if (config.public.isDev) {
     return `dev:${key}`
   }
-  return key
+  return `prod:${key}`
 }
 
 function processKeys(keys: string[]): string[] {

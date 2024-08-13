@@ -2,7 +2,7 @@
 import type { CourseSchemaType } from '~/schema/course'
 
 const route = useRoute()
-const { data: courses } = await useFetch<CourseSchemaType[]>('/api/course', { query: { ...route.query, page_size: 6 } })
+const { data: courses } = await useApiFetch<CourseSchemaType[]>('/api/course', { query: { ...route.query, page_size: 6 } })
 </script>
 
 <template>

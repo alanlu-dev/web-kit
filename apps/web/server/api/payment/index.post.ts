@@ -1,21 +1,10 @@
 import type { OrderParamsSchemaType } from '~/schema/order'
+import { processEcPayOrder } from '~/server/service/payment/ecpay'
 
-export default defineEventHandler<{
+export default defineWrappedResponseHandler<{
   body: OrderParamsSchemaType
 }>(async (event) => {
-  const data = await readBody(event)
-  try {
-    const result = await processOrder(data)
-    if (result.rc !== 200) {
-      return result
-    }
+  const params = await readBody(event)
 
-    return {
-      rc: 200,
-      data: result.data!,
-    }
-  }
-  catch (error) {
-    return error
-  }
+  return await processEcPayOrder(event, params)
 })

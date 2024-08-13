@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { PartnerSchemaType } from '~/schema/partner'
 // const { $gsap, $ScrollTrigger } = useNuxtApp()
 
 definePageMeta({
@@ -25,21 +26,8 @@ useSeoMeta({
   title: '關於我們',
 })
 
-// 合作夥伴資廖
-const data = [
-  {
-    name: '潔管家',
-    img: '/about/jie_housekeeper.png',
-    content: [
-      '現代家庭因工作及環境影響，常常無法兼顧工作、家庭，就連清潔等等的煩瑣家事也無法做的完善，為了解決清潔家事問題，潔管家因而創立。自2002年以來，服務過大台中地區公司行號及公家機關，擁有資深經驗團隊，加上超過2000家以上服務中客戶的肯定。潔管家希望在居家清潔服務裡，建立一個雙向平台，一方面提供給消費者迅速且完善的服務，另一方面提供給家事服務員們穩定且優渥的薪資，創造雙贏局面。',
-    ],
-  },
-  {
-    name: '洪瑞霞',
-    img: '/about/洪瑞霞.png',
-    content: ['巧收納易整理主理人：洪瑞霞', '桃園南崁資深整理收納師，', '2023年目前總計接了243個案子，', '走進客戶家整理共700多回。', '接企業講座，探討紊亂背後的亂源。'],
-  },
-]
+const route = useRoute()
+const { data: partners } = await useApiFetch<PartnerSchemaType[]>('/api/partner', { query: { ...route.query, page_size: 10 } })
 </script>
 
 <template>
@@ -73,7 +61,7 @@ const data = [
           <h3 class="h3 title fg:font-title">合作夥伴</h3>
 
           <div class="{flex;flex:col;gap:5x} mt:5x">
-            <AboutCard v-for="item in data" :key="item.name" v-bind="item" />
+            <AboutPartners v-for="partner in partners" :key="partner.ID" :partner="partner" />
           </div>
         </section>
 

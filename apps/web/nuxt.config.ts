@@ -194,7 +194,38 @@ export default defineNuxtConfig({
       siteUrl: '',
       gtmId: '',
       fbUrl: '',
-      region: process.env.VERCEL_REGION || '',
+    },
+    vercel: {
+      bypassToken: process.env.VERCEL_BYPASS_TOKEN || '',
+    },
+    redis: {
+      host: '',
+      port: '',
+      password: '',
+    },
+    storageType: '',
+    notion: {
+      apiKey: '',
+      databaseId: {
+        galleries: '',
+        news: '',
+        instructors: '',
+        classrooms: '',
+        courses: '',
+        courseEvents: '',
+        reviews: '',
+        faq: '',
+        partners: '',
+        contacts: '',
+        members: '',
+        orders: '',
+      },
+    },
+    ecpay: {
+      merchantId: '',
+      hashKey: '',
+      hashIv: '',
+      stage: '',
     },
   },
 
@@ -203,7 +234,7 @@ export default defineNuxtConfig({
       config: {
         // https://nitro.unjs.io/deploy/providers/vercel#on-demand-incremental-static-regeneration-isr
         // https://github.com/vercel/examples/tree/main/build-output-api/on-demand-isr
-        bypassToken: process.env.VERCEL_BYPASS_TOKEN,
+        bypassToken: process.env.VERCEL_BYPASS_TOKEN || '',
       },
     },
     rollupConfig: {

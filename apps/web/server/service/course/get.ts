@@ -1,5 +1,8 @@
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { type Client, isFullPage } from '@notionhq/client'
+import { addDay } from '@formkit/tempo'
+import { fetchCourseEvents } from '~/server/service/course_events/get'
+import { fetchInstructors } from '~/server/service/instructor/get'
 import type { CourseSchemaType } from '~/schema/course'
 import { AchievementSchema, CourseSchema, FeaturesSchema, LearnSchema, OutlineSchema, PreparationSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
 
@@ -170,8 +173,8 @@ export async function processCourseRelationAsync(notion: Client | null, item: Co
   if (courseEvents) {
     item.課程安排資訊 = courseEvents
       .filter((events) => {
-        // 要判斷當前日期是否在課程日期前一天之前，以確定是否可以報名
-        return events.上課日期 && new Date() < new Date(new Date(events.上課日期[2]).getTime() - 24 * 60 * 60 * 1000)
+        // 要判斷當前日期是否在課程日期前7天之前，以確定是否可以報名
+        return events.上課日期 && new Date() < addDay(events.上課日期[2], -1)
       })
       .sort((a, b) => {
         if (a.上課日期 && b.上課日期) return new Date(a.上課日期[2]).getTime() - new Date(b.上課日期[2]).getTime()

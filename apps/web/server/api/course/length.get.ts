@@ -1,7 +1,6 @@
 import { courseKey } from '~/schema/course'
 
-export default defineEventHandler(async () => {
-  // const { page, page_size } = getQuery(event)
-
-  return await redis.lLen(courseKey)
+export default defineWrappedResponseHandler(async () => {
+  const len = await redis.lLen(courseKey)
+  return createApiResponse(200, 'OK', len)
 })

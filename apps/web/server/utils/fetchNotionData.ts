@@ -7,7 +7,7 @@ export async function fetchNotionDataAsync<T>(notion: Client | null, query: Quer
 
   console.log('fetchNotionDataAsync', query)
   if (!notion) {
-    notion = new Client({ auth: process.env.NOTION_API_KEY })
+    notion = new Client({ auth: useRuntimeConfig().notion.apiKey })
   }
 
   while (true) {

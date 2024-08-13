@@ -28,7 +28,7 @@ useSchemaOrg([
 const focusable = ref(true)
 
 const route = useRoute()
-const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
+const { data: list } = await useApiFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
 </script>
 
 <template>

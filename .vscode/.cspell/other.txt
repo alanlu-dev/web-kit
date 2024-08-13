@@ -1,5 +1,6 @@
 # Custom Dictionary Words
 astrisks
+BNPL
 Fira
 llen
 lrange
@@ -8,6 +9,7 @@ noobserver
 Noto
 preinstall
 rpush
+TWQR
 typecheck
 wght
 zod's

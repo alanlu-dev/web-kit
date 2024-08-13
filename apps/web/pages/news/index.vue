@@ -33,8 +33,8 @@ watch(
   },
 )
 
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query })
-const { data: length } = await useFetch<number>('/api/news/length', { query })
+const { data: news } = await useApiFetch<NewsSchemaType[]>('/api/news', { query })
+const { data: length } = await useApiFetch<number>('/api/news/length', { query })
 
 const total = computed(() => (length.value ? Math.ceil(length.value / page_size.value) : 1))
 const page = computed(() => {

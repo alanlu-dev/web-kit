@@ -4,14 +4,14 @@ export default defineNuxtPlugin({
   name: 'gtm',
   parallel: true,
   setup(nuxtApp) {
-    const runtimeConfig = useRuntimeConfig()
+    const config = useRuntimeConfig()
     nuxtApp.vueApp.use(
       createGtm({
-        id: runtimeConfig.public.gtmId,
+        id: config.public.gtmId,
         defer: true,
         compatibility: false,
         enabled: true,
-        debug: runtimeConfig.public.isDev,
+        debug: config.public.isDev,
         loadScript: true,
         vueRouter: useRouter(),
         trackOnNextTick: false,

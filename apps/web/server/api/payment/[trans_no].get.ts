@@ -1,37 +1,18 @@
-import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
+import { getOrderByTransNoAsync } from '~/server/service/order/get'
 
-export default defineEventHandler(async (event) => {
+export default defineWrappedResponseHandler(async (event) => {
   const trans_no = getRouterParam(event, 'trans_no')
-  console.log('trans_no', trans_no)
-  if (!trans_no) return null
-
-  try {
-    const item = await getOrderByTransNoAsync(null, trans_no)
-    console.log('item', item)
-    if (!item) {
-      const responseData = { rc: 404, rm: 'Not Found' }
-      event.node.res.statusCode = responseData.rc
-      return responseData
-    }
-    console.log(item)
-
-    return item
+  if (!trans_no) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '請傳入訂單編號')
   }
-  catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          // ...
-          break
-        case APIErrorCode.ObjectNotFound:
-          // ...
-          break
-        case APIErrorCode.Unauthorized:
-          // ...
-          break
-      }
-    }
-    return error
+
+  const item = await getOrderByTransNoAsync(null, trans_no)
+
+  if (!item) {
+    setResponseStatus(event, ErrorCodes.NOT_FOUND)
+    return createApiError(event.node.res.statusCode, '找不到該訂單')
   }
+
+  return createApiResponse(200, 'OK', item)
 })

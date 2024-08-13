@@ -5,8 +5,6 @@ import { format } from '@formkit/tempo'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { ClassroomSchema } from './classroom.js'
 
-const runtimeConfig = useRuntimeConfig()
-
 export const CourseEventSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
   PAGE_ID: z.string().optional(),
@@ -63,14 +61,16 @@ export const CourseEventSchema = z.object({
 })
 export type CourseEventSchemaType = z.infer<typeof CourseEventSchema>
 
+const config = useRuntimeConfig()
+
 export const courseEventKey = 'course_events'
 export const courseEventFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   { property: '課程驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseEventQuery: QueryDatabaseParameters = {
-  database_id: process.env.NOTION_DATABASE_ID_COURSE_EVENTS!,
+  database_id: config.notion.databaseId.courseEvents,
   sorts: [{ property: '上課日期', direction: 'descending' }],
   filter: {
     and: courseEventFilters,

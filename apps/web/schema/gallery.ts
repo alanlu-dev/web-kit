@@ -17,16 +17,16 @@ export const GallerySchema = z.object({
 })
 export type GallerySchemaType = z.infer<typeof GallerySchema>
 
-const runtimeConfig = useRuntimeConfig()
+const config = useRuntimeConfig()
 
 export const galleryKey = 'gallery'
 export const galleryFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const galleryQuery: QueryDatabaseParameters = {
-  database_id: process.env.NOTION_DATABASE_ID_GALLERIES!,
+  database_id: config.notion.databaseId.galleries,
   sorts: [{ property: '排序', direction: 'descending' }],
   filter: { and: galleryFilters },
   filter_properties: [

@@ -4,7 +4,7 @@ import type { OrderSchemaType } from '~/schema/order'
 
 const route = useRoute()
 const trans_no = route.params.trans_no
-const { data: order } = await useFetch<OrderSchemaType>(`/api/payment/${trans_no}`)
+const { data: order } = await useApiFetch<OrderSchemaType>(`/api/payment/${trans_no}`)
 
 useSeoMeta({
   title: () => '報名結果',

@@ -1,7 +1,6 @@
 import { newsKey } from '~/schema/news'
 
-export default defineEventHandler(async () => {
-  // const { page, page_size } = getQuery(event)
-
-  return await redis.lLen(newsKey)
+export default defineWrappedResponseHandler(async () => {
+  const len = await redis.lLen(newsKey)
+  return createApiResponse(200, 'OK', len)
 })

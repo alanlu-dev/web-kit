@@ -1,4 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
+import { getCourseByIdAsync } from '~/server/service/course/get'
+import { getClassroomByIdAsync } from '~/server/service/classroom/get'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 import { CourseEventSchema, courseEventFilters, courseEventKey, courseEventQuery } from '~/schema/course_event'
 

@@ -101,15 +101,15 @@ export const CourseSchema = z.object({
 })
 export type CourseSchemaType = z.infer<typeof CourseSchema>
 
-const runtimeConfig = useRuntimeConfig()
+const config = useRuntimeConfig()
 
 export const courseKey = 'courses'
 export const courseFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
 ]
 export const courseQuery: QueryDatabaseParameters = {
-  database_id: process.env.NOTION_DATABASE_ID_COURSES!,
+  database_id: config.notion.databaseId.courses,
   sorts: [{ property: '排序', direction: 'descending' }],
   filter: { and: courseFilters },
   filter_properties: [

@@ -7,7 +7,7 @@ const title = ['學員滿意度 93.8%']
 const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學員提供更好的學習體驗']
 
 const route = useRoute()
-const { data: reviews } = await useFetch<ReviewSchemaType[]>('/api/review', { query: { ...route.query, page_size: 10 } })
+const { data: reviews } = await useApiFetch<ReviewSchemaType[]>('/api/review', { query: { ...route.query, page_size: 10 } })
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(

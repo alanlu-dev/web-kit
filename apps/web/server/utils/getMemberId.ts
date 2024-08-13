@@ -2,9 +2,11 @@ import type { Client } from '@notionhq/client'
 import type { MemberSchemaType } from '~/schema/member'
 
 export async function getMemberIdAsync(notion: Client, data: MemberSchemaType): Promise<string> {
+  const config = useRuntimeConfig()
+
   // 尋找會員是否已經存在
   const queryMember = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID_MEMBERS!,
+    database_id: config.notion.databaseId.members,
     filter: {
       and: [
         { property: '名稱', title: { equals: data.name } },
@@ -18,7 +20,7 @@ export async function getMemberIdAsync(notion: Client, data: MemberSchemaType): 
   let memberId = queryMember.results[0]?.id
   if (!memberId) {
     const page = await notion.pages.create({
-      parent: { database_id: process.env.NOTION_DATABASE_ID_MEMBERS! },
+      parent: { database_id: config.notion.databaseId.members },
       properties: {
         名稱: { type: 'title', title: [{ type: 'text', text: { content: data.name } }] },
         信箱: { type: 'email', email: data.email },

@@ -1,11 +1,8 @@
 import crypto from 'node:crypto'
-import { Client } from '@notionhq/client'
 import { z } from 'zod'
-import type { OrderParamsSchemaType } from '~/schema/order'
 
-const site_rul = process.env.NUXT_PUBLIC_SITE_URL
-
-export const PaymentMethods = {
+// 付款方式
+const PaymentMethods = {
   ALL: 'ALL', // 不指定付款方式，由綠界顯示付款方式選擇頁面
   Credit: 'Credit', // 信用卡及銀聯卡(需申請開通)
   WebATM: 'WebATM', // 網路ATM
@@ -16,10 +13,10 @@ export const PaymentMethods = {
   TWQR: 'TWQR', // 歐付寶TWQR行動支付(需申請開通)
   BNPL: 'BNPL', // 裕富無卡分期(需申請開通)
 } as const
+export const ecpayPaymentType = z.nativeEnum(PaymentMethods)
 
-export const PaymentType = z.nativeEnum(PaymentMethods)
-
-export interface PaymentOrder {
+// 付款訂單
+export interface ecpayPaymentOrder {
   // 交易金額
   TotalAmount: string
   // 交易描述
@@ -29,10 +26,11 @@ export interface PaymentOrder {
   // - 商品名稱字數限制為中英數400字內，超過此限制系統將自動截斷。 詳細的使用注意事項請參考FAQ。
   ItemName: string
   // 選擇預設付款方式 (必填)
-  ChoosePayment: z.infer<typeof PaymentType>
+  ChoosePayment: z.infer<typeof ecpayPaymentType>
 }
 
-function DotNETURLEncode(input: string): string {
+// 綠界編碼
+function DotNetUrlEncode(input: string): string {
   const list: { [key: string]: string } = {
     '%2D': '-',
     '%5F': '_',
@@ -52,6 +50,7 @@ function DotNETURLEncode(input: string): string {
   return input
 }
 
+// 綠界檢查碼
 function ecpayCheckMacValue(parameters: Record<string, string>, HashKey: string, HashIV: string): string {
   const Step0 = Object.entries(parameters)
     .map(([key, value]) => `${key}=${value}`)
@@ -70,7 +69,7 @@ function ecpayCheckMacValue(parameters: Record<string, string>, HashKey: string,
   const Step2 = `HashKey=${HashKey}&${Step1}&HashIV=${HashIV}`
 
   // (3) 將整串字串進行URL encode
-  const Step3 = DotNETURLEncode(encodeURIComponent(Step2))
+  const Step3 = DotNetUrlEncode(encodeURIComponent(Step2))
 
   // (4) 轉為小寫
   const Step4 = Step3.toLowerCase()
@@ -82,24 +81,6 @@ function ecpayCheckMacValue(parameters: Record<string, string>, HashKey: string,
   const Step6 = Step5.toUpperCase()
 
   return Step6
-}
-
-// 特店訂單編號 (必填)
-// - 特店訂單編號均為唯一值，不可重複使用。
-// - 英數字大小寫混合
-function getMerchantTradeNo(prefix = ''): string {
-  const date = new Date()
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
-  const randomNum = Math.floor(Math.random() * 1000)
-    .toString()
-    .padStart(3, '0')
-
-  return `${prefix}${year}${month}${day}${hours}${minutes}${seconds}${randomNum}`
 }
 
 // 特店交易時間
@@ -115,7 +96,11 @@ function getMerchantTradeDate(): string {
   return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`
 }
 
-const APIURL = `https://payment${+process.env.ECPAY_STAGE! ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
+const config = useRuntimeConfig()
+
+const site_rul = config.public.siteUrl
+
+const APIURL = `https://payment${+config.ecpay.stage ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
 
 // 付款完成通知回傳網址
 // - ReturnURL為付款結果通知回傳網址，為特店server或主機的URL，用來接收綠界後端回傳的付款結果通知。
@@ -145,26 +130,30 @@ const ClientBackURL = `${site_rul}`
 // 參數內容若有包含%26(&)及%3C(<) 這二個值時，請先進行urldecode() 避免呼叫API失敗。
 const OrderResultURL = `${site_rul}/checkout/result`
 
-export interface IPaymentRequest {
+export interface IEcPayPaymentRequest {
   ApiUrl: string
   AllParams: Record<string, any>
 }
 
 // 付款
-export function createPaymentRequest(MerchantTradeNo: string, order_page_id: string, course_event_id: number, paymentOrder: PaymentOrder): IPaymentRequest {
+export function createEcPayPaymentRequest(params: { MerchantTradeNo: string; paymentOrder: ecpayPaymentOrder; order_page_id: string; course_event_id: number }): IEcPayPaymentRequest {
+  const { MerchantTradeNo, paymentOrder, order_page_id, course_event_id } = params
+
   // 一般信用卡測試卡號 : 4311-9522-2222-2222
   // 安全碼 : 222
 
   // 特店編號 (必填)
-  const MerchantID = process.env.ECPAY_MERCHANT_ID!
+  const MerchantID = config.ecpay.merchantId
   // 串接加密金鑰
-  const HashKey = process.env.ECPAY_HASH_KEY!
-  const HashIV = process.env.ECPAY_HASH_IV!
+  const HashKey = config.ecpay.hashKey
+  const HashIV = config.ecpay.hashIv
 
   const ParamsBeforeCMV = {
     // 特店編號
     MerchantID,
-    // 特店訂單編號
+    // 特店訂單編號 (必填)
+    // - 特店訂單編號均為唯一值，不可重複使用。
+    // - 英數字大小寫混合
     MerchantTradeNo,
     // 特店交易時間
     MerchantTradeDate: getMerchantTradeDate(),
@@ -177,8 +166,8 @@ export function createPaymentRequest(MerchantTradeNo: string, order_page_id: str
     EncryptType: '1',
 
     TotalAmount: paymentOrder.TotalAmount,
-    TradeDesc: '課程',
     ItemName: paymentOrder.ItemName,
+    TradeDesc: paymentOrder.TradeDesc,
     ChoosePayment: paymentOrder.ChoosePayment,
 
     // 隱藏付款方式
@@ -212,44 +201,4 @@ export function createPaymentRequest(MerchantTradeNo: string, order_page_id: str
     ApiUrl: APIURL,
     AllParams: { ...ParamsBeforeCMV, CheckMacValue },
   }
-}
-
-export async function processOrder(order: OrderParamsSchemaType): Promise<{ rc: number; rm?: string; data?: IPaymentRequest }> {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY })
-
-  const courseEvent = await getCourseEventByIdAsync(notion, order.courseEventId, false)
-  if (!courseEvent || !courseEvent.課程資訊_名稱 || !courseEvent.教室資訊) {
-    return { rc: 404, rm: 'Not Found' }
-  }
-  // 已截止報名
-  if (!courseEvent.上課日期 || new Date(courseEvent.上課日期[0]) < new Date()) {
-    return { rc: 422, rm: '已截止報名' }
-  }
-
-  const paymentOrder: PaymentOrder = {
-    TotalAmount: (courseEvent.指定價格 || courseEvent.課程資訊_價格!).toString(),
-    ItemName: courseEvent.課程資訊_名稱!,
-    TradeDesc: `上課地點: ${courseEvent.教室資訊.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
-    ChoosePayment: PaymentType.enum.ALL,
-  }
-
-  const MerchantTradeNo = getMerchantTradeNo()
-  const memberId = await getMemberIdAsync(notion, order)
-  const page = await notion.pages.create({
-    parent: { database_id: process.env.NOTION_DATABASE_ID_ORDERS! },
-    properties: {
-      訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
-      會員: { type: 'relation', relation: [{ id: memberId }] },
-      課程安排: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
-      付款金額: { type: 'number', number: +paymentOrder.TotalAmount },
-    },
-  })
-  if (!page) {
-    return { rc: 500, rm: 'Internal Server Error' }
-  }
-
-  const paymentRequest = createPaymentRequest(MerchantTradeNo, page.id, order.courseEventId, paymentOrder)
-
-  console.log(paymentRequest)
-  return { rc: 200, data: paymentRequest }
 }

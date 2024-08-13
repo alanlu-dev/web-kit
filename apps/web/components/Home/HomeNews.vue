@@ -2,7 +2,7 @@
 import type { NewsSchemaType } from '~/schema/news'
 
 const route = useRoute()
-const { data: news } = await useFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page_size: 3 } })
+const { data: news } = await useApiFetch<NewsSchemaType[]>('/api/news', { query: { ...route.query, page_size: 3 } })
 </script>
 
 <template>

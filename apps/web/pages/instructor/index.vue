@@ -24,7 +24,7 @@ useSchemaOrg([
 ])
 
 const route = useRoute()
-const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
+const { data: instructors } = await useApiFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
 </script>
 
 <template>

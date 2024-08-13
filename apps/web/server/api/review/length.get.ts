@@ -1,7 +1,6 @@
 import { reviewKey } from '~/schema/review'
 
-export default defineEventHandler(async () => {
-  // const { page, page_size } = getQuery(event)
-
-  return await redis.lLen(reviewKey)
+export default defineWrappedResponseHandler(async () => {
+  const len = await redis.lLen(reviewKey)
+  return createApiResponse(200, 'OK', len)
 })

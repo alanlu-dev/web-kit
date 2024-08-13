@@ -40,15 +40,15 @@ export const OrderSchema = z.object({
 })
 export type OrderSchemaType = z.infer<typeof OrderSchema>
 
-// const runtimeConfig = useRuntimeConfig()
+const config = useRuntimeConfig()
 
 export const orderFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: !runtimeConfig.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
 export const orderQuery: QueryDatabaseParameters = {
-  database_id: process.env.NOTION_DATABASE_ID_ORDERS!,
+  database_id: config.notion.databaseId.orders,
   // sorts: [{ property: '排序', direction: 'descending' }],
   filter: { and: orderFilters },
   filter_properties: [
