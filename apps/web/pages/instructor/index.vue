@@ -8,21 +8,6 @@ definePageMeta({
   },
 })
 
-useSeoMeta({
-  title: '師資陣容',
-})
-
-useSchemaOrg([
-  defineBreadcrumb({
-    itemListElement: [
-      // item is the url and will be resolved to the absolute url
-      { name: '首頁', item: '/' },
-      // item is not required for the last list element
-      { name: '師資陣容' },
-    ],
-  }),
-])
-
 const route = useRoute()
 const { data: instructors } = await useApiFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
 </script>

@@ -8,10 +8,6 @@ definePageMeta({
   },
 })
 
-useSeoMeta({
-  title: '學員評價',
-})
-
 const route = useRoute()
 const router = useRouter()
 

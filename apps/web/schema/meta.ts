@@ -1,0 +1,32 @@
+import { z } from 'zod'
+import { NotionDateSchema, NotionFilesSchema, NotionFormulaSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+
+export const MetaSchema = z.object({
+  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
+  PAGE_ID: z.string().optional(),
+
+  標題: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+  路由名稱: NotionSelectSchema.transform((o) => o.select?.name),
+  正式連結: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
+  描述: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  路由ID: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
+  圖片: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
+  發布期間: NotionDateSchema.transform((o) => o.date),
+  // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
+})
+export type MetaSchemaType = z.infer<typeof MetaSchema>
+
+const config = useRuntimeConfig()
+
+export const metaKey = 'meta'
+export const metaFilters: AndFilterType = [
+  { property: '封存', checkbox: { equals: false } },
+  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+]
+export const metaQuery: QueryDatabaseParameters = {
+  database_id: config.notion.databaseId.meta,
+  sorts: [{ property: '發布期間', direction: 'ascending' }],
+  filter: { and: metaFilters },
+  // filter_properties: [],
+}

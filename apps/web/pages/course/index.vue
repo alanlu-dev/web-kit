@@ -9,10 +9,6 @@ definePageMeta({
   },
 })
 
-useSeoMeta({
-  title: '課程資訊',
-})
-
 const route = useRoute()
 const router = useRouter()
 

@@ -2,6 +2,7 @@
 import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 import { ModalsContainer } from 'vue-final-modal'
 import { useEventListener } from '@vueuse/core'
+import type { MetaSchemaType } from '~/schema/meta'
 
 const showDevPanel = useState('showDevPanel', () => false)
 
@@ -14,13 +15,40 @@ useEventListener(window, 'keydown', (event) => {
 })
 
 const { $refreshAos } = useNuxtApp()
+
 const route = useRoute()
+
+const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
+
+useSeoMeta({
+  title: () => meta.value?.標題 || (route.name as string),
+  description: () => meta.value?.描述,
+  ogImage: () => meta.value?.圖片 || '/about/jie_housekeeper.png',
+})
 
 onMounted(() => {
   watch(
     () => route.fullPath,
-    () => {
+    async () => {
       $refreshAos()
+
+      switch (route.name) {
+        case 'index':
+        case 'about':
+        case 'course':
+        case 'faq':
+        case 'instructor':
+        case 'news':
+        case 'review': {
+          const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
+
+          useSeoMeta({
+            title: () => meta.value?.標題 || (route.name as string),
+            description: () => meta.value?.描述,
+            ogImage: () => meta.value?.圖片 || '/about/jie_housekeeper.png',
+          })
+        }
+      }
     },
   )
 })

@@ -219,6 +219,7 @@ export default defineNuxtConfig({
         contacts: '',
         members: '',
         orders: '',
+        meta: '',
       },
     },
     ecpay: {

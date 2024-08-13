@@ -1,25 +1,19 @@
 <script setup lang="ts">
 import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseSchemaType } from '~/schema/course'
+import type { MetaSchemaType } from '~/schema/meta'
 
 const route = useRoute()
 const id = route.params.id
 
 const { data: course } = await useApiFetch<CourseSchemaType>(`/api/course/${id}`, { query: route.query })
 
+const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
+
 useSeoMeta({
-  title: () => course.value?.課程名稱 || '課程資訊',
-})
-
-const main = ref()
-const thumbs = ref()
-
-onMounted(() => {
-  const thumbsSplide = thumbs.value?.splide
-
-  if (thumbsSplide) {
-    main.value?.sync(thumbsSplide)
-  }
+  title: () => meta.value?.標題 || course.value?.課程名稱 || (route.name as string),
+  description: () => meta.value?.描述 || course.value?.課程特色資訊?.map((i) => i?.課程特色)?.join('、'),
+  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/about/jie_housekeeper.png',
 })
 </script>
 

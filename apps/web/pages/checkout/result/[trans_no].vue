@@ -7,7 +7,7 @@ const trans_no = route.params.trans_no
 const { data: order } = await useApiFetch<OrderSchemaType>(`/api/payment/${trans_no}`)
 
 useSeoMeta({
-  title: () => '報名結果',
+  title: '報名結果',
 })
 </script>
 

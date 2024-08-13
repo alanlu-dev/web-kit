@@ -22,10 +22,6 @@ definePageMeta({
 // }
 // })
 
-useSeoMeta({
-  title: '關於我們',
-})
-
 const route = useRoute()
 const { data: partners } = await useApiFetch<PartnerSchemaType[]>('/api/partner', { query: { ...route.query, page_size: 10 } })
 </script>

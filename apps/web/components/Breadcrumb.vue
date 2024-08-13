@@ -6,7 +6,18 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const links = useBreadcrumbItems()
+const links = useBreadcrumbItems({
+  overrides: !props.title
+    ? []
+    : [
+        undefined, // Home
+        undefined, // Blog
+        {
+          label: props.title,
+        },
+      ],
+  schemaOrg: true,
+})
 
 const processLinks = computed(() => {
   if (props.noLastPage) {

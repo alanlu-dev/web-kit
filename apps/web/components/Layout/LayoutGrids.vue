@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTimeAgo } from '@vueuse/core'
 
+const route = useRoute()
 const config = useRuntimeConfig()
 
 const common = useCommonStore()
@@ -24,6 +25,9 @@ const timeAgo = useTimeAgo(new Date(generatedAt.value))
       <div>
         <p>版本資訊 v{{ config.public.version }}</p>
         <p>Generated {{ timeAgo }}</p>
+        <p>{{ route.fullPath }}</p>
+        <p>{{ route.params }}</p>
+        <p>{{ route.name }}</p>
       </div>
       <div class="b1-b rounded bg:primary/.5 fg:white m:1x p:1x|2x">
         {{ activeBreakpoint }}

@@ -13,7 +13,7 @@ const id = route.params.course_event_id
 const { data: courseEvent } = await useApiFetch<CourseEventSchemaType>(`/api/course_event/${id}`, { query: route.query })
 
 useSeoMeta({
-  title: () => courseEvent.value?.課程資訊_名稱 || '結帳',
+  title: '確認報名',
 })
 
 const show = ref(false)

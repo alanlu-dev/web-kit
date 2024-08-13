@@ -8,10 +8,6 @@ definePageMeta({
   },
 })
 
-useSeoMeta({
-  title: '產業消息',
-})
-
 const route = useRoute()
 const router = useRouter()
 
