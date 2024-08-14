@@ -71,7 +71,7 @@ onMounted(() => {
     <ClientOnly>
       <Button
         intent="secondary"
-        class="invisible round! {f:6.75x;size:6.75x;min-w:6.75x} {fixed;bottom:50x;right:3x} {flex;center-content} {bottom:60x;right:2x}@tablet {f:9x;size:9x;min-w:9x}@tablet {f:10x;size:10x;min-w:10x}@desktop {right:5x}@desktop {opacity:1;visible}[show=true] ~300ms|ease ~property:opacity,visibility opacity:0 p:0! z:nav"
+        class="fixed invisible round! {bottom:3x;right:3x;f:6.75x;size:6.75x;min-w:6.75x} {flex;center-content} {bottom:4x;right:4x;f:9x;size:9x;min-w:9x}@tablet {bottom:5x;right:5x;f:10x;size:10x;min-w:10x}@desktop {opacity:1;visible}[show=true] ~300ms|ease ~property:opacity,visibility opacity:0 p:0! z:nav"
         :show="common.scrollY > 200"
         @click="common.scrollY = 0"
       >
