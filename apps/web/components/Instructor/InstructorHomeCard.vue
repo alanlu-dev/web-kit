@@ -21,7 +21,7 @@ defineProps<IProps>()
         <div class="list b2-r mt:5x mt:10x@xs">
           <ul>
             <li>{{ instructor.工作經驗 }} 年收納工作經驗</li>
-            <li>{{ instructor.工作經驗 }} 年教學經驗</li>
+            <li>{{ instructor.教學經驗 }} 年教學經驗</li>
             <li>{{ instructor.標語 }}</li>
           </ul>
         </div>

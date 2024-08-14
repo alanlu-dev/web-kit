@@ -23,7 +23,7 @@ const focusable = ref(false)
         <div class="list b1-r mt:4x">
           <ul>
             <li>{{ instructor.工作經驗 }} 年收納工作經驗</li>
-            <li>{{ instructor.工作經驗 }} 年教學經驗</li>
+            <li>{{ instructor.教學經驗 }} 年教學經驗</li>
           </ul>
         </div>
       </div>
