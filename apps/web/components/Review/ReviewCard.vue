@@ -10,7 +10,7 @@ defineProps<IProps>()
 <template>
   <div class="bg:#F6F7F7 overflow:hidden r:2x">
     <div>
-      <VideoPlayerCover aspect="340/235" :video="review.影音連結" :img="review.照片[0]" />
+      <VideoPlayerCover aspect="16/9" :video="review.影音連結" :img="review.照片[0]" />
     </div>
     <div class="p:5x|6x">
       <p class="b1-m fg:font-title">學員 {{ review.學員 }}</p>

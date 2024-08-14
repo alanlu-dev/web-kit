@@ -25,7 +25,7 @@ useSeoMeta({
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
           <div>
-            <VideoPlayerCover aspect="622/380" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" />
+            <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" />
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
@@ -98,7 +98,9 @@ useSeoMeta({
 
             <div v-for="instructor in course?.講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:2x mt:3x@tablet">
               <div class="flex:1 order:2@desktop overflow:hidden r:2x">
-                <nuxt-img :src="instructor?.照片[0]" :alt="instructor?.名稱" />
+                <div class="{aspect:inherit;object:cover;object-position:top}_img aspect:4/3 overflow:hidden r:2x">
+                  <nuxt-img :src="instructor?.照片[0]" :alt="instructor?.名稱" />
+                </div>
               </div>
               <div class="flex:2">
                 <h3 class="h3">{{ instructor?.名稱 }} {{ instructor?.英文名 }}</h3>

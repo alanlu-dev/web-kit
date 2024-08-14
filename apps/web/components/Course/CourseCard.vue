@@ -11,8 +11,8 @@ defineProps<IProps>()
 <template>
   <nuxt-link class="{flex;flex:row} {flex:col}@tablet bg:base-bg overflow:hidden r:2x@tablet scale(1.05):hover_img shadow:md@tablet" :to="`/course/${course.ID}`">
     <div class="{min-w:40%;pt:2x} {min-w:unset;pt:unset}@tablet">
-      <div class="rel aspect:147/102 aspect:316/133@tablet overflow:hidden r:2x r:unset@tablet">
-        <nuxt-img class="{abs;inset:0;full} ~300ms|ease object:cover" :src="course.課程照片?.[0]" :alt="course.課程名稱" />
+      <div class="rel aspect:16/9 overflow:hidden r:2x r:unset@tablet">
+        <VideoPlayerCover aspect="16/9" class="{abs;inset:0;full} ~300ms|ease_img" :video="course.影音連結" :img="course.課程照片?.[0]" :alt="course.課程名稱" />
       </div>
     </div>
 
