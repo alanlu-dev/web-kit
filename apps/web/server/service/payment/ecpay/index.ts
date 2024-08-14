@@ -2,6 +2,8 @@ import { Client } from '@notionhq/client'
 import type { H3Event } from 'h3'
 import { addDay, format } from '@formkit/tempo'
 import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
+import { getMemberIdAsync } from '~/server/service/member/get'
+import { getMonthIdAsync } from '~/server/service/month/get'
 import type { OrderParamsSchemaType } from '~/schema/order'
 
 // 取得訂單編號
@@ -24,7 +26,7 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
   const config = useRuntimeConfig()
   const notion = new Client({ auth: config.notion.apiKey })
 
-  const courseEvent = await getCourseEventByIdAsync(notion, orderParams.courseEventId, false)
+  const courseEvent = await getCourseEventByIdAsync(notion, orderParams.courseEventId, true)
   if (!courseEvent) {
     setResponseStatus(event, ErrorCodes.NOT_FOUND)
     return createApiError(ErrorCodes.NOT_FOUND, '該課程安排不存在')
@@ -41,7 +43,13 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
     return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, `已截止報名 ${format({ date: expirationDate, format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' })}`)
   }
 
-  // TODO: 庫存
+  // 名額限制
+  const limit = courseEvent.指定名額限制 ? courseEvent.指定名額限制 : courseEvent.教室資訊.名額限制 || 0
+  const currentCount = courseEvent.報名人數 || 0
+  if (currentCount >= limit) {
+    setResponseStatus(event, ErrorCodes.UNPROCESSABLE_ENTITY)
+    return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '名額已滿')
+  }
 
   const ecPayPaymentOrder: ecpayPaymentOrder = {
     TotalAmount: (courseEvent.指定價格 || courseEvent.課程資訊_價格!).toString(),
@@ -54,12 +62,16 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
   const MerchantTradeNo = getTradeNo()
   const memberId = await getMemberIdAsync(notion, orderParams)
 
+  const [year, month] = format({ date: new Date(), format: 'YYYY/MM', locale: 'zh-TW', tz: 'Asia/Taipei' }).split('/')
+  const monthId = await getMonthIdAsync(notion, { year, month })
+
   const page = await notion.pages.create({
     parent: { database_id: config.notion.databaseId.orders },
     properties: {
       訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
       會員: { type: 'relation', relation: [{ id: memberId }] },
       課程安排: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
+      月份: { type: 'relation', relation: [{ id: monthId }] },
       金流商: { type: 'select', select: { name: '綠界' } },
       特店編號: { type: 'number', number: +config.ecpay.merchantId },
       付款金額: { type: 'number', number: +ecPayPaymentOrder.TotalAmount },

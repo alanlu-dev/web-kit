@@ -24,5 +24,17 @@ export const partnerQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.partners,
   sorts: [{ property: '排序', direction: 'ascending' }],
   filter: { and: partnerFilters },
-  // filter_properties: [],
+  filter_properties: [
+    /** ID */
+    'AUl%3E',
+    /** 名稱 */
+    'title',
+    /** 介紹 */
+    'Mrtq',
+    /** 圖片 */
+    'z%7D%5CN',
+
+    /** 封存 */
+    // '%7BPFJ'
+  ],
 }

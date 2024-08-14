@@ -28,5 +28,28 @@ export const metaQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.meta,
   sorts: [{ property: '發布期間', direction: 'ascending' }],
   filter: { and: metaFilters },
-  // filter_properties: [],
+  filter_properties: [
+    /** 標題 */
+    'title',
+    /** 路由名稱 */
+    '%3EXcE',
+    /** 正式連結 */
+    '%3BdD%3D',
+    /** 描述 */
+    'wQsN',
+    /** 路由ID */
+    '%5Dmz%3B',
+    /** 圖片 */
+    'c%3E%7Cc',
+    /** 發布期間 */
+    '%5CAvJ',
+
+    /** 課程ID */
+    // 'dQnB',
+    /** fullPath */
+    // 'eBq%5E',
+
+    /** 封存 */
+    // 'T%3B%3BB',
+  ],
 }

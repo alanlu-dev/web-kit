@@ -220,6 +220,7 @@ export default defineNuxtConfig({
         members: '',
         orders: '',
         meta: '',
+        months: '',
       },
     },
     ecpay: {

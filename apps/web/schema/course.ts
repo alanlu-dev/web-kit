@@ -71,7 +71,7 @@ export const CourseSchema = z.object({
   價格: NotionNumberSchema.transform((o) => o.number),
   單元數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
   課程時長: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
-  // TODO: 從課程安排資訊取得
+  // XXX: 課程安排更新後，需要刷新快取
   結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),

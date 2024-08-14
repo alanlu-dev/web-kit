@@ -5,10 +5,11 @@ import type { CourseEventSchemaType } from '~/schema/course_event'
 import { CourseEventSchema, courseEventFilters, courseEventKey, courseEventQuery } from '~/schema/course_event'
 
 interface needType {
-  needCourse: boolean
+  needCourse?: boolean
+  needClassroom?: boolean
 }
 
-export async function getCourseEventByIdAsync(notion: Client | null, id: number, refresh: boolean, need: needType = { needCourse: true }): Promise<CourseEventSchemaType | null> {
+export async function getCourseEventByIdAsync(notion: Client | null, id: number, refresh: boolean, need: needType = { needCourse: true, needClassroom: true }): Promise<CourseEventSchemaType | null> {
   if (!id) return null
 
   const key = `${courseEventKey}:${id}`
@@ -31,7 +32,13 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   return item
 }
 
-export async function getCourseEventsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean, need: needType = { needCourse: true }): Promise<CourseEventSchemaType[]> {
+export async function getCourseEventsAsync(
+  notion: Client | null,
+  currentPage: number,
+  pageSize: number,
+  refresh: boolean,
+  need: needType = { needCourse: true, needClassroom: true },
+): Promise<CourseEventSchemaType[]> {
   let items: CourseEventSchemaType[] | null = null
 
   if (!refresh) {
@@ -56,7 +63,7 @@ export async function getCourseEventsAsync(notion: Client | null, currentPage: n
   return items
 }
 
-export async function fetchCourseEvents(notion: Client | null, courseEventIds: number[], need: needType = { needCourse: true }): Promise<CourseEventSchemaType[]> {
+export async function fetchCourseEvents(notion: Client | null, courseEventIds: number[], need: needType = { needCourse: true, needClassroom: true }): Promise<CourseEventSchemaType[]> {
   const uniqueCourseEventIds = Array.from(new Set(courseEventIds))
 
   const courseEventPromises = uniqueCourseEventIds.map((id) => getCourseEventByIdAsync(notion, id, false, need))
@@ -74,9 +81,9 @@ export async function processCourseEventDataAsync(notion: Client | null, item: a
   return parseItem
 }
 
-export async function processCourseEventRelationAsync(notion: Client | null, item: CourseEventSchemaType, need: needType = { needCourse: true }): Promise<CourseEventSchemaType> {
+export async function processCourseEventRelationAsync(notion: Client | null, item: CourseEventSchemaType, need: needType = { needCourse: true, needClassroom: true }): Promise<CourseEventSchemaType> {
   const coursePromise = item.課程ID && need.needCourse ? getCourseByIdAsync(notion, item.課程ID, false, { needCourseEvents: false, needInstructor: false }) : Promise.resolve(null)
-  const classroomPromise = item.教室ID ? getClassroomByIdAsync(notion, item.教室ID, false) : Promise.resolve(null)
+  const classroomPromise = item.教室ID && need.needClassroom ? getClassroomByIdAsync(notion, item.教室ID, false) : Promise.resolve(null)
 
   const [course, classroom] = await Promise.all([coursePromise, classroomPromise])
 

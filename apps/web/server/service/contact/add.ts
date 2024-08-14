@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client'
 import type { ContactSchemaType } from '~/schema/contact'
+import { getMemberIdAsync } from '~/server/service/member/get'
 
 export async function addContactAsync(data: ContactSchemaType) {
   const config = useRuntimeConfig()
