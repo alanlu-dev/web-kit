@@ -39,18 +39,18 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
     children: [{ paragraph: { rich_text: [{ text: { content: data ? JSON.stringify(data) : 'null' } }] } }],
   })
 
-  if (data?.RtnCode === '1') {
-    // 更新狀態
-    const page = await notion.pages.update({
-      page_id: order_page_id,
-      properties: {
-        付款狀態: { status: { name: data?.RtnCode === '1' ? '待請款' : '付款失敗' } },
-        付款方式: { rich_text: [{ text: { content: data?.PaymentType || 'null' } }] },
-        金流代碼: { rich_text: [{ text: { content: data?.RtnCode || 'null' } }] },
-        金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
-      },
-    })
+  // 更新狀態
+  const page = await notion.pages.update({
+    page_id: order_page_id,
+    properties: {
+      付款狀態: { status: { name: data?.RtnCode === '1' ? '付款成功' : '付款失敗' } },
+      付款方式: { rich_text: [{ text: { content: data?.PaymentType || 'null' } }] },
+      金流代碼: { rich_text: [{ text: { content: data?.RtnCode || 'null' } }] },
+      金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
+    },
+  })
 
+  if (data?.RtnCode === '1') {
     // 取得課程安排資訊
     const parsedPage = NotionPageSchema.parse(page)
     const order = OrderSchema.parse(parsedPage.properties)
