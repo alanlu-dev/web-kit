@@ -24,7 +24,7 @@ const nav = [
       </nuxt-link>
 
       <nav class="ml:auto">
-        <ul class="b1-r hidden nowrap {f:bold}_a:hover {flex;ai:center;jc:flex-start;flex:wrap}@lg">
+        <ul class="b1-r hidden nowrap {font:bold}_a:hover {flex;ai:center;jc:flex-start;flex:wrap}@lg">
           <li v-for="item in nav" :key="item.name" class="contents">
             <nuxt-link class="{ls:0.05em;mr:-0.05em;text:right} p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>
           </li>

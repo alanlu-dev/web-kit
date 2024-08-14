@@ -19,7 +19,7 @@ defineProps<IProps>()
     <div class="p:2x|4x text:left">
       <p class="b1-b fg:primary lines:1">{{ course.課程名稱 }}</p>
       <p class="b2-r lines:2 lines:3@tablet mt:2x">{{ course.課程特色資訊?.map((i) => i?.課程特色).join('、') }}</p>
-      <p class="b2-r f:12@<=mobile fg:font-title lines:1 mt:3x mt:8x@tablet">中華民國職業清潔認証協會</p>
+      <p class="b2-r f:3x@<=mobile fg:font-title lines:1 mt:3x mt:8x@tablet">中華民國職業清潔認証協會</p>
       <hr class="bg:#DBD9D9 h:1 mt:2x" />
       <div class="mt:2x text:left">
         <p class="h3 fg:accent!">NT$ {{ formatThousand(course.價格 || 99999) }} </p>

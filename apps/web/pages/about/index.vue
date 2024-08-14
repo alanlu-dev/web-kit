@@ -39,7 +39,7 @@ const { data: partners } = await useApiFetch<PartnerSchemaType[]>('/api/partner'
             <nuxt-link class="{flex;center-content} {min-w:20x;size:20x} {min-w:22x;size:22x}@desktop" to="/">
               <Icon name="Logo" class="size:full"></Icon>
             </nuxt-link>
-            <div class="nowrap f:medium ls:0.1em text:center">
+            <div class="nowrap font:medium ls:0.1em text:center">
               <h1 class="f:6vw f:10x@xs">中華民國職業清潔認證協會</h1>
               <h3 class="f:2.7vw f:5x@xs line-h:1.4">Professional Cleaning Certification Association</h3>
             </div>

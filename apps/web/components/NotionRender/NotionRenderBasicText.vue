@@ -9,7 +9,7 @@ const props = defineProps<IProps>()
 
 const textCv = cv(
   ({ color }) => color && `bg:notion-bg-${color} fg:notion-${color}`,
-  ({ bold }) => bold && 'f:bold',
+  ({ bold }) => bold && 'font:bold',
   ({ italic }) => italic && 'italic',
   ({ strikethrough }) => strikethrough && 'text:line-through',
   ({ underline }) => underline && `bb:2|notion-{props.text.annotations.color}`,
