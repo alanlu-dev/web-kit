@@ -22,6 +22,8 @@ const ratio = cv(
 
 const splideOption = {
   arrows: true,
+  autoplay: true,
+  interval: 3000,
   type: 'loop',
   drag: 'free',
   snap: true,
@@ -33,6 +35,7 @@ const splideOption = {
       gap: '20px',
     },
     430: {
+      arrows: false,
       perPage: 1,
     },
   },
@@ -51,7 +54,7 @@ const splideOption = {
         </h3>
       </div>
 
-      <div class="{max-w:screen-main;mx:auto} mt:5x mt:10x@tablet w:80% w:full@desktop">
+      <div class="{max-w:screen-main;mx:auto} mt:5x mt:10x@tablet w:full@desktop">
         <ClientOnly>
           <template #fallback>
             <div class="splide__track">
