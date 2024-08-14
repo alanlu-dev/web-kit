@@ -165,7 +165,7 @@ export async function processCourseDataAsync(notion: Client | null, item: any): 
 }
 
 export async function processCourseRelationAsync(notion: Client | null, item: CourseSchemaType, need: needType = { needCourseEvents: true, needInstructor: true }): Promise<CourseSchemaType> {
-  const courseEventsPromise = item.課程安排ID && need.needCourseEvents ? fetchCourseEvents(notion, item.課程安排ID, { needCourse: false }) : Promise.resolve([])
+  const courseEventsPromise = item.課程安排ID && need.needCourseEvents ? fetchCourseEvents(notion, item.課程安排ID, { needCourse: false, needClassroom: true }) : Promise.resolve([])
   const instructorPromise = item.講師ID && need.needInstructor ? fetchInstructors(notion, item.講師ID, false) : Promise.resolve(null)
 
   const [courseEvents, instructor] = await Promise.all([courseEventsPromise, instructorPromise])

@@ -156,6 +156,7 @@ export default defineNuxtConfig({
     '/api/contact/**': { isr: false },
     '/api/payment': { isr: false },
     '/api/payment/**': { isr: false },
+    '/api/test/**': { isr: false },
 
     // this page will be generated on demand once until next deployment, cached on CDN
     // '/': { isr: true },
