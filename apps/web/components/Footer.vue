@@ -41,8 +41,9 @@ useHead({
             <p>聯絡專線：<a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
             <p>營業時間：08:00-22:00</p>
             <div class="{flex;ai:center;jc:flex-start;gap:4.5x}">
-              <Iconify icon="ic:baseline-facebook"></Iconify>
-              <Iconify icon="ri:line-fill"></Iconify>
+              <div intent="text" class="bg:#D0E6F1! r:2x">
+                <Iconify icon="ri:line-fill" :is-prefix="true" class="fg:#07B727_svg gap:1x">課程諮詢</Iconify>
+              </div>
             </div>
           </div>
         </div>

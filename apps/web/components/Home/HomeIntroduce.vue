@@ -14,14 +14,14 @@ const description = [
         <nuxt-img class="{aspect:inherit;object:cover} r:2x" src="/home/introduce.jpg" :alt="title.join()" />
       </div>
 
-      <div class="text:center">
+      <div class="text:left">
         <h1 class="h1 title nowrap@desktop {flex;flex:col;jc:center} {flex:row}@2xs fg:font-title my:4x">
           <span v-for="(t, idx) in title" :key="idx">{{ t }}</span>
         </h1>
-        <div class="b1-r {flex;flex:col;gap:4x}">
-          <p v-for="(p, idx) in description" :key="idx" class="{flex;flex:col;jc:center}@2xs">
+        <div class="b1-r nowrap@2xs {flex;flex:col;gap:4x}">
+          <span v-for="(p, idx) in description" :key="idx" class="{flex;flex:col;jc:center}@2xs">
             <span v-for="(s, sIdx) in p" :key="`${idx}-${sIdx}`">{{ s }}</span>
-          </p>
+          </span>
         </div>
       </div>
     </div>

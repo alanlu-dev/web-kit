@@ -102,9 +102,9 @@ const splideOption = {
         <div class="{grid-cols:2;gap:5x}">
           <div v-for="(i, idx) in data" :key="`${i.icon}-${idx}`" class="{flex;flex:col;jc:flex-start;gap:1x} {flex:row;gap:3x}@tablet bg:#FAFAFA p:6x|3x r:2x">
             <Icon class="f:8x f:16x@tablet" :name="i.icon" />
-            <p class="b2-r {flex;flex:col}">
+            <span class="b2-r {flex;flex:col}@xs">
               <span v-for="(p, pIdx) in i.title" :key="`${i.icon}-p-${pIdx}`">{{ p }}</span>
-            </p>
+            </span>
           </div>
         </div>
       </div>

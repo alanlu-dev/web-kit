@@ -35,9 +35,9 @@ const card = [
       </div>
 
       <div class="{grid-cols:1;gap:7x} {grid-cols:3}@xs fg:primary mt:5x mt:10x@tablet">
-        <div v-for="item in card" :key="item.icon" class="bg:white p:5x r:2x">
+        <div v-for="item in card" :key="item.icon" class="bg:white p:5x r:2x shadow:sm">
           <Iconify :icon="item.icon" class="f:15x>.icon" />
-          <h3 class="h3 {flex;flex:col;jc:center} {flex:row;flex:wrap}@md mt:2x">
+          <h3 class="h3 {flex;jc:center;flex:wrap} mt:2x">
             <span v-for="(t, idx) in item.title" :key="idx" class="px:.5x">{{ t }}</span>
           </h3>
           <p class="b2-r fg:font-content mt:4x">{{ item.description }}</p>

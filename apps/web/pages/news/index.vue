@@ -75,7 +75,7 @@ watch(
             </p>
           </div>
         </div>
-        <div class="mt:5x mt:10x@tablet text:center">
+        <div class="mt:10x mt:15x@tablet text:center">
           <Button @click="navigateTo('/course')">立即報名清潔證照課程,搶先掌握高薪職涯!</Button>
         </div>
       </div>
