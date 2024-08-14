@@ -12,8 +12,13 @@ export async function useApiFetch<T>(url: string, options: any = {}) {
     const { data: resData, error: resError } = await useFetch<ApiResponse<T>, FetchError<ApiResponse>>(url, options)
     if (resError.value) {
       error.value = resError.value
-      if (import.meta.client && resError.value.data) {
-        toast.warn(resError.value.data.rm)
+      if (import.meta.client) {
+        if (resError.value.data?.rm) {
+          toast.warn(resError.value.data.rm)
+        }
+        else {
+          toast.warn('系統忙碌中，請稍後再試。')
+        }
       }
     }
     else if (resData.value && resData.value.data) {
@@ -23,7 +28,7 @@ export async function useApiFetch<T>(url: string, options: any = {}) {
   catch (err: unknown) {
     error.value = err
     if (import.meta.client) {
-      toast.error(JSON.stringify(err))
+      toast.error(`系統忙碌中，請稍後再試。\n${JSON.stringify(err)}`)
     }
   }
 
