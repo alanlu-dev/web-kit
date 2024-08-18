@@ -82,7 +82,7 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      'Noto+Sans+TC': { wght: [400, 500, 700] },
+      'Noto+Serif+TC': { wght: [400, 500, 700] },
       'Inter': true,
     },
   },

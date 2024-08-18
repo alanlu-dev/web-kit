@@ -11,7 +11,7 @@ export default {
     'spacing': {},
 
     'font-family': {
-      sans: ['Noto Sans TC', 'Noto Sans TC fallback', 'Inter', 'Inter fallback', ...variables['font-family'].sans],
+      sans: ['Noto Serif TC', 'Noto Serif TC fallback', 'Inter', 'Inter fallback', ...variables['font-family'].sans],
       mono: ['Fira Code', 'Fira Code fallback', ...variables['font-family'].mono],
     },
 
