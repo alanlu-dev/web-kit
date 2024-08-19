@@ -1,17 +1,9 @@
 import { z } from 'zod'
-import {
-  NotionDatabaseRollupSchema,
-  NotionFilesSchema,
-  NotionNumberSchema,
-  NotionRelationSchema,
-  NotionSelectSchema,
-  NotionTitleSchema,
-  NotionUniqueIdSchema,
-  NotionUrlSchema,
-} from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDatabaseRollupSchema, NotionFilesSchema, NotionNumberSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { InstructorSchema } from './instructor'
 import { CourseEventSchema } from './course_event'
+import { CourseBaseSchema } from './course_base'
 
 // 課程特色
 export const FeaturesSchema = z.object({
@@ -64,40 +56,29 @@ export const CourseSchema = z.object({
   PAGE_ID: z.string().optional(),
 
   排序: NotionNumberSchema.transform((o) => o.number),
-  課程名稱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-  標籤: NotionSelectSchema.transform((o) => o.select?.name),
+  名稱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+
+  // 課程基礎: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
+  課程基礎ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
+  ),
+  課程基礎資訊: CourseBaseSchema.optional(),
+
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
   價格: NotionNumberSchema.transform((o) => o.number),
-  單元數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
-  課程時長: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
-  // XXX: 課程安排更新後，需要刷新快取
-  結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
-  講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
-  講師ID: NotionDatabaseRollupSchema.transform((o) =>
+  // 可授課講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
+  可授課講師ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type !== 'array' ? [] : o.rollup.array.map((item) => (item?.type === 'unique_id' && item.unique_id ? item.unique_id.number : undefined)).filter((id): id is number => id !== undefined),
   ),
-  講師資訊: z.array(InstructorSchema.optional()).optional(),
+  可授課講師資訊: z.array(InstructorSchema.optional()).optional(),
 
-  課程安排: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
+  // 課程安排: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
   課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type !== 'array' ? [] : o.rollup.array.map((item) => (item?.type === 'unique_id' && item.unique_id ? item.unique_id.number : undefined)).filter((id): id is number => id !== undefined),
   ),
   課程安排資訊: z.array(CourseEventSchema.optional()).optional(),
-
-  學員評價: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-
-  課程特色: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  可以學到: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  課程大綱: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  課前準備: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  結業獲得: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  課程特色資訊: z.array(FeaturesSchema.optional()).optional(),
-  可以學到資訊: z.array(LearnSchema.optional()).optional(),
-  課程大綱資訊: z.array(OutlineSchema.optional()).optional(),
-  課前準備資訊: z.array(PreparationSchema.optional()).optional(),
-  結業獲得資訊: z.array(AchievementSchema.optional()).optional(),
 })
 export type CourseSchemaType = z.infer<typeof CourseSchema>
 
@@ -117,41 +98,29 @@ export const courseQuery: QueryDatabaseParameters = {
     'gI%7C%3D',
     /** 排序 */
     '%3DZD%5B',
-    /** 課程名稱 */
+    /** 名稱 */
     'title',
-    /** 標籤 */
-    'tQU%7C',
+
+    /** 課程基礎 */
+    // '%5BG%7DD',
+    /** 課程基礎ID */
+    '%3FnQq',
+
     /** 課程照片 */
     'r%3ENY',
     /** 影音連結 */
     'dB~z',
     /** 價格 */
     'zWJ%7D',
-    /** 單元數 */
-    'sRKp',
-    /** 課程時長 */
-    'lnDC',
-    /** 結業人數 */
-    'eJ%7Cg',
-    /** 講師 */
-    '%5CjaO',
-    /** 講師ID */
+
+    /** 可授課講師 */
+    // '%5CjaO',
+    /** 可授課講師ID */
     '%5DjEY',
+
     /** 課程安排 */
-    'VS%7CO',
+    // 'VS%7CO',
     /** 課程安排ID */
     'p%5C~t',
-    /** 學員評價 */
-    '%5E%7CLt',
-    /** 課程特色 */
-    'upg%60',
-    /** 可以學到 */
-    '_neS',
-    /** 課程大綱 */
-    '%3DBjz',
-    /** 課前準備 */
-    'hI_D',
-    /** 結業獲得 */
-    'p%3CWn',
   ],
 }

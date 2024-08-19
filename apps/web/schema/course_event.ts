@@ -25,25 +25,25 @@ export const CourseEventSchema = z.object({
     return [formattedDate, formattedTime, o.date.start]
   }),
 
-  // 課程: NotionRelationSchema.transform((o) => o.relation[0]?.id),
   課程ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
-  // 課程資訊: CourseSchema.optional().nullable(),
   課程資訊_名稱: z.string().optional(),
   課程資訊_價格: z.number().optional().nullable(),
   指定價格: NotionNumberSchema.transform((o) => o.number),
-  // 最終價格: NotionFormulaSchema.transform((o) => (o.formula.type === 'number' ? o.formula.number : undefined)),
 
   教室ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
   教室資訊: ClassroomSchema.optional().nullable(),
-  // 名額限制: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'number' ? o.rollup.array[0].number : 0)),
   指定名額限制: NotionNumberSchema.transform((o) => o.number),
 
-  付款完成人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
+  講師ID: NotionDatabaseRollupSchema.transform((o) =>
+    o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
+  ),
+
   報名人數: NotionFormulaSchema.transform((o) => (o.formula.type === 'number' ? o.formula.number : undefined)),
+  已完課: NotionFormulaSchema.transform((o) => (o.formula.type === 'boolean' ? o.formula.boolean : undefined)),
 
   // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
   // 發布狀態: NotionStatusSchema.transform((o) => o.status),
@@ -57,6 +57,7 @@ export const courseEventFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
   { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   { property: '課程驗證', formula: { string: { equals: '✅' } } },
+  { property: '講師驗證', formula: { string: { equals: '✅' } } },
   { property: '教室驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseEventQuery: QueryDatabaseParameters = {
@@ -72,39 +73,23 @@ export const courseEventQuery: QueryDatabaseParameters = {
     'title',
     /** 上課日期 */
     '%7D%3EfP',
-    /** 課程 */
-    // 'k_%5Ev',
     /** 課程ID */
     '%60Nff',
-    /** 課程價格 */
-    // 'U%5DTW',
     /** 指定價格 */
     'KSzP',
-    /** 最終價格 */
-    // 'KF%3FY',
 
-    /** 教室 */
-    // 'A%5EKK',
     /** 教室ID */
     'jaSZ',
-    /** 名額限制 */
-    // '%3A%40C%60',
     /** 指定名額限制 */
     'MZlx',
-    /** 最終名額限制 */
-    // 'Z%7D%7Bw',
 
-    /** 報名名單 */
-    // %40pBw
+    /** 講師ID */
+    'hX%3DC',
+
     /** 報名人數 */
     'uuzW',
-    /** 付款完成人數 */
-    'Ieeq',
-
-    /** 結業人數 */
-    // 'S%3AX%5B',
-    /** 指定結業人數 */
-    // 'xUT%7C',
+    /** 已完課 */
+    '_F%7B%3A',
 
     /** 封存 */
     // 'rh%7CP',

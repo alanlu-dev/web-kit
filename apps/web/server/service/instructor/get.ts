@@ -1,7 +1,6 @@
-import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { type Client, isFullPage } from '@notionhq/client'
 import type { InstructorSchemaType } from '~/schema/instructor'
-import { CertificationSchema, InstructorSchema, InvitedLectureSchema, instructorFilters, instructorKey, instructorQuery } from '~/schema/instructor'
+import { InstructorSchema, instructorFilters, instructorKey, instructorQuery } from '~/schema/instructor'
 
 export async function getInstructorByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<InstructorSchemaType | null> {
   if (!id) return null
@@ -61,58 +60,6 @@ export async function processInstructorDataAsync(notion: Client | null, item: an
   const parseItem: InstructorSchemaType = InstructorSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id.replaceAll('-', '')
   parseItem.照片 = parseItem.照片.map((img) => mapImgUrl(img, item.id))
-
-  // 處理專業認證
-  if (parseItem.專業認證?.length) {
-    const certificationPromises = parseItem.專業認證.map(async (id) => {
-      const page = await notion.pages.retrieve({
-        page_id: id!,
-        filter_properties: [
-          /** 專業認證 */
-          'title',
-          /** 排序 */
-          '%7C%7D%3Ft',
-        ],
-      })
-      const parsedPage = CertificationSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.專業認證資訊 = (await Promise.all(certificationPromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
-
-  // 處理受邀講座
-  if (parseItem.受邀講座?.length) {
-    const lecturePromises = parseItem.受邀講座.map(async (id) => {
-      const page = await notion.pages.retrieve({
-        page_id: id!,
-        filter_properties: [
-          /** 受邀講座 */
-          'title',
-          /** 排序 */
-          'uRQf',
-        ],
-      })
-      const parsedPage = InvitedLectureSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.受邀講座資訊 = (await Promise.all(lecturePromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
 
   return parseItem
 }

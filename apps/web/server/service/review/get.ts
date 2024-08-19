@@ -63,7 +63,7 @@ export async function processReviewDataAsync(_: Client | null, item: any): Promi
 export async function processReviewRelationAsync(notion: Client | null, item: ReviewSchemaType): Promise<ReviewSchemaType> {
   if (item.課程ID) {
     const course = await getCourseByIdAsync(notion, item.課程ID, false, { needCourseEvents: false, needInstructor: false })
-    item.課程資訊_名稱 = course?.課程名稱
+    item.課程資訊_名稱 = course?.名稱
   }
   return item
 }

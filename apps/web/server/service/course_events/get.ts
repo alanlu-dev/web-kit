@@ -88,7 +88,7 @@ export async function processCourseEventRelationAsync(notion: Client | null, ite
   const [course, classroom] = await Promise.all([coursePromise, classroomPromise])
 
   if (course) {
-    item.課程資訊_名稱 = course.課程名稱
+    item.課程資訊_名稱 = course.名稱
     item.課程資訊_價格 = course.價格
   }
   if (classroom) item.教室資訊 = classroom

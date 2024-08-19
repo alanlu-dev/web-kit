@@ -1,10 +1,10 @@
-import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { type Client, isFullPage } from '@notionhq/client'
 import { addDay } from '@formkit/tempo'
+import { getCourseBaseByIdAsync } from '../course_base/get'
 import { fetchCourseEvents } from '~/server/service/course_events/get'
 import { fetchInstructors } from '~/server/service/instructor/get'
 import type { CourseSchemaType } from '~/schema/course'
-import { AchievementSchema, CourseSchema, FeaturesSchema, LearnSchema, OutlineSchema, PreparationSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
+import { CourseSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
 
 interface needType {
   needCourseEvents?: boolean
@@ -72,104 +72,19 @@ export async function processCourseDataAsync(notion: Client | null, item: any): 
   parseItem.PAGE_ID = item.id!.replaceAll('-', '')
   parseItem.課程照片 = parseItem.課程照片.map((img) => mapImgUrl(img, item.id))
 
-  // 處理課程特色
-  if (parseItem.課程特色?.length) {
-    const featuresPromises = parseItem.課程特色.map(async (id) => {
-      const page = await notion.pages.retrieve({ page_id: id! })
-      const parsedPage = FeaturesSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.課程特色資訊 = (await Promise.all(featuresPromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
-
-  // 處理可以學到
-  if (parseItem.可以學到?.length) {
-    const learnPromises = parseItem.可以學到.map(async (id) => {
-      const page = await notion.pages.retrieve({ page_id: id! })
-      const parsedPage = LearnSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.可以學到資訊 = (await Promise.all(learnPromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
-
-  // 處理課程大綱
-  if (parseItem.課程大綱?.length) {
-    const outlinePromises = parseItem.課程大綱.map(async (id) => {
-      const page = await notion.pages.retrieve({ page_id: id! })
-      const parsedPage = OutlineSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.課程大綱資訊 = (await Promise.all(outlinePromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
-
-  // 處理課前準備
-  if (parseItem.課前準備?.length) {
-    const preparationPromises = parseItem.課前準備.map(async (id) => {
-      const page = await notion.pages.retrieve({ page_id: id! })
-      const parsedPage = PreparationSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.課前準備資訊 = (await Promise.all(preparationPromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
-
-  // 處理結業獲得
-  if (parseItem.結業獲得?.length) {
-    const achievementPromises = parseItem.結業獲得.map(async (id) => {
-      const page = await notion.pages.retrieve({ page_id: id! })
-      const parsedPage = AchievementSchema.parse(NotionPageSchema.parse(page).properties)
-      parsedPage.PAGE_ID = id!.replaceAll('-', '')
-      return parsedPage
-    })
-    parseItem.結業獲得資訊 = (await Promise.all(achievementPromises))
-      .filter((item) => item != null)
-      .sort((a, b) => {
-        if (a.排序 == null && b.排序 == null) return 0
-        if (a.排序 == null) return 1
-        if (b.排序 == null) return -1
-        return a.排序 - b.排序
-      })
-  }
   return parseItem
 }
 
 export async function processCourseRelationAsync(notion: Client | null, item: CourseSchemaType, need: needType = { needCourseEvents: true, needInstructor: true }): Promise<CourseSchemaType> {
+  const courseBasePromise = item.課程基礎ID ? getCourseBaseByIdAsync(notion, item.課程基礎ID, false) : Promise.resolve(null)
   const courseEventsPromise = item.課程安排ID && need.needCourseEvents ? fetchCourseEvents(notion, item.課程安排ID, { needCourse: false, needClassroom: true }) : Promise.resolve([])
-  const instructorPromise = item.講師ID && need.needInstructor ? fetchInstructors(notion, item.講師ID, false) : Promise.resolve(null)
+  const instructorPromise = item.可授課講師ID && need.needInstructor ? fetchInstructors(notion, item.可授課講師ID, false) : Promise.resolve(null)
 
-  const [courseEvents, instructor] = await Promise.all([courseEventsPromise, instructorPromise])
+  const [courseBase, courseEvents, instructor] = await Promise.all([courseBasePromise, courseEventsPromise, instructorPromise])
 
+  if (courseBase) {
+    item.課程基礎資訊 = courseBase
+  }
   if (courseEvents) {
     item.課程安排資訊 = courseEvents
       .filter((events) => {
@@ -181,7 +96,7 @@ export async function processCourseRelationAsync(notion: Client | null, item: Co
         return 0
       })
   }
-  if (instructor) item.講師資訊 = instructor
+  if (instructor) item.可授課講師資訊 = instructor
 
   return item
 }

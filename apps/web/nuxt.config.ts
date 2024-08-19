@@ -213,6 +213,7 @@ export default defineNuxtConfig({
         instructors: '',
         classrooms: '',
         courses: '',
+        courseBases: '',
         courseEvents: '',
         reviews: '',
         faq: '',

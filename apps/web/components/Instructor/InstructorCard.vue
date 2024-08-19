@@ -35,11 +35,11 @@ const focusable = ref(false)
               {{ instructor.標語 }}
             </div>
 
-            <div v-if="instructor.專業認證資訊?.length" class="mt:4x mt:7x@tablet">
+            <div v-if="instructor.專業認證?.length" class="mt:4x mt:7x@tablet">
               <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 專業認證</p>
               <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
                 <ul>
-                  <li v-for="item in instructor.專業認證資訊" :key="item?.PAGE_ID">{{ item?.專業認證 }}</li>
+                  <li v-for="(item, idx) in instructor.專業認證" :key="`${instructor.ID}-專業認證-${idx}`">{{ item }}</li>
                 </ul>
               </div>
             </div>
@@ -51,11 +51,11 @@ const focusable = ref(false)
               </div>
             </div>
 
-            <div v-if="instructor.受邀講座資訊?.length" class="mt:4x mt:7x@tablet">
+            <div v-if="instructor.受邀講座?.length" class="mt:4x mt:7x@tablet">
               <p class="b1-m flex rel {abs;middle;left:0;content:'';w:1.5x;bg:font-title/.2}::before fg:font-title pl:3.5x"> 受邀講座</p>
               <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
                 <ul>
-                  <li v-for="item in instructor.受邀講座資訊" :key="item?.PAGE_ID">{{ item?.受邀講座 }}</li>
+                  <li v-for="(item, idx) in instructor.受邀講座" :key="`${instructor.ID}-受邀講座-${idx}`">{{ item }}</li>
                 </ul>
               </div>
             </div>

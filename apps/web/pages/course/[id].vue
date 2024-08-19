@@ -11,15 +11,15 @@ const { data: course } = await useApiFetch<CourseSchemaType>(`/api/course/${id}`
 const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
 
 useSeoMeta({
-  title: () => meta.value?.標題 || course.value?.課程名稱 || (route.name as string),
-  description: () => meta.value?.描述 || course.value?.課程特色資訊?.map((i) => i?.課程特色)?.join('、'),
+  title: () => meta.value?.標題 || course.value?.名稱 || (route.name as string),
+  description: () => meta.value?.描述 || course.value?.課程基礎資訊?.課程特色.join('、'),
   ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/about/jie_housekeeper.png',
 })
 </script>
 
 <template>
   <div>
-    <Breadcrumb :title="course?.課程名稱" />
+    <Breadcrumb :title="course?.名稱" />
 
     <section class="{max-w:screen-max;mx:auto}" data-aos="fade-up ">
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
@@ -34,16 +34,16 @@ useSeoMeta({
               <div>
                 <p>課程大綱：</p>
                 <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-                  <ul v-if="course?.課程大綱資訊?.length">
-                    <li v-for="item in course?.課程大綱資訊" :key="item?.PAGE_ID">{{ item?.課程大綱 }}</li>
+                  <ul v-if="course?.課程基礎資訊?.課程大綱?.length">
+                    <li v-for="(item, idx) in course?.課程基礎資訊?.課程大綱" :key="`課程大綱-${idx}`">{{ item }}</li>
                   </ul>
                 </div>
               </div>
               <div>
                 <p>結業獲得：</p>
                 <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-                  <ul v-if="course?.結業獲得資訊?.length">
-                    <li v-for="item in course?.結業獲得資訊" :key="item?.PAGE_ID">{{ item?.結業獲得 }}</li>
+                  <ul v-if="course?.課程基礎資訊?.結業獲得?.length">
+                    <li v-for="(item, idx) in course?.課程基礎資訊?.結業獲得" :key="`結業獲得-${idx}`">{{ item }}</li>
                   </ul>
                 </div>
               </div>
@@ -53,21 +53,21 @@ useSeoMeta({
               <div>
                 <p>課程時長</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.課程時長 || 0 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.課程時長 || 0 }} </p>
                   <p>小時</p>
                 </div>
               </div>
               <div>
                 <p>單元數</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.單元數 || 0 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.單元數 || 0 }} </p>
                   <p>單元</p>
                 </div>
               </div>
               <div>
                 <p>結業人數</p>
                 <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
-                  <p class="h1 title fg:primary"> {{ course?.結業人數 || 0 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.結業人數 || 0 }} </p>
                   <p>人</p>
                 </div>
               </div>
@@ -77,8 +77,8 @@ useSeoMeta({
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 在這堂課，你可以學到</h3>
             <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-              <ul v-if="course?.可以學到資訊?.length">
-                <li v-for="item in course?.可以學到資訊" :key="item?.PAGE_ID">{{ item?.可以學到 }}</li>
+              <ul v-if="course?.課程基礎資訊?.可以學到?.length">
+                <li v-for="(item, idx) in course?.課程基礎資訊?.可以學到" :key="`可以學到-${idx}`">{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -86,8 +86,8 @@ useSeoMeta({
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 上課前的準備</h3>
             <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-              <ul v-if="course?.課前準備資訊?.length">
-                <li v-for="item in course?.課前準備資訊" :key="item?.PAGE_ID">{{ item?.課前準備 }}</li>
+              <ul v-if="course?.課程基礎資訊?.課前準備?.length">
+                <li v-for="(item, idx) in course?.課程基礎資訊?.課前準備" :key="`課前準備-${idx}`">{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -96,7 +96,7 @@ useSeoMeta({
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 關於講師</h3>
             <!-- <InstructorCard v-for="instructor in course?.講師資訊" :key="instructor?.ID" :instructor="instructor!" /> -->
 
-            <div v-for="instructor in course?.講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:2x mt:3x@tablet">
+            <div v-for="instructor in course?.可授課講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:2x mt:3x@tablet">
               <div class="flex:1 order:2@desktop overflow:hidden r:2x">
                 <div class="{aspect:inherit;object:cover;object-position:top}_img aspect:4/3 overflow:hidden r:2x">
                   <nuxt-img :src="instructor?.照片[0]" :alt="instructor?.名稱" />
@@ -113,7 +113,7 @@ useSeoMeta({
                     <li>
                       <p>專業認證：</p>
                       <ul class="list-style-type:circle!">
-                        <li v-for="item in instructor?.專業認證資訊" :key="item?.PAGE_ID">{{ item?.專業認證 }}</li>
+                        <li v-for="(item, idx) in instructor?.專業認證" :key="`專業認證-${idx}`">{{ item }}</li>
                       </ul>
                     </li>
                     <li>
@@ -139,14 +139,14 @@ useSeoMeta({
           <div class="accordion-content {accordion-content--open}@desktop">
             <div>
               <div class="{flex;flex:col;ai:flex-start;jc:flex-start}">
-                <h2 class="h3">{{ course?.課程名稱 }}</h2>
+                <h2 class="h3">{{ course?.名稱 }}</h2>
                 <hr class="hidden@tablet&<desktop bg:#C9C9C9 h:1 my:2x w:full" />
                 <ul class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop my:6x">
-                  <li v-for="item in course?.課程特色資訊" :key="item?.課程特色" class="{flex;gap:2x}">
+                  <li v-for="(item, idx) in course?.課程基礎資訊?.課程特色" :key="`課程特色-${idx}`" class="{flex;gap:2x}">
                     <span class="fg:#3C8922">
                       <Icon name="octicon:check-16" />
                     </span>
-                    <span> {{ item?.課程特色 }}</span>
+                    <span> {{ item }}</span>
                   </li>
                 </ul>
               </div>
