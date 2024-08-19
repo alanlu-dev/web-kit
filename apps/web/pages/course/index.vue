@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import cv from 'class-variant'
+import { Intersection } from '@splidejs/splide-extension-intersection'
 import type { CourseSchemaType } from '~/schema/course'
 
 definePageMeta({
@@ -69,7 +70,7 @@ const ratio = cv(
   ({ base, xs, md }) => base && xs && md,
 )
 
-const splideOption = {
+const splideOptions = {
   arrows: false,
   pagination: false,
   drag: 'free',
@@ -83,6 +84,14 @@ const splideOption = {
     768: {
       perPage: 1,
       fixedWidth: '60%',
+    },
+  },
+  intersection: {
+    inView: {
+      autoplay: true,
+    },
+    outView: {
+      autoplay: false,
     },
   },
 }
@@ -135,7 +144,7 @@ const splideOption = {
             </div>
           </template>
 
-          <Splide :options="splideOption">
+          <Splide :options="splideOptions" :extensions="{ Intersection }">
             <SplideSlide v-for="(i, idx) in data2" :key="i.h1" class="{flex;flex:col;center-content} text:center">
               <CourseStep :item="i" :last="idx === data2.length - 1" />
             </SplideSlide>

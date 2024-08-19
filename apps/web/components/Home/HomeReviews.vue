@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import cv from 'class-variant'
+import { Intersection } from '@splidejs/splide-extension-intersection'
 import type { ReviewSchemaType } from '~/schema/review'
 
 // TODO: 設定檔
@@ -20,7 +21,7 @@ const ratio = cv(
   ({ base, tablet, md }) => base && tablet && md,
 )
 
-const splideOption = {
+const splideOptions = {
   arrows: true,
   autoplay: true,
   interval: 3000,
@@ -37,6 +38,14 @@ const splideOption = {
     430: {
       arrows: false,
       perPage: 1,
+    },
+  },
+  intersection: {
+    inView: {
+      autoplay: true,
+    },
+    outView: {
+      autoplay: false,
     },
   },
 }
@@ -69,7 +78,7 @@ const splideOption = {
             </div>
           </template>
 
-          <Splide :has-track="false" :options="splideOption">
+          <Splide :has-track="false" :options="splideOptions" :extensions="{ Intersection }">
             <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {left:-20x;right:-20x;max-w:calc(100vw-10x)}!">
               <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
                 <Icon class="{block;size:unset;transform:unset}! f:0.6em" name="material-symbols-light:chevron-left" />
