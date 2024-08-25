@@ -14,7 +14,14 @@ export async function getNewsByIdAsync(notion: Client | null, id: number, refres
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<NewsSchemaType>(notion, newsQuery, newsFilters, id, processNewsDataAsync)
+    ;[item] = await fetchNotionDataByIdAsync<NewsSchemaType>({
+      notion,
+      query: newsQuery,
+      processData: processNewsDataAsync,
+      updatePages: updateRefreshTime,
+      filters: newsFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
@@ -29,7 +36,12 @@ export async function getNewsAsync(notion: Client | null, currentPage: number, p
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<NewsSchemaType>(notion, { ...newsQuery, page_size: pageSize }, processNewsDataAsync)
+    ;[items] = await fetchNotionDataAsync<NewsSchemaType>({
+      notion,
+      query: { ...newsQuery, page_size: pageSize },
+      processData: processNewsDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(newsKey)
@@ -45,7 +57,7 @@ export async function getNewsAsync(notion: Client | null, currentPage: number, p
   return items
 }
 
-export async function processNewsDataAsync(_: Client | null, item: any): Promise<NewsSchemaType | null> {
+export async function processNewsDataAsync(_: Client, item: any): Promise<NewsSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: NewsSchemaType = NewsSchema.parse(item.properties)

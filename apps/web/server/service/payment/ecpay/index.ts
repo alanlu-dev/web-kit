@@ -29,11 +29,11 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
   const courseEvent = await getCourseEventByIdAsync(notion, orderParams.courseEventId, true)
   if (!courseEvent) {
     setResponseStatus(event, ErrorCodes.NOT_FOUND)
-    return createApiError(ErrorCodes.NOT_FOUND, '該課程安排不存在')
+    return createApiError(ErrorCodes.NOT_FOUND, '該課程場次不存在')
   }
   if (!courseEvent.課程資訊_名稱 || !courseEvent.教室資訊 || !courseEvent.上課日期) {
     setResponseStatus(event, ErrorCodes.UNPROCESSABLE_ENTITY)
-    return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '該課程安排資訊有誤')
+    return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '該課程場次資訊有誤')
   }
 
   // 已截止報名
@@ -70,7 +70,7 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
     properties: {
       訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
       會員: { type: 'relation', relation: [{ id: memberId }] },
-      課程安排: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
+      課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
       月份: { type: 'relation', relation: [{ id: monthId }] },
       金流商: { type: 'select', select: { name: '綠界' } },
       特店編號: { type: 'number', number: +config.ecpay.merchantId },

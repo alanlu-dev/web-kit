@@ -21,7 +21,14 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<CourseEventSchemaType>(notion, courseEventQuery, courseEventFilters, id, processCourseEventDataAsync)
+    ;[item, notion] = await fetchNotionDataByIdAsync<CourseEventSchemaType>({
+      notion,
+      query: courseEventQuery,
+      processData: processCourseEventDataAsync,
+      updatePages: updateRefreshTime,
+      filters: courseEventFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
@@ -46,7 +53,12 @@ export async function getCourseEventsAsync(
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<CourseEventSchemaType>(notion, { ...courseEventQuery, page_size: pageSize }, processCourseEventDataAsync)
+    ;[items, notion] = await fetchNotionDataAsync<CourseEventSchemaType>({
+      notion,
+      query: { ...courseEventQuery, page_size: pageSize },
+      processData: processCourseEventDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(courseEventKey)
@@ -72,8 +84,8 @@ export async function fetchCourseEvents(notion: Client | null, courseEventIds: n
   return courseEvents.filter((events): events is CourseEventSchemaType => events != null)
 }
 
-export async function processCourseEventDataAsync(notion: Client | null, item: any): Promise<CourseEventSchemaType | null> {
-  if (!item || !isFullPage(item) || !notion) return null
+export async function processCourseEventDataAsync(_: Client, item: any): Promise<CourseEventSchemaType | null> {
+  if (!item || !isFullPage(item)) return null
 
   const parseItem = CourseEventSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id.replaceAll('-', '')

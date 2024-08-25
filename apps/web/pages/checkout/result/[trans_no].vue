@@ -34,27 +34,27 @@ useSeoMeta({
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">課程名稱：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程安排資訊?.課程資訊_名稱 }}</span>
+                  <span>{{ order?.課程場次資訊?.課程資訊_名稱 }}</span>
                 </div>
               </div>
 
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課日期：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程安排資訊?.上課日期?.[0] }}</span>
+                  <span>{{ order?.課程場次資訊?.上課日期?.[0] }}</span>
                 </div>
               </div>
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課時間：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程安排資訊?.上課日期?.[1] }}</span>
+                  <span>{{ order?.課程場次資訊?.上課日期?.[1] }}</span>
                 </div>
               </div>
 
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                 <p class="nowrap fg:font-title">上課地點：</p>
                 <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程安排資訊?.教室資訊?.地址 }}</span>
+                  <span>{{ order?.課程場次資訊?.教室資訊?.地址 }}</span>
                 </div>
               </div>
 

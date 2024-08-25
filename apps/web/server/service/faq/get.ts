@@ -10,7 +10,12 @@ export async function getFaqAsync(notion: Client | null, currentPage: number, pa
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<FaqSchemaType>(notion, { ...faqQuery, page_size: pageSize }, processFaqDataAsync)
+    ;[items] = await fetchNotionDataAsync<FaqSchemaType>({
+      notion,
+      query: { ...faqQuery, page_size: pageSize },
+      processData: processFaqDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(faqKey)
@@ -23,7 +28,7 @@ export async function getFaqAsync(notion: Client | null, currentPage: number, pa
   return items
 }
 
-export async function processFaqDataAsync(_: Client | null, item: any): Promise<FaqSchemaType | null> {
+export async function processFaqDataAsync(_: Client, item: any): Promise<FaqSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: FaqSchemaType = FaqSchema.parse(item.properties)

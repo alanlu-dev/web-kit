@@ -15,7 +15,14 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<ReviewSchemaType>(notion, reviewQuery, reviewFilters, id, processReviewDataAsync)
+    ;[item, notion] = await fetchNotionDataByIdAsync<ReviewSchemaType>({
+      notion,
+      query: reviewQuery,
+      processData: processReviewDataAsync,
+      updatePages: updateRefreshTime,
+      filters: reviewFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
@@ -34,7 +41,12 @@ export async function getReviewsAsync(notion: Client | null, currentPage: number
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<ReviewSchemaType>(notion, { ...reviewQuery, page_size: pageSize }, processReviewDataAsync)
+    ;[items, notion] = await fetchNotionDataAsync<ReviewSchemaType>({
+      notion,
+      query: { ...reviewQuery, page_size: pageSize },
+      processData: processReviewDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(reviewKey)
@@ -50,7 +62,7 @@ export async function getReviewsAsync(notion: Client | null, currentPage: number
   return items
 }
 
-export async function processReviewDataAsync(_: Client | null, item: any): Promise<ReviewSchemaType | null> {
+export async function processReviewDataAsync(_: Client, item: any): Promise<ReviewSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: ReviewSchemaType = ReviewSchema.parse(item.properties)

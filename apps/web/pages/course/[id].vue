@@ -152,29 +152,29 @@ useSeoMeta({
               </div>
 
               <div class="{flex;ai:flex-end;jc:space-between;gap:5x;flex:wrap}">
-                <template v-if="course?.課程安排資訊?.[0]">
+                <template v-if="course?.課程場次資訊?.[0]">
                   <div class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop">
                     <p>
                       <span class="fg:font-title">上課日期：</span>
-                      <span>{{ course?.課程安排資訊?.[0]?.上課日期?.[0] }}</span>
+                      <span>{{ course?.課程場次資訊?.[0]?.上課日期?.[0] }}</span>
                     </p>
                     <p>
                       <span class="fg:font-title">上課時間：</span>
-                      <span>{{ course?.課程安排資訊?.[0]?.上課日期?.[1] }}</span>
+                      <span>{{ course?.課程場次資訊?.[0]?.上課日期?.[1] }}</span>
                     </p>
                     <p>
                       <span class="fg:font-title">上課地點：</span>
-                      <span>{{ course?.課程安排資訊?.[0]?.教室資訊?.地址 }}</span>
+                      <span>{{ course?.課程場次資訊?.[0]?.教室資訊?.地址 }}</span>
                     </p>
                   </div>
 
                   <div class="{mt:0}@desktop {w:30%}@tablet&<desktop w:full">
-                    <p class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.課程安排資訊?.[0]?.指定價格 || course?.價格 || 99999) }} </p>
-                    <NuxtLink :to="`/checkout/${course?.課程安排資訊?.[0].ID}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full">立即報名 </NuxtLink>
+                    <p class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.課程場次資訊?.[0]?.指定價格 || course?.價格 || 99999) }} </p>
+                    <NuxtLink :to="`/checkout/${course?.課程場次資訊?.[0].ID}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full">立即報名 </NuxtLink>
                   </div>
                 </template>
                 <template v-else>
-                  <div class="fg:divider mx:auto">尚無課程安排</div>
+                  <div class="fg:divider mx:auto">尚無課程場次</div>
                 </template>
               </div>
             </div>

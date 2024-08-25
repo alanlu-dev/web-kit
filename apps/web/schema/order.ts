@@ -27,11 +27,11 @@ export const OrderSchema = z.object({
   ),
   會員信箱: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'email' && o.rollup.array[0].email ? o.rollup.array[0].email : undefined)),
 
-  // 課程安排: NotionRelationSchema.transform((o) => o.relation[0]?.id),
-  課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
+  // 課程場次: NotionRelationSchema.transform((o) => o.relation[0]?.id),
+  課程場次ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
-  課程安排資訊: CourseEventSchema.optional().nullable(),
+  課程場次資訊: CourseEventSchema.optional().nullable(),
 
   付款金額: NotionNumberSchema.transform((o) => o.number),
 
@@ -64,9 +64,9 @@ export const orderQuery: QueryDatabaseParameters = {
     '%5Eyuo',
     /** 會員信箱 */
     '%3E~Wm',
-    /** 課程安排 */
+    /** 課程場次 */
     // 'UYf%3A',
-    /** 課程安排ID */
+    /** 課程場次ID */
     '%3DFp%5E',
     /** 留言備註 */
     'huBu',
@@ -95,8 +95,8 @@ const _keysAndIds = {
 
   留言備註: 'huBu',
 
-  課程安排: 'UYf%3A',
-  課程安排ID: '%3DFp%5E',
+  課程場次: 'UYf%3A',
+  課程場次ID: '%3DFp%5E',
 
   上課日期: 'ym%5DS',
   上課地點: '%7Cisg',

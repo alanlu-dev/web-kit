@@ -70,8 +70,8 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
   }
 
   if (data?.RtnCode === '1') {
-    // 取得課程安排資訊
-    order.課程安排資訊 = await getCourseEventByIdAsync(notion, order.課程安排ID!, false)
+    // 取得課程場次資訊
+    order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
 
     await sendEmail(notion, order_page_id, order)
   }
@@ -83,18 +83,18 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
     MyTemplate,
     {
       siteUrl: config.public.siteUrl,
-      courseName: order.課程安排資訊!.課程資訊_名稱!,
-      courseLink: `${config.public.siteUrl}/course_event/${order.課程安排ID}`,
+      courseName: order.課程場次資訊!.課程資訊_名稱!,
+      courseLink: `${config.public.siteUrl}/course_event/${order.課程場次ID}`,
       studentName: maskName(order.會員名稱),
       orderNumber: order.訂單編號!,
       paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
       paymentType: order.付款方式!,
       paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
-      courseDate: order.課程安排資訊!.上課日期![0]!,
-      courseTime: order.課程安排資訊!.上課日期![1]!,
+      courseDate: order.課程場次資訊!.上課日期![0]!,
+      courseTime: order.課程場次資訊!.上課日期![1]!,
       // 課程⽇期減 7 天
-      courseDateMinus7: format({ date: addDay(order.課程安排資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
-      courseLocation: order.課程安排資訊!.教室資訊!.地址!,
+      courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
+      courseLocation: order.課程場次資訊!.教室資訊!.地址!,
       logoSrc: `${config.public.siteUrl}/about/jie_housekeeper.png`,
     },
     {
@@ -107,7 +107,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
   try {
     const { sendMail } = useNodeMailer()
     emailResult = await sendMail({
-      subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程安排資訊?.課程資訊_名稱}】`,
+      subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程場次資訊?.課程資訊_名稱}】`,
       html,
       to: order.會員信箱,
     })

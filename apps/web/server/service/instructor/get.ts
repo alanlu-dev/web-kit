@@ -14,7 +14,14 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<InstructorSchemaType>(notion, instructorQuery, instructorFilters, id, processInstructorDataAsync)
+    ;[item] = await fetchNotionDataByIdAsync<InstructorSchemaType>({
+      notion,
+      query: instructorQuery,
+      processData: processInstructorDataAsync,
+      updatePages: updateRefreshTime,
+      filters: instructorFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
@@ -29,7 +36,12 @@ export async function getInstructorsAsync(notion: Client | null, currentPage: nu
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<InstructorSchemaType>(notion, { ...instructorQuery, page_size: pageSize }, processInstructorDataAsync)
+    ;[items] = await fetchNotionDataAsync<InstructorSchemaType>({
+      notion,
+      query: { ...instructorQuery, page_size: pageSize },
+      processData: processInstructorDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(instructorKey)
@@ -54,8 +66,8 @@ export async function fetchInstructors(notion: Client | null, instructorIds: num
   return instructors.filter((info): info is InstructorSchemaType => info !== null)
 }
 
-export async function processInstructorDataAsync(notion: Client | null, item: any): Promise<InstructorSchemaType | null> {
-  if (!item || !isFullPage(item) || !notion) return null
+export async function processInstructorDataAsync(_: Client, item: any): Promise<InstructorSchemaType | null> {
+  if (!item || !isFullPage(item)) return null
 
   const parseItem: InstructorSchemaType = InstructorSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id.replaceAll('-', '')

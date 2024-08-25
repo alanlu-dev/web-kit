@@ -14,7 +14,14 @@ export async function getPartnerByIdAsync(notion: Client | null, id: number, ref
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<PartnerSchemaType>(notion, partnerQuery, partnerFilters, id, processPartnerDataAsync)
+    ;[item] = await fetchNotionDataByIdAsync<PartnerSchemaType>({
+      notion,
+      query: partnerQuery,
+      processData: processPartnerDataAsync,
+      updatePages: updateRefreshTime,
+      filters: partnerFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
@@ -29,7 +36,12 @@ export async function getPartnersAsync(notion: Client | null, currentPage: numbe
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<PartnerSchemaType>(notion, { ...partnerQuery, page_size: pageSize }, processPartnerDataAsync)
+    ;[items] = await fetchNotionDataAsync<PartnerSchemaType>({
+      notion,
+      query: { ...partnerQuery, page_size: pageSize },
+      processData: processPartnerDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(partnerKey)
@@ -44,7 +56,7 @@ export async function getPartnersAsync(notion: Client | null, currentPage: numbe
   return items
 }
 
-export async function processPartnerDataAsync(_: Client | null, item: any): Promise<PartnerSchemaType | null> {
+export async function processPartnerDataAsync(_: Client, item: any): Promise<PartnerSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: PartnerSchemaType = PartnerSchema.parse(item.properties)

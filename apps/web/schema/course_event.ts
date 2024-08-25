@@ -56,9 +56,7 @@ export const courseEventKey = 'course_events'
 export const courseEventFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
   { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
-  { property: '課程驗證', formula: { string: { equals: '✅' } } },
-  { property: '講師驗證', formula: { string: { equals: '✅' } } },
-  { property: '教室驗證', formula: { string: { equals: '✅' } } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseEventQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.courseEvents,

@@ -1,10 +1,22 @@
 import { z } from 'zod'
-import { NotionCheckboxSchema, NotionDateSchema, NotionFilesSchema, NotionTitleSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import {
+  NotionCheckboxSchema,
+  NotionDateSchema,
+  NotionFilesSchema,
+  NotionNumberSchema,
+  NotionSelectSchema,
+  NotionTitleSchema,
+  NotionUniqueIdSchema,
+  NotionUrlSchema,
+} from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
 export const GallerySchema = z.object({
-  // 位置: NotionSelectSchema.transform((o) => o.select?.name),
-  // 排序: NotionNumberSchema.transform((o) => o.number),
+  ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
+  PAGE_ID: z.string().optional(),
+
+  位置: NotionSelectSchema.transform((o) => o.select?.name),
+  排序: NotionNumberSchema.transform((o) => o.number),
   標題: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
   圖片_PC: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
   圖片_M: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
@@ -30,6 +42,13 @@ export const galleryQuery: QueryDatabaseParameters = {
   sorts: [{ property: '排序', direction: 'descending' }],
   filter: { and: galleryFilters },
   filter_properties: [
+    /** ID */
+    'tPU%3C',
+
+    /** 位置 */
+    '%7DF%5Ep',
+    /** 排序 */
+    'MwSP',
     /** 標題 */
     'title',
     /** 圖片_PC */

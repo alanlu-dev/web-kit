@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionDateSchema, NotionFilesSchema, NotionFormulaSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDateSchema, NotionFilesSchema, NotionFormulaSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
 export const MetaSchema = z.object({
@@ -22,7 +22,8 @@ const config = useRuntimeConfig()
 export const metaKey = 'meta'
 export const metaFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const metaQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.meta,

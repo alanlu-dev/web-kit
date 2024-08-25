@@ -14,14 +14,21 @@ export async function getClassroomByIdAsync(notion: Client | null, id: number, r
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<ClassroomSchemaType>(notion, classroomQuery, classroomFilters, id, processClassroomDataAsync)
+    ;[item] = await fetchNotionDataByIdAsync<ClassroomSchemaType>({
+      notion,
+      query: classroomQuery,
+      processData: processClassroomDataAsync,
+      updatePages: updateRefreshTime,
+      filters: classroomFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
 
   return item
 }
 
-export async function getClassroomsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<ClassroomSchemaType[]> {
+export async function getClassroomsAsync(notion: Client, currentPage: number, pageSize: number, refresh: boolean): Promise<ClassroomSchemaType[]> {
   let items: ClassroomSchemaType[] | null = null
 
   if (!refresh) {
@@ -29,7 +36,12 @@ export async function getClassroomsAsync(notion: Client | null, currentPage: num
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<ClassroomSchemaType>(notion, { ...classroomQuery, page_size: pageSize }, processClassroomDataAsync)
+    ;[items] = await fetchNotionDataAsync<ClassroomSchemaType>({
+      notion,
+      query: { ...classroomQuery, page_size: pageSize },
+      processData: processClassroomDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(classroomKey)
@@ -45,7 +57,7 @@ export async function getClassroomsAsync(notion: Client | null, currentPage: num
   return items
 }
 
-export async function processClassroomDataAsync(_: Client | null, item: any): Promise<ClassroomSchemaType | null> {
+export async function processClassroomDataAsync(_: Client, item: any): Promise<ClassroomSchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: ClassroomSchemaType = ClassroomSchema.parse(item.properties)

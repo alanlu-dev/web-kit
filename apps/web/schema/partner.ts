@@ -17,8 +17,8 @@ const config = useRuntimeConfig()
 export const partnerKey = `partners`
 export const partnerFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
-  // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const partnerQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.partners,

@@ -23,8 +23,9 @@ const config = useRuntimeConfig()
 
 export const courseBaseKey = 'course_bases'
 export const courseBaseFilters: AndFilterType = [
-  // { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '封存', checkbox: { equals: false } },
+  { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseBaseQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.courseBases,

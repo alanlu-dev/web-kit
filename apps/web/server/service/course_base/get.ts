@@ -14,7 +14,14 @@ export async function getCourseBaseByIdAsync(notion: Client | null, id: number, 
   }
 
   if (!item) {
-    item = await fetchNotionDataByIdAsync<CourseBaseSchemaType>(notion, courseBaseQuery, courseBaseFilters, id, processCourseBaseDataAsync)
+    ;[item] = await fetchNotionDataByIdAsync<CourseBaseSchemaType>({
+      notion,
+      query: courseBaseQuery,
+      processData: processCourseBaseDataAsync,
+      updatePages: updateRefreshTime,
+      filters: courseBaseFilters,
+      id,
+    })
     if (item) await redis.set(key, item)
   }
   return item
@@ -28,7 +35,12 @@ export async function getCourseBasesAsync(notion: Client | null, currentPage: nu
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<CourseBaseSchemaType>(notion, { ...courseBaseQuery, page_size: pageSize }, processCourseBaseDataAsync)
+    ;[items] = await fetchNotionDataAsync<CourseBaseSchemaType>({
+      notion,
+      query: { ...courseBaseQuery, page_size: pageSize },
+      processData: processCourseBaseDataAsync,
+      updatePages: updateRefreshTime,
+    })
 
     if (items.length) {
       await redis.del(courseBaseKey)
@@ -44,8 +56,8 @@ export async function getCourseBasesAsync(notion: Client | null, currentPage: nu
   return items
 }
 
-export async function processCourseBaseDataAsync(notion: Client | null, item: any): Promise<CourseBaseSchemaType | null> {
-  if (!item || !isFullPage(item) || !notion) return null
+export async function processCourseBaseDataAsync(_: Client, item: any): Promise<CourseBaseSchemaType | null> {
+  if (!item || !isFullPage(item)) return null
 
   const parseItem: CourseBaseSchemaType = CourseBaseSchema.parse(item.properties)
   parseItem.PAGE_ID = item.id!.replaceAll('-', '')

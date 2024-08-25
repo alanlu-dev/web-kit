@@ -21,7 +21,7 @@ export const newsKey = 'news'
 export const newsFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
   { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
-  // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const newsQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.news,

@@ -14,26 +14,28 @@ export async function getGalleryByPositionAsync(notion: Client | null, position:
   }
 
   if (items === null) {
-    items = await fetchNotionDataAsync<GallerySchemaType>(
+    ;[items] = await fetchNotionDataAsync<GallerySchemaType>({
       notion,
-      {
+      query: {
         ...galleryQuery,
         filter: {
           and: [...galleryFilters, { property: '位置', select: { equals: position } }],
         },
       },
-      processGalleryDataAsync,
-    )
+      processData: processGalleryDataAsync,
+      updatePages: updateRefreshTime,
+    })
     if (items) await redis.set(key, items)
   }
 
   return items.filter((item) => isWithinDateRange(item.發布期間))
 }
 
-export async function processGalleryDataAsync(_: Client | null, item: any): Promise<GallerySchemaType | null> {
+export async function processGalleryDataAsync(_: Client, item: any): Promise<GallerySchemaType | null> {
   if (!item || !isFullPage(item)) return null
 
   const parseItem: GallerySchemaType = GallerySchema.parse(item.properties)
+  parseItem.PAGE_ID = item.id!.replaceAll('-', '')
   parseItem.圖片_PC = mapImgUrl(parseItem.圖片_PC, item.id)
   parseItem.圖片_M = mapImgUrl(parseItem.圖片_M, item.id)
 

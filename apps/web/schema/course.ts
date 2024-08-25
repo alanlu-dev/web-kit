@@ -1,55 +1,9 @@
 import { z } from 'zod'
-import { NotionDatabaseRollupSchema, NotionFilesSchema, NotionNumberSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDatabaseRollupSchema, NotionFilesSchema, NotionNumberSchema, NotionStatusSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { InstructorSchema } from './instructor'
 import { CourseEventSchema } from './course_event'
 import { CourseBaseSchema } from './course_base'
-
-// 課程特色
-export const FeaturesSchema = z.object({
-  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
-  PAGE_ID: z.string().optional(),
-
-  排序: NotionNumberSchema.transform((o) => o.number),
-  課程特色: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-})
-
-// 可以學到
-export const LearnSchema = z.object({
-  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
-  PAGE_ID: z.string().optional(),
-
-  排序: NotionNumberSchema.transform((o) => o.number),
-  可以學到: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-})
-
-// 課程大綱
-export const OutlineSchema = z.object({
-  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
-  PAGE_ID: z.string().optional(),
-
-  排序: NotionNumberSchema.transform((o) => o.number),
-  課程大綱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-  時長: NotionNumberSchema.transform((o) => o.number),
-})
-
-// 課前準備
-export const PreparationSchema = z.object({
-  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
-  PAGE_ID: z.string().optional(),
-
-  排序: NotionNumberSchema.transform((o) => o.number),
-  課前準備: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-})
-
-// 結業獲得
-export const AchievementSchema = z.object({
-  // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
-  PAGE_ID: z.string().optional(),
-
-  排序: NotionNumberSchema.transform((o) => o.number),
-  結業獲得: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-})
 
 export const CourseSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -62,6 +16,7 @@ export const CourseSchema = z.object({
   課程基礎ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
+  課程型態: NotionStatusSchema.transform((o) => o.status.name),
   課程基礎資訊: CourseBaseSchema.optional(),
 
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
@@ -74,11 +29,11 @@ export const CourseSchema = z.object({
   ),
   可授課講師資訊: z.array(InstructorSchema.optional()).optional(),
 
-  // 課程安排: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
-  課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
+  // 課程場次: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)).optional(),
+  課程場次ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type !== 'array' ? [] : o.rollup.array.map((item) => (item?.type === 'unique_id' && item.unique_id ? item.unique_id.number : undefined)).filter((id): id is number => id !== undefined),
   ),
-  課程安排資訊: z.array(CourseEventSchema.optional()).optional(),
+  課程場次資訊: z.array(CourseEventSchema.optional()).optional(),
 })
 export type CourseSchemaType = z.infer<typeof CourseSchema>
 
@@ -88,6 +43,7 @@ export const courseKey = 'courses'
 export const courseFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
   { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  { property: '資料驗證', formula: { string: { equals: '✅' } } },
 ]
 export const courseQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.courses,
@@ -105,6 +61,8 @@ export const courseQuery: QueryDatabaseParameters = {
     // '%5BG%7DD',
     /** 課程基礎ID */
     '%3FnQq',
+    /** 課程型態 */
+    'JDEb',
 
     /** 課程照片 */
     'r%3ENY',
@@ -118,9 +76,9 @@ export const courseQuery: QueryDatabaseParameters = {
     /** 可授課講師ID */
     '%5DjEY',
 
-    /** 課程安排 */
+    /** 課程場次 */
     // 'VS%7CO',
-    /** 課程安排ID */
+    /** 課程場次ID */
     'p%5C~t',
   ],
 }
