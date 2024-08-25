@@ -88,7 +88,7 @@ export async function updateRefreshTime<T>(notion: Client, pagesToUpdate: T[]) {
               date: {
                 start: format({
                   date: addSecond(new Date(), 10),
-                  format: 'YYYY-MM-DD hh:mm:ss',
+                  format: 'YYYY-MM-DD HH:mm:ss',
                   locale: 'zh-TW',
                   tz: 'Asia/Taipei',
                 }),

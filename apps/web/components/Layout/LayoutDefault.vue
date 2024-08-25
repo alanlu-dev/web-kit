@@ -23,7 +23,7 @@ const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullP
 useSeoMeta({
   title: () => meta.value?.標題 || (route.name as string),
   description: () => meta.value?.描述,
-  ogImage: () => meta.value?.圖片 || '/about/jie_housekeeper.png',
+  ogImage: () => meta.value?.圖片 || '/meta2.png',
 })
 
 onMounted(() => {
@@ -45,7 +45,7 @@ onMounted(() => {
           useSeoMeta({
             title: () => meta.value?.標題 || (route.name as string),
             description: () => meta.value?.描述,
-            ogImage: () => meta.value?.圖片 || '/about/jie_housekeeper.png',
+            ogImage: () => meta.value?.圖片 || '/meta2.png',
           })
         }
       }

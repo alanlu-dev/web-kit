@@ -15,8 +15,8 @@ const focusable = ref(false)
   <div class="{block;content:'';h:1;bg:divider;w:full;my:5x}::after {my:10x}::after@tablet {hidden}:last::after my:5x">
     <div class="{flex;flex:col} {flex:row;gap:10x}@tablet">
       <div class="flex:1">
-        <div class="{aspect:inherit;object:cover;object-position:top}_img aspect:4/3 overflow:hidden r:2x">
-          <nuxt-img :src="instructor.照片[0]" :alt="instructor.名稱" class="~300ms|ease pointer-events:none user-select:none" />
+        <div class="{aspect:inherit;object:cover}_img aspect:4/3 overflow:hidden r:2x">
+          <Image :src="instructor.照片[0]" :alt="instructor.名稱" class="~300ms|ease pointer-events:none user-select:none" />
         </div>
         <h2 class="h2 fg:primary mt:3x">{{ instructor.名稱 }} {{ instructor.英文名 }}</h2>
         <h3 class="h3 mt:1x">{{ instructor.頭銜 }}</h3>

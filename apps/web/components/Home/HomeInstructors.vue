@@ -26,7 +26,7 @@ const ratio = cv(
 const splideOptions = {
   arrows: true,
   autoplay: true,
-  interval: 3000,
+  interval: 4000,
   type: 'loop',
   drag: 'free',
   snap: true,

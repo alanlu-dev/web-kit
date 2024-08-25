@@ -24,7 +24,7 @@ useHead({
 })
 
 useSeoMeta({
-  ogImage: '/about/jie_housekeeper.png',
+  ogImage: '/meta2.png',
 })
 
 const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@master/css.vue')).CSSRuntimeProvider)

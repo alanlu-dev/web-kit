@@ -38,10 +38,10 @@ useHead({
 
         <div>
           <div class="{flex;flex:col;gap:2x} flex:1">
-            <p>聯絡專線：<a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
+            <p>聯絡專線：<a href="tel:+886-968-047-766" class="text:underline">0968-047-766</a></p>
             <p>營業時間：08:00-22:00</p>
             <div class="{flex;ai:center;jc:flex-start;gap:4.5x}">
-              <div intent="text" class="bg:#D0E6F1! r:2x">
+              <div intent="text" class="bg:#D0E6F1! r:2x" @click="navigateTo('https://liff.line.me/1645278921-kWRPP32q/?accountId=404maqcq', { external: true })">
                 <Iconify icon="ri:line-fill" :is-prefix="true" class="fg:#07B727_svg gap:1x">課程諮詢</Iconify>
               </div>
             </div>

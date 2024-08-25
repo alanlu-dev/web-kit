@@ -84,7 +84,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
     {
       siteUrl: config.public.siteUrl,
       courseName: order.課程場次資訊!.課程資訊_名稱!,
-      courseLink: `${config.public.siteUrl}/course_event/${order.課程場次ID}`,
+      courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
       studentName: maskName(order.會員名稱),
       orderNumber: order.訂單編號!,
       paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
@@ -95,7 +95,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
       // 課程⽇期減 7 天
       courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
       courseLocation: order.課程場次資訊!.教室資訊!.地址!,
-      logoSrc: `${config.public.siteUrl}/about/jie_housekeeper.png`,
+      logoSrc: `${config.public.siteUrl}/meta2.png`,
     },
     {
       pretty: true,

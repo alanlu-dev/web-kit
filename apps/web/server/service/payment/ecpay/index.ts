@@ -8,18 +8,12 @@ import type { OrderParamsSchemaType } from '~/schema/order'
 
 // 取得訂單編號
 function getTradeNo(prefix = ''): string {
-  const date = new Date()
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
-  const randomNum = Math.floor(Math.random() * 1000)
+  const date = format({ date: new Date(), format: 'YYYYMMDDHHmmss', locale: 'zh-TW', tz: 'Asia/Taipei' })
+  const randomNum = Math.floor(Math.random() * 100)
     .toString()
-    .padStart(3, '0')
+    .padStart(2, '0')
 
-  return `${prefix}${year}${month}${day}${hours}${minutes}${seconds}${randomNum}`
+  return `${prefix}${date}${randomNum}`
 }
 
 export async function processEcPayOrder(event: H3Event, orderParams: OrderParamsSchemaType) {

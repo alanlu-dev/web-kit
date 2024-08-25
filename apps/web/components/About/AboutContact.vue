@@ -28,7 +28,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       <FormKit v-model="contactData" type="form" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
         <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
-          <FormKit type="text" name="mobile" label="聯絡電話" validation="required|phone" />
+          <FormKit type="text" name="mobile" label="手機" validation="required|phone" />
           <FormKit type="email" name="email" label="電子信箱" validation="required|email" />
           <FormKit type="text" name="title" label="主旨" validation="required" />
         </div>

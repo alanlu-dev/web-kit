@@ -122,7 +122,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
                 <template #label>
                   <div class="{flex;ai:center;jc:space-between} w:full">
                     <p>信用卡一次付清</p>
-                    <NuxtImg src="/other/credit-card.png" class="ml:auto w:74" />
+                    <Image src="/other/credit-card.png" class="ml:auto w:74" />
                   </div>
                 </template>
 </FormKit>

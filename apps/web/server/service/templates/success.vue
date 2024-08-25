@@ -30,7 +30,7 @@ defineProps<IProps>()
         >親愛的 <span>{{ studentName }}</span> ，您好！</Text
       >
       <Text
-        >感謝您報名參加中國民國職業認證協會的【<strong>
+        >感謝您報名參加中華民國職業認證協會的【<strong>
           <Link :href="courseLink">{{ courseName }}</Link> </strong
         >】。恭喜您已成功報名本課程並付款完成。
       </Text>
@@ -74,7 +74,7 @@ defineProps<IProps>()
       <Text>．請提供 2 吋(3.7cm x 4.6cm)大頭照兩張以利證書製作。</Text>
       <Text>．本課程將提供清潔用品及工具，您無須自備。</Text>
       <Text>．本課程若有異動，將以電話及電子郵件方式通知。</Text>
-      <Text
+      <Text style="color: red"
         >．若因故無法出席，請於 <span>{{ courseDateMinus7 }}</span> 前告知，以便辦理退費事宜。</Text
       >
       <Text>．若有任何問題，歡迎來電洽詢： <Link href="tel+886-968-047-766">0968-047-766</Link>。 </Text>
@@ -83,7 +83,7 @@ defineProps<IProps>()
 
     <Section>
       <Link :href="siteUrl">
-        <Text>中國民國職業清潔認證協會 PCCA</Text>
+        <Text>中華民國職業清潔認證協會 PCCA</Text>
       </Link>
       <Link :href="siteUrl">
         <Img :src="logoSrc" alt="Logo" width="300" height="300" />

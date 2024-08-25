@@ -11,7 +11,7 @@ const description = [
   <section>
     <div class="{flex;flex:col;center-content;p:8x|6x} {max-w:screen-max;mx:auto;overflow:hidden} {py:10x}@tablet {flex:row;gap:10x;p:15x|10x}@desktop">
       <div class="aspect:563/283 max-w:563">
-        <nuxt-img class="{aspect:inherit;object:cover} r:2x" src="/home/introduce.jpg" :alt="title.join()" />
+        <Image class="{aspect:inherit;object:cover} r:2x" src="/home/introduce.jpg" :alt="title.join()" />
       </div>
 
       <div class="text:left">

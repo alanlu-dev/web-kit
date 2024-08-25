@@ -13,7 +13,7 @@ const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullP
 useSeoMeta({
   title: () => meta.value?.標題 || course.value?.名稱 || (route.name as string),
   description: () => meta.value?.描述 || course.value?.課程基礎資訊?.課程特色.join('、'),
-  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/about/jie_housekeeper.png',
+  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/meta2.png',
 })
 </script>
 
@@ -98,8 +98,8 @@ useSeoMeta({
 
             <div v-for="instructor in course?.可授課講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:2x mt:3x@tablet">
               <div class="flex:1 order:2@desktop overflow:hidden r:2x">
-                <div class="{aspect:inherit;object:cover;object-position:top}_img aspect:4/3 overflow:hidden r:2x">
-                  <nuxt-img :src="instructor?.照片[0]" :alt="instructor?.名稱" />
+                <div class="{aspect:inherit;object:cover}_img aspect:4/3 overflow:hidden r:2x">
+                  <Image :src="instructor?.照片[0]" :alt="instructor?.名稱" />
                 </div>
               </div>
               <div class="flex:2">

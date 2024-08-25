@@ -55,7 +55,7 @@ const nav = [
 
           <ul class="b1-r {flex;flex:col;gap:2x}">
             <li v-for="item in nav" :key="item.name" class="contents">
-              <nuxt-link class="~color|300ms|ease fg:primary-hover:hover p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>
+              <nuxt-link class="~color|300ms|ease fg:primary-hover:hover p:2x|5x" :to="item.path" @click="showNav = false">{{ item.name }}</nuxt-link>
             </li>
           </ul>
         </div>
