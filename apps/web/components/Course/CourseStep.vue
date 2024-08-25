@@ -13,9 +13,12 @@ defineProps<IProps>()
 <template>
   <div class="h:full text:center">
     <div class="{flex;flex:col}">
-      <div class="{aspect:inherit;object:cover}_img aspect:349/225 flex-basis:100% overflow:hidden r:2x w:100%">
-        <Image :src="item.img" :alt="item.h1" />
+      <div class="w:100% flex-basis:100%">
+        <VideoPlayerCover aspect="349/225" class="r:2x" :img="item.img" :alt="item.h1" />
       </div>
+      <!-- <div class="{aspect:inherit;object:cover}_img aspect:349/225 flex-basis:100% overflow:hidden r:2x w:100%">
+        <Image :src="item.img" :alt="item.h1" />
+      </div> -->
       <h3 class="h3 mt:3x">{{ item.h1 }}</h3>
       <p class="b1-r mt:2x">{{ item.h2 }}</p>
     </div>
