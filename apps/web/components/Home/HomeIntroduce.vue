@@ -10,7 +10,7 @@ const description = [
 <template>
   <section>
     <div class="{flex;flex:col;center-content;p:8x|6x} {max-w:screen-max;mx:auto;overflow:hidden} {py:10x}@tablet {flex:row;gap:10x;p:15x|10x}@desktop">
-      <div class="aspect:563/283 max-w:563">
+      <div class="aspect:563/283 max-w:563 order:2 mt:4x {order:unset;mt:unset}@tablet">
         <Image class="{aspect:inherit;object:cover} r:2x" src="/home/introduce.jpg" :alt="title.join()" />
       </div>
 
