@@ -64,7 +64,9 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
     properties: {
       訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
       會員: { type: 'relation', relation: [{ id: memberId }] },
+      課程資訊: { type: 'relation', relation: [{ id: courseEvent.課程! }] },
       課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
+      講師: { type: 'relation', relation: courseEvent.講師.map((id) => ({ id: id! })) },
       月份: { type: 'relation', relation: [{ id: monthId }] },
       金流商: { type: 'select', select: { name: '綠界' } },
       特店編號: { type: 'number', number: +config.ecpay.merchantId },

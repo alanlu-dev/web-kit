@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionDatabaseRollupSchema, NotionDateSchema, NotionFormulaSchema, NotionNumberSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionDatabaseRollupSchema, NotionDateSchema, NotionFormulaSchema, NotionNumberSchema, NotionRelationSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { format } from '@formkit/tempo'
 
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
@@ -25,6 +25,7 @@ export const CourseEventSchema = z.object({
     return [formattedDate, formattedTime, o.date.start]
   }),
 
+  課程: NotionRelationSchema.transform((o) => o.relation[0]?.id),
   課程ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
@@ -38,6 +39,7 @@ export const CourseEventSchema = z.object({
   教室資訊: ClassroomSchema.optional().nullable(),
   指定名額限制: NotionNumberSchema.transform((o) => o.number),
 
+  講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
   講師ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
@@ -71,6 +73,9 @@ export const courseEventQuery: QueryDatabaseParameters = {
     'title',
     /** 上課日期 */
     '%7D%3EfP',
+
+    /** 課程 */
+    'k_%5Ev',
     /** 課程ID */
     '%60Nff',
     /** 指定價格 */
@@ -81,6 +86,8 @@ export const courseEventQuery: QueryDatabaseParameters = {
     /** 指定名額限制 */
     'MZlx',
 
+    /** 講師 */
+    '%7CkOS',
     /** 講師ID */
     'hX%3DC',
 
