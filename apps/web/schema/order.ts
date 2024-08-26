@@ -35,7 +35,7 @@ export const OrderSchema = z.object({
 
   付款金額: NotionNumberSchema.transform((o) => o.number),
 
-  付款狀態: NotionStatusSchema.transform((o) => o.status.name),
+  訂單狀態: NotionStatusSchema.transform((o) => o.status.name),
   聯絡狀態: NotionStatusSchema.transform((o) => o.status.name),
 })
 export type OrderSchemaType = z.infer<typeof OrderSchema>
@@ -76,7 +76,7 @@ export const orderQuery: QueryDatabaseParameters = {
     'pRO%5D',
     /** 付款金額 */
     'LXf%5E',
-    /** 付款狀態 */
+    /** 訂單狀態 */
     'ayf%5B',
     /** 聯絡狀態 */
     'Ti%5DJ',
@@ -108,7 +108,7 @@ const _keysAndIds = {
   付款金額: 'LXf%5E',
   實收金額: '%5CE_i',
 
-  付款狀態: 'ayf%5B',
+  訂單狀態: 'ayf%5B',
   聯絡狀態: 'Ti%5DJ',
 
   付款方式: '%3FI%7Bq',

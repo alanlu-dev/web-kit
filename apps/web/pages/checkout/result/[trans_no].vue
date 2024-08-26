@@ -16,7 +16,7 @@ useSeoMeta({
     <div class="p:5x|6x pt:10x@tablet px:10x@desktop">
       <div class="{max-w:screen-main;mx:auto} mt:5x text:center">
         <div class="bg:home px:7.5x py:10x r:2x">
-          <h2>付款狀態：({{ order?.付款狀態 }}) | RtnMsg: {{ order?.金流訊息 }}</h2>
+          <h2>訂單狀態：({{ order?.訂單狀態 }}) | RtnMsg: {{ order?.金流訊息 }}</h2>
           <div class="fg:primary">
             <Iconify icon="material-symbols-light:check-circle-rounded" class="f:65_svg f:134_svg@tablet" />
             <h1 class="h1 text:line-through">報名成功！</h1>

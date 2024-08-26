@@ -52,11 +52,11 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
   const order = OrderSchema.parse(parsedPage.properties)
 
   // 更新訂單狀態
-  if (order.付款狀態 !== '人工作廢') {
+  if (order.訂單狀態 !== '人工作廢') {
     await notion.pages.update({
       page_id: order_page_id,
       properties: {
-        付款狀態: { status: { name: data?.RtnCode === '1' ? '付款成功' : '付款失敗' } },
+        訂單狀態: { status: { name: data?.RtnCode === '1' ? '付款成功' : '付款失敗' } },
       },
     })
   }
@@ -64,7 +64,7 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
     await notion.pages.update({
       page_id: order_page_id,
       properties: {
-        付款狀態: { status: { name: data?.RtnCode === '1' ? '作廢後成功' : '作廢後失敗' } },
+        訂單狀態: { status: { name: data?.RtnCode === '1' ? '作廢後成功' : '作廢後失敗' } },
       },
     })
   }
