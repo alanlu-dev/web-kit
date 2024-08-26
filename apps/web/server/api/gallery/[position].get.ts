@@ -1,6 +1,10 @@
 import { getGalleryByPositionAsync } from '~/server/service/gallery/get'
 
-export default defineWrappedResponseHandler(async (event) => {
+export default defineWrappedResponseHandler<{
+  query: {
+    refresh?: boolean
+  }
+}>(async (event) => {
   const paramPosition = getRouterParam(event, 'position')
   if (!paramPosition) {
     setResponseStatus(event, ErrorCodes.BAD_REQUEST)
@@ -9,7 +13,9 @@ export default defineWrappedResponseHandler(async (event) => {
 
   const position = decodeURIComponent(paramPosition)
 
-  const refresh = event.node.req.headers['x-prerender-revalidate'] === useRuntimeConfig().vercel.bypassToken
+  const { refresh: r } = getQuery(event)
+  const config = useRuntimeConfig()
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
 
   const items = await getGalleryByPositionAsync(null, position, refresh)
   return createApiResponse(200, 'OK', items)

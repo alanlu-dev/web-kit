@@ -22,7 +22,7 @@ defineProps<IProps>()
       <p class="b2-r f:3x!@<=tablet fg:font-title lines:1 mt:3x mt:8x@tablet">中華民國職業清潔認証協會</p>
       <hr class="bg:#DBD9D9 h:1 mt:2x" />
       <div class="mt:2x text:left">
-        <p class="h3 fg:accent!">NT$ {{ formatThousand(course.價格 || 99999) }} </p>
+        <p class="h3 fg:accent!">NT$ {{ formatThousand(course.價格) }} </p>
       </div>
     </div>
   </nuxt-link>

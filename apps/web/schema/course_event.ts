@@ -30,7 +30,7 @@ export const CourseEventSchema = z.object({
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
   課程資訊_名稱: z.string().optional(),
-  課程資訊_價格: z.number().optional().nullable(),
+  課程資訊_價格: z.number().optional(),
   指定價格: NotionNumberSchema.transform((o) => o.number),
 
   教室ID: NotionDatabaseRollupSchema.transform((o) =>

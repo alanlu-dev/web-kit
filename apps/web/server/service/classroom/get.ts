@@ -28,7 +28,7 @@ export async function getClassroomByIdAsync(notion: Client | null, id: number, r
   return item
 }
 
-export async function getClassroomsAsync(notion: Client, currentPage: number, pageSize: number, refresh: boolean): Promise<ClassroomSchemaType[]> {
+export async function getClassroomsAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<ClassroomSchemaType[]> {
   let items: ClassroomSchemaType[] | null = null
 
   if (!refresh) {

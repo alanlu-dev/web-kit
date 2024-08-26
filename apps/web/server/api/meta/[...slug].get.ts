@@ -1,6 +1,10 @@
 import { getMetaByPathAsync } from '~/server/service/meta/get'
 
-export default defineWrappedResponseHandler(async (event) => {
+export default defineWrappedResponseHandler<{
+  query: {
+    refresh?: boolean
+  }
+}>(async (event) => {
   const fullPath = getRouterParam(event, 'slug')
 
   if (!fullPath) {
@@ -8,7 +12,9 @@ export default defineWrappedResponseHandler(async (event) => {
     return createApiError(event.node.res.statusCode, '請傳入路由')
   }
 
-  const refresh = event.node.req.headers['x-prerender-revalidate'] === useRuntimeConfig().vercel.bypassToken
+  const { refresh: r } = getQuery(event)
+  const config = useRuntimeConfig()
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
 
   const items = await getMetaByPathAsync(null, fullPath, refresh)
   return createApiResponse(200, 'OK', items)

@@ -172,7 +172,11 @@ useSeoMeta({
                   </div>
 
                   <div class="{mt:0}@desktop {w:30%}@tablet&<desktop w:full">
-                    <p class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.課程場次資訊?.[0]?.指定價格 || course?.價格 || 99999) }} </p>
+                    <p v-if="course?.課程場次資訊?.[0]?.指定價格" class="h2 nowrap text:right@tablet&<desktop {flex;ai:flex-end;gap:2x;flex:wrap}">
+                      <span class="fg:divider text:line-through b1-r">NT$ {{ formatThousand(course?.價格) }}</span>
+                      <span class="fg:accent">NT$ {{ formatThousand(course?.課程場次資訊?.[0]?.指定價格) }}</span>
+                    </p>
+                    <p v-else class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.價格) }}</p>
                     <NuxtLink :to="`/checkout/${course?.課程場次資訊?.[0].ID}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full">立即報名 </NuxtLink>
                   </div>
                 </template>

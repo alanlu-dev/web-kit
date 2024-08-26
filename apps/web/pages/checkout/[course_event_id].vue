@@ -72,7 +72,12 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
               <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
-              <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格 || 99999) }}</p>
+              <!-- <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格) }}</p> -->
+              <p v-if="courseEvent?.指定價格" class="nowrap {flex;ai:flex-end;gap:2x;flex:wrap}">
+                <span class="fg:divider text:line-through b3-r">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</span>
+                <span class="fg:accent">NT$ {{ formatThousand(courseEvent?.指定價格) }}</span>
+              </p>
+              <p v-else class="nowrap fg:accent">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</p>
             </div>
             <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
               <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">

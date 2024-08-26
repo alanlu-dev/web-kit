@@ -21,7 +21,7 @@ export const CourseSchema = z.object({
 
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
-  價格: NotionNumberSchema.transform((o) => o.number),
+  價格: NotionNumberSchema.transform((o) => o.number!),
 
   // 可授課講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
   可授課講師ID: NotionDatabaseRollupSchema.transform((o) =>

@@ -14,8 +14,9 @@ const router = useRouter()
 // const common = useCommonStore()
 // const activeBreakpoint = common.breakpoints.active()
 
-const page_size = ref(5)
 // const page_size = computed(() => (activeBreakpoint.value === 'mobile' ? 10 : activeBreakpoint.value === 'tablet' ? 20 : 30))
+// const page_size = ref(5)
+const page_size = ref(9999)
 
 interface QueryType {
   page?: number

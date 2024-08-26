@@ -50,7 +50,7 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
     ItemName: courseEvent.課程資訊_名稱!,
     TradeDesc: '課程',
     // TradeDesc: `上課地點: ${courseEvent.教室資訊.地址}，上課時間：${courseEvent.上課日期[0]} ${courseEvent.上課日期[1]}`,
-    ChoosePayment: ecpayPaymentType.enum.ALL,
+    ChoosePayment: ecpayPaymentType.enum.Credit,
   }
 
   const MerchantTradeNo = getTradeNo()
