@@ -2,7 +2,7 @@ import type { MetaSchemaType } from '~/schema/meta'
 
 export const useMetaStore = defineStore('meta', () => {
   const defaultMeta: Partial<MetaSchemaType> = {
-    後墜: true, // 預設啟用後墜
+    標題後墜: true, // 預設啟用後墜
     圖片: '/ogmeta-PCCA.jpg', // TODO: 設定檔
   }
   const config = useRuntimeConfig()
@@ -11,7 +11,7 @@ export const useMetaStore = defineStore('meta', () => {
   const meta = useState<Partial<MetaSchemaType>>(() => defaultMeta)
 
   useSeoMeta({
-    title: () => (meta.value.標題 || (route.name as string)) + (meta.value.後墜 ? ` | ${config.public.siteName}` : ''),
+    title: () => (meta.value.標題 || (route.name as string)) + (meta.value.標題後墜 ? ` | ${config.public.siteName}` : ''),
     description: () => meta.value.描述,
     ogImage: () => meta.value.圖片 || defaultMeta.圖片,
   })

@@ -13,9 +13,11 @@ export default defineWrappedResponseHandler<{
     return createApiError(event.node.res.statusCode, '請傳入路由')
   }
 
-  const { ssr, refresh: r } = getQuery(event)
+  const { refresh: r } = getQuery(event)
   const config = useRuntimeConfig()
   const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
+  const ssr = event.node.req.headers['x-ssr-cache']
+  console.log(`[GET] /api/meta/${fullPath}`, { refresh, ssr })
 
   const items = await getMetaByPathAsync(null, fullPath, refresh, !!ssr)
   return createApiResponse(200, 'OK', items)

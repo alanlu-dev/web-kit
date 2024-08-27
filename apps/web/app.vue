@@ -34,8 +34,10 @@ await callOnce(async () => {
     null,
     !config.public.isDev && import.meta.server
       ? {
-          query: { ssr: true },
-          header: { 'x-prerender-revalidate': config.vercel?.bypassToken },
+          headers: {
+            'x-prerender-revalidate': config.vercel.bypassToken,
+            'x-ssr-cache': true,
+          },
         }
       : {},
   )
