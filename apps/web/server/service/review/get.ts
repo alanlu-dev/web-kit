@@ -19,7 +19,7 @@ export async function getReviewByIdAsync(notion: Client | null, id: number, refr
       notion,
       query: reviewQuery,
       processData: processReviewDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: reviewFilters,
       id,
     })
@@ -45,7 +45,7 @@ export async function getReviewsAsync(notion: Client | null, currentPage: number
       notion,
       query: { ...reviewQuery, page_size: pageSize },
       processData: processReviewDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

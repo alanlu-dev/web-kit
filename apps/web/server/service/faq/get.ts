@@ -14,7 +14,7 @@ export async function getFaqAsync(notion: Client | null, currentPage: number, pa
       notion,
       query: { ...faqQuery, page_size: pageSize },
       processData: processFaqDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

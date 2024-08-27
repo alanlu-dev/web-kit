@@ -18,7 +18,7 @@ export async function getCourseBaseByIdAsync(notion: Client | null, id: number, 
       notion,
       query: courseBaseQuery,
       processData: processCourseBaseDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: courseBaseFilters,
       id,
     })
@@ -39,7 +39,7 @@ export async function getCourseBasesAsync(notion: Client | null, currentPage: nu
       notion,
       query: { ...courseBaseQuery, page_size: pageSize },
       processData: processCourseBaseDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

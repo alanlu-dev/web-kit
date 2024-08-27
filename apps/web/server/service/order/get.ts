@@ -11,7 +11,7 @@ export async function getOrderByIdAsync(notion: Client | null, id: number): Prom
     query: orderQuery,
     filters: orderFilters,
     processData: processOrderDataAsync,
-    updatePages: null,
+    updateProperties: null,
     id,
   })
 
@@ -28,7 +28,7 @@ export async function getOrderByTransNoAsync(notion: Client | null, trans_no: st
       },
     },
     processData: processOrderDataAsync,
-    updatePages: null,
+    updateProperties: null,
   })
 
   return items ? items[0] : null

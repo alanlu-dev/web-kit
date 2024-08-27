@@ -1,15 +1,15 @@
 import { Client } from '@notionhq/client'
-import type { QueryDatabaseParameters, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { QueryDatabaseParameters, QueryDatabaseResponse, UpdatePageParameters } from '@notionhq/client/build/src/api-endpoints'
 import { addSecond, format } from '@formkit/tempo'
 
 interface FetchNotionDataParams<T> {
   notion: Client | null
   query: QueryDatabaseParameters
   processData: (notion: Client, item: any) => Promise<T | null>
-  updatePages: (<T>(notion: Client, pagesToUpdate: T[]) => Promise<T[]>) | null
+  updateProperties: (() => UpdatePageParameters['properties']) | null
 }
 
-export async function fetchNotionDataAsync<T>({ notion, query, processData, updatePages }: FetchNotionDataParams<T>): Promise<[T[], Client]> {
+export async function fetchNotionDataAsync<T>({ notion, query, processData, updateProperties }: FetchNotionDataParams<T>): Promise<[T[], Client]> {
   const allResult: QueryDatabaseResponse['results'] = []
   let start_cursor: string | undefined
 
@@ -35,8 +35,8 @@ export async function fetchNotionDataAsync<T>({ notion, query, processData, upda
   const allData = (await Promise.all(allDataPromises)).filter((item) => item != null)
 
   // 更新刷新時間
-  if (updatePages) {
-    updatePages<T>(notion, allData)
+  if (updateProperties) {
+    updatePages<T>(notion, allData, updateProperties)
   }
 
   return [allData, notion]
@@ -47,7 +47,7 @@ interface FetchNotionDataByIdParams<T> extends FetchNotionDataParams<T> {
   id: number
 }
 
-export async function fetchNotionDataByIdAsync<T>({ notion, query, filters, id, processData, updatePages }: FetchNotionDataByIdParams<T>): Promise<[T, Client]> {
+export async function fetchNotionDataByIdAsync<T>({ notion, query, filters, id, processData, updateProperties }: FetchNotionDataByIdParams<T>): Promise<[T, Client]> {
   const [allData, client] = await fetchNotionDataAsync<T>({
     notion,
     query: {
@@ -55,7 +55,7 @@ export async function fetchNotionDataByIdAsync<T>({ notion, query, filters, id, 
       filter: { and: [...filters, { property: 'ID', unique_id: { equals: +id } }] },
     },
     processData,
-    updatePages,
+    updateProperties,
   })
 
   return [allData[0], client]
@@ -71,32 +71,18 @@ function chunk(arr: any[], chunkSize: number) {
 }
 
 /***
- * 更新頁面的刷新時間
+ * 更新頁面
  * @param pagesToUpdate: [pages]
  * @returns Promise
  */
-export async function updateRefreshTime<T>(notion: Client, pagesToUpdate: T[]) {
+export async function updatePages<T>(notion: Client, pagesToUpdate: T[], getProperties: () => UpdatePageParameters['properties']) {
   const pagesToUpdateChunks = chunk(pagesToUpdate, 10)
 
   for (const pagesToUpdateBatch of pagesToUpdateChunks) {
     await Promise.all(
       pagesToUpdateBatch.map(({ PAGE_ID }) => {
-        return notion.pages.update({
-          page_id: PAGE_ID,
-          properties: {
-            刷新時間: {
-              date: {
-                start: format({
-                  date: addSecond(new Date(), 10),
-                  format: 'YYYY-MM-DD HH:mm:ss',
-                  locale: 'zh-TW',
-                  tz: 'Asia/Taipei',
-                }),
-                time_zone: 'Asia/Taipei',
-              },
-            },
-          },
-        })
+        const properties = getProperties()
+        return notion.pages.update({ page_id: PAGE_ID, properties })
       }),
     )
   }
@@ -107,4 +93,35 @@ export async function updateRefreshTime<T>(notion: Client, pagesToUpdate: T[]) {
     console.log(`Successfully updated ${pagesToUpdate.length} task(s) in Notion`)
   }
   return pagesToUpdate
+}
+
+export function updateRefreshTime(): UpdatePageParameters['properties'] {
+  const refreshTime = format({
+    date: addSecond(new Date(), 10),
+    format: 'YYYY-MM-DD HH:mm:ss',
+    locale: 'zh-TW',
+    tz: 'Asia/Taipei',
+  })
+  return {
+    刷新時間: {
+      date: { start: refreshTime, time_zone: 'Asia/Taipei' },
+    },
+  }
+}
+
+export function updatePageRefreshTime(): UpdatePageParameters['properties'] {
+  const refreshTime = format({
+    date: addSecond(new Date(), 10),
+    format: 'YYYY-MM-DD HH:mm:ss',
+    locale: 'zh-TW',
+    tz: 'Asia/Taipei',
+  })
+  return {
+    刷新時間: {
+      date: { start: refreshTime, time_zone: 'Asia/Taipei' },
+    },
+    刷新頁面時間: {
+      date: { start: refreshTime, time_zone: 'Asia/Taipei' },
+    },
+  }
 }

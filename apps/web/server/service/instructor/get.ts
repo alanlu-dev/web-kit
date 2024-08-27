@@ -18,7 +18,7 @@ export async function getInstructorByIdAsync(notion: Client | null, id: number, 
       notion,
       query: instructorQuery,
       processData: processInstructorDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: instructorFilters,
       id,
     })
@@ -40,7 +40,7 @@ export async function getInstructorsAsync(notion: Client | null, currentPage: nu
       notion,
       query: { ...instructorQuery, page_size: pageSize },
       processData: processInstructorDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

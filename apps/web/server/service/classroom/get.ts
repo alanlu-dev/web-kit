@@ -18,7 +18,7 @@ export async function getClassroomByIdAsync(notion: Client | null, id: number, r
       notion,
       query: classroomQuery,
       processData: processClassroomDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: classroomFilters,
       id,
     })
@@ -40,7 +40,7 @@ export async function getClassroomsAsync(notion: Client | null, currentPage: num
       notion,
       query: { ...classroomQuery, page_size: pageSize },
       processData: processClassroomDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

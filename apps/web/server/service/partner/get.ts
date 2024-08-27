@@ -18,7 +18,7 @@ export async function getPartnerByIdAsync(notion: Client | null, id: number, ref
       notion,
       query: partnerQuery,
       processData: processPartnerDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: partnerFilters,
       id,
     })
@@ -40,7 +40,7 @@ export async function getPartnersAsync(notion: Client | null, currentPage: numbe
       notion,
       query: { ...partnerQuery, page_size: pageSize },
       processData: processPartnerDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

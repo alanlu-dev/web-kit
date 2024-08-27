@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseSchemaType } from '~/schema/course'
-import type { MetaSchemaType } from '~/schema/meta'
 
 const route = useRoute()
 const id = route.params.id
 
 const { data: course } = await useApiFetch<CourseSchemaType>(`/api/course/${id}`, { query: route.query })
 
-const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
-
-useHead({
-  titleTemplate: !meta.value || meta.value?.後墜 ? '%s %separator %siteName' : '%s',
-})
-
-useSeoMeta({
-  title: () => meta.value?.標題 || course.value?.名稱 || (route.name as string),
-  description: () => meta.value?.描述 || course.value?.課程基礎資訊?.課程特色.join('、'),
-  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/meta.png',
+const metaStore = useMetaStore()
+metaStore.updateMeta(route.fullPath, {
+  標題: course.value?.名稱,
+  描述: course.value?.課程基礎資訊?.課程特色.join('、'),
+  圖片: course.value?.課程照片[0],
 })
 </script>
 

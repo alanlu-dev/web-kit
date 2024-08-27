@@ -25,7 +25,7 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
       notion,
       query: courseEventQuery,
       processData: processCourseEventDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: courseEventFilters,
       id,
     })
@@ -57,7 +57,7 @@ export async function getCourseEventsAsync(
       notion,
       query: { ...courseEventQuery, page_size: pageSize },
       processData: processCourseEventDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

@@ -18,7 +18,7 @@ export async function getNewsByIdAsync(notion: Client | null, id: number, refres
       notion,
       query: newsQuery,
       processData: processNewsDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
       filters: newsFilters,
       id,
     })
@@ -40,7 +40,7 @@ export async function getNewsAsync(notion: Client | null, currentPage: number, p
       notion,
       query: { ...newsQuery, page_size: pageSize },
       processData: processNewsDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
 
     if (items.length) {

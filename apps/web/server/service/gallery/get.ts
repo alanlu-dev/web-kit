@@ -23,7 +23,7 @@ export async function getGalleryByPositionAsync(notion: Client | null, position:
         },
       },
       processData: processGalleryDataAsync,
-      updatePages: updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
     if (items) await redis.set(key, items)
   }
