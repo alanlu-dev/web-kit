@@ -26,12 +26,17 @@ useHead({
 const fullPath = computed(() => (route.fullPath === '/' ? '/index' : route.fullPath))
 
 const metaStore = useMetaStore()
-await callOnce(async () => {
-  metaStore.updateMeta(fullPath.value, null, {
-    query: { ssr: true, refresh: true },
-    header: { 'x-prerender-revalidate': !config.public.isDev ? config.vercel.bypassToken : '' },
-  })
-})
+
+metaStore.updateMeta(
+  fullPath.value,
+  null,
+  config.public.isDev && import.meta.server
+    ? {
+        query: { ssr: true, refresh: true },
+        header: { 'x-prerender-revalidate': config.vercel?.bypassToken },
+      }
+    : {},
+)
 
 onMounted(() => {
   watch(fullPath, async (path) => {
