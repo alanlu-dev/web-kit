@@ -22,7 +22,7 @@ metaStore.updateMeta(route.fullPath, {
     <section class="{max-w:screen-max;mx:auto}" data-aos="fade-up ">
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
-          <div>
+          <div class="mx:auto w:80%">
             <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" />
           </div>
 

@@ -12,11 +12,11 @@ const { data: reviews } = await useApiFetch<ReviewSchemaType[]>('/api/review', {
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
-  'mr:20px>li mr:40px>li@md ',
+  'mr:20px>li mr:32px>li@md ',
   {
     base: { '': `{w:calc((100%+20px)/1-20px)}>li` },
     tablet: { '': `{w:calc((100%+20px)/2-20px)}>li@tablet` },
-    md: { '': `{w:calc((100%+40px)/2-40px)}>li@md` },
+    md: { '': `{w:calc((100%+32px)/3-32px)}>li@md` },
   },
   ({ base, tablet, md }) => base && tablet && md,
 )
@@ -29,11 +29,12 @@ const splideOptions = {
   drag: 'free',
   snap: true,
   pagination: false,
-  perPage: 2,
-  gap: '40px',
+  perPage: 3,
+  gap: '32px',
   breakpoints: {
     1024: {
       gap: '20px',
+      perPage: 2,
     },
     430: {
       arrows: false,
@@ -69,10 +70,13 @@ const splideOptions = {
             <div class="splide__track">
               <ul v-if="reviews?.length" class="splide__list" :class="ratio()">
                 <li class="splide__slide">
-                  <ReviewCardHome :review="reviews[0]" />
+                  <ReviewCard :review="reviews[0]" />
                 </li>
                 <li class="splide__slide">
-                  <ReviewCardHome :review="reviews[1]" />
+                  <ReviewCard :review="reviews[1]" />
+                </li>
+                <li class="splide__slide">
+                  <ReviewCard :review="reviews[2]" />
                 </li>
               </ul>
             </div>
@@ -90,7 +94,7 @@ const splideOptions = {
 
             <SplideTrack>
               <SplideSlide v-for="review in reviews?.slice(0, 10)" :key="review.ID">
-                <ReviewCardHome :review="review" />
+                <ReviewCard :review="review" />
               </SplideSlide>
             </SplideTrack>
           </Splide>

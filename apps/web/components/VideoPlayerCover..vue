@@ -9,6 +9,7 @@ interface IProps {
   alt?: string
   title?: string
   options?: PlyrVueOptions // https://github.com/sampotts/plyr#options
+  fake?: boolean
 }
 
 const props = defineProps<IProps>()
@@ -34,7 +35,20 @@ const { class: cls, ...filteredAttrs } = useAttrs()
     <label class="block rel {object:cover;w:full}_img,_.plyr__video-wrapper" :class="`{aspect:${aspect}}_img {aspect:${aspect}!}_img_.plyr__video-wrapper`">
       <Image :src="cover" :alt="alt" :title="alt || title" />
       <input ref="chkEl" type="radio" class="hidden" />
-      <template v-if="video">
+
+      <template v-if="video && fake">
+        <div class="{abs;inset:0} cursor:pointer z:1"></div>
+        <div class="{abs;center;middle}">
+          <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported {abs;center;middle}">
+            <div class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
+              <svg aria-hidden="true" focusable="false">
+                <use xlink:href="#plyr-play"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template v-else-if="video">
         <div class=":checked~{hidden} {abs;inset:0} cursor:pointer z:1" @click.prevent="callInitIframePlayer"></div>
         <VideoPlayer ref="videoPlayer" v-bind="filteredAttrs" :src="video" class="{abs;center;middle} :checked~{opacity:1}_iframe opacity:0_iframe" :options="options" @click.prevent> </VideoPlayer>
       </template>

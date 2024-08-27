@@ -13,7 +13,7 @@ defineProps<IProps>()
 <template>
   <div class="h:full text:center">
     <div class="{flex;flex:col}">
-      <div class="w:100% flex-basis:100%">
+      <div class="flex-basis:100% w:100%">
         <VideoPlayerCover aspect="349/225" class="r:2x" :img="item.img" :alt="item.h1" />
       </div>
       <!-- <div class="{aspect:inherit;object:cover}_img aspect:349/225 flex-basis:100% overflow:hidden r:2x w:100%">
