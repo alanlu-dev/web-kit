@@ -28,10 +28,11 @@ const fullPath = computed(() => (route.fullPath === '/' ? '/index' : route.fullP
 const metaStore = useMetaStore()
 
 await callOnce(async () => {
+  console.log('callOnce', fullPath, config.public.isDev, import.meta.server, config.vercel?.bypassToken)
   await metaStore.updateMeta(
     fullPath.value,
     null,
-    !config.public.isDev
+    !config.public.isDev && import.meta.server
       ? {
           query: { ssr: true },
           header: { 'x-prerender-revalidate': config.vercel?.bypassToken },

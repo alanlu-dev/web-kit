@@ -3,7 +3,7 @@ import type { MetaSchemaType } from '~/schema/meta'
 export const useMetaStore = defineStore('meta', () => {
   const defaultMeta: Partial<MetaSchemaType> = {
     後墜: true, // 預設啟用後墜
-    圖片: '/meta.png',
+    圖片: '/ogmeta-PCCA.jpg', // TODO: 設定檔
   }
   const config = useRuntimeConfig()
   const route = useRoute()

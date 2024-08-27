@@ -14,7 +14,6 @@ export async function getMetaByPathAsync(notion: Client | null, fullPath: string
     items = await redis.get<MetaSchemaType[]>(key)
   }
 
-  console.log(fullPath)
   if (items === null) {
     ;[items] = await fetchNotionDataAsync<MetaSchemaType>({
       notion,
@@ -49,7 +48,6 @@ export async function getMetaAsync(notion: Client | null, refresh: boolean): Pro
       updateProperties: updateRefreshTime,
     })
     if (items) {
-      console.log(items.length)
       const grouped = items.reduce(
         (acc, item) => {
           const category = item.正式連結!
