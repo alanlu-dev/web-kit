@@ -30,7 +30,7 @@ const metaStore = useMetaStore()
 metaStore.updateMeta(
   fullPath.value,
   null,
-  config.public.isDev && import.meta.server
+  !config.public.isDev && import.meta.server
     ? {
         query: { ssr: true, refresh: true },
         header: { 'x-prerender-revalidate': config.vercel?.bypassToken },
