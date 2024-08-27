@@ -16,7 +16,7 @@ const nav = [
 <template>
   <header v-bind="$attrs" class="{sticky;top;left} bg:footer fg:base-bg shadow:md z:header">
     <div class="{flex;ai:stretch;jc:center;p:4x|6x} {max-w:screen-max;mx:auto} {gap:10x;pl:10x;pr:5x}@desktop">
-      <nuxt-link class="{flex;center-content;gap:1x}" to="/">
+      <nuxt-link class="{flex;center-content;gap:1x}" to="/" @click="showNav = false">
         <div class="{flex;center-content} size:6x size:9x@tablet">
           <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
         </div>

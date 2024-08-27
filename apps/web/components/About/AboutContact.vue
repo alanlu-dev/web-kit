@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { createZodPlugin } from '@formkit/zod'
+import { reset } from '@formkit/core'
 import { ContactSchema } from '~/schema/contact'
 import type { ContactSchemaType } from '~/schema/contact'
 
@@ -12,6 +13,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
 
   if (!error.value) {
     show.value = true
+    const { title, message, ...initData } = formData
+    reset('contactForm', initData)
   }
 })
 </script>
@@ -25,7 +28,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
     </div>
 
     <div class="{mt:4x;text:right}_.formkit-actions mt:5x">
-      <FormKit v-model="contactData" type="form" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
+      <FormKit id="contactForm" v-model="contactData" type="form" :config="{ validationVisibility: 'submit' }" :actions="true" submit-label="送出" :plugins="[zodPlugin]" @submit="submitHandler">
         <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
           <FormKit type="text" name="name" label="姓名" validation="required" />
           <FormKit type="text" name="mobile" label="手機" validation="required|phone" />

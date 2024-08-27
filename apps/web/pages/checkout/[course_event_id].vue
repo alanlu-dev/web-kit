@@ -74,7 +74,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
               <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
               <!-- <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格) }}</p> -->
               <p v-if="courseEvent?.指定價格" class="nowrap {flex;ai:flex-end;gap:2x;flex:wrap}">
-                <span class="fg:divider text:line-through b3-r">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</span>
+                <span class="b3-r fg:divider text:line-through">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</span>
                 <span class="fg:accent">NT$ {{ formatThousand(courseEvent?.指定價格) }}</span>
               </p>
               <p v-else class="nowrap fg:accent">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</p>
@@ -104,7 +104,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
             <h3 class="h3 fg:font-title">學員資料</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {fg:font-title}_.formkit-label">
-              <FormKit ref="formRef" v-model="data" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
+              <FormKit ref="formRef" v-model="data" type="form" :config="{ validationVisibility: 'submit' }" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
                 <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                   <FormKit type="text" name="name" label="姓名" placeholder="王小明" validation="required" :floating-label="false" />
                   <FormKit type="email" name="email" label="聯絡用電子信箱" placeholder="wang@example.com" validation="required|email" :floating-label="false" />
