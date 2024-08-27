@@ -17,7 +17,7 @@ useHead({
 useSeoMeta({
   title: () => meta.value?.標題 || course.value?.名稱 || (route.name as string),
   description: () => meta.value?.描述 || course.value?.課程基礎資訊?.課程特色.join('、'),
-  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/meta2.png',
+  ogImage: () => meta.value?.圖片 || course.value?.課程照片[0] || '/meta.png',
 })
 </script>
 

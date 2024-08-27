@@ -95,7 +95,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
       // 課程⽇期減 7 天
       courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
       courseLocation: order.課程場次資訊!.教室資訊!.地址!,
-      logoSrc: `${config.public.siteUrl}/meta2.png`,
+      logoSrc: `${config.public.siteUrl}/meta.png`,
     },
     {
       pretty: true,

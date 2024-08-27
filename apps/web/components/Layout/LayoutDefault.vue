@@ -27,7 +27,7 @@ useHead({
 useSeoMeta({
   title: () => meta.value?.標題 || (route.name as string),
   description: () => meta.value?.描述,
-  ogImage: () => meta.value?.圖片 || '/meta2.png',
+  ogImage: () => meta.value?.圖片 || '/meta.png',
 })
 
 onMounted(() => {
@@ -53,7 +53,7 @@ onMounted(() => {
           useSeoMeta({
             title: () => meta.value?.標題 || (route.name as string),
             description: () => meta.value?.描述,
-            ogImage: () => meta.value?.圖片 || '/meta2.png',
+            ogImage: () => meta.value?.圖片 || '/meta.png',
           })
         }
       }
