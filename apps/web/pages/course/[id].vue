@@ -22,7 +22,7 @@ metaStore.updateMeta(route.fullPath, {
     <section class="{max-w:screen-max;mx:auto}" data-aos="fade-up ">
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
-          <div class="mx:auto w:80%">
+          <div class="mx:auto w:90%@tablet w:80%@desktop">
             <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" />
           </div>
 
@@ -47,24 +47,24 @@ metaStore.updateMeta(route.fullPath, {
               </div>
             </div>
 
-            <div class="{flex;center-content;gap:10x;flex:wrap} mt:10x text:center">
+            <div class="{grid-cols:3;gap:5x} mt:10x text:center">
               <div>
                 <p>課程時長</p>
-                <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
+                <div class="round {flex;flex:col;center-content} bg:white max-w:30x mt:1x mx:auto">
                   <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.課程時長 || 0 }} </p>
                   <p>小時</p>
                 </div>
               </div>
               <div>
                 <p>單元數</p>
-                <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
+                <div class="round {flex;flex:col;center-content} bg:white max-w:30x mt:1x mx:auto">
                   <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.單元數 || 0 }} </p>
                   <p>單元</p>
                 </div>
               </div>
               <div>
                 <p>結業人數</p>
-                <div class="round {flex;flex:col;center-content} bg:white mt:1x size:40x">
+                <div class="round {flex;flex:col;center-content} bg:white max-w:30x mt:1x mx:auto">
                   <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.結業人數 || 0 }} </p>
                   <p>人</p>
                 </div>
