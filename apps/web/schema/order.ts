@@ -3,9 +3,11 @@ import { NotionDatabaseRollupSchema, NotionNumberSchema, NotionRichTextSchema, N
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { MemberSchema } from './member'
 import { CourseEventSchema } from './course_event'
+import { OrderPaymentMethodEnum } from './payment'
 
 export const OrderParamsSchema = MemberSchema.extend({
   courseEventId: z.number(),
+  paymentMethod: OrderPaymentMethodEnum,
 })
 export type OrderParamsSchemaType = z.infer<typeof OrderParamsSchema>
 
@@ -14,7 +16,6 @@ export const OrderSchema = z.object({
   PAGE_ID: z.string().optional(),
 
   訂單編號: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-  留言備註: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   付款方式: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
 
@@ -68,8 +69,6 @@ export const orderQuery: QueryDatabaseParameters = {
     // 'UYf%3A',
     /** 課程場次ID */
     '%3DFp%5E',
-    /** 留言備註 */
-    'huBu',
     /** 付款方式 */
     '%3FI%7Bq',
     /** 金流訊息 */
@@ -92,8 +91,6 @@ const _keysAndIds = {
   會員名稱: '%5Eyuo',
   會員信箱: '%3E~Wm',
   會員手機: 'Y%60q%3C',
-
-  留言備註: 'huBu',
 
   課程場次: 'UYf%3A',
   課程場次ID: '%3DFp%5E',

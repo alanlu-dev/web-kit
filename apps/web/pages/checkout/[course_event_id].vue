@@ -6,6 +6,7 @@ import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 import type { MemberSchemaType } from '~/schema/member'
 import { MemberSchema } from '~/schema/member'
+import { OrderPaymentMethodEnum, type OrderPaymentMethodEnumType } from '~/schema/payment'
 
 const route = useRoute()
 const id = route.params.course_event_id
@@ -24,24 +25,21 @@ useSeoMeta({
 // 轉至 報名辦法說明頁 ，送出後→ 寄成功通知信
 
 const showOffline = ref(false)
-const paymentType = ref<'online' | 'offline' | 'free'>('online')
+const paymentMethod = ref<OrderPaymentMethodEnumType>(OrderPaymentMethodEnum.enum.綠界)
 const formRef = ref<{ node: FormKitContext } | null>(null)
 
-const data = ref<MemberSchemaType>()
+const orderFormData = ref<MemberSchemaType>()
 const isLoading = ref(false)
+const isLoading_offline = ref(false)
 const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData) => {
   if (isLoading.value) return
   isLoading.value = true
 
-  if (paymentType.value === 'offline') {
+  if (paymentMethod.value === OrderPaymentMethodEnum.enum.現金) {
     showOffline.value = true
     return
   }
-  if (paymentType.value === 'free') {
-    toast.info('TODO:成立免費訂單、發送通知信、導轉至完成頁')
-    isLoading.value = false
-    return
-  }
+
   const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
     method: 'POST',
     body: JSON.stringify({
@@ -49,11 +47,17 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       name: formData.name,
       email: formData.email,
       mobile: formData.mobile,
+      paymentMethod: paymentMethod.value,
     }),
   })
 
   if (error.value) {
     isLoading.value = false
+    return
+  }
+
+  if (paymentMethod.value === OrderPaymentMethodEnum.enum.免費) {
+    navigateTo(`/checkout/result/${data.value}`)
     return
   }
 
@@ -78,23 +82,41 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
 })
 
 function online() {
-  paymentType.value = 'online'
+  paymentMethod.value = OrderPaymentMethodEnum.enum.綠界
   formRef.value?.node.context?.node.submit()
 }
 
 function offline() {
-  paymentType.value = 'offline'
+  paymentMethod.value = OrderPaymentMethodEnum.enum.現金
   formRef.value?.node.context?.node.submit()
 }
 
 function free() {
-  paymentType.value = 'free'
+  paymentMethod.value = OrderPaymentMethodEnum.enum.免費
   formRef.value?.node.context?.node.submit()
 }
 
-function offlinePayment() {
-  toast.info('TODO:成立現金訂單、發送通知信、導轉至完成頁')
-  isLoading.value = false
+async function offlinePayment() {
+  if (isLoading_offline.value) return
+  isLoading_offline.value = true
+
+  const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
+    method: 'POST',
+    body: JSON.stringify({
+      courseEventId: id,
+      name: orderFormData.value!.name,
+      email: orderFormData.value!.email,
+      mobile: orderFormData.value!.mobile,
+      paymentMethod: paymentMethod.value,
+    }),
+  })
+
+  if (error.value) {
+    isLoading_offline.value = false
+    return
+  }
+
+  navigateTo(`/checkout/result/${data.value}`)
 }
 </script>
 
@@ -163,7 +185,7 @@ function offlinePayment() {
             <h3 class="h3 fg:font-title">學員資料</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {fg:font-title}_.formkit-label">
-              <FormKit ref="formRef" v-model="data" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
+              <FormKit ref="formRef" v-model="orderFormData" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
                 <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                   <FormKit type="text" name="name" label="姓名" placeholder="王小明" validation="required" :floating-label="false" />
                   <FormKit type="email" name="email" label="聯絡用電子信箱" placeholder="wang@example.com" validation="required|email" :floating-label="false" />
@@ -237,9 +259,9 @@ function offlinePayment() {
           <div class="bg:red mx:auto size:50x"> QRCODE </div>
         </div>
       </div>
-      <div class="{inline-flex;gap:5x} mx:auto">
-        <Button intent="secondary" @click="showOffline = false">取消</Button>
-        <Button intent="primary" @click="offlinePayment()">確認報名</Button>
+      <div class="{inline-flex;gap:5x} mx:auto opacity:.5[loading=true]" :loading="isLoading_offline">
+        <Button intent="secondary" :disabled="isLoading_offline" @click="showOffline = false">取消</Button>
+        <Button intent="primary" :disabled="isLoading_offline" @click="offlinePayment()">確認報名</Button>
       </div>
     </Modal>
   </section>

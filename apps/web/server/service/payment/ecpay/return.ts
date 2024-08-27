@@ -3,7 +3,7 @@ import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { formatThousand } from '@alanlu-dev/utils'
 import { addDay, format } from '@formkit/tempo'
 import { render } from '@vue-email/render'
-import MyTemplate from '~/server/service/templates/success.vue'
+import MyTemplate from '~/server/service/templates/ecpay_success.vue'
 import type { OrderSchemaType } from '~/schema/order'
 import { OrderSchema } from '~/schema/order'
 import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
@@ -78,33 +78,33 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
 }
 
 async function sendEmail(notion: Client, order_page_id: string, order: OrderSchemaType) {
-  // 組成信件內容
-  const html = await render(
-    MyTemplate,
-    {
-      siteUrl: config.public.siteUrl,
-      courseName: order.課程場次資訊!.課程資訊_名稱!,
-      courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
-      studentName: maskName(order.會員名稱),
-      orderNumber: order.訂單編號!,
-      paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
-      paymentType: order.付款方式!,
-      paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
-      courseDate: order.課程場次資訊!.上課日期![0]!,
-      courseTime: order.課程場次資訊!.上課日期![1]!,
-      // 課程⽇期減 7 天
-      courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
-      courseLocation: order.課程場次資訊!.教室資訊!.地址!,
-      logoSrc: `${config.public.siteUrl}/logo.png`,
-    },
-    {
-      pretty: true,
-    },
-  )
-
   // 發信
   let emailResult: any = null
   try {
+    // 組成信件內容
+    const html = await render(
+      MyTemplate,
+      {
+        siteUrl: config.public.siteUrl,
+        courseName: order.課程場次資訊!.課程資訊_名稱!,
+        courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
+        studentName: maskName(order.會員名稱),
+        orderNumber: order.訂單編號!,
+        paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
+        paymentType: order.付款方式!,
+        paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
+        courseDate: order.課程場次資訊!.上課日期![0]!,
+        courseTime: order.課程場次資訊!.上課日期![1]!,
+        // 課程⽇期減 7 天
+        courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
+        courseLocation: order.課程場次資訊!.教室資訊!.地址!,
+        logoSrc: `${config.public.siteUrl}/logo.png`,
+      },
+      {
+        pretty: true,
+      },
+    )
+
     const { sendMail } = useNodeMailer()
     emailResult = await sendMail({
       subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程場次資訊?.課程資訊_名稱}】`,
