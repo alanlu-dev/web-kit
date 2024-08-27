@@ -29,7 +29,7 @@ const metaStore = useMetaStore()
 await callOnce(async () => {
   metaStore.updateMeta(fullPath.value, null, {
     query: { ssr: true, refresh: true },
-    header: { 'x-prerender-revalidate': config.vercel.bypassToken },
+    header: { 'x-prerender-revalidate': !config.public.isDev ? config.vercel.bypassToken : '' },
   })
 })
 
@@ -56,7 +56,6 @@ const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@mast
 
 <template>
   <CSSRuntimeProvider :config="import('./master.css.mjs')">
-    {{ metaStore.meta }}
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
