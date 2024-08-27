@@ -27,16 +27,20 @@ const fullPath = computed(() => (route.fullPath === '/' ? '/index' : route.fullP
 
 const metaStore = useMetaStore()
 
-metaStore.updateMeta(
-  fullPath.value,
-  null,
-  !config.public.isDev && import.meta.server
-    ? {
-        query: { ssr: true, refresh: true },
-        header: { 'x-prerender-revalidate': config.vercel?.bypassToken },
-      }
-    : {},
-)
+await callOnce(async () => {
+  await metaStore.updateMeta(
+    fullPath.value,
+    null,
+    !config.public.isDev
+      ? {
+          query: { ssr: true },
+          header: { 'x-prerender-revalidate': config.vercel?.bypassToken },
+        }
+      : {},
+  )
+})
+
+metaStore.updateMeta(fullPath.value)
 
 onMounted(() => {
   watch(fullPath, async (path) => {
@@ -61,6 +65,7 @@ const CSSRuntimeProvider = defineAsyncComponent(async () => (await import('@mast
 
 <template>
   <CSSRuntimeProvider :config="import('./master.css.mjs')">
+    {{ metaStore.meta }}
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
