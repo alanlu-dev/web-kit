@@ -23,12 +23,12 @@ useHead({
   },
 })
 
-const fullPath = computed(() => (route.fullPath === '/' ? '/index' : route.fullPath))
+const fullPath = computed(() => (route.name === 'index' ? '/index' : route.fullPath))
 
 const metaStore = useMetaStore()
 
 await callOnce(async () => {
-  console.log('callOnce', fullPath, config.public.isDev, import.meta.server, config.vercel?.bypassToken)
+  console.log('callOnce', fullPath.value, config.public.isDev, import.meta.server, config.vercel?.bypassToken)
   await metaStore.updateMeta(
     fullPath.value,
     null,
