@@ -31,6 +31,7 @@ export const CourseEventSchema = z.object({
   ),
   課程資訊_名稱: z.string().optional(),
   課程資訊_價格: z.number().optional(),
+  課程資訊_型態: z.string().optional(),
   指定價格: NotionNumberSchema.transform((o) => o.number),
 
   教室ID: NotionDatabaseRollupSchema.transform((o) =>

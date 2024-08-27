@@ -16,8 +16,15 @@ useSeoMeta({
   title: '確認報名',
 })
 
-const show = ref(false)
+//   一般課程報名流程：點擊「立即報名」
+// 選擇「線上付款」→ 綠界流程 ，付款後→ 寄成功通知信
+// 選擇「現金付款」→ 轉至 付款說明頁 ，送出後→ 寄感謝通知信
 
+// 免費課程報名流程：點擊「立即報名」
+// 轉至 報名辦法說明頁 ，送出後→ 寄成功通知信
+
+const showOffline = ref(false)
+const paymentType = ref<'online' | 'offline' | 'free'>('online')
 const formRef = ref<{ node: FormKitContext } | null>(null)
 
 const data = ref<MemberSchemaType>()
@@ -26,6 +33,15 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
   if (isLoading.value) return
   isLoading.value = true
 
+  if (paymentType.value === 'offline') {
+    showOffline.value = true
+    return
+  }
+  if (paymentType.value === 'free') {
+    toast.info('TODO:成立免費訂單、發送通知信、導轉至完成頁')
+    isLoading.value = false
+    return
+  }
   const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
     method: 'POST',
     body: JSON.stringify({
@@ -60,6 +76,26 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
   document.body.appendChild(form)
   form.submit()
 })
+
+function online() {
+  paymentType.value = 'online'
+  formRef.value?.node.context?.node.submit()
+}
+
+function offline() {
+  paymentType.value = 'offline'
+  formRef.value?.node.context?.node.submit()
+}
+
+function free() {
+  paymentType.value = 'free'
+  formRef.value?.node.context?.node.submit()
+}
+
+function offlinePayment() {
+  toast.info('TODO:成立現金訂單、發送通知信、導轉至完成頁')
+  isLoading.value = false
+}
 </script>
 
 <template>
@@ -68,7 +104,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       <div class="{max-w:screen-main;mx:auto} mt:5x">
         <div class="{flex;flex:col;gap:10x}">
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
-            <h3 class="h3 fg:font-title">購買明細</h3>
+            <h3 class="h3 fg:font-title"
+              >購買明細 <span class="b2-m fg:divider">({{ courseEvent?.課程資訊_型態 }})</span></h3
+            >
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
               <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
@@ -79,32 +117,53 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
               </p>
               <p v-else class="nowrap fg:accent">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</p>
             </div>
-            <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課日期：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.上課日期?.[0] }}</span>
+            <template v-if="courseEvent?.課程資訊_型態 === '付費課程'">
+              <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
+                <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+                  <p class="nowrap fg:font-title">上課日期：</p>
+                  <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                    <span>{{ courseEvent?.上課日期?.[0] }}</span>
+                  </div>
+                </div>
+                <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+                  <p class="nowrap fg:font-title">上課時間：</p>
+                  <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                    <span>{{ courseEvent?.上課日期?.[1] }}</span>
+                  </div>
+                </div>
+                <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+                  <p class="nowrap fg:font-title">上課地點：</p>
+                  <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                    <span>{{ courseEvent?.教室資訊?.地址 }}</span>
+                  </div>
                 </div>
               </div>
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課時間：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.上課日期?.[1] }}</span>
+            </template>
+            <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
+              <div>
+                <h2 class="b1-r fg:font-title mt:4x">免費報名辦法說明 </h2>
+                <p
+                  >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas ullam consectetur eaque consequuntur, nulla facere, nesciunt minus tempore hic nisi assumenda natus laborum
+                  suscipit? Nulla quo eligendi nisi ipsa incidunt.</p
+                >
+                <h2 class="b1-r fg:font-title mt:4x"> 步驟 </h2>
+                <div class="list">
+                  <ol>
+                    <li>按下立即報名</li>
+                    <li>檢查表單資訊</li>
+                    <li>成立免費訂單</li>
+                    <li>發送通知信</li>
+                    <li>導轉至完成頁</li>
+                  </ol>
                 </div>
               </div>
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課地點：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ courseEvent?.教室資訊?.地址 }}</span>
-                </div>
-              </div>
-            </div>
+            </template>
           </div>
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
             <h3 class="h3 fg:font-title">學員資料</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {fg:font-title}_.formkit-label">
-              <FormKit ref="formRef" v-model="data" type="form" :config="{ validationVisibility: 'submit' }" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
+              <FormKit ref="formRef" v-model="data" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
                 <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                   <FormKit type="text" name="name" label="姓名" placeholder="王小明" validation="required" :floating-label="false" />
                   <FormKit type="email" name="email" label="聯絡用電子信箱" placeholder="wang@example.com" validation="required|email" :floating-label="false" />
@@ -150,16 +209,38 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
         </div>
 
         <div class="{flex;center-content;gap:10x} mt:15x@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
-          <Button intent="secondary" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
-          <Button intent="primary" :disabled="isLoading" @click="formRef?.node.context?.node.submit()">前往付款</Button>
+          <Button intent="secondary" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
+          <template v-if="courseEvent?.課程資訊_型態 === '付費課程'">
+            <Button intent="primary" :disabled="isLoading" @click="online()">前往付款</Button>
+            <Button intent="primary" :disabled="isLoading" @click="offline()">現金付款</Button>
+          </template>
+          <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
+            <Button intent="primary" :disabled="isLoading" @click="free()">立即報名</Button>
+          </template>
         </div>
       </div>
     </div>
 
-    <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
-      <p>已收到您的留言，</p>
-      <p>我們將盡快與您聯絡。</p>
+    <Modal v-model="showOffline" class="hidden_.close-btn max-w:screen-main>.vfm__content" title="現金付款說明" :click-to-close="false" :esc-to-close="false" @closed="isLoading = false">
+      <div class="text:left">
+        <h3 class="h3">繳費方式與期限</h3>
+        <p
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur architecto velit quod quidem qui necessitatibus animi praesentium tempora modi soluta consequatur assumenda possimus,
+          explicabo incidunt, tempore excepturi nisi eius iusto?</p
+        >
+        <h3 class="h3 mt:5x">請先加入官方LINE帳號</h3>
+        <p
+          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dolorum explicabo illo sapiente aliquid incidunt est. Sequi dicta obcaecati recusandae, ipsam laborum voluptatum
+          reprehenderit. Sint nisi eum reprehenderit veniam hic?</p
+        >
+        <div class="my:5x text:center">
+          <div class="bg:red mx:auto size:50x"> QRCODE </div>
+        </div>
+      </div>
+      <div class="{inline-flex;gap:5x} mx:auto">
+        <Button intent="secondary" @click="showOffline = false">取消</Button>
+        <Button intent="primary" @click="offlinePayment()">確認報名</Button>
+      </div>
     </Modal>
   </section>
 </template>
-b

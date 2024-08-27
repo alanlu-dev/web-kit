@@ -154,7 +154,7 @@ metaStore.updateMeta(route.fullPath, {
 
               <div class="{flex;ai:flex-end;jc:space-between;gap:5x;flex:wrap}">
                 <template v-if="course?.課程場次資訊?.[0]">
-                  <div class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop">
+                  <div v-if="course?.課程型態 !== '免費課程'" class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop">
                     <p>
                       <span class="fg:font-title">上課日期：</span>
                       <span>{{ course?.課程場次資訊?.[0]?.上課日期?.[0] }}</span>

@@ -77,6 +77,7 @@ defineProps<IProps>()
       <Text style="color: red"
         >．若因故無法出席，請於 <span>{{ courseDateMinus7 }}</span> 前告知，以便辦理退費事宜。</Text
       >
+      <Text>．為維持課程品質，本協會保留一切調整課程內容的權利。</Text>
       <Text>．若有任何問題，歡迎來電洽詢： <Link href="tel+886-968-047-766">0968-047-766</Link>。 </Text>
       <Text>．再次感謝您對本協會的支持，期待在課堂上與您見面，並預祝學習愉快！</Text>
     </Section>

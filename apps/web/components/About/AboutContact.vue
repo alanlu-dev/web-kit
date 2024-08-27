@@ -39,7 +39,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       </FormKit>
     </div>
 
-    <Modal v-model="show" title="成功送出！" @confirm="() => (show = false)">
+    <Modal v-model="show" title="成功送出！">
       <p>已收到您的留言，</p>
       <p>我們將盡快與您聯絡。</p>
     </Modal>

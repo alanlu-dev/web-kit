@@ -102,6 +102,7 @@ export async function processCourseEventRelationAsync(notion: Client | null, ite
   if (course) {
     item.課程資訊_名稱 = course.名稱
     item.課程資訊_價格 = course.價格
+    item.課程資訊_型態 = course.課程型態
   }
   if (classroom) item.教室資訊 = classroom
 
