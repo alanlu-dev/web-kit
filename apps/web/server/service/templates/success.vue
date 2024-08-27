@@ -86,7 +86,7 @@ defineProps<IProps>()
         <Text>中華民國職業清潔認證協會 PCCA</Text>
       </Link>
       <Link :href="siteUrl">
-        <Img :src="logoSrc" alt="Logo" width="300" height="300" />
+        <Img :src="logoSrc" alt="Logo" width="600" height="315" />
       </Link>
     </Section>
   </Section>
