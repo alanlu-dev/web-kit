@@ -21,15 +21,16 @@ const eventFormDate = ref<{ event: number }>({
 
 const eventOptions = computed<FormKitOptionsProp>(() =>
   !course.value?.課程場次資訊?.length
-    ? [{ label: '尚無課程場次', value: '' }]
+    ? [{ label: '尚無課程場次', value: '', attrs: { disabled: true } }]
     : [
         { label: '請選擇場次', value: '' },
         ...course.value.課程場次資訊!.map((event) => {
           const limit = event?.指定名額限制 ? event?.指定名額限制 : event?.教室資訊?.名額限制 || 0
           const currentCount = event?.報名人數 || 0
 
-          const label = `${event?.上課日期?.[0]} ${event?.上課日期?.[1]} ${event?.教室資訊?.名稱} ${event?.已完課 || currentCount >= limit ? '已額滿' : `(${currentCount}/${limit})`}`
-          return { label, value: event?.ID }
+          const disabled = event?.已完課 || currentCount >= limit
+          const label = `${event?.上課日期?.[0]} ${event?.上課日期?.[1]} ${event?.教室資訊?.名稱} ${disabled ? '(已額滿)' : `(${currentCount}/${limit})`}`
+          return { label, value: event?.ID, attrs: { disabled } }
         }),
       ],
 )
@@ -39,7 +40,7 @@ const targetEvent = computed(() => course.value?.課程場次資訊?.find((event
 
 <template>
   <div>
-    <Breadcrumb :title="course?.名稱" />
+    <Breadcrumb :title="course?.名稱" />ㄝ
     <section class="{max-w:screen-max;mx:auto}" data-aos="fade-up ">
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
