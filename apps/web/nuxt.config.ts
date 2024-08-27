@@ -93,6 +93,7 @@ export default defineNuxtConfig({
 
   // https://github.com/johannschopplich/nuxt-gtag
   gtag: {
+    enabled: !isDev,
     id: process.env.NUXT_PUBLIC_GTAG_ID,
     // Additional configuration for the Google Analytics 4 property
     config: {
