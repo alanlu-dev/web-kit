@@ -15,6 +15,7 @@ useHead({
     class: 'normal scrollbar {top:59}_.Toastify__toast-container {top:68}_.Toastify__toast-container@tablet {top:74}_.Toastify__toast-container@lg',
   },
   link: [{ rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+  titleTemplate: '%s %separator %siteName',
   templateParams: {
     schemaOrg: {
       host: siteConfig.url,

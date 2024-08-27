@@ -20,6 +20,10 @@ const route = useRoute()
 
 const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
 
+useHead({
+  titleTemplate: !meta.value || meta.value?.後墜 ? '%s %separator %siteName' : '%s',
+})
+
 useSeoMeta({
   title: () => meta.value?.標題 || (route.name as string),
   description: () => meta.value?.描述,
@@ -41,6 +45,10 @@ onMounted(() => {
         case 'news':
         case 'review': {
           const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
+
+          useHead({
+            titleTemplate: !meta.value || meta.value?.後墜 ? '%s %separator %siteName' : '%s',
+          })
 
           useSeoMeta({
             title: () => meta.value?.標題 || (route.name as string),

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionDateSchema, NotionFilesSchema, NotionFormulaSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionCheckboxSchema, NotionDateSchema, NotionFilesSchema, NotionFormulaSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
 export const MetaSchema = z.object({
@@ -7,6 +7,7 @@ export const MetaSchema = z.object({
   PAGE_ID: z.string().optional(),
 
   標題: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+  後墜: NotionCheckboxSchema.transform((o) => o.checkbox),
   路由名稱: NotionSelectSchema.transform((o) => o.select?.name),
   正式連結: NotionFormulaSchema.transform((o) => (o.formula.type === 'string' ? o.formula.string : undefined)),
   描述: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
@@ -32,6 +33,8 @@ export const metaQuery: QueryDatabaseParameters = {
   filter_properties: [
     /** 標題 */
     'title',
+    /** 後墜 */
+    'Jb%3Bn',
     /** 路由名稱 */
     '%3EXcE',
     /** 正式連結 */

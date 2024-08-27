@@ -10,6 +10,10 @@ const { data: course } = await useApiFetch<CourseSchemaType>(`/api/course/${id}`
 
 const { data: meta } = await useApiFetch<MetaSchemaType>(`/api/meta${route.fullPath === '/' ? '/index' : route.fullPath}`)
 
+useHead({
+  titleTemplate: !meta.value || meta.value?.後墜 ? '%s %separator %siteName' : '%s',
+})
+
 useSeoMeta({
   title: () => meta.value?.標題 || course.value?.名稱 || (route.name as string),
   description: () => meta.value?.描述 || course.value?.課程基礎資訊?.課程特色.join('、'),
@@ -172,8 +176,8 @@ useSeoMeta({
                   </div>
 
                   <div class="{mt:0}@desktop {w:30%}@tablet&<desktop w:full">
-                    <p v-if="course?.課程場次資訊?.[0]?.指定價格" class="h2 nowrap text:right@tablet&<desktop {flex;ai:flex-end;gap:2x;flex:wrap}">
-                      <span class="fg:divider text:line-through b1-r">NT$ {{ formatThousand(course?.價格) }}</span>
+                    <p v-if="course?.課程場次資訊?.[0]?.指定價格" class="h2 nowrap {flex;ai:flex-end;gap:2x;flex:wrap} text:right@tablet&<desktop">
+                      <span class="b1-r fg:divider text:line-through">NT$ {{ formatThousand(course?.價格) }}</span>
                       <span class="fg:accent">NT$ {{ formatThousand(course?.課程場次資訊?.[0]?.指定價格) }}</span>
                     </p>
                     <p v-else class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.價格) }}</p>
