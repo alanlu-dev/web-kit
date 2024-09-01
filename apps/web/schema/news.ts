@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionDateSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionCheckboxSchema, NotionDateSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
 export const NewsSchema = z.object({
@@ -10,6 +10,7 @@ export const NewsSchema = z.object({
   內容: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   發布日期: NotionDateSchema.transform((o) => o.date?.start),
 
+  釘選: NotionCheckboxSchema.transform((o) => o.checkbox),
   // 封存: NotionCheckboxSchema.transform((o) => o.checkbox),
   // 發布狀態: NotionStatusSchema.transform((o) => o.status),
 })
@@ -25,7 +26,10 @@ export const newsFilters: AndFilterType = [
 ]
 export const newsQuery: QueryDatabaseParameters = {
   database_id: config.notion.databaseId.news,
-  sorts: [{ property: '發布日期', direction: 'descending' }],
+  sorts: [
+    { property: '釘選', direction: 'descending' },
+    { property: '發布日期', direction: 'descending' },
+  ],
   filter: { and: newsFilters },
   filter_properties: [
     /** ID */
@@ -36,6 +40,8 @@ export const newsQuery: QueryDatabaseParameters = {
     'F%3BRG',
     /** 發布日期 */
     '%3BqzX',
+    /** 釘選 */
+    'uJx%5B',
 
     /** 封存 */
     // '%3E%3Ed%7C',

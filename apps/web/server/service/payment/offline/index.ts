@@ -79,12 +79,13 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
       MyTemplate,
       {
         siteUrl: config.public.siteUrl,
+        siteName: config.public.siteName,
         courseName: order.課程場次資訊!.課程資訊_名稱!,
         courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
         studentName: maskName(order.會員名稱),
         orderNumber: order.訂單編號!,
         paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
-        paymentType: order.付款方式!,
+        paymentType: order.付款方式 === 'Credit_CreditCard' ? '信用卡' : order.付款方式!,
         paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
         courseDate: order.課程場次資訊!.上課日期![0]!,
         courseTime: order.課程場次資訊!.上課日期![1]!,
@@ -100,7 +101,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
 
     const { sendMail } = useNodeMailer()
     emailResult = await sendMail({
-      subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程場次資訊?.課程資訊_名稱}】`,
+      subject: `恭喜！您已成功報名${config.public.siteName}【${order.課程場次資訊?.課程資訊_名稱}】`,
       html,
       to: order.會員信箱,
     })

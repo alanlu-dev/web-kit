@@ -62,6 +62,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
       MyTemplate,
       {
         siteUrl: config.public.siteUrl,
+        siteName: config.public.siteName,
         courseName: order.課程場次資訊!.課程資訊_名稱!,
         courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
         studentName: maskName(order.會員名稱),
@@ -78,7 +79,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
 
     const { sendMail } = useNodeMailer()
     emailResult = await sendMail({
-      subject: `恭喜！您已成功報名中華民國職業認證協會【${order.課程場次資訊?.課程資訊_名稱}】`,
+      subject: `恭喜！您已成功報名${config.public.siteName}【${order.課程場次資訊?.課程資訊_名稱}】`,
       html,
       to: order.會員信箱,
     })

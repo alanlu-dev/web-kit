@@ -13,8 +13,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
 
   if (!error.value) {
     show.value = true
-    const { title, message, ...initData } = formData
-    reset('contactForm', initData)
+    // const { title, message, ...initData } = formData
+    // reset('contactForm', initData)
+    reset('contactForm')
   }
 })
 </script>
@@ -39,9 +40,14 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       </FormKit>
     </div>
 
-    <Modal v-model="show" title="成功送出！">
-      <p>已收到您的留言，</p>
-      <p>我們將盡快與您聯絡。</p>
+    <Modal v-model="show" :footer="false">
+      <template #header>
+        <h2 class="h2 fg:font-title">成功送出！</h2>
+      </template>
+      <div class="b1-r text:center">
+        <p>已收到您的留言，</p>
+        <p>我們將盡快與您聯絡。</p>
+      </div>
     </Modal>
   </section>
 </template>

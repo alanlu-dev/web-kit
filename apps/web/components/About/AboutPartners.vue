@@ -14,7 +14,7 @@ defineProps<{
           <Image class="{aspect:inherit;object:cover}" :src="partner.圖片[0]" :alt="partner.名稱" />
         </div>
       </div>
-      <div class="b1-r flex:1">
+      <div class="b1-r {flex;ai:center} flex:1">
         <p v-for="(p, idx) in partner.介紹?.split('\n')" :key="`${partner.名稱}-${idx}`">{{ p }}</p>
       </div>
     </div>

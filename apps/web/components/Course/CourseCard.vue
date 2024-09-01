@@ -2,10 +2,13 @@
 import { formatThousand } from '@alanlu-dev/utils'
 import type { CourseSchemaType } from '~/schema/course'
 
+defineProps<IProps>()
+
+const config = useRuntimeConfig()
+
 interface IProps {
   course: CourseSchemaType
 }
-defineProps<IProps>()
 </script>
 
 <template>
@@ -17,9 +20,9 @@ defineProps<IProps>()
     </div>
 
     <div class="p:2x|4x text:left">
-      <p class="b1-b f:3.5x!@<=tablet fg:primary lines:1">{{ course.名稱 }}</p>
+      <p class="b2-m fg:primary lines:2">{{ course.名稱 }}</p>
       <p class="b2-r lines:2 lines:3@tablet mt:2x">{{ course.課程基礎資訊?.課程特色.join('、') }}</p>
-      <p class="b2-r f:3x!@<=tablet fg:font-title lines:1 mt:3x mt:8x@tablet">中華民國職業清潔認証協會</p>
+      <p class="b2-r f:3x!@<=tablet fg:font-title lines:1 mt:3x mt:8x@tablet">{{ config.public.siteName }}</p>
       <hr class="bg:#DBD9D9 h:1 mt:2x" />
       <div class="mt:2x text:left">
         <p class="h3 fg:accent!">NT$ {{ formatThousand(course.價格) }} </p>

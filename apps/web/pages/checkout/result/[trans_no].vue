@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
 import type { OrderSchemaType } from '~/schema/order'
 
 const route = useRoute()
@@ -15,68 +14,30 @@ useSeoMeta({
   <section class="{flex;flex:col}">
     <div class="p:5x|6x pt:10x@tablet px:10x@desktop">
       <div class="{max-w:screen-main;mx:auto} mt:5x text:center">
-        <div class="bg:home px:7.5x py:10x r:2x">
-          <h2>訂單狀態：({{ order?.訂單狀態 }}) | RtnMsg: {{ order?.金流訊息 }}</h2>
-          <div class="fg:primary">
-            <Iconify icon="material-symbols-light:check-circle-rounded" class="f:65_svg f:134_svg@tablet" />
-            <h1 class="h1 text:line-through">報名成功！</h1>
+        <template v-if="order?.訂單狀態 === '金流:付款成功'">
+          <ResultSuccess :order="order" />
+        </template>
+        <template v-else-if="order?.訂單狀態 === '金流:待現金付款'">
+          <ResultOffline :order="order" />
+        </template>
+        <div v-else-if="order?.訂單狀態 === '金流:待付款'">
+          <ResultPending :order="order" />
+        </div>
+        <div v-else-if="order?.訂單狀態.startsWith('面試')">
+          <ResultFree :order="order" />
+        </div>
+        <div v-else>
+          <div class="fg:accent">
+            <h1 class="h1">報名失敗！</h1>
           </div>
           <div class="{max-w:710;mx:auto}">
-            <p class="b1-r mt:5x text:left text:center@tablet text:line-through">您好，您已報名完成，以下為報名詳細資訊</p>
-            <div class="b2-r {flex;flex:col;gap:5x} bg:base-bg mt:5x p:5x px:11x@tablet r:2x text:left">
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">訂單編號：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.訂單編號 }}</span>
-                </div>
-              </div>
-
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">課程名稱：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程場次資訊?.課程資訊_名稱 }}</span>
-                </div>
-              </div>
-
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課日期：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程場次資訊?.上課日期?.[0] }}</span>
-                </div>
-              </div>
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課時間：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程場次資訊?.上課日期?.[1] }}</span>
-                </div>
-              </div>
-
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">上課地點：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.課程場次資訊?.教室資訊?.地址 }}</span>
-                </div>
-              </div>
-
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">付款方式：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>{{ order?.付款方式 }}</span>
-                </div>
-              </div>
-
-              <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
-                <p class="nowrap fg:font-title">付款金額：</p>
-                <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-                  <span>NT$ {{ formatThousand(order?.付款金額!) }} </span>
-                </div>
-              </div>
-            </div>
+            <p class="b1-r mt:5x text:left text:center@tablet">很抱歉！您的付款並未成功，錯誤如下：</p>
+            <p class="b2-r {flex;flex:col;gap:5x} bg:base-bg mt:5x p:5x px:11x@tablet r:2x">{{ order?.金流訊息 }}</p>
           </div>
-        </div>
-
-        <div class="{max-w:710;mx:auto} mb:20x mt:5x text:left">
-          <p class="b1-r px:5x px:11x@tablet">*若有課程相關疑問，請透過客服電話與我們聯繫</p>
+          <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x">
+            <Button intent="secondary" class="nowrap" @click="navigateTo(`/course/${order?.課程場次資訊?.課程ID}`)">回課程資訊頁</Button>
+            <Button intent="primary" class="nowrap" @click="navigateTo(`/checkout/${order?.課程場次ID}`)">重新報名</Button>
+          </div>
         </div>
       </div>
     </div>

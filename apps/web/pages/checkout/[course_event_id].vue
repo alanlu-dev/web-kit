@@ -3,6 +3,7 @@ import { toast } from 'vue3-toastify'
 import { createZodPlugin } from '@formkit/zod'
 import type { FormKitContext } from '@formkit/core'
 import { formatThousand } from '@alanlu-dev/utils'
+import { addDay, format } from '@formkit/tempo'
 import type { CourseEventSchemaType } from '~/schema/course_event'
 import type { MemberSchemaType } from '~/schema/member'
 import { MemberSchema } from '~/schema/member'
@@ -126,20 +127,18 @@ async function offlinePayment() {
       <div class="{max-w:screen-main;mx:auto} mt:5x">
         <div class="{flex;flex:col;gap:10x}">
           <div class="bg:base-bg p:5x|10x r:2x shadow:all">
-            <h3 class="h3 fg:font-title"
-              >購買明細 <span class="b2-m fg:divider">({{ courseEvent?.課程資訊_型態 }})</span></h3
-            >
-            <hr class="bg:divider h:1 my:5x w:full" />
-            <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
-              <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
-              <!-- <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格) }}</p> -->
-              <p v-if="courseEvent?.指定價格" class="nowrap {flex;ai:flex-end;gap:2x;flex:wrap}">
-                <span class="b3-r fg:divider text:line-through">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</span>
-                <span class="fg:accent">NT$ {{ formatThousand(courseEvent?.指定價格) }}</span>
-              </p>
-              <p v-else class="nowrap fg:accent">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</p>
-            </div>
             <template v-if="courseEvent?.課程資訊_型態 === '付費課程'">
+              <h3 class="h3 fg:font-title">購買明細</h3>
+              <hr class="bg:divider h:1 my:5x w:full" />
+              <div class="b1-r {flex;ai:center;jc:space-between;flex:wrap}">
+                <NuxtLink class="~color|300ms|ease fg:primary-hover:hover" :to="`/course_event/${id}`">{{ courseEvent?.課程資訊_名稱 }}</NuxtLink>
+                <!-- <p class="nowrap">NT$ {{ formatThousand(courseEvent?.指定價格 || courseEvent?.課程資訊_價格) }}</p> -->
+                <p v-if="courseEvent?.指定價格" class="nowrap {flex;ai:flex-end;gap:2x;flex:wrap}">
+                  <span class="b3-r fg:divider text:line-through">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</span>
+                  <span class="fg:accent">NT$ {{ formatThousand(courseEvent?.指定價格) }}</span>
+                </p>
+                <p v-else class="nowrap fg:accent">NT$ {{ formatThousand(courseEvent?.課程資訊_價格) }}</p>
+              </div>
               <div class="b2-r {flex;flex:col;gap:2x} mt:4x">
                 <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
                   <p class="nowrap fg:font-title">上課日期：</p>
@@ -162,21 +161,24 @@ async function offlinePayment() {
               </div>
             </template>
             <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
-              <div>
-                <h2 class="b1-r fg:font-title mt:4x">免費報名辦法說明 </h2>
-                <p
-                  >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas ullam consectetur eaque consequuntur, nulla facere, nesciunt minus tempore hic nisi assumenda natus laborum
-                  suscipit? Nulla quo eligendi nisi ipsa incidunt.</p
-                >
-                <h2 class="b1-r fg:font-title mt:4x"> 步驟 </h2>
+              <h3 class="h3 fg:font-title">免費清潔實作課程報名辦法</h3>
+              <hr class="bg:divider h:1 my:5x w:full" />
+              <div class="b1-r">
+                <h2 class="fg:font-title mt:4x">報名流程：</h2>
                 <div class="list">
-                  <ol>
-                    <li>按下立即報名</li>
-                    <li>檢查表單資訊</li>
-                    <li>成立免費訂單</li>
-                    <li>發送通知信</li>
-                    <li>導轉至完成頁</li>
+                  <ol class="b2-r">
+                    <li>填寫報名基本資料，並加入協會官方 LINE 帳號</li>
+                    <li>初步評估（兩階段）</li>
+                    <li>錄取免費實作課程通知</li>
                   </ol>
+
+                  <p class="mt:10x">為了確保課程品質，並讓每位參與同學都能獲得最大的學習效益，我們將對所有報名者進行初步評估。評估方式採兩階段，包括：</p>
+
+                  <p class="fg:font-title mt:4x">第一階段，線上評估：</p>
+                  <p class="mt:2x">協會將會透過官方LINE平台與您進行基本的背景訪談，瞭解您過去是否有從事過清潔相關工作，或是有完成任何清潔認證或研習課程。</p>
+                  <p class="fg:font-title mt:4x">第二階段，團體面談：</p>
+                  <p class="mt:2x">基於上述資訊，協會將邀請部分報名者統一安排一次團體面談，以進一步了解您的學習動機與相關能力。</p>
+                  <p class=""><span>面談地點：中華民國職業清潔認證協會</span> <span>地址：台中市北屯區遼陽四街 65 號</span></p>
                 </div>
               </div>
             </template>
@@ -230,39 +232,99 @@ async function offlinePayment() {
 </div> -->
         </div>
 
-        <div class="{flex;center-content;gap:10x} mt:15x@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
-          <Button intent="secondary" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
-          <template v-if="courseEvent?.課程資訊_型態 === '付費課程'">
-            <Button intent="primary" :disabled="isLoading" @click="online()">前往付款</Button>
-            <Button intent="primary" :disabled="isLoading" @click="offline()">現金付款</Button>
-          </template>
-          <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
-            <Button intent="primary" :disabled="isLoading" @click="free()">立即報名</Button>
-          </template>
-        </div>
+        <template v-if="courseEvent?.課程資訊_型態 === '付費課程'">
+          <div class="{flex;flex:col;gap:1x} p:5x p:10x@tablet">
+            <p class="flex"><span>※</span><span>學員資料請務必填寫正確，以利後續安排課程。</span></p>
+            <p class="flex"><span>※</span><span>線上付款流程目前僅開放銀行信用卡刷卡付款，如無法使用刷卡功能，請採現金付款方式。</span></p>
+            <p class="flex"><span>※</span><span>現金付款流程請於完成報名送出後三日內前往中華民國職業清潔認證協會付款，地址：台中市北屯區遼陽四街 65 號。</span></p>
+          </div>
+
+          <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
+            <Button intent="secondary" class="nowrap" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="online()">線上付款</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="offline()">現金付款</Button>
+          </div>
+        </template>
+        <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
+          <div class="{flex;flex:col;gap:1x} p:5x p:10x@tablet">
+            <h3 class="h3 fg:accent">請先加入官方LINE帳號</h3>
+            <p class="mt:4x"
+              >為便於後續報名確認，課程通知及其他相關事宜，請務必主動加入本協會官方LINE帳號：點擊連結
+              <a class="cursor:pointer fg:primary fg:primary-hover:hover" href="https://lin.ee/6bQnil5">https://lin.ee/6bQnil5</a> 或 掃描下方 QR
+              Code。加入後，請主動提供您的報名姓名及連絡電話，以便協會工作人員為您進行後續服務
+            </p>
+            <a href="https://lin.ee/6bQnil5" class="block aspect:1/1 max-w:200 mt:4x mx:auto">
+              <Image src="/line.png" class="{aspect:inherit;object:cover} w:full" />
+            </a>
+          </div>
+
+          <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
+            <Button intent="secondary" class="nowrap" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="free()">確認報名</Button>
+          </div>
+        </template>
       </div>
     </div>
 
-    <Modal v-model="showOffline" class="hidden_.close-btn max-w:screen-main>.vfm__content" title="現金付款說明" :click-to-close="false" :esc-to-close="false" @closed="isLoading = false">
-      <div class="text:left">
-        <h3 class="h3">繳費方式與期限</h3>
-        <p
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur architecto velit quod quidem qui necessitatibus animi praesentium tempora modi soluta consequatur assumenda possimus,
-          explicabo incidunt, tempore excepturi nisi eius iusto?</p
-        >
-        <h3 class="h3 mt:5x">請先加入官方LINE帳號</h3>
-        <p
-          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dolorum explicabo illo sapiente aliquid incidunt est. Sequi dicta obcaecati recusandae, ipsam laborum voluptatum
-          reprehenderit. Sint nisi eum reprehenderit veniam hic?</p
-        >
-        <div class="my:5x text:center">
-          <div class="bg:red mx:auto size:50x"> QRCODE </div>
+    <Modal v-model="showOffline" class="hidden_.close-btn {max-w:screen-sm}_.vfm__content" :click-to-close="false" :esc-to-close="false" @closed="isLoading = false">
+      <template #header>
+        <h2 class="h2 fg:font-title">現金付款說明</h2>
+      </template>
+      <div class="scrollbar {flex;flex:col;gap:6x} max-h:70vh overflow:auto">
+        <div>
+          <h3 class="h3">繳費方式與期限</h3>
+          <div class="b2-r {flex;flex:col;gap:1x} bg:base-bg mt:4x r:2x text:left">
+            <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+              <p class="nowrap fg:font-title">繳費方式：</p>
+              <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                <span
+                  >請於報名完成後三日內(<span class="fg:primary"
+                    >{{
+                      format({
+                        date: addDay(new Date(), 3),
+                        format: 'YYYY/MM/DD',
+                        locale: 'zh-TW',
+                        tz: 'Asia/Taipei',
+                      })
+                    }}
+                    前</span
+                  >)，親至本協會繳納現金，逾期將視同自動放棄報名。</span
+                >
+              </div>
+            </div>
+
+            <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+              <p class="nowrap fg:font-title">繳費地點：</p>
+              <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                <span>中華民國職業清潔認證協會</span>
+              </div>
+            </div>
+            <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
+              <p class="nowrap fg:font-title">繳費地址：</p>
+              <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
+                <span>台中市北屯區遼陽四街 65 號</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="h3 fg:accent">請先加入官方LINE帳號</h3>
+          <p class="mt:4x"
+            >為便於後續報名確認，課程通知及其他相關事宜，請務必主動加入本協會官方LINE帳號：點擊連結
+            <a class="cursor:pointer fg:primary fg:primary-hover:hover" href="https://lin.ee/6bQnil5">https://lin.ee/6bQnil5</a> 或 掃描下方 QR
+            Code。加入後，請主動提供您的報名姓名及連絡電話，以便協會工作人員為您進行後續服務
+          </p>
+          <a href="https://lin.ee/6bQnil5" class="block aspect:1/1 max-w:200 mt:4x mx:auto">
+            <Image src="/line.png" class="{aspect:inherit;object:cover} w:full" />
+          </a>
         </div>
       </div>
-      <div class="{inline-flex;gap:5x} mx:auto opacity:.5[loading=true]" :loading="isLoading_offline">
-        <Button intent="secondary" :disabled="isLoading_offline" @click="showOffline = false">取消</Button>
-        <Button intent="primary" :disabled="isLoading_offline" @click="offlinePayment()">確認報名</Button>
-      </div>
+      <template #footer>
+        <div class="{inline-flex;gap:5x} mx:auto opacity:.5[loading=true]" :loading="isLoading_offline">
+          <Button intent="secondary" :disabled="isLoading_offline" @click="showOffline = false">取消</Button>
+          <Button intent="primary" :disabled="isLoading_offline" @click="offlinePayment()">確認報名</Button>
+        </div>
+      </template>
     </Modal>
   </section>
 </template>

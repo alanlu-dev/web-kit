@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
 
+const config = useRuntimeConfig()
 const showNav = ref(false)
 
 const nav = [
@@ -20,7 +21,7 @@ const nav = [
         <div class="{flex;center-content} size:6x size:9x@tablet">
           <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
         </div>
-        <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">中華民國職業清潔認證協會</p>
+        <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">{{ config.public.siteName }}</p>
       </nuxt-link>
 
       <nav class="ml:auto">

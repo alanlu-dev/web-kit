@@ -22,6 +22,7 @@ definePageMeta({
 // }
 // })
 
+const config = useRuntimeConfig()
 const route = useRoute()
 const { data: partners } = await useApiFetch<PartnerSchemaType[]>('/api/partner', { query: { ...route.query, page_size: 10 } })
 </script>
@@ -40,14 +41,14 @@ const { data: partners } = await useApiFetch<PartnerSchemaType[]>('/api/partner'
               <Icon name="Logo" class="size:full"></Icon>
             </nuxt-link>
             <div class="nowrap font:medium ls:0.1em text:center">
-              <h1 class="f:6vw f:10x@xs">中華民國職業清潔認證協會</h1>
+              <h1 class="f:6vw f:10x@xs">{{ config.public.siteName }}</h1>
               <h3 class="f:2.7vw f:5x@xs line-h:1.4">Professional Cleaning Certification Association</h3>
             </div>
           </div>
         </section>
 
-        <section class="b1-r mt:6x text:center" data-aos="fade-up" data-aos-delay="200">
-          <p>中華民國職業清潔認證協會致力於提升清潔行業的專業水準與形象。</p>
+        <section class="b1-r {flex;flex:col;gap:5x} mt:6x px:5x px:10x@tablet text:left" data-aos="fade-up" data-aos-delay="200">
+          <p>{{ config.public.siteName }}致力於提升清潔行業的專業水準與形象。</p>
           <p>
             我們的使命是透過嚴謹的認證程序和持續的專業培訓，確保清潔人員具備優良的專業素養和技能，以提供客戶高品質的服務。我們秉持著專業、誠信和創新的價值觀，不斷推動清潔行業的發展，促進清潔服務的標準化和規範化。透過我們的努力，我們希望能夠建立起一個受人尊重和信賴的清潔專業認證機構，為清潔人員提供更多的職業發展機會，同時也為社會提供更加乾淨、健康的生活環境。
           </p>

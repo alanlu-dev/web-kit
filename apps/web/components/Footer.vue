@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const config = useRuntimeConfig()
+
+// TODO: 設定檔
+const title = ['中華民國職業', '清潔認證協會']
+
 useHead({
   script: [
     {
@@ -20,8 +25,7 @@ useHead({
           <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
         </div>
         <div class="{flex;gap:0.1em} {flex:col;gap:2x}@tablet">
-          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">中華民國職業</p>
-          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">清潔認證協會</p>
+          <p v-for="(t, idx) in title" :key="idx" class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">{{ t }}</p>
         </div>
       </div>
 
@@ -64,7 +68,7 @@ useHead({
             data-show-facepile="false"
           >
             <blockquote cite="https://www.facebook.com/profile.php?id=100083157557892" class="fb-xfbml-parse-ignore">
-              <a href="https://www.facebook.com/profile.php?id=100083157557892">中華民國職業清潔認證協會 PCCA</a>
+              <a href="https://www.facebook.com/profile.php?id=100083157557892"></a>
             </blockquote>
           </div>
         </div>
@@ -72,7 +76,7 @@ useHead({
     </div>
 
     <div class="b2-r nowrap {flex;center-content;flex:wrap;gap:1x} bg:#245464 mx:auto p:2x|6x px:10x@desktop text:center">
-      <span>{{ new Date().getFullYear() }} © 中華民國職業清潔認證協會</span>
+      <span>{{ new Date().getFullYear() }} © {{ config.public.siteName }}</span>
       <span>版權所有</span>
     </div>
   </footer>
