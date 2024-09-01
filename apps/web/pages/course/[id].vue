@@ -112,11 +112,10 @@ const targetEvent = computed(() => course.value?.課程場次資訊?.find((event
             </div>
           </div>
 
-          <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
+          <div v-for="instructor in course?.可授課講師資訊" :key="instructor?.ID" class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 關於講師</h3>
             <!-- <InstructorCard v-for="instructor in course?.講師資訊" :key="instructor?.ID" :instructor="instructor!" /> -->
-
-            <div v-for="instructor in course?.可授課講師資訊" :key="instructor?.ID" class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:5x mt:10x@tablet">
+            <div class="{flex;flex:col;ai:flex-start;jc:flex-start;gap:5x;flex:wrap} {flex:row}@desktop mt:5x mt:10x@tablet">
               <div class="flex:1 min-w:100% min-w:40%@desktop order:2@desktop overflow:hidden r:2x">
                 <div class="rel aspect:4/3">
                   <VideoPlayerCover aspect="4/3" class="{abs;inset:0;full} r:2x" :img="instructor?.照片?.[0]" :alt="instructor?.名稱" />
