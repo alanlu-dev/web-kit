@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { NotionNumberSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { NotionNumberSchema, NotionRichTextSchema, NotionSelectSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
 const config = useRuntimeConfig()
@@ -9,6 +9,7 @@ export const ClassroomSchema = z.object({
   PAGE_ID: z.string().optional(),
 
   名稱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
+  所屬場地: NotionSelectSchema.transform((o) => o.select?.name),
   地址: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   地圖連結: NotionUrlSchema.transform((o) => o.url),
   名額限制: NotionNumberSchema.transform((o) => o.number),
@@ -31,6 +32,8 @@ export const classroomQuery: QueryDatabaseParameters = {
     '%3D%5Cvr',
     /** 名稱 */
     'title',
+    /** 所屬場地 */
+    'GBq%5B',
     /** 地址 */
     'PKIR',
     /** 地圖連結 */

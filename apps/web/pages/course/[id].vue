@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { formatThousand } from '@alanlu-dev/utils'
+import { addDay, format } from '@formkit/tempo'
 import type { FormKitOptionsProp } from '@formkit/inputs'
 import type { CourseSchemaType } from '~/schema/course'
 
@@ -28,8 +29,11 @@ const eventOptions = computed<FormKitOptionsProp>(() =>
           const limit = event?.指定名額限制 ? event?.指定名額限制 : event?.教室資訊?.名額限制 || 0
           const currentCount = event?.報名人數 || 0
 
-          const disabled = event?.已完課 || currentCount >= limit
-          const label = `${event?.上課日期?.[0]} ${event?.上課日期?.[1]} ${event?.教室資訊?.名稱} ${disabled ? '(已額滿)' : `(${currentCount}/${limit})`}`
+          // 過期七天
+          const expirationDate = event && event.上課日期 && event.上課日期[2] ? addDay(event.上課日期[2], -7) : new Date(-8640000000000000)
+
+          const disabled = event?.已完課 || currentCount >= limit || new Date() >= expirationDate
+          const label = `${disabled ? '【完售】' : ''} ${event?.教室資訊?.所屬場地} ${event?.上課日期?.[0]} ${event?.上課日期?.[1]}`
           return { label, value: event?.ID, attrs: { disabled } }
         }),
       ],
