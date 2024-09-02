@@ -4,6 +4,7 @@ import {
   NotionDateSchema,
   NotionFilesSchema,
   NotionNumberSchema,
+  NotionRichTextSchema,
   NotionSelectSchema,
   NotionTitleSchema,
   NotionUniqueIdSchema,
@@ -20,6 +21,7 @@ export const GallerySchema = z.object({
   標題: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
   圖片_PC: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
   圖片_M: NotionFilesSchema.transform((o) => (o.files[0]?.type === 'file' ? o.files[0].file.url : undefined)),
+  圖片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   導轉連結: NotionUrlSchema.transform((o) => o.url),
   另開視窗: NotionCheckboxSchema.transform((o) => o.checkbox),
   // 發布狀態: NotionStatusSchema.transform((o) => o.status),
@@ -55,6 +57,8 @@ export const galleryQuery: QueryDatabaseParameters = {
     'x%60DM',
     /** 圖片_M */
     'yjny',
+    /** 圖片alt */
+    'Xdi%5C',
     /** 導轉連結 */
     'f%3Eo%60',
     /** 另開視窗 */

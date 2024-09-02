@@ -45,7 +45,7 @@ const targetEvent = computed(() => course.value?.課程場次資訊?.find((event
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
           <div class="mx:auto w:90%@tablet w:80%@desktop">
-            <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" />
+            <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" :alt="course?.照片alt || course?.名稱" />
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">

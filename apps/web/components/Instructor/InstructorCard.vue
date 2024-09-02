@@ -16,7 +16,7 @@ const focusable = ref(false)
     <div class="{flex;flex:col} {flex:row;gap:10x}@xs">
       <div class="flex:1">
         <div class="rel aspect:4/3">
-          <VideoPlayerCover aspect="4/3" class="{abs;inset:0;full} ~300ms|ease_img r:2x" :img="instructor.照片?.[0]" :alt="instructor.名稱" />
+          <VideoPlayerCover aspect="4/3" class="{abs;inset:0;full} ~300ms|ease_img r:2x" :img="instructor.照片?.[0]" :alt="instructor.照片alt || instructor.名稱" />
         </div>
         <!-- <div class="{aspect:inherit;object:cover}_img aspect:4/3 overflow:hidden r:2x">
           <Image :src="instructor.照片[0]" :alt="instructor.名稱" class="~300ms|ease pointer-events:none user-select:none" />

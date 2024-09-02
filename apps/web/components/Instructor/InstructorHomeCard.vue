@@ -12,7 +12,7 @@ defineProps<IProps>()
     <div class="rel {flex;flex:col} {flex:row}@xs {content:'';bg:white;abs;top:10x;left:30x;bottom;right;z:-1;r:2x}::before@xs overflow:hidden pb:5x@xs r:2x">
       <div class="flex:1">
         <div class="rel aspect:4/3 cursor:pointer_img">
-          <VideoPlayerCover aspect="4/3" class="{abs;inset:0;full} ~300ms|ease_img r:2x@xs" :img="instructor.照片?.[0]" :alt="instructor.名稱" />
+          <VideoPlayerCover aspect="4/3" class="{abs;inset:0;full} ~300ms|ease_img r:2x@xs" :img="instructor.照片?.[0]" :alt="instructor.照片alt || instructor.名稱" />
         </div>
         <!-- <div class="{aspect:inherit;object:cover}_img aspect:4/3 overflow:hidden r:2x@xs">
           <Image :src="instructor.照片[0]" :alt="instructor.名稱" class="~300ms|ease pointer-events:none user-select:none" />

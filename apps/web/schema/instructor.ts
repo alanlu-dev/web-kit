@@ -10,6 +10,8 @@ export const InstructorSchema = z.object({
   名稱: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
   英文名: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
+  照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+
   頭銜: NotionSelectSchema.transform((o) => o.select?.name),
 
   標語: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
@@ -45,6 +47,8 @@ export const instructorQuery: QueryDatabaseParameters = {
     'bQo%5D',
     /** 照片 */
     'ayLr',
+    /** 照片alt */
+    'vF%3FI',
     /** 頭銜 */
     'vms%7D',
     /** 標語 */

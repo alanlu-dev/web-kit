@@ -33,7 +33,7 @@ const { class: cls, ...filteredAttrs } = useAttrs()
 <template>
   <div class="rel overflow:hidden" :class="`${cls} aspect:${aspect}`">
     <label class="block rel {object:cover;w:full}_img,_.plyr__video-wrapper" :class="`{aspect:${aspect}}_img {aspect:${aspect}!}_img_.plyr__video-wrapper`">
-      <Image :src="cover" :alt="alt" :title="alt || title" />
+      <Image :src="cover" :alt="alt" :title="title" />
       <input ref="chkEl" type="radio" class="hidden" />
 
       <template v-if="video && fake">

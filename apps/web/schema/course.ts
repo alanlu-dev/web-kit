@@ -1,5 +1,14 @@
 import { z } from 'zod'
-import { NotionDatabaseRollupSchema, NotionFilesSchema, NotionNumberSchema, NotionStatusSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import {
+  NotionDatabaseRollupSchema,
+  NotionFilesSchema,
+  NotionNumberSchema,
+  NotionRichTextSchema,
+  NotionStatusSchema,
+  NotionTitleSchema,
+  NotionUniqueIdSchema,
+  NotionUrlSchema,
+} from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { InstructorSchema } from './instructor'
 import { CourseEventSchema } from './course_event'
@@ -20,6 +29,7 @@ export const CourseSchema = z.object({
   課程基礎資訊: CourseBaseSchema.optional(),
 
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
+  照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
   價格: NotionNumberSchema.transform((o) => o.number!),
 
@@ -66,6 +76,8 @@ export const courseQuery: QueryDatabaseParameters = {
 
     /** 課程照片 */
     'r%3ENY',
+    /** 照片alt */
+    'eXGX',
     /** 影音連結 */
     'dB~z',
     /** 價格 */

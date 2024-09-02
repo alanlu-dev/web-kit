@@ -29,6 +29,7 @@ export const ReviewSchema = z.object({
 
   評價: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
+  照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
   發布日期: NotionDateSchema.transform((o) => o.date?.start),
 
@@ -66,6 +67,8 @@ export const reviewQuery: QueryDatabaseParameters = {
     'F%3EQ%5D',
     /** 照片 */
     '%3Dyos',
+    /** 照片alt */
+    '%5Bov%7D',
     /** 影音連結 */
     'Qr%3AT',
 
