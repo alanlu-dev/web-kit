@@ -40,6 +40,22 @@ const eventOptions = computed<FormKitOptionsProp>(() =>
 )
 
 const targetEvent = computed(() => course.value?.課程場次資訊?.find((event) => event?.ID === eventFormDate.value.event))
+
+interface GalleryType {
+  image?: string
+  video?: string
+  alt?: string
+}
+
+const gallery = computed<GalleryType[]>(() => {
+  const gallery: GalleryType[] = course.value?.課程照片?.map((image, idx) => ({ image, alt: course.value?.照片alt?.[idx] || course.value?.名稱 })) || []
+
+  // 如果有影片 把它插入第二個
+  if (course.value?.影音連結) {
+    gallery.splice(1, 0, { video: course.value?.影音連結 })
+  }
+  return gallery
+})
 </script>
 
 <template>
@@ -49,7 +65,16 @@ const targetEvent = computed(() => course.value?.課程場次資訊?.find((event
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
           <div class="mx:auto w:90%@tablet w:80%@desktop">
-            <VideoPlayerCover aspect="16/9" :video="course?.影音連結" class="r:2x" :img="course?.課程照片?.[0]" :alt="course?.照片alt || course?.名稱" />
+            <ClientOnly>
+              <template #fallback>
+                <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
+              </template>
+              <Splide :options="{ arrows: false, autoplay: true, interval: 4000, type: 'loop' }">
+                <SplideSlide v-for="item in gallery" :key="item.image">
+                  <VideoPlayerCover aspect="16/9" :video="item.video" class="r:2x" :img="item.image" :alt="item.alt" />
+                </SplideSlide>
+              </Splide>
+            </ClientOnly>
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">

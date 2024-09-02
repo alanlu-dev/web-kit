@@ -29,7 +29,7 @@ export const CourseSchema = z.object({
   課程基礎資訊: CourseBaseSchema.optional(),
 
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
-  照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
   價格: NotionNumberSchema.transform((o) => o.number!),
 
