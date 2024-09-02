@@ -48,7 +48,7 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
       金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
       付款日期: {
         date: {
-          start: format({ date: new Date(), format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }),
+          start: format({ date: new Date(), format: 'YYYY-MM-DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }),
           time_zone: 'Asia/Taipei',
         },
       },
