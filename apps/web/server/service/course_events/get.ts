@@ -9,7 +9,13 @@ interface needType {
   needClassroom?: boolean
 }
 
-export async function getCourseEventByIdAsync(notion: Client | null, id: number, refresh: boolean, need: needType = { needCourse: true, needClassroom: true }): Promise<CourseEventSchemaType | null> {
+export async function getCourseEventByIdAsync(
+  notion: Client | null,
+  id: number,
+  refresh: boolean,
+  need: needType = { needCourse: true, needClassroom: true },
+  page_size: number = 0,
+): Promise<CourseEventSchemaType | null> {
   if (!id) return null
 
   const key = `${courseEventKey}:${id}`
@@ -23,7 +29,7 @@ export async function getCourseEventByIdAsync(notion: Client | null, id: number,
   if (!item) {
     ;[item, notion] = await fetchNotionDataByIdAsync<CourseEventSchemaType>({
       notion,
-      query: courseEventQuery,
+      query: page_size ? { ...courseEventQuery, page_size } : courseEventQuery,
       processData: processCourseEventDataAsync,
       updateProperties: updateRefreshTime,
       filters: courseEventFilters,
@@ -75,10 +81,15 @@ export async function getCourseEventsAsync(
   return items
 }
 
-export async function fetchCourseEvents(notion: Client | null, courseEventIds: number[], need: needType = { needCourse: true, needClassroom: true }): Promise<CourseEventSchemaType[]> {
+export async function fetchCourseEvents(
+  notion: Client | null,
+  courseEventIds: number[],
+  need: needType = { needCourse: true, needClassroom: true },
+  page_size: number = 0,
+): Promise<CourseEventSchemaType[]> {
   const uniqueCourseEventIds = Array.from(new Set(courseEventIds))
 
-  const courseEventPromises = uniqueCourseEventIds.map((id) => getCourseEventByIdAsync(notion, id, false, need))
+  const courseEventPromises = uniqueCourseEventIds.map((id) => getCourseEventByIdAsync(notion, id, false, need, page_size))
 
   const courseEvents = await Promise.all(courseEventPromises)
   return courseEvents.filter((events): events is CourseEventSchemaType => events != null)
