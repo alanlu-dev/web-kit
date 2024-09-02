@@ -65,16 +65,24 @@ const gallery = computed<GalleryType[]>(() => {
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
           <div class="mx:auto w:90%@tablet w:80%@desktop">
-            <ClientOnly>
-              <template #fallback>
-                <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
-              </template>
-              <Splide :options="{ arrows: false, autoplay: true, interval: 4000, type: 'loop' }">
-                <SplideSlide v-for="item in gallery" :key="item.image">
-                  <VideoPlayerCover aspect="16/9" :video="item.video" class="r:2x" :img="item.image" :alt="item.alt" />
-                </SplideSlide>
-              </Splide>
-            </ClientOnly>
+            <template v-if="gallery === null || !gallery?.length">
+              <div>null</div>
+            </template>
+            <template v-else-if="gallery.length === 1">
+              <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
+            </template>
+            <template v-else>
+              <ClientOnly>
+                <template #fallback>
+                  <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
+                </template>
+                <Splide :options="{ arrows: false, autoplay: true, interval: 4000, type: 'loop' }">
+                  <SplideSlide v-for="item in gallery" :key="item.image || item.video">
+                    <VideoPlayerCover aspect="16/9" :video="item.video" class="r:2x" :img="item.image" :alt="item.alt" />
+                  </SplideSlide>
+                </Splide>
+              </ClientOnly>
+            </template>
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
