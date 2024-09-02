@@ -46,7 +46,12 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
       付款方式: { rich_text: [{ text: { content: data?.PaymentType || 'null' } }] },
       金流代碼: { rich_text: [{ text: { content: data?.RtnCode || 'null' } }] },
       金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
-      付款日期: { date: { start: format({ date: new Date(), format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }) } },
+      付款日期: {
+        date: {
+          start: format({ date: new Date(), format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }),
+          time_zone: 'Asia/Taipei',
+        },
+      },
     },
   })
   const parsedPage = NotionPageSchema.parse(page)
