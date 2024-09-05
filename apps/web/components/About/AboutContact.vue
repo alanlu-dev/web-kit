@@ -40,7 +40,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       </FormKit>
     </div>
 
-    <Modal v-model="show" :footer="false">
+    <Modal v-model="show" :footer="null">
       <template #header>
         <h2 class="h2 fg:font-title">成功送出！</h2>
       </template>

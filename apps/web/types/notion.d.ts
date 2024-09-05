@@ -7,4 +7,10 @@ export {}
 
 declare global {
   type AndFilterType = ExtractAnd<NonNullable<QueryDatabaseParameters['filter']>>
+
+  interface QueryType {
+    page?: number
+    page_size: number
+    [key: string]: any
+  }
 }

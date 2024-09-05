@@ -41,8 +41,8 @@ const { class: cls, ...filteredAttrs } = useAttrs()
         <div class="{abs;center;middle}">
           <div class="plyr plyr--full-ui plyr--video plyr--html5 plyr--fullscreen-enabled plyr--paused plyr--stopped plyr--pip-supported {abs;center;middle}">
             <div class="plyr__control plyr__control--overlaid" data-plyr="play" aria-pressed="false" aria-label="Play">
-              <svg aria-hidden="true" focusable="false">
-                <use xlink:href="#plyr-play"></use>
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 18 18">
+                <path d="M15.562 8.1L3.87.225c-.818-.562-1.87 0-1.87.9v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z"></path>
               </svg>
             </div>
           </div>

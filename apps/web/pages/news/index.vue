@@ -18,10 +18,6 @@ const router = useRouter()
 // const page_size = ref(5)
 const page_size = ref(9999)
 
-interface QueryType {
-  page?: number
-  page_size: number
-}
 const query = ref<QueryType>({ ...route.query, page_size: page_size.value })
 watch(
   () => route.query,
