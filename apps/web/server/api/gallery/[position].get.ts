@@ -1,34 +1,22 @@
-import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
+import { getGalleryByPositionAsync } from '~/server/service/gallery/get'
 
-export default defineEventHandler<{
+export default defineWrappedResponseHandler<{
   query: {
     refresh?: boolean
   }
 }>(async (event) => {
   const paramPosition = getRouterParam(event, 'position')
-  if (!paramPosition) return []
+  if (!paramPosition) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '請傳入位置參數')
+  }
+
   const position = decodeURIComponent(paramPosition)
 
-  const { refresh } = getQuery(event)
+  const { refresh: r } = getQuery(event)
+  const config = useRuntimeConfig()
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
 
-  try {
-    return await getGalleryByPositionAsync(null, position, refresh)
-  }
-  catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          // ...
-          break
-        case APIErrorCode.ObjectNotFound:
-          // ...
-          break
-        case APIErrorCode.Unauthorized:
-          // ...
-          break
-      }
-    }
-    return error
-  }
+  const items = await getGalleryByPositionAsync(null, position, refresh)
+  return createApiResponse(200, 'OK', items)
 })

@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { useTimeAgo } from '@vueuse/core'
+
+const route = useRoute()
+const config = useRuntimeConfig()
+
 const common = useCommonStore()
 const activeBreakpoint = common.breakpoints.active()
+
+const generatedAt = useState(() => new Date().toISOString())
+const timeAgo = useTimeAgo(new Date(generatedAt.value))
 </script>
 
 <template>
@@ -14,6 +22,13 @@ const activeBreakpoint = common.breakpoints.active()
 
     <!-- Breakpoints -->
     <div class="hidden .dev_{block} {fixed;bottom:1x;right:1x} max-w:screen-max pointer-events:none z:devPanel">
+      <div>
+        <p>版本資訊 v{{ config.public.version }}</p>
+        <p>Generated {{ timeAgo }}</p>
+        <p>{{ route.fullPath }}</p>
+        <p>{{ route.params }}</p>
+        <p>{{ route.name }}</p>
+      </div>
       <div class="b1-b rounded bg:primary/.5 fg:white m:1x p:1x|2x">
         {{ activeBreakpoint }}
       </div>

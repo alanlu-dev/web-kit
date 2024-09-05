@@ -8,27 +8,12 @@ definePageMeta({
   },
 })
 
-useSeoMeta({
-  title: '常見問答',
-})
-
-useSchemaOrg([
-  defineBreadcrumb({
-    itemListElement: [
-      // item is the url and will be resolved to the absolute url
-      { name: '首頁', item: '/' },
-      // item is not required for the last list element
-      { name: '常見問答' },
-    ],
-  }),
-])
-
 // https://www.ripple-ui.com/docs/components/accordion
 // Accordion on click will collapse the other open accordions
 const focusable = ref(true)
 
 const route = useRoute()
-const { data: list } = await useFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
+const { data: list } = await useApiFetch<FaqSchemaType[]>('/api/faq', { query: route.query })
 </script>
 
 <template>

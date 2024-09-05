@@ -5,7 +5,7 @@ import { cls, toLine } from '@alanlu-dev/mastercss-helpers'
 /** @type {import('@master/css').Config} */
 export default {
   styles: {
-    'plyr': `$plyr-color-main:footer min-w:unset!`,
+    'plyr': `$plyr-color-main:footer h:full min-w:unset!`,
     'plyr__controls': toLine({
       '': cls`opacity:0`,
       '.plyr:hover>': cls`opacity:1`,

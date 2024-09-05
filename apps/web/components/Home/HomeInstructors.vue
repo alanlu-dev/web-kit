@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import cv from 'class-variant'
+import { Intersection } from '@splidejs/splide-extension-intersection'
 import type { InstructorSchemaType } from '~/schema/instructor'
 
 // TODO: 設定檔
@@ -7,7 +8,7 @@ const title = ['實戰派師資陣容']
 const title2 = ['精選產業優良業師', '提供高品質專業課程']
 
 const route = useRoute()
-const { data: instructors } = await useFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
+const { data: instructors } = await useApiFetch<InstructorSchemaType[]>('/api/instructor', { query: { ...route.query, page_size: 99 } })
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 // 第一置中位移公式: calc((100% - 元素寬度) / 2)
@@ -22,8 +23,10 @@ const ratio = cv(
   ({ base, tablet, md }) => base && tablet && md,
 )
 
-const splideOption = {
+const splideOptions = {
   arrows: true,
+  autoplay: true,
+  interval: 4000,
   type: 'loop',
   drag: 'free',
   snap: true,
@@ -37,8 +40,17 @@ const splideOption = {
       fixedWidth: '65%',
     },
     430: {
+      arrows: false,
       gap: '8px',
       fixedWidth: '75%',
+    },
+  },
+  intersection: {
+    inView: {
+      autoplay: true,
+    },
+    outView: {
+      autoplay: false,
     },
   },
 }
@@ -65,31 +77,31 @@ const splideOption = {
             <div class="splide__track">
               <ul v-if="instructors?.length" class="splide__list" :class="ratio()">
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[instructors.length - 1]" />
+                  <InstructorHomeCard :instructor="instructors[instructors.length - 1]" />
                 </li>
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[0]" />
+                  <InstructorHomeCard :instructor="instructors[0]" />
                 </li>
                 <li class="splide__slide">
-                  <InstructorCard :instructor="instructors[1]" />
+                  <InstructorHomeCard :instructor="instructors[1]" />
                 </li>
               </ul>
             </div>
           </template>
 
-          <Splide :has-track="false" :options="splideOption">
+          <Splide :has-track="false" :options="splideOptions" :extensions="{ Intersection }">
             <div class="splide__arrows splide__arrows--ltr {abs;center;middle} {w:80%}@tablet {w:60%;max-w:screen-md}@desktop w:90%">
               <Button intent="secondary" class="splide__arrow splide__arrow--prev left! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em size:unset! transform:unset!" name="material-symbols-light:chevron-left" />
+                <Icon class="{block;size:unset;transform:unset}! f:0.6em" name="material-symbols-light:chevron-left" />
               </Button>
               <Button intent="secondary" class="splide__arrow splide__arrow--next right! {size:unset!;p:2x;round}! {transition:none!}:not(:hover) f:8x! f:10x!@tablet">
-                <Icon class="f:0.6em size:unset! transform:unset!" name="material-symbols-light:chevron-right" />
+                <Icon class="{block;size:unset;transform:unset}! f:0.6em" name="material-symbols-light:chevron-right" />
               </Button>
             </div>
 
             <SplideTrack>
               <SplideSlide v-for="instructor in instructors" :key="instructor.ID">
-                <InstructorCard :instructor="instructor" />
+                <InstructorHomeCard :instructor="instructor" />
               </SplideSlide>
             </SplideTrack>
           </Splide>

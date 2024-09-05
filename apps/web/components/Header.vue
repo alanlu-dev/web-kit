@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { VueFinalModal } from 'vue-final-modal'
 
+const config = useRuntimeConfig()
 const showNav = ref(false)
 
 const nav = [
-  { name: '課程資訊', path: '/course_event' },
+  { name: '課程資訊', path: '/course' },
   { name: '師資陣容', path: '/instructor' },
   { name: '學員評價', path: '/review' },
   { name: '常見問答', path: '/faq' },
@@ -16,15 +17,15 @@ const nav = [
 <template>
   <header v-bind="$attrs" class="{sticky;top;left} bg:footer fg:base-bg shadow:md z:header">
     <div class="{flex;ai:stretch;jc:center;p:4x|6x} {max-w:screen-max;mx:auto} {gap:10x;pl:10x;pr:5x}@desktop">
-      <nuxt-link class="{flex;center-content;gap:1x}" to="/">
+      <nuxt-link class="{flex;center-content;gap:1x}" to="/" @click="showNav = false">
         <div class="{flex;center-content} size:6x size:9x@tablet">
           <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
         </div>
-        <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">中華民國職業清潔認證協會</p>
+        <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:6x@tablet f:7x@desktop font:bold">{{ config.public.siteName }}</p>
       </nuxt-link>
 
       <nav class="ml:auto">
-        <ul class="b1-r hidden nowrap {f:bold}_a:hover {flex;ai:center;jc:flex-start;flex:wrap}@lg">
+        <ul class="b1-r hidden nowrap {font:bold}_a:hover {flex;ai:center;jc:flex-start;flex:wrap}@lg">
           <li v-for="item in nav" :key="item.name" class="contents">
             <nuxt-link class="{ls:0.05em;mr:-0.05em;text:right} p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>
           </li>
@@ -55,7 +56,7 @@ const nav = [
 
           <ul class="b1-r {flex;flex:col;gap:2x}">
             <li v-for="item in nav" :key="item.name" class="contents">
-              <nuxt-link class="~color|300ms|ease fg:primary-hover:hover p:2x|5x" :to="item.path">{{ item.name }}</nuxt-link>
+              <nuxt-link class="~color|300ms|ease fg:primary-hover:hover p:2x|5x" :to="item.path" @click="showNav = false">{{ item.name }}</nuxt-link>
             </li>
           </ul>
         </div>

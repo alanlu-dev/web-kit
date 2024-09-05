@@ -3,8 +3,8 @@ import type { FaqSchemaType } from '~/schema/faq'
 
 interface IProps {
   faq: FaqSchemaType
-  focusable: boolean
-  checked: boolean
+  focusable?: boolean
+  checked?: boolean
 }
 withDefaults(defineProps<IProps>(), {
   // https://www.ripple-ui.com/docs/components/accordion

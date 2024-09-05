@@ -1,40 +1,25 @@
-import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
+import { getClassroomByIdAsync } from '~/server/service/classroom/get'
 
-export default defineEventHandler<{
+export default defineWrappedResponseHandler<{
   query: {
     refresh?: boolean
   }
 }>(async (event) => {
   const id = getRouterParam(event, 'id')
-  if (!id) return null
-
-  const { refresh } = getQuery(event)
-
-  try {
-    const item = await getClassroomByIdAsync(null, +id, refresh)
-    if (!item) {
-      const responseData = { rc: 404, rm: 'Not Found' }
-      event.node.res.statusCode = responseData.rc
-      return responseData
-    }
-
-    return item
+  if (!id) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '請傳入教室編號')
   }
-  catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          // ...
-          break
-        case APIErrorCode.ObjectNotFound:
-          // ...
-          break
-        case APIErrorCode.Unauthorized:
-          // ...
-          break
-      }
-    }
-    return error
+
+  const { refresh: r } = getQuery(event)
+  const config = useRuntimeConfig()
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
+
+  const item = await getClassroomByIdAsync(null, +id, refresh)
+  if (!item) {
+    setResponseStatus(event, ErrorCodes.NOT_FOUND)
+    return createApiError(event.node.res.statusCode, '找不到該教室')
   }
+
+  return createApiResponse(200, 'OK', item)
 })

@@ -32,5 +32,6 @@ tsup
 Turborepo
 unplugin
 unstorage
+vercel
 videojs
 vueuse

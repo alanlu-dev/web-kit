@@ -1,35 +1,20 @@
-import { APIErrorCode, ClientErrorCode, isNotionClientError } from '@notionhq/client'
+import { getFaqAsync } from '~/server/service/faq/get'
 
-export default defineEventHandler<{
+export default defineWrappedResponseHandler<{
   query: {
     page?: string
     page_size?: string
     refresh?: boolean
   }
 }>(async (event) => {
-  const { page, page_size, refresh } = getQuery(event)
+  const { page, page_size, refresh: r } = getQuery(event)
 
   const currentPage = page ? Number.parseInt(page) : 1
-  const pageSize = page_size ? Number.parseInt(page_size) : 100
+  const pageSize = page_size ? Number.parseInt(page_size) : 99
 
-  try {
-    return await getFaqAsync(null, currentPage, pageSize, refresh)
-  }
-  catch (error: unknown) {
-    if (isNotionClientError(error)) {
-      // error is now strongly typed to NotionClientError
-      switch (error.code) {
-        case ClientErrorCode.RequestTimeout:
-          // ...
-          break
-        case APIErrorCode.ObjectNotFound:
-          // ...
-          break
-        case APIErrorCode.Unauthorized:
-          // ...
-          break
-      }
-    }
-    return error
-  }
+  const config = useRuntimeConfig()
+  const refresh = event.node.req.headers['x-prerender-revalidate'] === config.vercel.bypassToken || (config.public.isDev && !!r)
+
+  const items = await getFaqAsync(null, currentPage, pageSize, refresh)
+  return createApiResponse(200, 'OK', items)
 })

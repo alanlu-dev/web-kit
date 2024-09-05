@@ -1,20 +1,23 @@
 import { z } from 'zod'
 import {
+  NotionCreatedTimeSchema,
   NotionDatabaseRollupSchema,
+  NotionDateSchema,
   NotionNumberSchema,
-  NotionRelationSchema,
   NotionRichTextSchema,
   NotionStatusSchema,
   NotionTitleSchema,
   NotionUniqueIdSchema,
 } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { format } from '@formkit/tempo'
 import { MemberSchema } from './member'
 import { CourseEventSchema } from './course_event'
-import type { AndFilterType } from '~/types/notion'
+import { OrderPaymentMethodEnum } from './payment'
 
 export const OrderParamsSchema = MemberSchema.extend({
   courseEventId: z.number(),
+  paymentMethod: OrderPaymentMethodEnum,
 })
 export type OrderParamsSchemaType = z.infer<typeof OrderParamsSchema>
 
@@ -23,8 +26,6 @@ export const OrderSchema = z.object({
   PAGE_ID: z.string().optional(),
 
   訂單編號: NotionTitleSchema.transform((o) => (o.title[0]?.type === 'text' ? o.title[0].plain_text : undefined)),
-  留言備註: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
-  金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
 
   // 會員: NotionRelationSchema.transform((o) => o.relation[0]?.id),
   會員ID: NotionDatabaseRollupSchema.transform((o) =>
@@ -35,26 +36,42 @@ export const OrderSchema = z.object({
   ),
   會員信箱: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'array' && o.rollup.array[0]?.type === 'email' && o.rollup.array[0].email ? o.rollup.array[0].email : undefined)),
 
-  // 課程安排: NotionRelationSchema.transform((o) => o.relation[0]?.id),
-  課程安排ID: NotionDatabaseRollupSchema.transform((o) =>
+  // 課程場次: NotionRelationSchema.transform((o) => o.relation[0]?.id),
+  課程場次ID: NotionDatabaseRollupSchema.transform((o) =>
     o.rollup.type === 'array' && o.rollup.array[0]?.type === 'unique_id' && o.rollup.array[0].unique_id ? o.rollup.array[0].unique_id.number : undefined,
   ),
-  課程安排資訊: CourseEventSchema.optional().nullable(),
+  課程場次資訊: CourseEventSchema.optional().nullable(),
 
+  付款方式: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  金流代碼: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   付款金額: NotionNumberSchema.transform((o) => o.number),
+  付款日期: NotionDateSchema.transform((o) => {
+    if (!o.date) return null
+    const startDate = new Date(o.date.start)
+    const formattedDate = format({ date: startDate, format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' })
 
-  付款狀態: NotionStatusSchema.transform((o) => o.status.name),
+    return formattedDate
+  }),
+
+  訂單狀態: NotionStatusSchema.transform((o) => o.status.name),
   聯絡狀態: NotionStatusSchema.transform((o) => o.status.name),
+
+  建立時間: NotionCreatedTimeSchema.transform((o) => {
+    return new Date(o.created_time)
+  }),
 })
 export type OrderSchemaType = z.infer<typeof OrderSchema>
 
+const config = useRuntimeConfig()
+
 export const orderFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
-  // { property: '發布狀態', status: process.env.VERCEL_ENV === 'production' ? { equals: '發布' } : { does_not_equal: '草稿' } },
+  // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
 export const orderQuery: QueryDatabaseParameters = {
-  database_id: process.env.NOTION_DATABASE_ID_ORDERS!,
+  database_id: config.notion.databaseId.orders,
   // sorts: [{ property: '排序', direction: 'descending' }],
   filter: { and: orderFilters },
   filter_properties: [
@@ -70,57 +87,25 @@ export const orderQuery: QueryDatabaseParameters = {
     '%5Eyuo',
     /** 會員信箱 */
     '%3E~Wm',
-    /** 課程安排 */
+    /** 課程場次 */
     // 'UYf%3A',
-    /** 課程安排ID */
+    /** 課程場次ID */
     '%3DFp%5E',
-    /** 留言備註 */
-    'huBu',
+    /** 付款方式 */
+    '%3FI%7Bq',
     /** 金流訊息 */
     'pRO%5D',
+    /** 金流代碼 */
+    '%5DtVD',
     /** 付款金額 */
     'LXf%5E',
-    /** 付款狀態 */
+    /** 付款日期 */
+    'An%3CG',
+    /** 訂單狀態 */
     'ayf%5B',
     /** 聯絡狀態 */
     'Ti%5DJ',
+    /** 建立時間 */
+    'bkdx',
   ],
-}
-
-const _keysAndIds = {
-  ID: 'rebb',
-  訂單編號: 'title',
-
-  會員: 'j_Pj',
-  會員ID: 'mxR%3F',
-  會員名稱: '%5Eyuo',
-  會員信箱: '%3E~Wm',
-  會員手機: 'Y%60q%3C',
-
-  留言備註: 'huBu',
-
-  課程安排: 'UYf%3A',
-  課程安排ID: '%3DFp%5E',
-
-  上課日期: 'ym%5DS',
-  上課地點: '%7Cisg',
-
-  課程: 'iZps',
-  課程價格: 'N%40Pj',
-  __課程價格: 'QVa%3B',
-
-  付款金額: 'LXf%5E',
-  實收金額: '%5CE_i',
-
-  付款狀態: 'ayf%5B',
-  聯絡狀態: 'Ti%5DJ',
-
-  金流訊息: 'pRO%5D',
-  金流代碼: '%5DtVD',
-
-  建立時間: 'bkdx',
-  建立者: 'v%3C%3E%40',
-  更新時間: 'vMYF',
-  更新者: 'e%40%7C%5D',
-  封存: 'fp%3Ex',
 }

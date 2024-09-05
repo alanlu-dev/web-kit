@@ -1,0 +1,34 @@
+diff --git a/package.json b/package.json
+index 9e804afd41d9bcc6f0b56a7336123d01ae12f901..9e633ab7aa663c39ddfdfc82581e6bf1b1c3dd8e 100644
+--- a/package.json
++++ b/package.json
+@@ -16,7 +16,8 @@
+     ".": {
+       "browser": "./dist/index.mjs",
+       "import": "./dist/index.mjs",
+-      "require": "./dist/index.js"
++      "require": "./dist/index.js",
++      "types": "./dist/index.d.ts"
+     },
+     "./astro": {
+       "import": "./dist/astro/component.ts"
+@@ -29,7 +30,8 @@
+     "./nuxt": {
+       "browser": "./dist/nuxt/index.mjs",
+       "import": "./dist/nuxt/index.mjs",
+-      "require": "./dist/nuxt/index.js"
++      "require": "./dist/nuxt/index.js",
++      "types": "./dist/nuxt/index.d.ts"
+     },
+     "./react": {
+       "browser": "./dist/react/index.mjs",
+@@ -48,7 +50,8 @@
+     "./vue": {
+       "browser": "./dist/vue/index.mjs",
+       "import": "./dist/vue/index.mjs",
+-      "require": "./dist/vue/index.js"
++      "require": "./dist/vue/index.js",
++      "types": "./dist/vue/index.d.ts"
+     }
+   },
+   "main": "./dist/index.js",

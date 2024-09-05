@@ -16,7 +16,7 @@ const card = [
   {
     icon: 'teenyicons:certificate-outline',
     title: ['認證加持', '競爭力提升'],
-    description: '針對未來想從業人員或已從業人員,職業清潔認証協會提供共 3 等級的職業清潔認證證照,第 1 級清潔職業認證證照需達 1000 小時服務時數,讓學員在產業上更具競爭力。',
+    description: '針對未來想從業人員或已從業人員,職業清潔認證協會提供共 3 等級的職業清潔認證證照,第 1 級清潔職業認證證照需達 5000 小時服務時數,讓學員在產業上更具競爭力。',
   },
 ]
 </script>
@@ -35,9 +35,9 @@ const card = [
       </div>
 
       <div class="{grid-cols:1;gap:7x} {grid-cols:3}@xs fg:primary mt:5x mt:10x@tablet">
-        <div v-for="item in card" :key="item.icon" class="bg:white p:5x r:2x">
+        <div v-for="item in card" :key="item.icon" class="bg:white p:5x r:2x shadow:sm">
           <Iconify :icon="item.icon" class="f:15x>.icon" />
-          <h3 class="h3 {flex;flex:col;jc:center} {flex:row;flex:wrap}@md mt:2x">
+          <h3 class="h3 {flex;jc:center;flex:wrap} mt:2x">
             <span v-for="(t, idx) in item.title" :key="idx" class="px:.5x">{{ t }}</span>
           </h3>
           <p class="b2-r fg:font-content mt:4x">{{ item.description }}</p>

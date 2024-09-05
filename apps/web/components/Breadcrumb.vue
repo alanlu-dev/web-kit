@@ -1,12 +1,25 @@
 <script setup lang="ts">
 interface IProps {
   title?: string
+  isPageRoot?: boolean
   noLastPage?: boolean
 }
 
 const props = defineProps<IProps>()
 
-const links = useBreadcrumbItems()
+const links = useBreadcrumbItems({
+  overrides: !props.title
+    ? []
+    : [
+        undefined, // Home
+        undefined, // Blog
+        props.isPageRoot ? false : undefined,
+        {
+          label: props.title,
+        },
+      ],
+  schemaOrg: true,
+})
 
 const processLinks = computed(() => {
   if (props.noLastPage) {

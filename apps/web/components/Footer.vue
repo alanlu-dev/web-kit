@@ -1,12 +1,17 @@
 <script setup lang="ts">
+const config = useRuntimeConfig()
+
+// TODO: 設定檔
+const title = ['中華民國職業', '清潔認證協會']
+
 useHead({
   script: [
     {
       src: 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v20.0&appId=895271347480268',
-      async: true,
+      // async: true,
       defer: true,
       crossorigin: 'anonymous',
-      nonce: '5RIUbDff',
+      nonce: 'JIbORIoG',
     },
   ],
 })
@@ -20,15 +25,14 @@ useHead({
           <Icon name="Logo" class="f:6x f:9x@tablet"></Icon>
         </div>
         <div class="{flex;gap:0.1em} {flex:col;gap:2x}@tablet">
-          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">中華民國職業</p>
-          <p class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">清潔認證協會</p>
+          <p v-for="(t, idx) in title" :key="idx" class="nowrap {ls:0.1em;mr:-0.1em;text:right} f:4.5x f:7x@tablet font:bold">{{ t }}</p>
         </div>
       </div>
 
       <div class="b2-r nowrap {flex;ai:flex-start;gap:5x} flex:2 flex:1>* w:full w:unset@tablet">
         <div>
           <ul class="{flex;flex:col;gap:2x} align-self:flex-start mx:auto w:unset w:70@tablet w:100@desktop">
-            <li><nuxt-link to="/course_event">找課程</nuxt-link></li>
+            <li><nuxt-link to="/course">找課程</nuxt-link></li>
             <li><nuxt-link to="/instructor">找講師</nuxt-link></li>
             <li><nuxt-link to="/about">關於我們</nuxt-link></li>
             <li><nuxt-link to="/about">協會介紹</nuxt-link></li>
@@ -38,38 +42,41 @@ useHead({
 
         <div>
           <div class="{flex;flex:col;gap:2x} flex:1">
-            <p>聯絡專線：<a href="tel:+886-905-757-766" class="text:underline">0905-757-766</a></p>
+            <p>聯絡專線：<a href="tel:+886-968-047-766" class="text:underline">0968-047-766</a></p>
             <p>營業時間：08:00-22:00</p>
             <div class="{flex;ai:center;jc:flex-start;gap:4.5x}">
-              <Iconify icon="ic:baseline-facebook"></Iconify>
-              <Iconify icon="ri:line-fill"></Iconify>
+              <div intent="text" class="bg:#D0E6F1! r:2x" @click="navigateTo('https://liff.line.me/1645278921-kWRPP32q/?accountId=404maqcq', { external: true })">
+                <Iconify icon="ri:line-fill" :is-prefix="true" class="fg:#07B727_svg gap:1x">課程諮詢</Iconify>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="w:full w:unset@tablet">
-        <div class="h:full mx:auto@tablet w:242">
+        <div class="h:full mx:auto@tablet w:300@lg">
           <div id="fb-root"></div>
           <div
             class="fb-page"
-            data-href="https://www.facebook.com/facebook"
+            data-href="https://www.facebook.com/profile.php?id=100083157557892"
             data-tabs=""
-            data-width="242"
-            data-height="102"
+            data-width="500px"
+            data-height=""
             data-small-header="false"
             data-adapt-container-width="true"
             data-hide-cover="false"
             data-show-facepile="false"
           >
-            <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a> </blockquote>
+            <blockquote cite="https://www.facebook.com/profile.php?id=100083157557892" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/profile.php?id=100083157557892"></a>
+            </blockquote>
           </div>
         </div>
       </div>
     </div>
 
     <div class="b2-r nowrap {flex;center-content;flex:wrap;gap:1x} bg:#245464 mx:auto p:2x|6x px:10x@desktop text:center">
-      <span>{{ new Date().getFullYear() }} © 中華民國職業清潔認證協會</span>
+      <span>{{ new Date().getFullYear() }} © {{ config.public.siteName }}</span>
       <span>版權所有</span>
     </div>
   </footer>

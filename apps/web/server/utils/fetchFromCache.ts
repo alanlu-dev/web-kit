@@ -1,6 +1,6 @@
 export async function fetchFromCacheIdAsync<T>(key: string, currentPage: number, pageSize: number): Promise<T[] | null> {
   const ids = await redis.lRange(key, currentPage, pageSize)
-  console.log('ids', ids)
+  console.log('ids', currentPage, pageSize, ids)
   if (ids.length) {
     console.log('cache hit', key)
     const keys = ids.map((id) => `${key}:${id}`)
@@ -15,7 +15,7 @@ export async function fetchFromCacheIdAsync<T>(key: string, currentPage: number,
 
 export async function fetchFromCacheAsync<T>(key: string, currentPage: number, pageSize: number): Promise<T[] | null> {
   const items = await redis.lRange<T>(key, currentPage, pageSize)
-  console.log('items', items.length)
+  console.log('items', currentPage, pageSize, items.length)
   if (items.length) {
     console.log('cache hit', key)
     return items
