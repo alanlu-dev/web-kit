@@ -12,6 +12,7 @@ const props = withDefaults(
   },
 )
 const route = useRoute()
+// const router = useRouter()
 
 const currentPage = computed(() => Math.max(1, Math.min(props.page, props.total)))
 const totalPage = computed(() => Math.max(1, props.total))
@@ -60,7 +61,32 @@ const displayPages = computed(() => {
   return pages
 })
 
+// 如果包含 -page-page
+
+const routeName = computed(() => {
+  const name = route.name as string
+  if (name.includes('-page-page')) return name
+  return `${name}-page-page`
+})
+
+const siteConfig = useSiteConfig()
+const root = computed(() => route.fullPath.split('/')[1])
+const canonicalUrl = computed(() => {
+  return currentPage.value === 1 ? `${siteConfig.url}/${root.value}` : `${siteConfig.url}/${root.value}/page/${currentPage.value}`
+})
+
+useHead({
+  title: `${route.meta.title} ${currentPage.value > 1 ? `- 第 ${currentPage.value} 頁` : ''}`,
+  link: [
+    { rel: 'canonical', href: canonicalUrl },
+    currentPage.value > 1 ? { rel: 'prev', href: `${siteConfig.url}/${root.value}/page/${currentPage.value - 1}` } : {},
+    currentPage.value < totalPage.value ? { rel: 'next', href: `${siteConfig.url}/${root.value}/page/${currentPage.value + 1}` } : {},
+  ].filter(Boolean),
+})
+
 function jumpPages(page: number | string) {
+  if (currentPage.value === +page) return
+
   let newPage
 
   if (page === 'forward') {
@@ -74,7 +100,9 @@ function jumpPages(page: number | string) {
   }
 
   if (newPage >= 1 && newPage <= totalPage.value) {
-    navigateTo({ name: route.name as string, query: { page: newPage } })
+    // navigateTo({ name: route.name as string, query: { page: newPage } })
+    // 使用路由導航而不是查詢參數
+    navigateTo({ name: routeName.value, params: { page: newPage } })
   }
 }
 </script>

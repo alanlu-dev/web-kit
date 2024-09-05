@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface IProps {
   title?: string
+  isPageRoot?: boolean
   noLastPage?: boolean
 }
 
@@ -12,6 +13,7 @@ const links = useBreadcrumbItems({
     : [
         undefined, // Home
         undefined, // Blog
+        props.isPageRoot ? false : undefined,
         {
           label: props.title,
         },

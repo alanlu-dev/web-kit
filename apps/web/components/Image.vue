@@ -19,7 +19,6 @@ const emit = defineEmits(['load', 'error', 'animationend'])
 
 const src = ref(props.src || props.fallback)
 const placeholder = ref(props.placeholder)
-const title = ref(props.title || props.alt)
 const img = ref()
 const hasError = ref(false)
 
@@ -85,6 +84,13 @@ onMounted(() => {
       handleError('')
     }
   })
+
+  watch(
+    () => props.src,
+    () => {
+      src.value = props.src || props.fallback
+    },
+  )
 })
 // onUnmounted(() => {
 //   if (resizeObserver.value) {
@@ -98,5 +104,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtImg ref="img" v-bind="$attrs" :class="{ 'object:contain!': src === fallback }" :src="src" :alt="alt" :title="title" :placeholder="placeholder" />
+  <NuxtImg ref="img" v-bind="$attrs" :class="{ 'object:contain!': src === fallback }" :src="src" :alt="alt || title" :title="title || alt" :placeholder="placeholder" />
 </template>

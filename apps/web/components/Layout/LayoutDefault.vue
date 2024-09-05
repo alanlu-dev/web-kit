@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SpeedInsights } from '@vercel/speed-insights/nuxt'
-import { ModalsContainer } from 'vue-final-modal'
+import { ModalsContainer, useVfm } from 'vue-final-modal'
 import { useEventListener } from '@vueuse/core'
 
 const showDevPanel = useState('showDevPanel', () => false)
@@ -12,6 +12,16 @@ useEventListener(window, 'keydown', (event) => {
     showDevPanel.value = !showDevPanel.value
   }
 })
+
+const reviewStore = useReviewStore()
+const { isModalOpen, selectedReview, isFirstReview, isLastReview } = storeToRefs(reviewStore)
+
+async function goToAdjacentReview(direction: 'prev' | 'next') {
+  const adjacentReview = await reviewStore.getAdjacentReview(direction)
+  if (adjacentReview) {
+    // 更新 UI 或執行其他操作
+  }
+}
 </script>
 
 <template>
@@ -38,5 +48,58 @@ useEventListener(window, 'keydown', (event) => {
         <Iconify class="flex! size:inherit" icon="material-symbols-light:keyboard-arrow-up-rounded" />
       </Button>
     </ClientOnly>
+
+    <Modal modal-id="review" class="{top:-4x;right:2x}_.close-btn {max-w:screen-sm}_.vfm__content" :footer="null">
+      <template v-if="selectedReview">
+        <div>
+          <div class="{flex;flex:col;ai:flex-start;gap:5x} flex:row@xs">
+            <div class="flex:1@xs overflow:hidden r:2x w:full">
+              <VideoPlayerCover :key="`media-${selectedReview.ID}`" aspect="16/9" :video="selectedReview.影音連結" :img="selectedReview.照片[0]" :alt="selectedReview.照片alt" />
+            </div>
+            <div class="flex:1.5 text:left">
+              <p class="b1-m fg:font-title">學員 {{ selectedReview.學員 }}</p>
+              <nuxt-link :to="`/course/${selectedReview.課程ID}`" class="b1-m fg:primary mt:1x">{{ selectedReview.課程資訊_名稱 }}</nuxt-link>
+              <p class="b2-r mt:2x">{{ selectedReview.評價 }}</p>
+            </div>
+          </div>
+
+          <div class="{flex;center-content;gap:2x} mt:auto">
+            <button :disabled="isFirstReview" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('prev')">
+              <Iconify icon="material-symbols-light:arrow-left-alt" :is-prefix="true">上一則</Iconify>
+            </button>
+            <button :disabled="isLastReview" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('next')">
+              <Iconify icon="material-symbols-light:arrow-right-alt">下一則</Iconify>
+            </button>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="w:full">
+          <div class="{flex;flex:col;ai:flex-start;gap:5x} flex:row@xs">
+            <div class="flex:1@xs overflow:hidden r:2x w:full">
+              <div class="skeleton block aspect:16/9"></div>
+            </div>
+            <div class="flex:1.5 text:left w:full">
+              <p class="b1-m skeleton skeleton--text h:5x my:2x w:30%">_</p>
+              <p class="b1-m skeleton skeleton--text h:5x mb:2x mt:1x w:50%">_</p>
+              <div class="mt:2x">
+                <p class="b2-r skeleton skeleton--text h:5x my:2x w:40%">_</p>
+                <p class="b2-r skeleton skeleton--text h:5x my:2x w:70%">_</p>
+                <p class="b2-r skeleton skeleton--text h:5x my:2x w:80%">_</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="{flex;center-content;gap:2x} mt:auto">
+            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentReview('prev')">
+              <Iconify icon="material-symbols-light:arrow-left-alt" :is-prefix="true">上一則</Iconify>
+            </button>
+            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentReview('next')">
+              <Iconify icon="material-symbols-light:arrow-right-alt">下一則</Iconify>
+            </button>
+          </div>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>

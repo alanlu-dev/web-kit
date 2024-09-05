@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import cv from 'class-variant'
 import { Intersection } from '@splidejs/splide-extension-intersection'
-import type { ReviewSchemaType } from '~/schema/review'
 
 // TODO: 設定檔
 const title = ['學員滿意度 93.8%']
 const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學員提供更好的學習體驗']
 
-const route = useRoute()
-const { data: reviews } = await useApiFetch<ReviewSchemaType[]>('/api/review', { query: { ...route.query, page_size: 10 } })
+const reviewStore = useReviewStore()
+const { reviews } = storeToRefs(reviewStore)
 
+onMounted(async () => {
+  await reviewStore.fetchReviews({ page: 1, page_size: 10 })
+})
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
   'mr:20px>li mr:32px>li@md ',
@@ -70,13 +72,13 @@ const splideOptions = {
             <div class="splide__track">
               <ul v-if="reviews?.length" class="splide__list" :class="ratio()">
                 <li class="splide__slide">
-                  <ReviewCard :review="reviews[0]" />
+                  <ReviewCard :review="reviews[0]" :page="1" :idx="0" />
                 </li>
                 <li class="splide__slide">
-                  <ReviewCard :review="reviews[1]" />
+                  <ReviewCard :review="reviews[1]" :page="1" :idx="1" />
                 </li>
                 <li class="splide__slide">
-                  <ReviewCard :review="reviews[2]" />
+                  <ReviewCard :review="reviews[2]" :page="1" :idx="2" />
                 </li>
               </ul>
             </div>
@@ -93,8 +95,8 @@ const splideOptions = {
             </div>
 
             <SplideTrack>
-              <SplideSlide v-for="review in reviews?.slice(0, 10)" :key="review.ID">
-                <ReviewCard :review="review" />
+              <SplideSlide v-for="(review, idx) in reviews?.slice(0, 10)" :key="review.ID">
+                <ReviewCard :review="review" :page="1" :idx="idx" />
               </SplideSlide>
             </SplideTrack>
           </Splide>

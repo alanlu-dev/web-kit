@@ -1,16 +1,12 @@
 <script setup lang="ts">
-definePageMeta({
-  title: '學員評價',
-  breadcrumb: {
-    label: '學員評價',
-  },
-})
+const route = useRoute()
+const page = computed(() => Number.parseInt(route.params.page as string) || 1)
 </script>
 
 <template>
   <div>
     <Hero title="學員評價" />
-    <Breadcrumb />
+    <Breadcrumb :title="`第${page}頁`" :is-page-root="true" />
 
     <section class="rel overflow:hidden" data-aos="fade-up">
       <div class="{content:'';abs;inset:0;bg:home/.8}::before bg:cover bg:url(/review/cover2.jpg)|no-repeat|center|45% blur(1px) h:40x h:50x@tablet h:60x@desktop"> </div>
@@ -21,8 +17,6 @@ definePageMeta({
         </div>
       </div>
     </section>
-
-    <ReviewPageContent />
     <NuxtPage />
   </div>
 </template>
