@@ -76,14 +76,13 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
   }
 
   if (data?.RtnCode === '1') {
-    // 取得課程場次資訊
-    order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
-
-    await sendEmail(notion, order_page_id, order)
+    sendEmail(notion, order_page_id, order)
   }
 }
 
 async function sendEmail(notion: Client, order_page_id: string, order: OrderSchemaType) {
+  order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
+
   // 發信
   let emailResult: any = null
   try {

@@ -26,7 +26,7 @@ export async function processEcPayOrder(event: H3Event, orderParams: OrderParams
   const hasDuplicateMembers = await getOrderByMemberIdAsync(notion, courseEvent.PAGE_ID!, memberId)
   if (hasDuplicateMembers) {
     setResponseStatus(event, ErrorCodes.CONFLICT)
-    return createApiError(
+    return createApiResponse(
       ErrorCodes.CONFLICT,
       `已於 ${format({ date: hasDuplicateMembers.建立時間, format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' })} 報名`,
       hasDuplicateMembers.訂單編號,

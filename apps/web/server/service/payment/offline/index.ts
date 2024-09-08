@@ -30,7 +30,7 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
   const hasDuplicateMembers = await getOrderByMemberIdAsync(notion, courseEvent.PAGE_ID!, memberId)
   if (hasDuplicateMembers) {
     setResponseStatus(event, ErrorCodes.CONFLICT)
-    return createApiError(
+    return createApiResponse(
       ErrorCodes.CONFLICT,
       `已於 ${format({ date: hasDuplicateMembers.建立時間, format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' })} 報名`,
       hasDuplicateMembers.訂單編號,
@@ -73,14 +73,15 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
   })
   const parsedPage = NotionPageSchema.parse(page)
   const order = OrderSchema.parse(parsedPage.properties)
-  order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
 
-  await sendEmail(notion, page.id, order)
+  sendEmail(notion, page.id, order)
 
   return createApiResponse(200, 'OK', MerchantTradeNo)
 }
 
 async function sendEmail(notion: Client, order_page_id: string, order: OrderSchemaType) {
+  order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
+
   const config = useRuntimeConfig()
 
   // 發信
