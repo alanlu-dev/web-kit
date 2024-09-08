@@ -5,6 +5,7 @@ import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { render } from '@vue-email/render'
 import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
 import { getMemberIdAsync } from '~/server/service/member/get'
+import { getOrderByMemberIdAsync } from '~/server/service/order/get'
 import { getMonthIdAsync } from '~/server/service/month/get'
 import type { OrderParamsSchemaType, OrderSchemaType } from '~/schema/order'
 import { OrderSchema } from '~/schema/order'
@@ -24,12 +25,23 @@ export async function processFreeOrder(event: H3Event, orderParams: OrderParamsS
     return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '該課程場次資訊有誤')
   }
 
-  const MerchantTradeNo = getTradeNo()
+  // 已報名
   const memberId = await getMemberIdAsync(notion, orderParams)
+  const hasDuplicateMembers = await getOrderByMemberIdAsync(notion, courseEvent.PAGE_ID!, memberId)
+  if (hasDuplicateMembers) {
+    setResponseStatus(event, ErrorCodes.CONFLICT)
+    return createApiError(
+      ErrorCodes.CONFLICT,
+      `已於 ${format({ date: hasDuplicateMembers.建立時間, format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' })} 報名`,
+      hasDuplicateMembers.訂單編號,
+    )
+    // return createApiResponse(200, 'OK', hasDuplicateMembers.訂單編號)
+  }
 
   const [year, month] = format({ date: new Date(), format: 'YYYY/MM', locale: 'zh-TW', tz: 'Asia/Taipei' }).split('/')
   const monthId = await getMonthIdAsync(notion, { year, month })
 
+  const MerchantTradeNo = getTradeNo()
   const page = await notion.pages.create({
     parent: { database_id: config.notion.databaseId.orders },
     properties: {
@@ -66,11 +78,6 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
         courseName: order.課程場次資訊!.課程資訊_名稱!,
         courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
         studentName: maskName(order.會員名稱),
-        orderNumber: order.訂單編號!,
-        paymentAmount: `NT$ 0`,
-        paymentType: '免費',
-        paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
-        logoSrc: `${config.public.siteUrl}/logo.png`,
       },
       {
         pretty: true,

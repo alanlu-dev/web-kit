@@ -41,7 +41,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
     return
   }
 
-  const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
+  const { data, error, rc } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
     method: 'POST',
     body: JSON.stringify({
       courseEventId: id,
@@ -51,6 +51,10 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       paymentMethod: paymentMethod.value,
     }),
   })
+
+  if (rc.value === 409) {
+    navigateTo(`/checkout/result/${data.value}`)
+  }
 
   if (error.value) {
     isLoading.value = false
@@ -101,7 +105,7 @@ async function offlinePayment() {
   if (isLoading_offline.value) return
   isLoading_offline.value = true
 
-  const { data, error } = await useApiFetch<IEcPayPaymentRequest>('/api/payment', {
+  const { data, error, rc } = await useApiFetch<string>('/api/payment', {
     method: 'POST',
     body: JSON.stringify({
       courseEventId: id,
@@ -114,6 +118,10 @@ async function offlinePayment() {
 
   if (error.value) {
     isLoading_offline.value = false
+
+    if (rc.value === 409) {
+      navigateTo(`/checkout/result/${data.value}`)
+    }
     return
   }
 
@@ -161,25 +169,25 @@ async function offlinePayment() {
               </div>
             </template>
             <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
-              <h3 class="h3 fg:font-title">免費清潔實作課程報名辦法</h3>
+              <h3 class="h3 title fg:font-title">免費清潔實作課程報名辦法</h3>
               <hr class="bg:divider h:1 my:5x w:full" />
-              <div class="b1-r">
-                <h2 class="fg:font-title mt:4x">報名流程：</h2>
+              <div>
+                <p class="b1-m fg:font-title mt:4x">報名流程：</p>
                 <div class="list">
-                  <ol class="b2-r">
+                  <ol>
                     <li>填寫報名基本資料，並加入協會官方 LINE 帳號</li>
                     <li>初步評估（兩階段）</li>
                     <li>錄取免費實作課程通知</li>
                   </ol>
-
-                  <p class="mt:10x">為了確保課程品質，並讓每位參與同學都能獲得最大的學習效益，我們將對所有報名者進行初步評估。評估方式採兩階段，包括：</p>
-
-                  <p class="fg:font-title mt:4x">第一階段，線上評估：</p>
-                  <p class="mt:2x">協會將會透過官方LINE平台與您進行基本的背景訪談，瞭解您過去是否有從事過清潔相關工作，或是有完成任何清潔認證或研習課程。</p>
-                  <p class="fg:font-title mt:4x">第二階段，團體面談：</p>
-                  <p class="mt:2x">基於上述資訊，協會將邀請部分報名者統一安排一次團體面談，以進一步了解您的學習動機與相關能力。</p>
-                  <p class=""><span>面談地點：中華民國職業清潔認證協會</span> <span>地址：台中市北屯區遼陽四街 65 號</span></p>
                 </div>
+                <p class="mt:10x">為了確保課程品質，並讓每位參與同學都能獲得最大的學習效益，我們將對所有報名者進行初步評估。評估方式採兩階段，包括：</p>
+
+                <p class="b1-m fg:font-title mt:4x">第一階段，線上評估：</p>
+                <p class="mt:2x">協會將會透過官方LINE平台與您進行基本的背景訪談，瞭解您過去是否有從事過清潔相關工作，或是有完成任何清潔認證或研習課程。</p>
+
+                <p class="b1-m fg:font-title mt:4x">第二階段，團體面談：</p>
+                <p class="mt:2x">基於上述資訊，協會將邀請部分報名者統一安排一次團體面談，以進一步了解您的學習動機與相關能力。</p>
+                <p><span>面談地點：中華民國職業清潔認證協會</span> <span>地址：台中市北屯區遼陽四街 65 號</span></p>
               </div>
             </template>
           </div>
@@ -242,7 +250,7 @@ async function offlinePayment() {
           <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
             <Button intent="secondary" class="nowrap" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
             <Button intent="primary" class="nowrap" :disabled="isLoading" @click="online()">線上付款</Button>
-            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="offline()">現金付款</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" :loading="isLoading" @click="offline()">現金付款</Button>
           </div>
         </template>
         <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
@@ -260,7 +268,7 @@ async function offlinePayment() {
 
           <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
             <Button intent="secondary" class="nowrap" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
-            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="free()">確認報名</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" :loading="isLoading" @click="free()">確認報名</Button>
           </div>
         </template>
       </div>
@@ -322,7 +330,7 @@ async function offlinePayment() {
       <template #footer>
         <div class="{inline-flex;gap:5x} mx:auto opacity:.5[loading=true]" :loading="isLoading_offline">
           <Button intent="secondary" :disabled="isLoading_offline" @click="showOffline = false">取消</Button>
-          <Button intent="primary" :disabled="isLoading_offline" @click="offlinePayment()">確認報名</Button>
+          <Button intent="primary" :disabled="isLoading_offline" :loading="isLoading_offline" @click="offlinePayment()">確認報名</Button>
         </div>
       </template>
     </Modal>

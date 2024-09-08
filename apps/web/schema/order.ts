@@ -3,6 +3,7 @@ import {
   NotionCreatedTimeSchema,
   NotionDatabaseRollupSchema,
   NotionDateSchema,
+  NotionFormulaSchema,
   NotionNumberSchema,
   NotionRichTextSchema,
   NotionStatusSchema,
@@ -53,7 +54,15 @@ export const OrderSchema = z.object({
 
     return formattedDate
   }),
+  付款期限: NotionDateSchema.transform((o) => {
+    if (!o.date) return null
+    const startDate = new Date(o.date.start)
+    const formattedDate = format({ date: startDate, format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' })
 
+    return formattedDate
+  }),
+  是否逾期: NotionFormulaSchema.transform((o) => (o.formula.type === 'boolean' ? o.formula.boolean : undefined)),
+  已作廢: NotionFormulaSchema.transform((o) => (o.formula.type === 'boolean' ? o.formula.boolean : undefined)),
   訂單狀態: NotionStatusSchema.transform((o) => o.status.name),
   聯絡狀態: NotionStatusSchema.transform((o) => o.status.name),
 
@@ -67,6 +76,7 @@ const config = useRuntimeConfig()
 
 export const orderFilters: AndFilterType = [
   { property: '封存', checkbox: { equals: false } },
+  { property: '已作廢', formula: { checkbox: { equals: false } } },
   // { property: '發布狀態', status: !config.public.isDev ? { equals: '發布' } : { does_not_equal: '草稿' } },
   // { property: '發布日期', date: { on_or_before: new Date().toISOString() } },
 ]
@@ -101,6 +111,12 @@ export const orderQuery: QueryDatabaseParameters = {
     'LXf%5E',
     /** 付款日期 */
     'An%3CG',
+    /** 付款期限 */
+    'M%5EmC',
+    /** 是否逾期 */
+    'Q%40ZY',
+    /** 已作廢 */
+    'J%3ABd',
     /** 訂單狀態 */
     'ayf%5B',
     /** 聯絡狀態 */

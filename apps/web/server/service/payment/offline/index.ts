@@ -1,11 +1,11 @@
 import { Client } from '@notionhq/client'
 import type { H3Event } from 'h3'
-import { formatThousand } from '@alanlu-dev/utils'
 import { addDay, format } from '@formkit/tempo'
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { render } from '@vue-email/render'
 import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
 import { getMemberIdAsync } from '~/server/service/member/get'
+import { getOrderByMemberIdAsync } from '~/server/service/order/get'
 import { getMonthIdAsync } from '~/server/service/month/get'
 import type { OrderParamsSchemaType, OrderSchemaType } from '~/schema/order'
 import { OrderSchema } from '~/schema/order'
@@ -25,6 +25,19 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
     return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '該課程場次資訊有誤')
   }
 
+  // 已報名
+  const memberId = await getMemberIdAsync(notion, orderParams)
+  const hasDuplicateMembers = await getOrderByMemberIdAsync(notion, courseEvent.PAGE_ID!, memberId)
+  if (hasDuplicateMembers) {
+    setResponseStatus(event, ErrorCodes.CONFLICT)
+    return createApiError(
+      ErrorCodes.CONFLICT,
+      `已於 ${format({ date: hasDuplicateMembers.建立時間, format: 'YYYY/MM/DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' })} 報名`,
+      hasDuplicateMembers.訂單編號,
+    )
+    // return createApiResponse(200, 'OK', hasDuplicateMembers.訂單編號)
+  }
+
   // 已截止報名
   const expirationDate = addDay(courseEvent.上課日期[2], -7)
   if (new Date() >= expirationDate) {
@@ -40,12 +53,10 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
     return createApiError(ErrorCodes.UNPROCESSABLE_ENTITY, '名額已滿')
   }
 
-  const MerchantTradeNo = getTradeNo()
-  const memberId = await getMemberIdAsync(notion, orderParams)
-
   const [year, month] = format({ date: new Date(), format: 'YYYY/MM', locale: 'zh-TW', tz: 'Asia/Taipei' }).split('/')
   const monthId = await getMonthIdAsync(notion, { year, month })
 
+  const MerchantTradeNo = getTradeNo()
   const page = await notion.pages.create({
     parent: { database_id: config.notion.databaseId.orders },
     properties: {
@@ -56,6 +67,7 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
       講師: { type: 'relation', relation: courseEvent.講師.map((id) => ({ id: id! })) },
       月份: { type: 'relation', relation: [{ id: monthId }] },
       付款金額: { type: 'number', number: courseEvent.指定價格 || courseEvent.課程資訊_價格! },
+      付款期限: { type: 'date', date: { start: format({ date: addDay(new Date(), 3), format: 'YYYY-MM-DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }), time_zone: 'Asia/Taipei' } },
       訂單狀態: { status: { name: '金流:待現金付款' } },
     },
   })
@@ -80,19 +92,18 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
       {
         siteUrl: config.public.siteUrl,
         siteName: config.public.siteName,
+        payPlace: '中華民國職業清潔認證協會',
+        payAddress: '台中市北屯區遼陽四街 65 號',
         courseName: order.課程場次資訊!.課程資訊_名稱!,
         courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
         studentName: maskName(order.會員名稱),
         orderNumber: order.訂單編號!,
-        paymentAmount: `NT$ ${formatThousand(order.付款金額!)}`,
-        paymentType: order.付款方式 === 'Credit_CreditCard' ? '信用卡' : order.付款方式!,
-        paymentDate: format({ date: new Date(), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
         courseDate: order.課程場次資訊!.上課日期![0]!,
         courseTime: order.課程場次資訊!.上課日期![1]!,
+        deathLine: order.付款期限!,
         // 課程⽇期減 7 天
         courseDateMinus7: format({ date: addDay(order.課程場次資訊!.上課日期![2]!, -7), format: 'YYYY/MM/DD', locale: 'zh-TW', tz: 'Asia/Taipei' }),
         courseLocation: order.課程場次資訊!.教室資訊!.地址!,
-        logoSrc: `${config.public.siteUrl}/logo.png`,
       },
       {
         pretty: true,
@@ -101,7 +112,7 @@ async function sendEmail(notion: Client, order_page_id: string, order: OrderSche
 
     const { sendMail } = useNodeMailer()
     emailResult = await sendMail({
-      subject: `恭喜！您已成功報名${config.public.siteName}【${order.課程場次資訊?.課程資訊_名稱}】`,
+      subject: `感謝您報名${config.public.siteName}【${order.課程場次資訊?.課程資訊_名稱}】，請務必於三日內完成繳費`,
       html,
       to: order.會員信箱,
     })

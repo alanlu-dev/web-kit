@@ -4,18 +4,17 @@ import { Img, Link, Section, Text } from '@vue-email/components'
 interface IProps {
   siteUrl: string
   siteName: string
+  payPlace: string
+  payAddress: string
   courseName: string
   courseLink: string
   studentName: string
   orderNumber: string
-  paymentAmount: string
-  paymentType: string
-  paymentDate: string
+  deathLine: string
   courseDate: string
   courseTime: string
   courseDateMinus7: string
   courseLocation: string
-  logoSrc: string
 }
 
 defineProps<IProps>()
@@ -33,12 +32,21 @@ defineProps<IProps>()
       <Text
         >感謝您報名參加{{ siteName }}的【<strong>
           <Link :href="courseLink">{{ courseName }}</Link> </strong
-        >】。恭喜您已成功報名本課程並付款完成。
+        >】。您選擇的繳費方式為【現金付款】，<strong>請務必於 {{ deathLine }} 內親至本協會完成繳費，逾時將視同自動放棄報名。</strong>
       </Text>
     </Section>
 
     <Section>
-      <Text><strong>課程資訊 (TODO:現金付款)</strong></Text>
+      <Text
+        >繳費地點：<span>{{ payPlace }}</span></Text
+      >
+      <Text
+        >繳費地址：<span>{{ payAddress }}</span></Text
+      >
+    </Section>
+
+    <Section>
+      <Text><strong>課程資訊</strong></Text>
       <Text
         >課程名稱：<span>{{ courseName }}</span></Text
       >
@@ -49,24 +57,18 @@ defineProps<IProps>()
         >課程時間：<span>{{ courseTime }}</span></Text
       >
       <Text
-        >上課地點：<span>{{ courseLocation }}</span></Text
+        ><span>{{ courseLocation }}</span></Text
       >
     </Section>
 
     <Section>
-      <Text><strong>付款資訊</strong></Text>
-      <Text
-        >訂單編號：<span>{{ orderNumber }}</span></Text
-      >
-      <Text
-        >付款金額：<span>{{ paymentAmount }}</span></Text
-      >
-      <Text
-        >付款方式：<span>{{ paymentType }}</span></Text
-      >
-      <Text
-        >付款日期：<span>{{ paymentDate }}</span></Text
-      >
+      <Text style="color: red"
+        >為便於後續報名確認，課程通知及其他相關事宜，請務必主動加入本協會官方LINE帳號：點擊連結 <Link href="https://lin.ee/6bQnil5">https://lin.ee/6bQnil5</Link> 或 掃描下方 QR
+        code。加入後，請主動提供您的報名姓名及連絡電話，以便協會工作人員為您進行後續服務
+      </Text>
+      <Link href="https://lin.ee/6bQnil5">
+        <Img :src="`${siteUrl}/line.png`" alt="line" width="200" height="200" />
+      </Link>
     </Section>
 
     <Section>
@@ -85,7 +87,7 @@ defineProps<IProps>()
 
     <Section>
       <Link :href="siteUrl">
-        <Img :src="logoSrc" alt="Logo" width="400" height="300" />
+        <Img :src="`${siteUrl}/logo.png`" alt="Logo" width="320" height="240" />
       </Link>
     </Section>
   </Section>

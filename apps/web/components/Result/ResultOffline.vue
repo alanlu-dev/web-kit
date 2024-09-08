@@ -29,14 +29,7 @@ const courseDateMinus7 = computed(() => {
         <p>
           您選擇的繳費方式為【現金付款】，<b
             >請務必於
-            {{
-              format({
-                date: addDay(order.建立時間, 3),
-                format: 'YYYY/MM/DD',
-                locale: 'zh-TW',
-                tz: 'Asia/Taipei',
-              })
-            }}
+            {{ order.付款期限 }}
             內親至本協會完成繳費，逾時將視同自動放棄報名。</b
           >
         </p>

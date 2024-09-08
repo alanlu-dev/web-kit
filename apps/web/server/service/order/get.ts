@@ -24,7 +24,38 @@ export async function getOrderByTransNoAsync(notion: Client | null, trans_no: st
     query: {
       ...orderQuery,
       filter: {
-        and: [...orderFilters, { property: '訂單編號', title: { equals: trans_no } }],
+        and: [
+          ...orderFilters,
+          // 訂單編號
+          { property: '訂單編號', title: { equals: trans_no } },
+          // 是否逾期
+          { property: '是否逾期', formula: { checkbox: { equals: false } } },
+        ],
+      },
+    },
+    processData: processOrderDataAsync,
+    updateProperties: null,
+  })
+
+  return items ? items[0] : null
+}
+
+export async function getOrderByMemberIdAsync(notion: Client | null, coursePageId: string, memberPageId: string): Promise<OrderSchemaType | null> {
+  console.log('getOrderByMemberIdAsync', coursePageId, memberPageId)
+  const [items] = await fetchNotionDataAsync<OrderSchemaType>({
+    notion,
+    query: {
+      ...orderQuery,
+      filter: {
+        and: [
+          ...orderFilters,
+          // 課程場次
+          { property: '課程場次', relation: { contains: coursePageId } },
+          // 會員
+          { property: '會員', relation: { contains: memberPageId } },
+          // 是否逾期
+          { property: '是否逾期', formula: { checkbox: { equals: false } } },
+        ],
       },
     },
     processData: processOrderDataAsync,

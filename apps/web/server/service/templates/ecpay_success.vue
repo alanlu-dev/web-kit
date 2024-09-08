@@ -15,7 +15,6 @@ interface IProps {
   courseTime: string
   courseDateMinus7: string
   courseLocation: string
-  logoSrc: string
 }
 
 defineProps<IProps>()
@@ -85,7 +84,7 @@ defineProps<IProps>()
 
     <Section>
       <Link :href="siteUrl">
-        <Img :src="logoSrc" alt="Logo" width="400" height="300" />
+        <Img :src="`${siteUrl}/logo.png`" alt="Logo" width="320" height="240" />
       </Link>
     </Section>
   </Section>

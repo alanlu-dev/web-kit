@@ -3,6 +3,7 @@ import cv from 'class-variant'
 
 interface IProps {
   intent?: 'primary' | 'secondary' | 'text'
+  loading?: boolean
 }
 
 withDefaults(defineProps<IProps>(), {
@@ -20,6 +21,7 @@ const btn = cv('btn', {
 
 <template>
   <button :class="btn({ intent })" type="button">
+    <Icon v-if="loading" name="mingcute:loading-fill" class="spin mr:2x" />
     <slot />
   </button>
 </template>
