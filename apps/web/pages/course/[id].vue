@@ -154,13 +154,12 @@ const gallery = computed<GalleryType[]>(() => {
 
         <div class="{sticky;bottom;left} {top:calc(74+2x);left:unset;bottom:unset;max-w:screen-tablet;mb:4x;mr:10x;r:2x}@desktop bg:base-bg p:5x|6x shadow:all text:left w:full z:nav">
           <input id="Registration" name="Registration" type="checkbox" class="hidden {accordion-content--open}:checked~div_.accordion-content" />
-
+          <h2 class="h3 fg:font-title">{{ course?.名稱 }}</h2>
+          <hr class="bg:#C9C9C9 h:1 mt:2x w:full" />
           <div class="accordion-content {accordion-content--open}@desktop">
             <div>
               <div class="{flex;flex:col;ai:flex-start;jc:flex-start}">
-                <h2 class="h3">{{ course?.名稱 }}</h2>
-                <hr class="hidden@tablet&<desktop bg:#C9C9C9 h:1 my:2x w:full" />
-                <ul class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop my:6x">
+                <ul class="b1-r {flex;flex:col;gap:2x} {gap:3x}@desktop my:9x">
                   <li v-for="(item, idx) in course?.課程基礎資訊?.課程特色" :key="`課程特色-${idx}`" class="{flex;gap:2x}">
                     <span class="fg:#3C8922">
                       <Icon name="octicon:check-16" />
@@ -170,7 +169,7 @@ const gallery = computed<GalleryType[]>(() => {
                 </ul>
               </div>
 
-              <div class="{flex;ai:flex-end;jc:space-between;gap:5x;flex:wrap}">
+              <div class="{flex;ai;flex:col;flex-end;jc:space-between;gap:5x;flex:wrap}">
                 <FormKit v-if="course?.課程型態 !== '免費課程'" v-model="eventFormDate" type="form" :actions="false" form-class="{p:1x}>.formkit-outer">
                   <FormKit type="select" name="event" :options="eventOptions" />
                 </FormKit>
@@ -190,21 +189,23 @@ const gallery = computed<GalleryType[]>(() => {
                     </p>
                   </div>
                 </template>
-                <div class="{mt:0}@desktop {w:30%}@tablet&<desktop w:full">
-                  <p v-if="targetEvent?.指定價格" class="h2 nowrap {flex;ai:flex-end;gap:2x;flex:wrap} text:right@tablet&<desktop">
-                    <span class="b1-r fg:divider text:line-through">NT$ {{ formatThousand(course?.價格) }}</span>
-                    <span class="fg:accent">NT$ {{ formatThousand(targetEvent?.指定價格) }}</span>
-                  </p>
-                  <p v-else class="h2 nowrap fg:accent text:right@tablet&<desktop">NT$ {{ formatThousand(course?.價格) }} </p>
-                  <NuxtLink v-if="targetEvent?.ID" :to="`/checkout/${targetEvent?.ID}`" class="btn btn--primary mt:5x mt:4x@tablet&<desktop w:full"> 立即報名 </NuxtLink>
-                  <button v-else disabled class="btn btn--primary cursor:no-drop mt:5x mt:4x@tablet&<desktop opacity:.5 w:full"> 立即報名 </button>
-                </div>
               </div>
             </div>
           </div>
-          <label for="Registration" class="hidden@desktop :checked~{opacity:0.5;mb:-4x} {flex;center-content}">
-            <Iconify class="hidden@desktop :checked~label_{hidden}" icon="material-symbols-light:keyboard-arrow-up"> 展開課程資訊 </Iconify>
-            <Iconify class="hidden! hidden!@desktop :checked~label_{block!} fg:divider!" icon="material-symbols-light:keyboard-arrow-down">收合課程資訊</Iconify>
+          <div class="h2 my:20">
+            <p v-if="targetEvent?.指定價格" class="nowrap">
+              <span class="b1-r fg:divider mr:2x text:line-through">NT$ {{ formatThousand(course?.價格) }}</span>
+              <span class="fg:accent">NT$ {{ formatThousand(targetEvent?.指定價格) }}</span>
+            </p>
+            <p v-else class="fg:accent">NT$ {{ formatThousand(course?.價格) }} </p>
+          </div>
+          <div class="block@desktop hidden :checked~{block!} mt:5x">
+            <NuxtLink v-if="targetEvent?.ID" :to="`/checkout/${targetEvent?.ID}`" class="btn btn--primary w:full"> 立即報名 </NuxtLink>
+            <button v-else disabled class="btn btn--primary cursor:no-drop opacity:.5 w:full"> 立即報名 </button>
+          </div>
+          <label for="Registration" class="hidden@desktop {flex;center-content}">
+            <Iconify class="btn btn--primary hidden@desktop :checked~label_{hidden} w:full" icon="material-symbols-light:keyboard-arrow-up"> 展開課程資訊 </Iconify>
+            <Iconify class="hidden! hidden!@desktop :checked~label_{block!} pb:0!" icon="material-symbols-light:keyboard-arrow-down">收回面板</Iconify>
           </label>
         </div>
       </div>
