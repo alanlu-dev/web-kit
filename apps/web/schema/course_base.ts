@@ -2,6 +2,52 @@ import { z } from 'zod'
 import { NotionDatabaseRollupSchema, NotionFormulaSchema, NotionNumberSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
+interface ListItem {
+  type: 'ul' | 'ol'
+  symbol?: string
+  items: string[]
+}
+
+interface TextItem {
+  type: 'text'
+  content: string
+}
+
+type ParsedItem = ListItem | TextItem
+
+function parseList(text: string): ParsedItem[] {
+  const lines = text.split('\n')
+  const result: ParsedItem[] = []
+  let currentList: { type: 'ul' | 'ol'; symbol?: string; items: string[] } | null = null
+
+  lines.forEach((line) => {
+    const trimmedLine = line.trim()
+    const ulMatch = /^([^\w\s])\s+/.exec(trimmedLine) // 匹配任意非字母數字和空白字符的符號
+    const olMatch = /^\d+\.\s+/.exec(trimmedLine) // 匹配數字加點的有序列表
+
+    if (ulMatch) {
+      const symbol = ulMatch[1]
+      if (!currentList || currentList.type !== 'ul' || currentList.symbol !== symbol) {
+        currentList = { type: 'ul', symbol, items: [] }
+        result.push(currentList)
+      }
+      currentList.items.push(trimmedLine.substring(ulMatch[0].length).trim())
+    }
+    else if (olMatch) {
+      if (!currentList || currentList.type !== 'ol') {
+        currentList = { type: 'ol', items: [] }
+        result.push(currentList)
+      }
+      currentList.items.push(trimmedLine.substring(olMatch[0].length).trim())
+    }
+    else {
+      currentList = null
+      result.push({ type: 'text', content: trimmedLine })
+    }
+  })
+
+  return result
+}
 export const CourseBaseSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
   PAGE_ID: z.string().optional(),
@@ -12,10 +58,10 @@ export const CourseBaseSchema = z.object({
   結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   課程特色: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
-  可以學到: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
-  課程大綱: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
-  課前準備: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
-  結業獲得: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
+  可以學到: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? parseList(o.rich_text[0].plain_text) : [])),
+  課程大綱: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? parseList(o.rich_text[0].plain_text) : [])),
+  課前準備: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? parseList(o.rich_text[0].plain_text) : [])),
+  結業獲得: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? parseList(o.rich_text[0].plain_text) : [])),
 })
 export type CourseBaseSchemaType = z.infer<typeof CourseBaseSchema>
 

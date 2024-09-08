@@ -87,21 +87,17 @@ const gallery = computed<GalleryType[]>(() => {
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 關於課程</h3>
-            <div class="b1-r {flex;flex:col;gap:5x;flex:wrap} {flex:row}@tablet flex:1>div mt:3x">
+            <div class="b1-r {flex;flex:col;gap:5x;flex:wrap} {flex:row}@xs flex:1>div mt:3x">
               <div>
                 <p>課程大綱：</p>
-                <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-                  <ul v-if="course?.課程基礎資訊?.課程大綱?.length">
-                    <li v-for="(item, idx) in course?.課程基礎資訊?.課程大綱" :key="`課程大綱-${idx}`">{{ item }}</li>
-                  </ul>
+                <div class="b1-r mt:2x mt:3x@xs pl:0.5x@xs">
+                  <List root-key="課程大綱" :list="course?.課程基礎資訊?.課程大綱" />
                 </div>
               </div>
               <div>
                 <p>結業獲得：</p>
-                <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-                  <ul v-if="course?.課程基礎資訊?.結業獲得?.length">
-                    <li v-for="(item, idx) in course?.課程基礎資訊?.結業獲得" :key="`結業獲得-${idx}`">{{ item }}</li>
-                  </ul>
+                <div class="b1-r mt:2x mt:3x@xs pl:0.5x@xs">
+                  <List root-key="結業獲得" :list="course?.課程基礎資訊?.結業獲得" />
                 </div>
               </div>
             </div>
@@ -132,20 +128,16 @@ const gallery = computed<GalleryType[]>(() => {
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
-            <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 在這堂課，你可以學到</h3>
-            <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-              <ul v-if="course?.課程基礎資訊?.可以學到?.length">
-                <li v-for="(item, idx) in course?.課程基礎資訊?.可以學到" :key="`可以學到-${idx}`">{{ item }}</li>
-              </ul>
+            <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 在這堂課，你可以學到 </h3>
+            <div class="b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
+              <List root-key="可以學到" :list="course?.課程基礎資訊?.可以學到" />
             </div>
           </div>
 
           <div class="bg:#FAFAFA p:6x|10x r:2x text:left">
             <h3 class="h3 rel {abs;middle;left:0;content:'';w:1.5x;bg:primary}::before fg:primary jc:stretch pl:3.5x"> 上課前的準備</h3>
-            <div class="list b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
-              <ul v-if="course?.課程基礎資訊?.課前準備?.length">
-                <li v-for="(item, idx) in course?.課程基礎資訊?.課前準備" :key="`課前準備-${idx}`">{{ item }}</li>
-              </ul>
+            <div class="b1-r mt:2x mt:3x@tablet pl:0.5x@tablet">
+              <List root-key="課前準備" :list="course?.課程基礎資訊?.課前準備" />
             </div>
           </div>
 
