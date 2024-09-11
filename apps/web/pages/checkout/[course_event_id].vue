@@ -274,8 +274,8 @@ async function offlinePayment() {
 
           <div class="{flex;center-content;gap:4x} {mt:15x;gap:10x}@tablet my:10x opacity:.5[loading=true]" :loading="isLoading">
             <Button intent="secondary" class="nowrap" :disabled="isLoading" @click="navigateTo(`/course/${courseEvent?.課程ID}`)">取消</Button>
-            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="online()">線上付款</Button>
-            <Button intent="primary" class="nowrap" :disabled="isLoading" :loading="isLoading" @click="offline()">現金付款</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" :loading="isLoading" @click="online()">線上付款</Button>
+            <Button intent="primary" class="nowrap" :disabled="isLoading" @click="offline()">現金付款</Button>
           </div>
         </template>
         <template v-else-if="courseEvent?.課程資訊_型態 === '免費課程'">
