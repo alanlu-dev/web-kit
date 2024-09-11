@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import cv from 'class-variant'
 import { Intersection } from '@splidejs/splide-extension-intersection'
+import type { Options as SplideOptions } from '@splidejs/splide'
 
 // TODO: 設定檔
 const title = ['學員滿意度 93.8%']
@@ -23,7 +24,7 @@ const ratio = cv(
   ({ base, tablet, md }) => base && tablet && md,
 )
 
-const splideOptions = {
+const splideOptions: SplideOptions = {
   arrows: true,
   autoplay: true,
   interval: 4000,

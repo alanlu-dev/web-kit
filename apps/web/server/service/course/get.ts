@@ -1,6 +1,5 @@
 import type { Client } from '@notionhq/client'
 import { isFullPage } from '@notionhq/client'
-import { addDay } from '@formkit/tempo'
 import { getCourseBaseByIdAsync } from '../course_base/get'
 import { fetchCourseEvents } from '~/server/service/course_events/get'
 import { fetchInstructors } from '~/server/service/instructor/get'
@@ -106,5 +105,12 @@ export async function processCourseRelationAsync(notion: Client | null, item: Co
   }
   if (instructor) item.可授課講師資訊 = instructor
 
+  if (item.課程照片.length) {
+    item.畫廊 = item.課程照片.map((image, idx) => ({ image, alt: item.照片alt?.[idx] || item.名稱 }))
+    // 如果有影片 把它插入第二個
+    if (item.影音連結) {
+      item.畫廊.splice(1, 0, { video: item.影音連結 })
+    }
+  }
   return item
 }

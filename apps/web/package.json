@@ -53,6 +53,7 @@
     "@nuxtjs/seo": "^2.0.0-rc.19",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.5.4",
+    "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
     "@vercel/edge-config": "^1.2.1",
     "@vercel/kv": "^2.0.0",

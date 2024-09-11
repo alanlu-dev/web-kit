@@ -13,7 +13,7 @@ interface TextItem {
   content: string
 }
 
-type ParsedItem = ListItem | TextItem
+export type ParsedItem = ListItem | TextItem
 
 function parseList(text: string): ParsedItem[] {
   const lines = text.split('\n')

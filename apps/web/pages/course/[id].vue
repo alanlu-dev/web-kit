@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { formatThousand } from '@alanlu-dev/utils'
-import { addDay, format } from '@formkit/tempo'
+import { addDay } from '@formkit/tempo'
 import type { FormKitOptionsProp } from '@formkit/inputs'
+import type { Splide, Options as SplideOptions } from '@splidejs/splide'
 import type { CourseSchemaType } from '~/schema/course'
 
 const route = useRoute()
@@ -41,21 +42,18 @@ const eventOptions = computed<FormKitOptionsProp>(() =>
 
 const targetEvent = computed(() => course.value?.課程場次資訊?.find((event) => event?.ID === eventFormDate.value.event))
 
-interface GalleryType {
-  image?: string
-  video?: string
-  alt?: string
+const splideOptions: SplideOptions = {
+  arrows: false,
+  autoplay: true,
+  interval: 4000,
+  type: 'fade',
 }
 
-const gallery = computed<GalleryType[]>(() => {
-  const gallery: GalleryType[] = course.value?.課程照片?.map((image, idx) => ({ image, alt: course.value?.照片alt?.[idx] || course.value?.名稱 })) || []
-
-  // 如果有影片 把它插入第二個
-  if (course.value?.影音連結) {
-    gallery.splice(1, 0, { video: course.value?.影音連結 })
-  }
-  return gallery
-})
+function onSplideMounted(splide: Splide) {
+  console.log('onSplideMounted', splide.Components.Elements)
+  // splide.options.type = 'loop'
+  // splide.options.autoplay = true
+}
 </script>
 
 <template>
@@ -65,20 +63,20 @@ const gallery = computed<GalleryType[]>(() => {
       <div class="{flex;ai:flex-start;jc:space-between;flex:wrap} {gap:7.5x}@desktop mt:5x text:center">
         <div class="{flex;flex:col;gap:5x} {pr:0;pl:10x}@md flex:1 overflow:hidden px:6x">
           <div class="mx:auto w:90%@tablet w:80%@desktop">
-            <template v-if="gallery === null || !gallery?.length">
-              <div>null</div>
+            <template v-if="course?.畫廊 === null || !course?.畫廊?.length">
+              <VideoPlayerCover aspect="16/9" class="r:2x" :img="course?.課程照片[0]" :alt="course?.名稱" />
             </template>
-            <template v-else-if="gallery.length === 1">
-              <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
+            <template v-else-if="course?.畫廊.length === 1">
+              <VideoPlayerCover aspect="16/9" class="r:2x" :img="course?.畫廊?.[0]?.image" :alt="course?.畫廊?.[0]?.alt" />
             </template>
             <template v-else>
               <ClientOnly>
                 <template #fallback>
-                  <VideoPlayerCover aspect="16/9" class="r:2x" :img="gallery[0].image" :alt="gallery[0].alt" />
+                  <VideoPlayerCover aspect="16/9" class="r:2x" :img="course?.畫廊?.[0]?.image" :alt="course?.畫廊?.[0]?.alt" />
                 </template>
-                <Splide :options="{ arrows: false, autoplay: true, interval: 4000, type: 'loop' }">
-                  <SplideSlide v-for="item in gallery" :key="item.image || item.video">
-                    <VideoPlayerCover aspect="16/9" :video="item.video" class="r:2x" :img="item.image" :alt="item.alt" />
+                <Splide :options="splideOptions" @splide:mounted="onSplideMounted" @splide:ready="onSplideReady">
+                  <SplideSlide v-for="item in course?.畫廊" :key="item?.image || item?.video">
+                    <VideoPlayerCover aspect="16/9" :video="item?.video" class="r:2x" :img="item?.image" :alt="item?.alt" />
                   </SplideSlide>
                 </Splide>
               </ClientOnly>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import cv from 'class-variant'
 import { Intersection } from '@splidejs/splide-extension-intersection'
+import type { Options as SplideOptions } from '@splidejs/splide'
 import type { CourseSchemaType } from '~/schema/course'
 
 definePageMeta({
@@ -67,7 +68,7 @@ const ratio = cv(
   ({ base, xs, md }) => base && xs && md,
 )
 
-const splideOptions = {
+const splideOptions: SplideOptions = {
   arrows: false,
   pagination: false,
   drag: 'free',

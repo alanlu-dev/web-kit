@@ -14,6 +14,12 @@ import { InstructorSchema } from './instructor'
 import { CourseEventSchema } from './course_event'
 import { CourseBaseSchema } from './course_base'
 
+const gallerySchema = z.object({
+  image: z.string().optional(),
+  video: z.string().optional(),
+  alt: z.string().optional(),
+})
+
 export const CourseSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
   PAGE_ID: z.string().optional(),
@@ -31,6 +37,8 @@ export const CourseSchema = z.object({
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
   照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
+  畫廊: z.array(gallerySchema.optional()).optional(),
+
   價格: NotionNumberSchema.transform((o) => o.number!),
 
   // 可授課講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),

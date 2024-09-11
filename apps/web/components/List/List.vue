@@ -3,10 +3,12 @@ import type { ParsedItem } from '~/schema/course_base'
 
 interface IProps {
   rootKey: string
-  list: ParsedItem[]
+  list?: ParsedItem[]
 }
 
-defineProps<IProps>()
+withDefaults(defineProps<IProps>(), {
+  list: () => [] as ParsedItem[],
+})
 </script>
 
 <template>
