@@ -44,15 +44,16 @@ const targetEvent = computed(() => course.value?.課程場次資訊?.find((event
 
 const splideOptions: SplideOptions = {
   arrows: false,
-  autoplay: true,
+  autoplay: false,
   interval: 4000,
-  type: 'fade',
+  type: 'loop',
 }
 
 function onSplideMounted(splide: Splide) {
-  console.log('onSplideMounted', splide.Components.Elements)
-  // splide.options.type = 'loop'
-  // splide.options.autoplay = true
+  // 修復 type=loop 會造成的 圖片位移錯誤
+  nextTick(() => {
+    splide.Components.Pagination.items[0].button.click()
+  })
 }
 </script>
 
@@ -74,7 +75,7 @@ function onSplideMounted(splide: Splide) {
                 <template #fallback>
                   <VideoPlayerCover aspect="16/9" class="r:2x" :img="course?.畫廊?.[0]?.image" :alt="course?.畫廊?.[0]?.alt" />
                 </template>
-                <Splide :options="splideOptions" @splide:mounted="onSplideMounted" @splide:ready="onSplideReady">
+                <Splide :options="splideOptions" @splide:mounted="onSplideMounted">
                   <SplideSlide v-for="item in course?.畫廊" :key="item?.image || item?.video">
                     <VideoPlayerCover aspect="16/9" :video="item?.video" class="r:2x" :img="item?.image" :alt="item?.alt" />
                   </SplideSlide>
