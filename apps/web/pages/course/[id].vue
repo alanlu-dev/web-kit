@@ -119,7 +119,7 @@ function onSplideMounted(splide: Splide) {
               <div>
                 <p>結業人數</p>
                 <div class="round {flex;flex:col;center-content} bg:white max-w:30x mt:1x mx:auto">
-                  <p class="h1 title fg:primary"> {{ course?.課程基礎資訊?.結業人數 || 0 }} </p>
+                  <p class="h1 title fg:primary"> {{ course?.結業人數 || 0 }} </p>
                   <p>人</p>
                 </div>
               </div>

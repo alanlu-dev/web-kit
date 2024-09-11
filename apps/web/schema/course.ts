@@ -40,6 +40,7 @@ export const CourseSchema = z.object({
   畫廊: z.array(gallerySchema.optional()).optional(),
 
   價格: NotionNumberSchema.transform((o) => o.number!),
+  結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   // 可授課講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
   可授課講師ID: NotionDatabaseRollupSchema.transform((o) =>
@@ -90,6 +91,8 @@ export const courseQuery: QueryDatabaseParameters = {
     'dB~z',
     /** 價格 */
     'zWJ%7D',
+    /** 結業人數 */
+    'eJ%7Cg',
 
     /** 可授課講師 */
     // '%5CjaO',
