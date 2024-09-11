@@ -196,6 +196,9 @@ export default defineNuxtConfig({
       siteUrl: '',
       gtmId: '',
       fbUrl: '',
+      recaptcha: {
+        siteKey: '',
+      },
     },
     vercel: {
       bypassToken: process.env.VERCEL_BYPASS_TOKEN || '',
@@ -231,6 +234,9 @@ export default defineNuxtConfig({
       hashKey: '',
       hashIv: '',
       stage: '',
+    },
+    recaptcha: {
+      key: '',
     },
   },
 

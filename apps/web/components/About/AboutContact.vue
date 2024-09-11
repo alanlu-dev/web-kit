@@ -1,15 +1,32 @@
 <script setup lang="ts">
+import { toast } from 'vue3-toastify'
 import { createZodPlugin } from '@formkit/zod'
 import { reset } from '@formkit/core'
 import { ContactSchema } from '~/schema/contact'
 import type { ContactSchemaType } from '~/schema/contact'
 
 const show = ref(false)
+const recaptchaV2 = ref<string | number | null>(null)
 
 const contactData = ref<ContactSchemaType>()
 const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formData) => {
+  if (recaptchaV2.value === null) {
+    toast.warn('請完成驗證')
+    return
+  }
+  if (recaptchaV2.value === -1) {
+    toast.warn('驗證已過期，請重新驗證')
+    return
+  }
+
   // await new Promise((r) => setTimeout(r, 2000))
-  const { error } = await useApiFetch('/api/contact', { method: 'post', body: formData })
+  const { error } = await useApiFetch('/api/contact', {
+    method: 'post',
+    body: {
+      ...formData,
+      recaptcha: recaptchaV2.value,
+    },
+  })
 
   if (!error.value) {
     show.value = true
@@ -37,6 +54,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
           <FormKit type="text" name="title" label="主旨" validation="required" />
         </div>
         <FormKit :classes="{ wrapper: 'mt:4x!' }" type="textarea" name="message" validation="required" label="問題描述，寫下您的問題" lines="3" />
+        <Recaptcha class="mt:5x overflow:hidden w:full" @verified="recaptchaV2 = $event" @expired="recaptchaV2 = -1" />
       </FormKit>
     </div>
 
@@ -44,7 +62,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       <template #header>
         <h2 class="h2 fg:font-title">成功送出！</h2>
       </template>
-      <div class="b1-r text:center">
+      <div class="b1-r text:center w:full">
         <p>已收到您的留言，</p>
         <p>我們將盡快與您聯絡。</p>
       </div>

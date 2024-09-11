@@ -3,11 +3,17 @@ import type { OrderParamsSchemaType } from '~/schema/order'
 import { processEcPayOrder } from '~/server/service/payment/ecpay'
 import { processFreeOrder } from '~/server/service/payment/free'
 import { processOfflineOrder } from '~/server/service/payment/offline'
+import { verifyRecaptchaAsync } from '~/server/service/recaptcha'
 
 export default defineWrappedResponseHandler<{
-  body: OrderParamsSchemaType
+  body: OrderParamsSchemaType & { recaptcha: string }
 }>(async (event) => {
   const params = await readBody(event)
+
+  if (!(await verifyRecaptchaAsync(params.recaptcha))) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '驗證碼錯誤')
+  }
 
   switch (params.paymentMethod) {
     case OrderPaymentMethodEnum.enum.綠界:

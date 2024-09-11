@@ -25,6 +25,8 @@ useSeoMeta({
 // 免費課程報名流程：點擊「立即報名」
 // 轉至 報名辦法說明頁 ，送出後→ 寄成功通知信
 
+const recaptchaV2 = ref<string | number | null>(null)
+
 const showOffline = ref(false)
 const paymentMethod = ref<OrderPaymentMethodEnumType>(OrderPaymentMethodEnum.enum.綠界)
 const formRef = ref<{ node: FormKitContext } | null>(null)
@@ -33,6 +35,15 @@ const orderFormData = ref<MemberSchemaType>()
 const isLoading = ref(false)
 const isLoading_offline = ref(false)
 const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData) => {
+  if (recaptchaV2.value === null) {
+    toast.warn('請完成驗證')
+    return
+  }
+  if (recaptchaV2.value === -1) {
+    toast.warn('驗證已過期，請重新驗證')
+    return
+  }
+
   if (isLoading.value) return
   isLoading.value = true
 
@@ -49,6 +60,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       email: formData.email,
       mobile: formData.mobile,
       paymentMethod: paymentMethod.value,
+      recaptcha: recaptchaV2.value,
     }),
   })
 
@@ -102,6 +114,17 @@ function free() {
 }
 
 async function offlinePayment() {
+  if (recaptchaV2.value === null) {
+    toast.warn('請完成驗證')
+    showOffline.value = false
+    return
+  }
+  if (recaptchaV2.value === -1) {
+    toast.warn('驗證已過期，請重新驗證')
+    showOffline.value = false
+    return
+  }
+
   if (isLoading_offline.value) return
   isLoading_offline.value = true
 
@@ -113,6 +136,7 @@ async function offlinePayment() {
       email: orderFormData.value!.email,
       mobile: orderFormData.value!.mobile,
       paymentMethod: paymentMethod.value,
+      recaptchaV2: recaptchaV2.value,
     }),
   })
 
@@ -195,7 +219,7 @@ async function offlinePayment() {
             <h3 class="h3 fg:font-title">學員資料</h3>
             <hr class="bg:divider h:1 my:5x w:full" />
             <div class="b1-r {fg:font-title}_.formkit-label">
-              <FormKit ref="formRef" v-model="orderFormData" type="form" :actions="false" :plugins="[zodPlugin]" @submit="submitHandler">
+              <FormKit ref="formRef" v-model="orderFormData" type="form" :actions="false" :plugins="[zodPlugin]" :config="{ validationVisibility: 'submit' }" @submit="submitHandler">
                 <div class="{grid-cols:1;gap:4x|6x} {grid-cols:2}@tablet">
                   <FormKit type="text" name="name" label="姓名" placeholder="王小明" validation="required" :floating-label="false" />
                   <FormKit type="email" name="email" label="聯絡用電子信箱" placeholder="wang@example.com" validation="required|email" :floating-label="false" />
@@ -203,6 +227,7 @@ async function offlinePayment() {
                   <!-- <FormKit type="select" name="invoice" label="發票類型" :options="[{ value: '', label: '電子發票' }]" /> -->
                 </div>
               </FormKit>
+              <Recaptcha class="mt:5x overflow:hidden w:full" @verified="recaptchaV2 = $event" @expired="recaptchaV2 = -1" />
             </div>
           </div>
 
