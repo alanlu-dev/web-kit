@@ -60,7 +60,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       email: formData.email,
       mobile: formData.mobile,
       paymentMethod: paymentMethod.value,
-      recaptcha: recaptchaV2.value,
+      recaptchaV2: recaptchaV2.value,
     }),
   })
 

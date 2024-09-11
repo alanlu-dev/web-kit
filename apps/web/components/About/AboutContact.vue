@@ -24,7 +24,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
     method: 'post',
     body: {
       ...formData,
-      recaptcha: recaptchaV2.value,
+      recaptchaV2: recaptchaV2.value,
     },
   })
 

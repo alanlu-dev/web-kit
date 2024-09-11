@@ -6,11 +6,11 @@ import { processOfflineOrder } from '~/server/service/payment/offline'
 import { verifyRecaptchaAsync } from '~/server/service/recaptcha'
 
 export default defineWrappedResponseHandler<{
-  body: OrderParamsSchemaType & { recaptcha: string }
+  body: OrderParamsSchemaType & { recaptchaV2: string }
 }>(async (event) => {
   const params = await readBody(event)
 
-  if (!(await verifyRecaptchaAsync(params.recaptcha))) {
+  if (!(await verifyRecaptchaAsync(params.recaptchaV2))) {
     setResponseStatus(event, ErrorCodes.BAD_REQUEST)
     return createApiError(event.node.res.statusCode, '驗證碼錯誤')
   }
