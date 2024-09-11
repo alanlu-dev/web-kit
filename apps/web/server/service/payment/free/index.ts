@@ -1,15 +1,11 @@
 import { Client } from '@notionhq/client'
 import type { H3Event } from 'h3'
 import { format } from '@formkit/tempo'
-import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
-import { render } from '@vue-email/render'
 import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
 import { getMemberIdAsync } from '~/server/service/member/get'
 import { getOrderByMemberIdAsync } from '~/server/service/order/get'
 import { getMonthIdAsync } from '~/server/service/month/get'
-import type { OrderParamsSchemaType, OrderSchemaType } from '~/schema/order'
-import { OrderSchema } from '~/schema/order'
-import MyTemplate from '~/server/service/templates/free_success.vue'
+import type { OrderParamsSchemaType } from '~/schema/order'
 
 export async function processFreeOrder(event: H3Event, orderParams: OrderParamsSchemaType) {
   const config = useRuntimeConfig()
@@ -42,7 +38,7 @@ export async function processFreeOrder(event: H3Event, orderParams: OrderParamsS
   const monthId = await getMonthIdAsync(notion, { year, month })
 
   const MerchantTradeNo = getTradeNo()
-  const page = await notion.pages.create({
+  await notion.pages.create({
     parent: { database_id: config.notion.databaseId.orders },
     properties: {
       訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
@@ -54,60 +50,6 @@ export async function processFreeOrder(event: H3Event, orderParams: OrderParamsS
       訂單狀態: { status: { name: '面試:待第一階段' } },
     },
   })
-  const parsedPage = NotionPageSchema.parse(page)
-  const order = OrderSchema.parse(parsedPage.properties)
-
-  sendEmail(notion, page.id, order)
 
   return createApiResponse(200, 'OK', MerchantTradeNo)
-}
-
-async function sendEmail(notion: Client, order_page_id: string, order: OrderSchemaType) {
-  order.課程場次資訊 = await getCourseEventByIdAsync(notion, order.課程場次ID!, false)
-
-  const config = useRuntimeConfig()
-
-  // 發信
-  let emailResult: any = null
-  try {
-    // 組成信件內容
-    const html = await render(
-      MyTemplate,
-      {
-        siteUrl: config.public.siteUrl,
-        siteName: config.public.siteName,
-        courseName: order.課程場次資訊!.課程資訊_名稱!,
-        courseLink: `${config.public.siteUrl}/course/${order.課程場次資訊?.課程ID}`,
-        studentName: maskName(order.會員名稱),
-      },
-      {
-        pretty: true,
-      },
-    )
-
-    const { sendMail } = useNodeMailer()
-    emailResult = await sendMail({
-      subject: `恭喜！您已成功報名${config.public.siteName}【${order.課程場次資訊?.課程資訊_名稱}】`,
-      html,
-      to: order.會員信箱,
-    })
-  }
-  catch (error) {
-    emailResult = error
-  }
-
-  // 記錄結果
-  await notion.blocks.children.append({
-    block_id: order_page_id,
-    children: [{ paragraph: { rich_text: [{ text: { content: JSON.stringify(emailResult) } }] } }],
-  })
-
-  if (emailResult.accepted[0]) {
-    await notion.pages.update({
-      page_id: order_page_id,
-      properties: {
-        通知信是否發送: { checkbox: true },
-      },
-    })
-  }
 }

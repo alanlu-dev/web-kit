@@ -56,9 +56,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
 
-    /* --- mail --- */
-    'nuxt-nodemailer',
-
     /* --- aos + gsap --- */
     'nuxt-aos',
     // '@hypernym/nuxt-gsap',
@@ -165,15 +162,6 @@ export default defineNuxtConfig({
 
     // this page will be always fresh
     '/checkout/**': { isr: false },
-  },
-
-  nodemailer: {
-    from: `"${process.env.NUXT_NODEMAILER_FROM_NAME}" <${process.env.NUXT_NODEMAILER_FROM_MAIL}>`,
-    service: 'gmail',
-    auth: {
-      user: process.env.NUXT_NODEMAILER_AUTH_USER,
-      pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
-    },
   },
 
   aos: {
