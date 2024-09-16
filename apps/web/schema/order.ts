@@ -6,6 +6,7 @@ import {
   NotionFormulaSchema,
   NotionNumberSchema,
   NotionRichTextSchema,
+  NotionSelectSchema,
   NotionStatusSchema,
   NotionTitleSchema,
   NotionUniqueIdSchema,
@@ -43,7 +44,7 @@ export const OrderSchema = z.object({
   ),
   課程場次資訊: CourseEventSchema.optional().nullable(),
 
-  付款方式: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
+  付款方式: NotionSelectSchema.transform((o) => o.select?.name),
   金流訊息: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   金流代碼: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text : undefined)),
   付款金額: NotionNumberSchema.transform((o) => o.number),

@@ -62,6 +62,7 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
       課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
       講師: { type: 'relation', relation: courseEvent.講師.map((id) => ({ id: id! })) },
       月份: { type: 'relation', relation: [{ id: monthId }] },
+      付款方式: { select: { name: '現金' } },
       付款金額: { type: 'number', number: courseEvent.指定價格 || courseEvent.課程資訊_價格! },
       付款期限: { type: 'date', date: { start: format({ date: addDay(new Date(), 3), format: 'YYYY-MM-DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }), time_zone: 'Asia/Taipei' } },
       訂單狀態: { status: { name: '金流:待現金付款' } },

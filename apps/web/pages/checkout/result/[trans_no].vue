@@ -23,7 +23,7 @@ useSeoMeta({
         <div v-else-if="order?.訂單狀態 === '金流:待付款'">
           <ResultPending :order="order" />
         </div>
-        <div v-else-if="order?.訂單狀態.startsWith('面試')">
+        <div v-else-if="order?.訂單狀態?.startsWith('面試')">
           <ResultFree :order="order" />
         </div>
         <div v-else>
@@ -43,4 +43,3 @@ useSeoMeta({
     </div>
   </section>
 </template>
-b

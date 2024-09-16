@@ -23,6 +23,15 @@ export interface EcPayPaymentResult {
   CheckMacValue: string
 }
 
+function getPaymentType(paymentType?: string | null) {
+  switch (paymentType) {
+    case 'Credit_CreditCard':
+      return '信用卡'
+    default:
+      return paymentType || 'null'
+  }
+}
+
 export async function getPaymentResult(order_page_id: string, data: EcPayPaymentResult) {
   const notion = new Client({ auth: useRuntimeConfig().notion.apiKey })
 
@@ -36,7 +45,7 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
   const page = await notion.pages.update({
     page_id: order_page_id,
     properties: {
-      付款方式: { rich_text: [{ text: { content: data?.PaymentType || 'null' } }] },
+      付款方式: { select: { name: getPaymentType(data?.PaymentType) } },
       金流代碼: { rich_text: [{ text: { content: data?.RtnCode || 'null' } }] },
       金流訊息: { rich_text: [{ text: { content: data?.RtnMsg || 'null' } }] },
       付款日期: {

@@ -46,6 +46,7 @@ export async function processFreeOrder(event: H3Event, orderParams: OrderParamsS
       課程資訊: { type: 'relation', relation: [{ id: courseEvent.課程! }] },
       課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
       月份: { type: 'relation', relation: [{ id: monthId }] },
+      付款方式: { select: { name: '免費' } },
       付款金額: { type: 'number', number: 0 },
       訂單狀態: { status: { name: '面試:待第一階段' } },
     },
