@@ -26,6 +26,7 @@
     "docker:nginx:run": "docker run -d -p 80:80 fast-nginx"
   },
   "dependencies": {
+    "@formkit/i18n": "^1.6.5",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
     "@vueuse/core": "^10.11.0",

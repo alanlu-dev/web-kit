@@ -3,7 +3,7 @@ import { ModalsContainer } from 'vue-final-modal'
 import i18next from 'i18next'
 import { z } from 'zod'
 import { zodI18nMap } from 'zod-i18n-map'
-import type { DefaultConfigOptions } from '@formkit/vue'
+import { changeLocale } from '@formkit/i18n'
 
 // import translation from 'zod-i18n-map/locales/zh-TW/zod.json'
 import translation from '@alanlu-dev/nuxt-base/config/zod/locales/zh-TW.json'
@@ -22,9 +22,8 @@ useHead({
 const { locale } = useI18n()
 // const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const config: DefaultConfigOptions = inject(Symbol.for('FormKitConfig'))!
 watch(locale, (newVal) => {
-  config.locale = newVal
+  changeLocale(newVal)
   switchLocalePath(newVal)
 })
 
