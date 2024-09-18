@@ -112,7 +112,7 @@ importers:
         version: 3.4.35(typescript@5.5.4)
       vue-final-modal:
         specifier: ^4.5.4
-        version: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
+        version: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
       vue-router:
         specifier: ^4.4.2
         version: 4.4.2(vue@3.4.35(typescript@5.5.4))
@@ -222,6 +222,9 @@ importers:
 
   apps/nuxt-demo:
     dependencies:
+      '@formkit/i18n':
+        specifier: ^1.6.5
+        version: 1.6.5
       '@splidejs/splide':
         specifier: ^4.1.4
         version: 4.1.4
@@ -251,7 +254,7 @@ importers:
         version: 3.4.35(typescript@5.5.4)
       vue-final-modal:
         specifier: ^4.5.4
-        version: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
+        version: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
       vue-router:
         specifier: ^4.4.2
         version: 4.4.2(vue@3.4.35(typescript@5.5.4))
@@ -9350,8 +9353,8 @@ snapshots:
       eslint-plugin-regexp: 2.6.0(eslint@9.8.0)
       eslint-plugin-toml: 0.11.1(eslint@9.8.0)
       eslint-plugin-unicorn: 55.0.0(eslint@9.8.0)
-      eslint-plugin-unused-imports: 4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@7.18.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)
-      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@7.18.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.0.2)(happy-dom@14.12.3)(sass@1.77.8)(terser@5.31.3))
+      eslint-plugin-unused-imports: 4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)
+      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.0.2)(happy-dom@14.12.3)(sass@1.77.8)(terser@5.31.3))
       eslint-plugin-vue: 9.27.0(eslint@9.8.0)
       eslint-plugin-yml: 1.14.0(eslint@9.8.0)
       eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.35)(eslint@9.8.0)
@@ -12601,7 +12604,7 @@ snapshots:
   '@vue-final-modal/nuxt@1.0.3(magicast@0.3.4)(rollup@4.19.2)(vue-final-modal@4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4)))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.2)
-      vue-final-modal: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
+      vue-final-modal: 4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4))
     transitivePeerDependencies:
       - magicast
       - rollup
@@ -14454,14 +14457,14 @@ snapshots:
       semver: 7.6.3
       strip-indent: 3.0.0
 
-  eslint-plugin-unused-imports@4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@7.18.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0):
+  eslint-plugin-unused-imports@4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0):
     dependencies:
       eslint: 9.8.0
       eslint-rule-composer: 0.3.0
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)
 
-  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@7.18.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.0.2)(happy-dom@14.12.3)(sass@1.77.8)(terser@5.31.3)):
+  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.0.2)(happy-dom@14.12.3)(sass@1.77.8)(terser@5.31.3)):
     dependencies:
       '@typescript-eslint/utils': 7.18.0(eslint@9.8.0)(typescript@5.5.4)
       eslint: 9.8.0
@@ -19766,7 +19769,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-final-modal@4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4)):
+  vue-final-modal@4.5.4(@vueuse/core@10.11.0(vue@3.4.35(typescript@5.5.4)))(@vueuse/integrations@10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4)))(focus-trap@7.5.4)(vue@3.4.35(typescript@5.5.4)):
     dependencies:
       '@vueuse/core': 10.11.0(vue@3.4.35(typescript@5.5.4))
       '@vueuse/integrations': 10.11.0(async-validator@4.2.5)(focus-trap@7.5.4)(fuse.js@6.6.2)(vue@3.4.35(typescript@5.5.4))

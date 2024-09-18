@@ -11,6 +11,8 @@ export default defineNuxtConfig({
   // https://nuxt.com/docs/guide/going-further/layers
   // extends: ['@alanlu-dev/nuxt-base'],
 
+  telemetry: false,
+
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   typescript: {
     // typeCheck: true,
