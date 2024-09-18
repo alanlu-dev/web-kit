@@ -1,3 +1,5 @@
+import { vMaska } from 'maska/vue'
+
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.directive('focus', {
     mounted(el) {
@@ -8,4 +10,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       return {}
     },
   })
+
+  nuxtApp.vueApp.directive('maska', vMaska)
 })
