@@ -1,8 +1,8 @@
 import { createResolver } from '@nuxt/kit'
 
+import appConfig from './config/modules/_appConfig'
 // modules's config
 import nuxtConfig from './config/modules/_nuxtConfig'
-import appConfig from './config/modules/_appConfig'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -12,6 +12,14 @@ export default defineNuxtConfig({
   // extends: ['@alanlu-dev/nuxt-base'],
 
   telemetry: false,
+
+  // https://github.com/nuxt/nuxt/pull/28939
+  // https://github.com/nuxt/nuxt/issues/29002
+  // https://github.com/nuxt/devtools/issues/722
+  // devtools: {
+  //   enabled: true,
+  //   componentInspector: false,
+  // },
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#typescript
   typescript: {
