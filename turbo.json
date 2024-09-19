@@ -26,6 +26,7 @@
       "dependsOn": ["build", "test", "lint"]
     },
     "test": {},
+    "e2e-test": {},
     "lint": {},
     "lint:eslint": {},
     "typecheck": {},

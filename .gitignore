@@ -26,3 +26,9 @@ logs
 .env
 .env.*
 !.env.example
+
+# playwright
+test-results
+playwright-report
+blob-report
+playwright/.cache
