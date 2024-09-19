@@ -49,4 +49,4 @@ function setItem<T, K extends keyof T>(obj: T, key: K, item: T[K]): void {
   obj[key] = item
 }
 
-export { getDefaultFromProps, obj2QueryString, queryString2Obj, arrayToObject, setItem }
+export { arrayToObject, getDefaultFromProps, obj2QueryString, queryString2Obj, setItem }

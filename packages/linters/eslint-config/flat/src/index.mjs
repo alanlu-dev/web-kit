@@ -1,8 +1,8 @@
 import antfu from '@antfu/eslint-config'
-import vitest from 'eslint-plugin-vitest'
+import { FlatCompat } from '@eslint/eslintrc'
 import css from '@master/eslint-config-css/flat'
 
-import { FlatCompat } from '@eslint/eslintrc'
+import vitest from 'eslint-plugin-vitest'
 
 const compat = new FlatCompat()
 

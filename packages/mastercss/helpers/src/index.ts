@@ -169,4 +169,4 @@ function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {
   return styles.join(' ')
 }
 
-export { literal as cls, group, toLine }
+export { group, literal as cls, toLine }

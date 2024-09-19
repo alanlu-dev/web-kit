@@ -44,4 +44,4 @@ function formatCountdown(timeInMilliseconds) {
   return { days, hours, minutes, seconds }
 }
 
-export { getBusinessStatus, formatCountdown }
+export { formatCountdown, getBusinessStatus }

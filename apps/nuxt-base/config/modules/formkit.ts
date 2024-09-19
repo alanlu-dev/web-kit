@@ -1,6 +1,6 @@
+import type { NuxtModule } from '@nuxt/schema'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import type { NuxtModule } from '@nuxt/schema'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
