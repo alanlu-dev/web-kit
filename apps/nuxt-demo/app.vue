@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ModalsContainer } from 'vue-final-modal'
+import { changeLocale } from '@formkit/i18n'
 import i18next from 'i18next'
+import { ModalsContainer } from 'vue-final-modal'
 import { z } from 'zod'
 import { zodI18nMap } from 'zod-i18n-map'
-import { changeLocale } from '@formkit/i18n'
 
 // import translation from 'zod-i18n-map/locales/zh-TW/zod.json'
 import translation from '@alanlu-dev/nuxt-base/config/zod/locales/zh-TW.json'

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { CSSProperties, RendererElement } from 'vue'
-import { VueFinalModal, vueFinalModalProps } from 'vue-final-modal'
-
 import { getDefaultFromProps } from '@alanlu-dev/utils/obj'
+
+import { VueFinalModal, vueFinalModalProps } from 'vue-final-modal'
 
 const props = withDefaults(
   defineProps<IProps>(),

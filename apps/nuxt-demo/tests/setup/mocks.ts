@@ -1,5 +1,5 @@
-import { vi } from 'vitest'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
+import { vi } from 'vitest'
 
 vi.resetModules()
 

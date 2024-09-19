@@ -33,4 +33,4 @@ function replaceImgTagIfSrcContains(htmlContent: string, substring: string, newI
   })
 }
 
-export { formatThousand, replaceRelativePathsWithAbsolute, replaceImgTagIfSrcContains }
+export { formatThousand, replaceImgTagIfSrcContains, replaceRelativePathsWithAbsolute }

@@ -1,6 +1,6 @@
 import type { FormKitTypeDefinition } from '@formkit/core'
-import { createInput } from '@formkit/vue'
 import { $attrs, buttonInput, buttonLabel, help, icon, inner, label, message, messages, outer, prefix, textInput, wrapper } from '@formkit/inputs'
+import { createInput } from '@formkit/vue'
 
 import OneTimePassword from './OneTimePassword.vue'
 
