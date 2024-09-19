@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/eslint-config-flat",
   "type": "module",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Shareable eslint flat configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",

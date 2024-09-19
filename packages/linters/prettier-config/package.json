@@ -1,6 +1,6 @@
 {
   "name": "@alanlu-dev/prettier-config",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Shareable prettier configuration.",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
