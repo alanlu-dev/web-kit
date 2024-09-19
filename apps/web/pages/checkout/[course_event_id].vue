@@ -25,6 +25,7 @@ useSeoMeta({
 // 免費課程報名流程：點擊「立即報名」
 // 轉至 報名辦法說明頁 ，送出後→ 寄成功通知信
 
+const recaptchaRef = ref()
 const recaptchaV2 = ref<string | number | null>(null)
 
 const showOffline = ref(false)
@@ -41,6 +42,11 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
   }
   if (recaptchaV2.value === -1) {
     toast.warn('驗證已過期，請重新驗證')
+    return
+  }
+  if (recaptchaV2.value === -2) {
+    toast.warn('請重新驗證')
+    showOffline.value = false
     return
   }
 
@@ -63,6 +69,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       recaptchaV2: recaptchaV2.value,
     }),
   })
+  recaptchaRef.value?.resetRecaptcha()
+  recaptchaV2.value = null
 
   if (rc.value === 409) {
     navigateTo(`/checkout/result/${data.value}`)
@@ -115,12 +123,22 @@ function free() {
 
 async function offlinePayment() {
   if (recaptchaV2.value === null) {
-    toast.warn('請完成驗證')
+    toast.warn('成驗證')
     showOffline.value = false
     return
   }
   if (recaptchaV2.value === -1) {
     toast.warn('驗證已過期，請重新驗證')
+    showOffline.value = false
+    return
+  }
+  if (recaptchaV2.value === -1) {
+    toast.warn('驗證已過期，請重新驗證')
+    showOffline.value = false
+    return
+  }
+  if (recaptchaV2.value === -2) {
+    toast.warn('請重新驗證')
     showOffline.value = false
     return
   }
@@ -139,6 +157,8 @@ async function offlinePayment() {
       recaptchaV2: recaptchaV2.value,
     }),
   })
+  recaptchaRef.value?.resetRecaptcha()
+  recaptchaV2.value = -2
 
   if (error.value) {
     isLoading_offline.value = false
@@ -227,7 +247,7 @@ async function offlinePayment() {
                   <!-- <FormKit type="select" name="invoice" label="發票類型" :options="[{ value: '', label: '電子發票' }]" /> -->
                 </div>
               </FormKit>
-              <Recaptcha class="mt:5x overflow:hidden w:full" @verified="recaptchaV2 = $event" @expired="recaptchaV2 = -1" />
+              <Recaptcha ref="recaptchaRef" class="mt:5x overflow:hidden w:full" @verified="recaptchaV2 = $event" @expired="recaptchaV2 = -1" />
             </div>
           </div>
 

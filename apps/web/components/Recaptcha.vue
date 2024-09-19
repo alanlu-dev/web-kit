@@ -28,6 +28,12 @@ function renderRecaptcha() {
   }
 }
 
+function resetRecaptcha() {
+  if ((window as any).grecaptcha && (window as any).grecaptcha.reset) {
+    ;(window as any).grecaptcha.reset()
+  }
+}
+
 function onVerify(response: string) {
   console.log('Verified:', response)
   isExpired.value = false
@@ -43,6 +49,10 @@ function onExpired() {
 onMounted(async () => {
   await $loadRecaptcha()
   renderRecaptcha()
+})
+
+defineExpose({
+  resetRecaptcha,
 })
 </script>
 
