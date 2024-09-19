@@ -26,12 +26,12 @@
   },
   "peerDependencies": {
     "@github/markdownlint-github": "^0.6.3",
-    "markdownlint-cli2": "^0.13.0",
-    "markdownlint-cli2-formatter-pretty": "^0.0.6"
+    "markdownlint-cli2": "^0.14.0",
+    "markdownlint-cli2-formatter-pretty": "^0.0.7"
   },
   "devDependencies": {
     "@github/markdownlint-github": "^0.6.3",
-    "markdownlint-cli2": "^0.13.0",
-    "markdownlint-cli2-formatter-pretty": "^0.0.6"
+    "markdownlint-cli2": "^0.14.0",
+    "markdownlint-cli2-formatter-pretty": "^0.0.7"
   }
 }

@@ -26,19 +26,21 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@antfu/eslint-config": "^2.24.1",
-    "@master/eslint-config-css": "2.0.0-rc.44",
-    "@master/eslint-plugin-css": "2.0.0-rc.44",
-    "eslint": "^9.8.0",
+    "@antfu/eslint-config": "^3.6.2",
+    "@master/eslint-config-css": "2.0.0-rc.45",
+    "@master/eslint-plugin-css": "2.0.0-rc.45",
+    "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1"
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vitest": "^0.5.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.24.1",
-    "@master/eslint-config-css": "2.0.0-rc.44",
-    "@master/eslint-plugin-css": "2.0.0-rc.44",
-    "eslint": "^9.8.0",
+    "@antfu/eslint-config": "^3.6.2",
+    "@master/eslint-config-css": "2.0.0-rc.45",
+    "@master/eslint-plugin-css": "2.0.0-rc.45",
+    "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1"
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vitest": "^0.5.4"
   }
 }

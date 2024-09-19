@@ -28,11 +28,11 @@
     "release:dry": "release-it --dry-run"
   },
   "peerDependencies": {
-    "@release-it/conventional-changelog": "^8.0.1",
+    "@release-it/conventional-changelog": "^8.0.2",
     "release-it": "^17.4.0"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^8.0.1",
+    "@release-it/conventional-changelog": "^8.0.2",
     "glob": "^11.0.0",
     "js-yaml": "4.1.0",
     "release-it": "^17.6.0"
