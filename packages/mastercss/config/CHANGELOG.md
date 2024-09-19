@@ -1,5 +1,13 @@
 # @alanlu-dev/mastercss-config
 
+## 1.0.12
+
+### Patch Changes
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - chore(deps): bump package versions
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - style: lint format
+
 ## 1.0.11
 
 ### Patch Changes

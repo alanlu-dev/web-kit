@@ -1,5 +1,11 @@
 # @alanlu-dev/types
 
+## 1.0.9
+
+### Patch Changes
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - chore(deps): bump package versions
+
 ## 1.0.8
 
 ### Patch Changes

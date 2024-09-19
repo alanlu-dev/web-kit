@@ -1,5 +1,11 @@
 # @alanlu-dev/markdownlint-config
 
+## 1.0.5
+
+### Patch Changes
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - chore(deps): bump package versions
+
 ## 1.0.4
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @alanlu-dev/changeset
 
+## 1.0.7
+
+### Patch Changes
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - chore(deps): bump package versions
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - style: lint format
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - fix(changeset): cannot read properties of undefined (reading 'join')
+
 ## 1.0.6
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.15
+
+### Patch Changes
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - fix(nuxt-demo): injection "Symbol(FormKitConfig)" not found
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - chore(deps): bump package versions
+
+- [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc) - style: lint format
+
+- Updated dependencies [[`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc), [`a3c623e`](https://github.com/alanlu-dev/web-kit/commit/a3c623e4502b1f4b3f692921b6744295940bd2dc)]:
+  - @alanlu-dev/mastercss-config@1.0.12
+  - @alanlu-dev/scss@1.0.7
+  - @alanlu-dev/types@1.0.9
+  - @alanlu-dev/utils@1.0.4
+
 ## 1.0.14
 
 ### Patch Changes
