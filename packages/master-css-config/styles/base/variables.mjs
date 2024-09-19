@@ -1,6 +1,6 @@
 import { variables } from '@master/css'
-import colors from './colors.mjs'
 import breakpoints from './breakpoints.mjs'
+import colors from './colors.mjs'
 
 /** @type {import('@master/css').Config} */
 export default {

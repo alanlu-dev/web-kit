@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import cv from 'class-variant'
 import type { Options as SplideOptions } from '@splidejs/splide'
 import { NuxtLink } from '#components'
+import cv from 'class-variant'
 import type { GallerySchemaType } from '~/schema/gallery'
 
 const route = useRoute()

@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { PartnerSchemaType } from '~/schema/partner'
-import { PartnerSchema, partnerFilters, partnerKey, partnerQuery } from '~/schema/partner'
+import { partnerFilters, partnerKey, partnerQuery, PartnerSchema } from '~/schema/partner'
 
 export async function getPartnerByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<PartnerSchemaType | null> {
   if (!id) return null

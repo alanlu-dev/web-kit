@@ -1,10 +1,10 @@
 import type { Client } from '@notionhq/client'
 import { isFullPage } from '@notionhq/client'
-import { getCourseBaseByIdAsync } from '../course_base/get'
+import type { CourseSchemaType } from '~/schema/course'
+import { courseFilters, courseKey, courseQuery, CourseSchema } from '~/schema/course'
 import { fetchCourseEvents } from '~/server/service/course_events/get'
 import { fetchInstructors } from '~/server/service/instructor/get'
-import type { CourseSchemaType } from '~/schema/course'
-import { CourseSchema, courseFilters, courseKey, courseQuery } from '~/schema/course'
+import { getCourseBaseByIdAsync } from '../course_base/get'
 
 interface needType {
   needCourseEvents?: boolean

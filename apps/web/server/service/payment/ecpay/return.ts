@@ -1,6 +1,6 @@
-import { Client } from '@notionhq/client'
 import { NotionPageSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { format } from '@formkit/tempo'
+import { Client } from '@notionhq/client'
 import { OrderSchema } from '~/schema/order'
 
 export interface EcPayPaymentResult {

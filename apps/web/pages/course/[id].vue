@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
-import { addDay } from '@formkit/tempo'
 import type { FormKitOptionsProp } from '@formkit/inputs'
 import type { Splide, Options as SplideOptions } from '@splidejs/splide'
+import { formatThousand } from '@alanlu-dev/utils'
+import { addDay } from '@formkit/tempo'
 import type { CourseSchemaType } from '~/schema/course'
 
 const route = useRoute()

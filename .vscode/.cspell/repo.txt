@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+astro
 commitlint
 commitlintrc
 conventionalcommits
@@ -18,6 +19,7 @@ mcss
 notionhq
 nuxt
 nuxtjs
+ofetch
 persistedstate
 pinia
 plyr

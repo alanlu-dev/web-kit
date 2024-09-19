@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { NewsSchemaType } from '~/schema/news'
-import { NewsSchema, newsFilters, newsKey, newsQuery } from '~/schema/news'
+import { newsFilters, newsKey, newsQuery, NewsSchema } from '~/schema/news'
 
 export async function getNewsByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<NewsSchemaType | null> {
   if (!id) return null

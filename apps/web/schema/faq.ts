@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { NotionNumberSchema, NotionRichTextSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { NotionNumberSchema, NotionRichTextSchema, NotionTitleSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { z } from 'zod'
 
 export const FaqSchema = z.object({
   // ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),

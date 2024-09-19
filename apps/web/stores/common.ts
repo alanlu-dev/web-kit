@@ -1,5 +1,5 @@
-import { useBreakpoints, useWindowScroll } from '@vueuse/core'
 import breakpointsValue from '@jiehousekeeper/master-css-config/breakpoints'
+import { useBreakpoints, useWindowScroll } from '@vueuse/core'
 
 export const useCommonStore = defineStore('common', () => {
   const breakpoints = useBreakpoints(breakpointsValue)

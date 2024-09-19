@@ -5,6 +5,11 @@ antfu
 dbaeumer
 ecpay
 esbenp
+hugeicons
 hypernym
 jiehousekeeper
+mingcute
+octicon
+PCCA
+teenyicons
 zadigetvoltaire

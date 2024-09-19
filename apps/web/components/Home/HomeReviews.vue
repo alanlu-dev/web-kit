@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import cv from 'class-variant'
-import { Intersection } from '@splidejs/splide-extension-intersection'
 import type { Options as SplideOptions } from '@splidejs/splide'
+import { Intersection } from '@splidejs/splide-extension-intersection'
+import cv from 'class-variant'
 
 // TODO: 設定檔
 const title = ['學員滿意度 93.8%']

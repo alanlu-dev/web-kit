@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { FaqSchemaType } from '~/schema/faq'
-import { FaqSchema, faqKey, faqQuery } from '~/schema/faq'
+import { faqKey, faqQuery, FaqSchema } from '~/schema/faq'
 
 export async function getFaqAsync(notion: Client | null, currentPage: number, pageSize: number, refresh: boolean): Promise<FaqSchemaType[]> {
   let items: FaqSchemaType[] | null = null

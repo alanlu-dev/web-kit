@@ -141,7 +141,7 @@ function compressImage(image: string | undefined, width: number = 1440, quality:
   else if (image.indexOf('https://your_picture_bed') === 0) {
     // 此处还可以添加您的自定义图传的封面图压缩参数。
     // .e.g
-    return 'do_somethin_here'
+    return 'do_something_here'
   }
 
   return image

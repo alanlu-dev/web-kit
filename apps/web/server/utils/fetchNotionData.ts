@@ -1,6 +1,6 @@
-import { Client } from '@notionhq/client'
 import type { QueryDatabaseParameters, QueryDatabaseResponse, UpdatePageParameters } from '@notionhq/client/build/src/api-endpoints'
 import { addSecond, format } from '@formkit/tempo'
+import { Client } from '@notionhq/client'
 
 interface FetchNotionDataParams<T> {
   notion: Client | null

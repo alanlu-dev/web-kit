@@ -1,8 +1,8 @@
-import { z } from 'zod'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import { NotionDatabaseRollupSchema, NotionDateSchema, NotionFormulaSchema, NotionNumberSchema, NotionRelationSchema, NotionTitleSchema, NotionUniqueIdSchema } from '@alanlu-dev/notion-api-zod-schema'
 import { format } from '@formkit/tempo'
 
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { z } from 'zod'
 import { ClassroomSchema } from './classroom.js'
 
 export const CourseEventSchema = z.object({

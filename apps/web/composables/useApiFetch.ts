@@ -1,7 +1,7 @@
-import { toast } from 'vue3-toastify'
-import { type UnwrapRef, ref } from 'vue'
 import type { FetchError } from 'ofetch'
 import { useFetch } from '#app'
+import { ref, type UnwrapRef } from 'vue'
+import { toast } from 'vue3-toastify'
 import type { ApiResponse } from '~/server/utils/apiResponse'
 
 export async function useApiFetch<T>(url: string, options: any = {}) {

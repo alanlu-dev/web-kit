@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
-import { addDay, format } from '@formkit/tempo'
 import type { OrderSchemaType } from '~/schema/order'
 
-const props = defineProps<{ order: OrderSchemaType }>()
+defineProps<{ order: OrderSchemaType }>()
 
 const config = useRuntimeConfig()
 </script>

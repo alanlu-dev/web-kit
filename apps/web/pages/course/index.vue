@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import cv from 'class-variant'
-import { Intersection } from '@splidejs/splide-extension-intersection'
 import type { Options as SplideOptions } from '@splidejs/splide'
+import { Intersection } from '@splidejs/splide-extension-intersection'
+import cv from 'class-variant'
 import type { CourseSchemaType } from '~/schema/course'
 
 definePageMeta({

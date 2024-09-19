@@ -237,6 +237,7 @@ export default defineNuxtConfig({
       },
     },
     rollupConfig: {
+      // @ts-expect-error https://github.com/vitejs/vite-plugin-vue/issues/422
       plugins: [vue()],
     },
   },

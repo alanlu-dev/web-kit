@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { NotionFilesSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { NotionFilesSchema, NotionRichTextSchema, NotionTitleSchema, NotionUniqueIdSchema, NotionUrlSchema } from '@alanlu-dev/notion-api-zod-schema'
+import { z } from 'zod'
 
 export const PartnerSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),

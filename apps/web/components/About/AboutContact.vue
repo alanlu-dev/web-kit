@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
-import { createZodPlugin } from '@formkit/zod'
 import { reset } from '@formkit/core'
+import { createZodPlugin } from '@formkit/zod'
+import { toast } from 'vue3-toastify'
 import { ContactSchema } from '~/schema/contact'
 import type { ContactSchemaType } from '~/schema/contact'
 

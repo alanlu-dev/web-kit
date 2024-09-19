@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import {
   NotionDatabaseRollupSchema,
   NotionFilesSchema,
@@ -9,10 +9,10 @@ import {
   NotionUniqueIdSchema,
   NotionUrlSchema,
 } from '@alanlu-dev/notion-api-zod-schema'
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { InstructorSchema } from './instructor'
-import { CourseEventSchema } from './course_event'
+import { z } from 'zod'
 import { CourseBaseSchema } from './course_base'
+import { CourseEventSchema } from './course_event'
+import { InstructorSchema } from './instructor'
 
 const gallerySchema = z.object({
   image: z.string().optional(),

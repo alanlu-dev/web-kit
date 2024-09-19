@@ -1,9 +1,9 @@
-import { defineFormKitConfig } from '@formkit/vue'
-import { zhTW } from '@formkit/i18n'
 import { createAutoAnimatePlugin, createAutoHeightTextareaPlugin, createFloatingLabelsPlugin, createMultiStepPlugin } from '@formkit/addons'
+import { zhTW } from '@formkit/i18n'
+import { genesisIcons } from '@formkit/icons'
 
 import { generateClasses } from '@formkit/themes'
-import { genesisIcons } from '@formkit/icons'
+import { defineFormKitConfig } from '@formkit/vue'
 
 // import { createProPlugin, inputs } from '@formkit/pro'
 
