@@ -9,10 +9,8 @@ const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學
 
 const reviewStore = useReviewStore()
 const { reviews } = storeToRefs(reviewStore)
+await reviewStore.fetchReviews({ page: 1, page_size: 10 })
 
-onMounted(async () => {
-  await reviewStore.fetchReviews({ page: 1, page_size: 10 })
-})
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
   'mr:20px>li mr:32px>li@md ',
