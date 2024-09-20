@@ -60,11 +60,11 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
   const order = OrderSchema.parse(parsedPage.properties)
 
   // 更新訂單狀態
-  if (order.訂單狀態 !== '金流:人工作廢') {
+  if (order.訂單狀態.includes('作廢')) {
     await notion.pages.update({
       page_id: order_page_id,
       properties: {
-        訂單狀態: { status: { name: data?.RtnCode === '1' ? '金流:付款成功' : '金流:付款失敗' } },
+        訂單狀態: { status: { name: data?.RtnCode === '1' ? '金流:作廢後成功' : '金流:作廢後失敗' } },
       },
     })
   }
@@ -72,7 +72,7 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
     await notion.pages.update({
       page_id: order_page_id,
       properties: {
-        訂單狀態: { status: { name: data?.RtnCode === '1' ? '金流:作廢後成功' : '金流:作廢後失敗' } },
+        訂單狀態: { status: { name: data?.RtnCode === '1' ? '金流:付款成功' : '金流:付款失敗' } },
       },
     })
   }
