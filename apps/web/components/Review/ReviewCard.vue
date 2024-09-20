@@ -22,7 +22,7 @@ function handleClick() {
     </div>
     <div class="p:5x|6x text:left">
       <p class="b1-m fg:font-title">學員 {{ review.學員 }}</p>
-      <nuxt-link :to="`/course/${review.課程ID}`" class="b1-m fg:primary mt:1x" @click.stop>{{ review.課程資訊_名稱 }}</nuxt-link>
+      <nuxt-link :to="`/course/${review.課程ID}`" class="b1-m fg:primary lines:1 mt:1x" @click.stop>{{ review.課程資訊_名稱 }}</nuxt-link>
       <p class="b2-r h:105 h:120@tablet lines:5 mt:2x">{{ review.評價 }}</p>
     </div>
   </div>
