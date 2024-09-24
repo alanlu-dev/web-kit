@@ -63,7 +63,6 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
         </div>
         <FormKit :classes="{ wrapper: 'mt:4x!' }" type="textarea" name="message" validation="required" label="問題描述，寫下您的問題" lines="3" />
         <NuxtTurnstile ref="turnstileRef" v-model="turnstile" class="mt:5x overflow:hidden w:full" @expired-callback="turnstile = 'expired'" />
-        {{ turnstile }}
       </FormKit>
     </div>
 

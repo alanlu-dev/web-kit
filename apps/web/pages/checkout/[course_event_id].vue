@@ -241,7 +241,6 @@ async function offlinePayment() {
                 </div>
               </FormKit>
               <NuxtTurnstile ref="turnstileRef" v-model="turnstile" class="mt:5x overflow:hidden w:full" @expired-callback="turnstile = 'expired'" />
-              {{ turnstile }}
             </div>
           </div>
 
