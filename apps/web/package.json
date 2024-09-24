@@ -51,6 +51,7 @@
     "@nuxt/image": "^1.8.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/seo": "^2.0.0-rc.21",
+    "@nuxtjs/turnstile": "^0.9.10",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.5.4",
     "@splidejs/splide": "^4.1.4",

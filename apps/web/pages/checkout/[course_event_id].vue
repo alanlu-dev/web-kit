@@ -25,8 +25,8 @@ useSeoMeta({
 // 免費課程報名流程：點擊「立即報名」
 // 轉至 報名辦法說明頁 ，送出後→ 寄成功通知信
 
-const recaptchaRef = ref()
-const recaptchaV2 = ref<string | number | null>(null)
+const turnstileRef = ref()
+const turnstile = ref<string | undefined>()
 
 const showOffline = ref(false)
 const paymentMethod = ref<OrderPaymentMethodEnumType>(OrderPaymentMethodEnum.enum.綠界)
@@ -36,15 +36,15 @@ const orderFormData = ref<MemberSchemaType>()
 const isLoading = ref(false)
 const isLoading_offline = ref(false)
 const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData) => {
-  if (recaptchaV2.value === null) {
+  if (turnstile.value == null) {
     toast.warn('請完成驗證')
     return
   }
-  if (recaptchaV2.value === -1) {
+  if (turnstile.value === 'expired') {
     toast.warn('驗證已過期，請重新驗證')
     return
   }
-  if (recaptchaV2.value === -2) {
+  if (turnstile.value === 're-verified') {
     toast.warn('請重新驗證')
     showOffline.value = false
     return
@@ -66,11 +66,11 @@ const [zodPlugin, submitHandler] = createZodPlugin(MemberSchema, async (formData
       email: formData.email,
       mobile: formData.mobile,
       paymentMethod: paymentMethod.value,
-      recaptchaV2: recaptchaV2.value,
+      turnstile: turnstile.value,
     }),
   })
-  recaptchaRef.value?.resetRecaptcha()
-  recaptchaV2.value = null
+  turnstileRef.value?.reset()
+  turnstile.value = 're-verified'
 
   if (rc.value === 409) {
     navigateTo(`/checkout/result/${data.value}`)
@@ -122,22 +122,15 @@ function free() {
 }
 
 async function offlinePayment() {
-  if (recaptchaV2.value === null) {
-    toast.warn('成驗證')
-    showOffline.value = false
+  if (turnstile.value == null) {
+    toast.warn('請完成驗證')
     return
   }
-  if (recaptchaV2.value === -1) {
+  if (turnstile.value === 'expired') {
     toast.warn('驗證已過期，請重新驗證')
-    showOffline.value = false
     return
   }
-  if (recaptchaV2.value === -1) {
-    toast.warn('驗證已過期，請重新驗證')
-    showOffline.value = false
-    return
-  }
-  if (recaptchaV2.value === -2) {
+  if (turnstile.value === 're-verified') {
     toast.warn('請重新驗證')
     showOffline.value = false
     return
@@ -154,11 +147,11 @@ async function offlinePayment() {
       email: orderFormData.value!.email,
       mobile: orderFormData.value!.mobile,
       paymentMethod: paymentMethod.value,
-      recaptchaV2: recaptchaV2.value,
+      turnstile: turnstile.value,
     }),
   })
-  recaptchaRef.value?.resetRecaptcha()
-  recaptchaV2.value = -2
+  turnstileRef.value?.reset()
+  turnstile.value = 're-verified'
 
   if (error.value) {
     isLoading_offline.value = false
@@ -247,7 +240,8 @@ async function offlinePayment() {
                   <!-- <FormKit type="select" name="invoice" label="發票類型" :options="[{ value: '', label: '電子發票' }]" /> -->
                 </div>
               </FormKit>
-              <Recaptcha ref="recaptchaRef" class="mt:5x overflow:hidden w:full" @verified="recaptchaV2 = $event" @expired="recaptchaV2 = -1" />
+              <NuxtTurnstile ref="turnstileRef" v-model="turnstile" class="mt:5x overflow:hidden w:full" @expired-callback="turnstile = 'expired'" />
+              {{ turnstile }}
             </div>
           </div>
 

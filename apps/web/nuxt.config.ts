@@ -51,6 +51,7 @@ export default defineNuxtConfig({
 
     /* --- utils --- */
     '@vueuse/nuxt',
+    '@nuxtjs/turnstile',
 
     /* --- pinia --- */
     '@pinia/nuxt',
@@ -174,6 +175,11 @@ export default defineNuxtConfig({
   //   },
   // },
 
+  turnstile: {
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+    addValidateEndpoint: true,
+  },
+
   // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
   runtimeConfig: {
     // Keys within public are also exposed client-side
@@ -185,6 +191,9 @@ export default defineNuxtConfig({
       gtmId: '',
       fbUrl: '',
       recaptcha: {
+        siteKey: '',
+      },
+      turnstile: {
         siteKey: '',
       },
     },
@@ -225,6 +234,9 @@ export default defineNuxtConfig({
     },
     recaptcha: {
       key: '',
+    },
+    turnstile: {
+      secretKey: '',
     },
   },
 

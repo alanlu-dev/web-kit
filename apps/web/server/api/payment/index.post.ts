@@ -3,14 +3,14 @@ import { OrderPaymentMethodEnum } from '~/schema/payment'
 import { processEcPayOrder } from '~/server/service/payment/ecpay'
 import { processFreeOrder } from '~/server/service/payment/free'
 import { processOfflineOrder } from '~/server/service/payment/offline'
-import { verifyRecaptchaAsync } from '~/server/service/recaptcha'
 
 export default defineWrappedResponseHandler<{
-  body: OrderParamsSchemaType & { recaptchaV2: string }
+  body: OrderParamsSchemaType & { turnstile: string }
 }>(async (event) => {
   const params = await readBody(event)
 
-  if (!(await verifyRecaptchaAsync(params.recaptchaV2))) {
+  const verifyTurnstile = await verifyTurnstileToken(params.turnstile)
+  if (!verifyTurnstile.success) {
     setResponseStatus(event, ErrorCodes.BAD_REQUEST)
     return createApiError(event.node.res.statusCode, '驗證碼錯誤')
   }
