@@ -25,7 +25,6 @@ export async function getCourseEventByIdAsync(
   if (!refresh) {
     item = await redis.get<CourseEventSchemaType>(key)
   }
-
   if (!item) {
     ;[item, notion] = await fetchNotionDataByIdAsync<CourseEventSchemaType>({
       notion,
@@ -35,6 +34,7 @@ export async function getCourseEventByIdAsync(
       filters: courseEventFilters,
       id,
     })
+
     if (item) await redis.set(key, item)
   }
 

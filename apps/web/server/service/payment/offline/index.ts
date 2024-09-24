@@ -6,6 +6,7 @@ import { getCourseEventByIdAsync } from '~/server/service/course_events/get'
 import { getMemberIdAsync } from '~/server/service/member/get'
 import { getMonthIdAsync } from '~/server/service/month/get'
 import { getOrderByMemberIdAsync } from '~/server/service/order/get'
+import { retry } from '~/server/utils/retry'
 
 export async function processOfflineOrder(event: H3Event, orderParams: OrderParamsSchemaType) {
   const config = useRuntimeConfig()
@@ -53,21 +54,23 @@ export async function processOfflineOrder(event: H3Event, orderParams: OrderPara
   const monthId = await getMonthIdAsync(notion, { year, month })
 
   const MerchantTradeNo = getTradeNo()
-  await notion.pages.create({
-    parent: { database_id: config.notion.databaseId.orders },
-    properties: {
-      訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
-      會員: { type: 'relation', relation: [{ id: memberId }] },
-      課程資訊: { type: 'relation', relation: [{ id: courseEvent.課程! }] },
-      課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
-      講師: { type: 'relation', relation: courseEvent.講師.map((id) => ({ id: id! })) },
-      月份: { type: 'relation', relation: [{ id: monthId }] },
-      付款方式: { select: { name: '現金' } },
-      付款金額: { type: 'number', number: courseEvent.指定價格 || courseEvent.課程資訊_價格! },
-      付款期限: { type: 'date', date: { start: format({ date: addDay(new Date(), 3), format: 'YYYY-MM-DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }), time_zone: 'Asia/Taipei' } },
-      訂單狀態: { status: { name: '金流:待現金付款' } },
-    },
-  })
+  await retry(() =>
+    notion.pages.create({
+      parent: { database_id: config.notion.databaseId.orders },
+      properties: {
+        訂單編號: { type: 'title', title: [{ type: 'text', text: { content: MerchantTradeNo } }] },
+        會員: { type: 'relation', relation: [{ id: memberId }] },
+        課程資訊: { type: 'relation', relation: [{ id: courseEvent.課程! }] },
+        課程場次: { type: 'relation', relation: [{ id: courseEvent.PAGE_ID! }] },
+        講師: { type: 'relation', relation: courseEvent.講師.map((id) => ({ id: id! })) },
+        月份: { type: 'relation', relation: [{ id: monthId }] },
+        付款方式: { select: { name: '現金' } },
+        付款金額: { type: 'number', number: courseEvent.指定價格 || courseEvent.課程資訊_價格! },
+        付款期限: { type: 'date', date: { start: format({ date: addDay(new Date(), 3), format: 'YYYY-MM-DD HH:mm:ss', locale: 'zh-TW', tz: 'Asia/Taipei' }), time_zone: 'Asia/Taipei' } },
+        訂單狀態: { status: { name: '金流:待現金付款' } },
+      },
+    }),
+  )
 
   return createApiResponse(200, 'OK', MerchantTradeNo)
 }
