@@ -23,7 +23,7 @@ async function fetchData() {
     // 其他可能的查詢參數
   }
   await reviewStore.fetchReviews(params)
-  await reviewStore.fetchLength(page_size.value)
+  await reviewStore.fetchLength()
 }
 
 watch([page, page_size], fetchData, { immediate: true })

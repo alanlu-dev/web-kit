@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import {
   NotionDatabaseRollupSchema,
   NotionFilesSchema,
@@ -9,10 +9,16 @@ import {
   NotionUniqueIdSchema,
   NotionUrlSchema,
 } from '@alanlu-dev/notion-api-zod-schema'
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { InstructorSchema } from './instructor'
-import { CourseEventSchema } from './course_event'
+import { z } from 'zod'
 import { CourseBaseSchema } from './course_base'
+import { CourseEventSchema } from './course_event'
+import { InstructorSchema } from './instructor'
+
+const gallerySchema = z.object({
+  image: z.string().optional(),
+  video: z.string().optional(),
+  alt: z.string().optional(),
+})
 
 export const CourseSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),
@@ -31,7 +37,10 @@ export const CourseSchema = z.object({
   課程照片: NotionFilesSchema.transform((o) => o.files.map((file) => (file?.type === 'file' ? file.file.url : undefined)).filter(Boolean)),
   照片alt: NotionRichTextSchema.transform((o) => (o.rich_text[0]?.type === 'text' ? o.rich_text[0].plain_text.split('\n') : [])),
   影音連結: NotionUrlSchema.transform((o) => (o.url ? o.url : undefined)),
+  畫廊: z.array(gallerySchema.optional()).optional(),
+
   價格: NotionNumberSchema.transform((o) => o.number!),
+  結業人數: NotionDatabaseRollupSchema.transform((o) => (o.rollup.type === 'number' && o.rollup.number ? o.rollup.number : undefined)),
 
   // 可授課講師: NotionRelationSchema.transform((o) => o.relation.map((item) => item?.id).filter(Boolean)),
   可授課講師ID: NotionDatabaseRollupSchema.transform((o) =>
@@ -82,6 +91,8 @@ export const courseQuery: QueryDatabaseParameters = {
     'dB~z',
     /** 價格 */
     'zWJ%7D',
+    /** 結業人數 */
+    'eJ%7Cg',
 
     /** 可授課講師 */
     // '%5CjaO',

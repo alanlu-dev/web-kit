@@ -100,7 +100,7 @@ const config = useRuntimeConfig()
 
 const site_rul = config.public.siteUrl
 
-const APIURL = `https://payment${+config.ecpay.stage ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
+const API_URL = `https://payment${+config.ecpay.stage ? '-stage' : ''}.ecpay.com.tw/Cashier/AioCheckOut/V5`
 
 // 付款完成通知回傳網址
 // - ReturnURL為付款結果通知回傳網址，為特店server或主機的URL，用來接收綠界後端回傳的付款結果通知。
@@ -198,7 +198,7 @@ export function createEcPayPaymentRequest(params: { MerchantTradeNo: string; pay
   const CheckMacValue = ecpayCheckMacValue(ParamsBeforeCMV, HashKey, HashIV)
 
   return {
-    ApiUrl: APIURL,
+    ApiUrl: API_URL,
     AllParams: { ...ParamsBeforeCMV, CheckMacValue },
   }
 }

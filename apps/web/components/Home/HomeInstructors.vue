@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import cv from 'class-variant'
+import type { Options as SplideOptions } from '@splidejs/splide'
 import { Intersection } from '@splidejs/splide-extension-intersection'
+import cv from 'class-variant'
 import type { InstructorSchemaType } from '~/schema/instructor'
 
 // TODO: 設定檔
@@ -23,7 +24,7 @@ const ratio = cv(
   ({ base, tablet, md }) => base && tablet && md,
 )
 
-const splideOptions = {
+const splideOptions: SplideOptions = {
   arrows: true,
   autoplay: true,
   interval: 4000,

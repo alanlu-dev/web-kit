@@ -1,15 +1,23 @@
 # Custom Dictionary Words
 astrisks
 BNPL
+enablejsapi
+facepile
 Fira
+flushall
+grecaptcha
+keyscan
 llen
 lrange
 multistep
 noobserver
 Noto
+ogmeta
 preinstall
 rpush
 TWQR
 typecheck
+unref
+urldecode
 wght
 zod's

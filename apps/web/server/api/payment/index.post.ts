@@ -1,13 +1,19 @@
-import { OrderPaymentMethodEnum } from '~/schema/payment'
 import type { OrderParamsSchemaType } from '~/schema/order'
+import { OrderPaymentMethodEnum } from '~/schema/payment'
 import { processEcPayOrder } from '~/server/service/payment/ecpay'
 import { processFreeOrder } from '~/server/service/payment/free'
 import { processOfflineOrder } from '~/server/service/payment/offline'
 
 export default defineWrappedResponseHandler<{
-  body: OrderParamsSchemaType
+  body: OrderParamsSchemaType & { turnstile: string }
 }>(async (event) => {
   const params = await readBody(event)
+
+  const verifyTurnstile = await verifyTurnstileToken(params.turnstile)
+  if (!verifyTurnstile.success) {
+    setResponseStatus(event, ErrorCodes.BAD_REQUEST)
+    return createApiError(event.node.res.statusCode, '驗證碼錯誤')
+  }
 
   switch (params.paymentMethod) {
     case OrderPaymentMethodEnum.enum.綠界:

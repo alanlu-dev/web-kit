@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { InstructorSchemaType } from '~/schema/instructor'
-import { InstructorSchema, instructorFilters, instructorKey, instructorQuery } from '~/schema/instructor'
+import { instructorFilters, instructorKey, instructorQuery, InstructorSchema } from '~/schema/instructor'
 
 export async function getInstructorByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<InstructorSchemaType | null> {
   if (!id) return null

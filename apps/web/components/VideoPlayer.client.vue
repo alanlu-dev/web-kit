@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PlyrVue, usePlyrVue } from 'plyr-vue'
 import type { PlyrVueOptions } from 'plyr-vue'
+import { PlyrVue, usePlyrVue } from 'plyr-vue'
 
 interface IProps {
   src: string

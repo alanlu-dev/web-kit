@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 import {
   NotionDatabaseRollupSchema,
   NotionDateSchema,
@@ -9,7 +9,7 @@ import {
   NotionUniqueIdSchema,
   NotionUrlSchema,
 } from '@alanlu-dev/notion-api-zod-schema'
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+import { z } from 'zod'
 
 export const ReviewSchema = z.object({
   ID: NotionUniqueIdSchema.transform((o) => o.unique_id.number),

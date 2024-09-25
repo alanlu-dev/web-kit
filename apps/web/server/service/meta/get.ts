@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { MetaSchemaType } from '~/schema/meta'
-import { MetaSchema, metaFilters, metaKey, metaQuery } from '~/schema/meta'
+import { metaFilters, metaKey, metaQuery, MetaSchema } from '~/schema/meta'
 
 export async function getMetaByPathAsync(notion: Client | null, fullPath: string, refresh: boolean, ssr: boolean): Promise<MetaSchemaType | null> {
   if (!fullPath) return null

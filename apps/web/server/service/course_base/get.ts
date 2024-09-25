@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { CourseBaseSchemaType } from '~/schema/course_base'
-import { CourseBaseSchema, courseBaseFilters, courseBaseKey, courseBaseQuery } from '~/schema/course_base'
+import { courseBaseFilters, courseBaseKey, courseBaseQuery, CourseBaseSchema } from '~/schema/course_base'
 
 export async function getCourseBaseByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<CourseBaseSchemaType | null> {
   if (!id) return null

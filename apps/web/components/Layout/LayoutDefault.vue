@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SpeedInsights } from '@vercel/speed-insights/nuxt'
-import { ModalsContainer, useVfm } from 'vue-final-modal'
 import { useEventListener } from '@vueuse/core'
+import { ModalsContainer } from 'vue-final-modal'
 
 const showDevPanel = useState('showDevPanel', () => false)
 
@@ -14,7 +14,7 @@ useEventListener(window, 'keydown', (event) => {
 })
 
 const reviewStore = useReviewStore()
-const { isModalOpen, selectedReview, isFirstReview, isLastReview } = storeToRefs(reviewStore)
+const { selectedReview, isFirstReview, isLastReview } = storeToRefs(reviewStore)
 
 async function goToAdjacentReview(direction: 'prev' | 'next') {
   const adjacentReview = await reviewStore.getAdjacentReview(direction)

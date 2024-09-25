@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { GallerySchemaType } from '~/schema/gallery'
-import { GallerySchema, galleryFilters, galleryKey, galleryQuery } from '~/schema/gallery'
+import { galleryFilters, galleryKey, galleryQuery, GallerySchema } from '~/schema/gallery'
 
 export async function getGalleryByPositionAsync(notion: Client | null, position: string, refresh: boolean): Promise<GallerySchemaType[]> {
   if (!position) return []

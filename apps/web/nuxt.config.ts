@@ -51,13 +51,11 @@ export default defineNuxtConfig({
 
     /* --- utils --- */
     '@vueuse/nuxt',
+    '@nuxtjs/turnstile',
 
     /* --- pinia --- */
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-
-    /* --- mail --- */
-    'nuxt-nodemailer',
 
     /* --- aos + gsap --- */
     'nuxt-aos',
@@ -151,7 +149,7 @@ export default defineNuxtConfig({
   // https://github.com/danielroe/nuxt-vercel-isr
   routeRules: {
     // all routes (by default) generated on demand, revalidates in background, cached on CDN for 60 seconds
-    '/**': { isr: 3600 },
+    '/**': { isr: 1800 },
     '/api/revalidate': { isr: false },
     '/api/contact': { isr: false },
     '/api/contact/**': { isr: false },
@@ -167,15 +165,6 @@ export default defineNuxtConfig({
     '/checkout/**': { isr: false },
   },
 
-  nodemailer: {
-    from: `"${process.env.NUXT_NODEMAILER_FROM_NAME}" <${process.env.NUXT_NODEMAILER_FROM_MAIL}>`,
-    service: 'gmail',
-    auth: {
-      user: process.env.NUXT_NODEMAILER_AUTH_USER,
-      pass: process.env.NUXT_NODEMAILER_AUTH_PASS,
-    },
-  },
-
   aos: {
     // once: true,
   },
@@ -185,6 +174,11 @@ export default defineNuxtConfig({
   //     scrollTrigger: true,
   //   },
   // },
+
+  turnstile: {
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+    addValidateEndpoint: true,
+  },
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#runtimeconfig
   runtimeConfig: {
@@ -196,6 +190,12 @@ export default defineNuxtConfig({
       siteUrl: '',
       gtmId: '',
       fbUrl: '',
+      recaptcha: {
+        siteKey: '',
+      },
+      turnstile: {
+        siteKey: '',
+      },
     },
     vercel: {
       bypassToken: process.env.VERCEL_BYPASS_TOKEN || '',
@@ -232,6 +232,12 @@ export default defineNuxtConfig({
       hashIv: '',
       stage: '',
     },
+    recaptcha: {
+      key: '',
+    },
+    turnstile: {
+      secretKey: '',
+    },
   },
 
   nitro: {
@@ -243,6 +249,7 @@ export default defineNuxtConfig({
       },
     },
     rollupConfig: {
+      // @ts-expect-error https://github.com/vitejs/vite-plugin-vue/issues/422
       plugins: [vue()],
     },
   },

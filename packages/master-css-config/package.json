@@ -49,7 +49,7 @@
     "@master/css": "2.0.0-rc.45"
   },
   "devDependencies": {
-    "@alanlu-dev/mastercss-helpers": "^1.0.8",
+    "@alanlu-dev/mastercss-helpers": "^1.0.12",
     "@master/css": "2.0.0-rc.45",
     "ts-deepmerge": "^7.0.1"
   }

@@ -70,7 +70,7 @@ const courseDateMinus7 = computed(() => {
         <div class="{flex;ai:flex-start;jc:flex-start;gap:1x}">
           <p class="nowrap fg:font-title">付款方式：</p>
           <div class="{flex;ai:center;jc:flex-start;flex:wrap}">
-            <span>{{ order?.付款方式 === 'Credit_CreditCard' ? '信用卡' : order?.付款方式 }}</span>
+            <span>{{ order?.付款方式 }}</span>
           </div>
         </div>
 

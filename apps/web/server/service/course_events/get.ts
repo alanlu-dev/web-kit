@@ -1,8 +1,8 @@
 import { type Client, isFullPage } from '@notionhq/client'
-import { getCourseByIdAsync } from '~/server/service/course/get'
-import { getClassroomByIdAsync } from '~/server/service/classroom/get'
 import type { CourseEventSchemaType } from '~/schema/course_event'
-import { CourseEventSchema, courseEventFilters, courseEventKey, courseEventQuery } from '~/schema/course_event'
+import { courseEventFilters, courseEventKey, courseEventQuery, CourseEventSchema } from '~/schema/course_event'
+import { getClassroomByIdAsync } from '~/server/service/classroom/get'
+import { getCourseByIdAsync } from '~/server/service/course/get'
 
 interface needType {
   needCourse?: boolean
@@ -25,7 +25,6 @@ export async function getCourseEventByIdAsync(
   if (!refresh) {
     item = await redis.get<CourseEventSchemaType>(key)
   }
-
   if (!item) {
     ;[item, notion] = await fetchNotionDataByIdAsync<CourseEventSchemaType>({
       notion,
@@ -35,6 +34,7 @@ export async function getCourseEventByIdAsync(
       filters: courseEventFilters,
       id,
     })
+
     if (item) await redis.set(key, item)
   }
 

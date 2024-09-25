@@ -1,15 +1,40 @@
 <script setup lang="ts">
-import { createZodPlugin } from '@formkit/zod'
 import { reset } from '@formkit/core'
+import { createZodPlugin } from '@formkit/zod'
+import { toast } from 'vue3-toastify'
 import { ContactSchema } from '~/schema/contact'
 import type { ContactSchemaType } from '~/schema/contact'
 
 const show = ref(false)
 
+const turnstileRef = ref()
+const turnstile = ref<string | undefined>()
+
 const contactData = ref<ContactSchemaType>()
 const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formData) => {
+  if (turnstile.value == null) {
+    toast.warn('請完成驗證')
+    return
+  }
+  if (turnstile.value === 'expired') {
+    toast.warn('驗證已過期，請重新驗證')
+    return
+  }
+  if (turnstile.value === 're-verified') {
+    toast.warn('請重新驗證')
+    return
+  }
+
   // await new Promise((r) => setTimeout(r, 2000))
-  const { error } = await useApiFetch('/api/contact', { method: 'post', body: formData })
+  const { error } = await useApiFetch('/api/contact', {
+    method: 'post',
+    body: {
+      ...formData,
+      turnstile: turnstile.value,
+    },
+  })
+  turnstileRef.value?.reset()
+  turnstile.value = 're-verified'
 
   if (!error.value) {
     show.value = true
@@ -37,6 +62,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
           <FormKit type="text" name="title" label="主旨" validation="required" />
         </div>
         <FormKit :classes="{ wrapper: 'mt:4x!' }" type="textarea" name="message" validation="required" label="問題描述，寫下您的問題" lines="3" />
+        <NuxtTurnstile ref="turnstileRef" v-model="turnstile" class="mt:5x overflow:hidden w:full" @expired-callback="turnstile = 'expired'" />
       </FormKit>
     </div>
 
@@ -44,7 +70,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(ContactSchema, async (formDat
       <template #header>
         <h2 class="h2 fg:font-title">成功送出！</h2>
       </template>
-      <div class="b1-r text:center">
+      <div class="b1-r text:center w:full">
         <p>已收到您的留言，</p>
         <p>我們將盡快與您聯絡。</p>
       </div>

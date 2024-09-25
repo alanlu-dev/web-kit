@@ -1,6 +1,6 @@
 import { type Client, isFullPage } from '@notionhq/client'
 import type { ClassroomSchemaType } from '~/schema/classroom'
-import { ClassroomSchema, classroomFilters, classroomKey, classroomQuery } from '~/schema/classroom'
+import { classroomFilters, classroomKey, classroomQuery, ClassroomSchema } from '~/schema/classroom'
 
 export async function getClassroomByIdAsync(notion: Client | null, id: number, refresh: boolean): Promise<ClassroomSchemaType | null> {
   if (!id) return null

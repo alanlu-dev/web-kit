@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { formatThousand } from '@alanlu-dev/utils'
-import { addDay, format } from '@formkit/tempo'
 import type { OrderSchemaType } from '~/schema/order'
 
-const props = defineProps<{ order: OrderSchemaType }>()
+defineProps<{ order: OrderSchemaType }>()
 
 const config = useRuntimeConfig()
 </script>
@@ -25,7 +23,7 @@ const config = useRuntimeConfig()
       </div>
 
       <div class="b2-r {flex;flex:col;gap:5x} bg:base-bg mt:5x p:5x px:11x@tablet r:2x text:left">
-        <p>協會官方 LINE 帳號：<a class="cursor:pointer fg:primary fg:primary-hover:hover" href="https://lin.ee/6bQnil5">https://lin.ee/6bQnil5</a> 或 掃描下方 QR Code。 </p>
+        <p>協會官方 LINE 帳號：<a class="cursor:pointer fg:primary fg:primary-hover:hover" href="https://lin.ee/6bQnil5">https://lin.ee/6bQnil5</a> 或 掃描下方 QR code。 </p>
         <a href="https://lin.ee/6bQnil5" class="block aspect:1/1 max-w:200 mx:auto">
           <Image src="/line.png" class="{aspect:inherit;object:cover} w:full" />
         </a>

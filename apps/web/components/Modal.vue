@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { CSSProperties, RendererElement } from 'vue'
-import { VueFinalModal, vueFinalModalProps } from 'vue-final-modal'
-
 import { getDefaultFromProps } from '@alanlu-dev/utils/obj'
+
+import { VueFinalModal, vueFinalModalProps } from 'vue-final-modal'
 
 const props = withDefaults(
   defineProps<IProps>(),
@@ -118,7 +118,12 @@ function handleConfirm() {
     @before-close="handleBeforeClose"
     @closed="handleClosed"
   >
-    <template #default="{ close }">
+    <template
+      #default="{
+        // @ts-expect-error https://github.com/vue-final/vue-final-modal/issues/432
+        close,
+      }"
+    >
       <div class="vfm__content__root rel mt:6x px:6x w:full">
         <button class="close-btn {abs;right:6x;top} cursor:pointer" @click="() => close()">
           <Iconify icon="material-symbols-light:close-small-outline-rounded" />

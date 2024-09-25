@@ -1,6 +1,7 @@
-import { Client } from '@notionhq/client'
 import type { QueryDatabaseParameters, QueryDatabaseResponse, UpdatePageParameters } from '@notionhq/client/build/src/api-endpoints'
 import { addSecond, format } from '@formkit/tempo'
+import { Client } from '@notionhq/client'
+import { retry } from '~/server/utils/retry'
 
 interface FetchNotionDataParams<T> {
   notion: Client | null
@@ -19,7 +20,7 @@ export async function fetchNotionDataAsync<T>({ notion, query, processData, upda
   }
 
   while (true) {
-    const response = await notion.databases.query({ ...query, start_cursor })
+    const response = await retry(() => notion.databases.query({ ...query, start_cursor }))
 
     allResult.push(...response.results)
 
@@ -82,7 +83,7 @@ export async function updatePages<T>(notion: Client, pagesToUpdate: T[], getProp
     await Promise.all(
       pagesToUpdateBatch.map(({ PAGE_ID }) => {
         const properties = getProperties()
-        return notion.pages.update({ page_id: PAGE_ID, properties })
+        return retry(() => notion.pages.update({ page_id: PAGE_ID, properties }))
       }),
     )
   }

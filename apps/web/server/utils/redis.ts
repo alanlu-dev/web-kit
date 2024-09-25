@@ -1,5 +1,5 @@
-import { createClient } from 'redis'
 import { kv } from '@vercel/kv'
+import { createClient } from 'redis'
 
 const config = useRuntimeConfig()
 
