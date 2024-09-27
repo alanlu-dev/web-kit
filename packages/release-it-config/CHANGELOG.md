@@ -1,5 +1,11 @@
 # @alanlu-dev/release-it-config
 
+## 0.0.8
+
+### Patch Changes
+
+- [`13c7685`](https://github.com/alanlu-dev/web-kit/commit/13c768546402424ce0822d90659893026f5d1c1c) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(release-it-config): get packageName
+
 ## 0.0.7
 
 ### Patch Changes
