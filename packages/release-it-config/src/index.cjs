@@ -1,5 +1,5 @@
-const path = require('node:path')
 const fs = require('node:fs')
+const path = require('node:path')
 const versionConfig = require('./.versionrc.cjs')
 
 // eslint-disable-next-line no-template-curly-in-string
@@ -22,7 +22,9 @@ function findPackageJson(startPath) {
 }
 
 const root = findPackageJson(__dirname)
-const packageJson = fs.readFileSync(path.join(root, 'pnpm-workspace.yaml'), 'utf8')
+const packageJsonPath = path.join(root, 'package.json')
+const packageJsonContent = fs.readFileSync(packageJsonPath, 'utf8')
+const packageJson = JSON.parse(packageJsonContent)
 
 const packageName = packageJson.name
 const scope = packageName.split('/')[1]
