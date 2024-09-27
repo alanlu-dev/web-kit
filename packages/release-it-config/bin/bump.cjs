@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+const { execSync } = require('node:child_process')
 const fs = require('node:fs')
 const path = require('node:path')
-const { execSync } = require('node:child_process')
 const { glob } = require('glob')
 const yaml = require('js-yaml')
 
@@ -24,7 +24,7 @@ function findWorkspaceRoot(startPath) {
 
 function main() {
   try {
-    const workspaceRoot = findWorkspaceRoot(__dirname)
+    const workspaceRoot = findWorkspaceRoot(process.cwd())
     const workspaceData = fs.readFileSync(path.join(workspaceRoot, 'pnpm-workspace.yaml'), 'utf8')
     const workspace = yaml.load(workspaceData)
     const packages = workspace.packages
