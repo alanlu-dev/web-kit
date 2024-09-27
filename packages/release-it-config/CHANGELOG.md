@@ -1,5 +1,11 @@
 # @alanlu-dev/release-it-config
 
+## 0.0.10
+
+### Patch Changes
+
+- [`749e5f3`](https://github.com/alanlu-dev/web-kit/commit/749e5f3244bf6d2dde453a9a9ae56bae877f8e87) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(release-it-config): update pushRepo URL
+
 ## 0.0.9
 
 ### Patch Changes
