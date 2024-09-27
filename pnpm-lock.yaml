@@ -49,9 +49,6 @@ importers:
       '@alanlu-dev/types':
         specifier: ^1.0.9
         version: 1.0.9(@types/node@22.5.5)(typescript@5.6.2)
-      '@jiehousekeeper/master-css-config':
-        specifier: workspace:*
-        version: link:packages/master-css-config
       '@master/css':
         specifier: ^2.0.0-rc.45
         version: 2.0.0-rc.45
@@ -61,6 +58,9 @@ importers:
       '@master/eslint-plugin-css':
         specifier: ^2.0.0-rc.45
         version: 2.0.0-rc.45(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2)
+      '@pccaclean/master-css-config':
+        specifier: workspace:*
+        version: link:packages/master-css-config
       '@types/node':
         specifier: ^22.5.5
         version: 22.5.5
@@ -263,7 +263,7 @@ importers:
       '@alanlu-dev/types':
         specifier: ^1.0.9
         version: 1.0.9(@types/node@22.5.5)(typescript@5.6.2)
-      '@jiehousekeeper/master-css-config':
+      '@pccaclean/master-css-config':
         specifier: workspace:*
         version: link:../../packages/master-css-config
       '@vueuse/nuxt':

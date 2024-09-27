@@ -1,6 +1,6 @@
-import config from '@jiehousekeeper/master-css-config'
-import plyr from '@jiehousekeeper/master-css-config/vendors/plyr'
-import splide from '@jiehousekeeper/master-css-config/vendors/splide'
+import config from '@pccaclean/master-css-config'
+import plyr from '@pccaclean/master-css-config/vendors/plyr'
+import splide from '@pccaclean/master-css-config/vendors/splide'
 
 /** @type {import('@master/css').Config} */
 export default {

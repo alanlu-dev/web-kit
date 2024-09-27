@@ -1,19 +1,19 @@
 {
-  "name": "@jiehousekeeper/master-css-config",
+  "name": "@pccaclean/master-css-config",
   "type": "module",
   "version": "0.0.0",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiehousekeeper/official-site.git",
+    "url": "git+https://github.com/pccaclean/official-site.git",
     "directory": "packages/master-css-config"
   },
   "bugs": {
-    "url": "https://github.com/jiehousekeeper/official-site/issues"
+    "url": "https://github.com/pccaclean/official-site/issues"
   },
   "publishConfig": {
-    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+    "@pccaclean:registry": "https://npm.pkg.github.com"
   },
   "exports": {
     ".": {

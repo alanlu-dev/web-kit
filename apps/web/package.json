@@ -1,19 +1,19 @@
 {
-  "name": "@jiehousekeeper/web",
+  "name": "@pccaclean/web",
   "type": "module",
   "version": "0.1.7",
   "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiehousekeeper/official-site.git",
+    "url": "git+https://github.com/pccaclean/official-site.git",
     "directory": "apps/web"
   },
   "bugs": {
-    "url": "https://github.com/jiehousekeeper/official-site/issues"
+    "url": "https://github.com/pccaclean/official-site/issues"
   },
   "publishConfig": {
-    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+    "@pccaclean:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build:clean": "npx rimraf --glob ./.output",
@@ -85,7 +85,7 @@
   "devDependencies": {
     "@alanlu-dev/release-it-config": "^0.0.7",
     "@alanlu-dev/types": "^1.0.9",
-    "@jiehousekeeper/master-css-config": "workspace:*",
+    "@pccaclean/master-css-config": "workspace:*",
     "@vueuse/nuxt": "^11.1.0",
     "focus-trap": "^7.6.0",
     "nuxt": "^3.13.2",

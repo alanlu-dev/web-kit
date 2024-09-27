@@ -1,5 +1,5 @@
 {
-  "name": "@jiehousekeeper/official-site",
+  "name": "@pccaclean/official-site",
   "type": "module",
   "version": "",
   "private": true,
@@ -9,13 +9,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiehousekeeper/official-site.git"
+    "url": "git+https://github.com/pccaclean/official-site.git"
   },
   "bugs": {
-    "url": "https://github.com/jiehousekeeper/official-site/issues"
+    "url": "https://github.com/pccaclean/official-site/issues"
   },
   "publishConfig": {
-    "@jiehousekeeper:registry": "https://npm.pkg.github.com"
+    "@pccaclean:registry": "https://npm.pkg.github.com"
   },
   "engines": {
     "node": ">=20.14.0",
@@ -42,8 +42,8 @@
     "coverage": "turbo run coverage",
     "lint:cspell": "pnpm cspell . --unique --no-progress --no-must-find-files",
     "lint:cspell:only-changed": "git diff --name-only | npx cspell --file-list stdin",
-    "web": "pnpm --filter=@jiehousekeeper/web",
-    "web:dev": "turbo run dev --filter=./packages/** --filter=@jiehousekeeper/web",
+    "web": "pnpm --filter=@pccaclean/web",
+    "web:dev": "turbo run dev --filter=./packages/** --filter=@pccaclean/web",
     "taze": "npx taze",
     "commit": "czg",
     "release": "turbo release --concurrency=1"
@@ -60,10 +60,10 @@
     "@alanlu-dev/stylelint-config": "^1.0.12",
     "@alanlu-dev/tsconfig": "^1.0.9",
     "@alanlu-dev/types": "^1.0.9",
-    "@jiehousekeeper/master-css-config": "workspace:*",
     "@master/css": "^2.0.0-rc.45",
     "@master/eslint-config-css": "^2.0.0-rc.45",
     "@master/eslint-plugin-css": "^2.0.0-rc.45",
+    "@pccaclean/master-css-config": "workspace:*",
     "@types/node": "^22.5.5",
     "@vitest/coverage-v8": "^2.1.1",
     "cspell": "^8.14.4",
