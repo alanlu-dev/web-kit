@@ -205,7 +205,6 @@ export default defineNuxtConfig({
       port: '',
       password: '',
     },
-    storageType: '',
     notion: {
       apiKey: '',
       databaseId: {

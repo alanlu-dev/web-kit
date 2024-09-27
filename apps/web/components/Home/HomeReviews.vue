@@ -8,8 +8,8 @@ const title = ['學員滿意度 93.8%']
 const title2 = ['致力營造優質的學習環境,', '持續精進教學,為學員提供更好的學習體驗']
 
 const reviewStore = useReviewStore()
-const { reviews } = storeToRefs(reviewStore)
-await reviewStore.fetchReviews({ page: 1, page_size: 10 })
+const { data: reviews } = storeToRefs(reviewStore)
+await reviewStore.fetchData({ page: 1, page_size: 10 })
 
 // 寬度公式: (fixedWidth(100%) + gap) / perPage - gap
 const ratio = cv(
@@ -65,7 +65,7 @@ const splideOptions: SplideOptions = {
         </h3>
       </div>
 
-      <div class="{max-w:screen-main;mx:auto} mt:5x mt:10x@tablet w:full@desktop">
+      <div v-if="reviews?.length" class="{max-w:screen-main;mx:auto} mt:5x mt:10x@tablet w:full@desktop">
         <ClientOnly>
           <template #fallback>
             <div class="splide__track">
@@ -94,7 +94,7 @@ const splideOptions: SplideOptions = {
             </div>
 
             <SplideTrack>
-              <SplideSlide v-for="(review, idx) in reviews?.slice(0, 10)" :key="review.ID">
+              <SplideSlide v-for="(review, idx) in reviews.slice(0, 10)" :key="review.ID">
                 <ReviewCard :review="review" :page="1" :idx="idx" />
               </SplideSlide>
             </SplideTrack>

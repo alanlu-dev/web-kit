@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 import { useEventListener } from '@vueuse/core'
 import { ModalsContainer } from 'vue-final-modal'
 
@@ -14,10 +13,10 @@ useEventListener(window, 'keydown', (event) => {
 })
 
 const reviewStore = useReviewStore()
-const { selectedReview, isFirstReview, isLastReview } = storeToRefs(reviewStore)
+const { selected, isFirst, isLast } = storeToRefs(reviewStore)
 
 async function goToAdjacentReview(direction: 'prev' | 'next') {
-  const adjacentReview = await reviewStore.getAdjacentReview(direction)
+  const adjacentReview = await reviewStore.getAdjacentData(direction)
   if (adjacentReview) {
     // 更新 UI 或執行其他操作
   }
@@ -28,7 +27,6 @@ async function goToAdjacentReview(direction: 'prev' | 'next') {
   <div class="rel {flex;flex:col} min-h:100vh mx:auto" :class="{ dev: showDevPanel }">
     <Header />
 
-    <SpeedInsights />
     <ModalsContainer />
 
     <main class="flex:1">
@@ -50,24 +48,24 @@ async function goToAdjacentReview(direction: 'prev' | 'next') {
     </ClientOnly>
 
     <Modal modal-id="review" class="{top:-4x;right:2x}_.close-btn {max-w:screen-sm}_.vfm__content" :footer="null">
-      <template v-if="selectedReview">
+      <template v-if="selected">
         <div>
           <div class="{flex;flex:col;ai:flex-start;gap:5x} flex:row@xs">
             <div class="flex:1@xs overflow:hidden r:2x w:full">
-              <VideoPlayerCover :key="`media-${selectedReview.ID}`" aspect="16/9" :video="selectedReview.影音連結" :img="selectedReview.照片[0]" :alt="selectedReview.照片alt" />
+              <VideoPlayerCover :key="`media-${selected.ID}`" aspect="16/9" :video="selected.影音連結" :img="selected.照片[0]" :alt="selected.照片alt" />
             </div>
             <div class="flex:1.5 text:left">
-              <p class="b1-m fg:font-title">學員 {{ selectedReview.學員 }}</p>
-              <nuxt-link :to="`/course/${selectedReview.課程ID}`" class="b1-m fg:primary mt:1x">{{ selectedReview.課程資訊_名稱 }}</nuxt-link>
-              <p class="b2-r mt:2x">{{ selectedReview.評價 }}</p>
+              <p class="b1-m fg:font-title">學員 {{ selected.學員 }}</p>
+              <nuxt-link :to="`/course/${selected.課程ID}`" class="b1-m fg:primary mt:1x">{{ selected.課程資訊_名稱 }}</nuxt-link>
+              <p class="b2-r mt:2x">{{ selected.評價 }}</p>
             </div>
           </div>
 
           <div class="{flex;center-content;gap:2x} mt:auto">
-            <button :disabled="isFirstReview" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('prev')">
+            <button :disabled="isFirst" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('prev')">
               <Iconify icon="material-symbols-light:arrow-left-alt" :is-prefix="true">上一則</Iconify>
             </button>
-            <button :disabled="isLastReview" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('next')">
+            <button :disabled="isLast" class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="goToAdjacentReview('next')">
               <Iconify icon="material-symbols-light:arrow-right-alt">下一則</Iconify>
             </button>
           </div>
@@ -91,10 +89,10 @@ async function goToAdjacentReview(direction: 'prev' | 'next') {
           </div>
 
           <div class="{flex;center-content;gap:2x} mt:auto">
-            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentReview('prev')">
+            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentData('prev')">
               <Iconify icon="material-symbols-light:arrow-left-alt" :is-prefix="true">上一則</Iconify>
             </button>
-            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentReview('next')">
+            <button disabled class="inline-block {fg:divider}:disabled_* mt:5x pointer-events:none:disabled text:center" @click="reviewStore.getAdjacentData('next')">
               <Iconify icon="material-symbols-light:arrow-right-alt">下一則</Iconify>
             </button>
           </div>

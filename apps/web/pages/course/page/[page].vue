@@ -8,11 +8,5 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
-    <Hero title="課程資訊" />
-    <Breadcrumb />
-    <CoursePageHero />
-    <CoursePageContent />
-    <NuxtPage />
-  </div>
+  <CoursePageContent />
 </template>

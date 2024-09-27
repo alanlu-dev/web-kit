@@ -11,7 +11,7 @@ const props = defineProps<IProps>()
 const reviewStore = useReviewStore()
 
 function handleClick() {
-  reviewStore.selectReview(props.page, props.idx)
+  reviewStore.select(props.page, props.idx)
 }
 </script>
 

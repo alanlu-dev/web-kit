@@ -2,7 +2,7 @@ import { type Client, isFullPage } from '@notionhq/client'
 import type { MetaSchemaType } from '~/schema/meta'
 import { metaFilters, metaKey, metaQuery, MetaSchema } from '~/schema/meta'
 
-export async function getMetaByPathAsync(notion: Client | null, fullPath: string, refresh: boolean, ssr: boolean): Promise<MetaSchemaType | null> {
+export async function getMetaByPathAsync(notion: Client | null, fullPath: string, refresh: boolean, _ssr: boolean): Promise<MetaSchemaType | null> {
   if (!fullPath) return null
 
   fullPath = `/${fullPath === 'index' ? '' : fullPath}`
@@ -24,7 +24,8 @@ export async function getMetaByPathAsync(notion: Client | null, fullPath: string
         },
       },
       processData: processMetaDataAsync,
-      updateProperties: ssr ? updatePageRefreshTime : updateRefreshTime,
+      // updateProperties: ssr ? updatePageRefreshTime : updateRefreshTime,
+      updateProperties: updateRefreshTime,
     })
     if (items) await redis.set(key, items)
     // if (items && items[0]?.標題) await redis.set(key, items)

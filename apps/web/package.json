@@ -1,8 +1,8 @@
 {
   "name": "@pccaclean/web",
   "type": "module",
-  "version": "0.1.7",
-  "author": "Alan Lu <hi@alanlu.dev> (https://github.com/alanlu-zyl)",
+  "version": "0.0.0",
+  "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -56,9 +56,6 @@
     "@pinia/nuxt": "^0.5.4",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
-    "@vercel/edge-config": "^1.3.0",
-    "@vercel/kv": "^2.0.0",
-    "@vercel/speed-insights": "^1.0.12",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vue-final-modal/nuxt": "^1.0.3",
     "@vueuse/core": "^11.1.0",
@@ -70,12 +67,12 @@
     "nuxt-aos": "^1.2.5",
     "nuxt-gtag": "^3.0.1",
     "nuxt-icon": "^0.6.10",
-    "nuxt-security": "^1.4.3",
+    "nuxt-security": "^2.0.0",
     "nuxt-splide": "^1.1.1",
     "pinia": "^2.2.2",
     "plyr-vue": "^2.6.8",
     "redis": "^4.7.0",
-    "vue": "^3.5.6",
+    "vue": "^3.5.9",
     "vue-final-modal": "^4.5.5",
     "vue-router": "^4.4.5",
     "vue3-toastify": "^0.2.3",
@@ -89,7 +86,7 @@
     "@vueuse/nuxt": "^11.1.0",
     "focus-trap": "^7.6.0",
     "nuxt": "^3.13.2",
-    "ofetch": "^1.3.4",
+    "ofetch": "^1.4.0",
     "vue-tsc": "^2.1.6"
   }
 }
