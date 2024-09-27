@@ -1,5 +1,23 @@
 # official-site
 
+## 登入
+
+1. 使用個人訪問令牌（PAT）進行身份驗證： 確保你使用的是 GitHub 個人訪問令牌（PAT）而不是密碼。PAT 需要具有 write:packages 和 read:packages 權限。
+
+2. 配置 .npmrc 文件： 在你的專案根目錄或用戶主目錄中創建或更新 .npmrc 文件，並添加以下內容：
+
+    ```bash
+    @pccaclean:registry=https://npm.pkg.github.com/
+    //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+    ```
+
+3. 你也可以使用命令行來配置 NPM：
+
+   ```bash
+   npm config set @pccaclean:registry https://npm.pkg.github.com/
+   npm config set //npm.pkg.github.com/:_authToken YOUR_GITHUB_TOKEN
+   ```
+
 ## MY_GITHUB_TOKEN
 
 ### 生成 GitHub Personal Access Token

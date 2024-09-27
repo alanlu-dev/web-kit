@@ -43,7 +43,8 @@
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
-    "release": "release-it --ci"
+    "release": "release-it --ci",
+    "release:test": "release-it --dry-run"
   },
   "peerDependencies": {
     "@master/css": "2.0.0-rc.45"

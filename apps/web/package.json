@@ -27,7 +27,8 @@
     "lint:prettier": "prettier --ignore-path ../../.prettierignore --write .",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
     "typecheck": "vue-tsc --noEmit",
-    "release": "release-it --ci"
+    "release": "release-it --ci",
+    "release:test": "release-it --dry-run"
   },
   "dependencies": {
     "@alanlu-dev/notion-api-zod-schema": "^1.0.6",

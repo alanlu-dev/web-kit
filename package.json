@@ -45,7 +45,8 @@
     "web:dev": "turbo run dev --filter=./packages/** --filter=@pccaclean/web",
     "taze": "npx taze",
     "commit": "czg",
-    "release": "turbo release --concurrency=1"
+    "release": "turbo release --concurrency=1",
+    "release:test": "turbo release:test --concurrency=1"
   },
   "devDependencies": {
     "@alanlu-dev/commitlint-config": "^1.0.7",
