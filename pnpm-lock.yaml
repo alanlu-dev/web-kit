@@ -35,8 +35,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5(prettier-plugin-brace-style@0.7.0(prettier@3.3.3))(prettier-plugin-merge@0.7.1(prettier@3.3.3))(prettier@3.3.3)
       '@alanlu-dev/release-it-config':
-        specifier: ^0.0.7
-        version: 0.0.7(@release-it/conventional-changelog@8.0.2(release-it@17.6.0(typescript@5.6.2)))(release-it@17.6.0(typescript@5.6.2))
+        specifier: ^0.0.8
+        version: 0.0.8(@release-it/conventional-changelog@8.0.2(release-it@17.6.0(typescript@5.6.2)))(release-it@17.6.0(typescript@5.6.2))
       '@alanlu-dev/stylelint-config':
         specifier: ^1.0.12
         version: 1.0.12(postcss-html@1.7.0)(postcss-preset-env@10.0.5(postcss@8.4.47))(postcss-scss@4.0.9(postcss@8.4.47))(postcss@8.4.47)(sass@1.79.3)(stylelint-config-recess-order@5.1.1(stylelint@16.9.0(typescript@5.6.2)))(stylelint-config-recommended-vue@1.5.0(postcss-html@1.7.0)(stylelint@16.9.0(typescript@5.6.2)))(stylelint-config-standard-scss@13.1.0(postcss@8.4.47)(stylelint@16.9.0(typescript@5.6.2)))(stylelint@16.9.0(typescript@5.6.2))
@@ -346,6 +346,13 @@ packages:
 
   '@alanlu-dev/release-it-config@0.0.7':
     resolution: {integrity: sha512-2Mtv4STz+tP6NgqA+ht0dyXjdHryh7mREBA+nR//vGvymg5rLST2T3di/CRMwceEQnE6VIgd85z7PxUZMXLxBw==}
+    hasBin: true
+    peerDependencies:
+      '@release-it/conventional-changelog': ^8.0.2
+      release-it: ^17.4.0
+
+  '@alanlu-dev/release-it-config@0.0.8':
+    resolution: {integrity: sha512-+3EHru7PJAKHi+D+2qqeWfD0D9V1e024UI2Du0RotYJlmIP2yj93g3laUuxO/3p6SN/canV5Ps2+6l4FKxlrSQ==}
     hasBin: true
     peerDependencies:
       '@release-it/conventional-changelog': ^8.0.2
@@ -8721,6 +8728,11 @@ snapshots:
       '@release-it/conventional-changelog': 8.0.2(release-it@17.6.0(typescript@5.6.2))
       release-it: 17.6.0(typescript@5.6.2)
 
+  '@alanlu-dev/release-it-config@0.0.8(@release-it/conventional-changelog@8.0.2(release-it@17.6.0(typescript@5.6.2)))(release-it@17.6.0(typescript@5.6.2))':
+    dependencies:
+      '@release-it/conventional-changelog': 8.0.2(release-it@17.6.0(typescript@5.6.2))
+      release-it: 17.6.0(typescript@5.6.2)
+
   '@alanlu-dev/stylelint-config@1.0.12(postcss-html@1.7.0)(postcss-preset-env@10.0.5(postcss@8.4.47))(postcss-scss@4.0.9(postcss@8.4.47))(postcss@8.4.47)(sass@1.79.3)(stylelint-config-recess-order@5.1.1(stylelint@16.9.0(typescript@5.6.2)))(stylelint-config-recommended-vue@1.5.0(postcss-html@1.7.0)(stylelint@16.9.0(typescript@5.6.2)))(stylelint-config-standard-scss@13.1.0(postcss@8.4.47)(stylelint@16.9.0(typescript@5.6.2)))(stylelint@16.9.0(typescript@5.6.2))':
     dependencies:
       postcss: 8.4.47
@@ -16134,7 +16146,7 @@ snapshots:
       ky: 1.7.2
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.6.2
+      semver: 7.6.3
 
   package-manager-detector@0.2.0: {}
 
@@ -17113,7 +17125,7 @@ snapshots:
 
   semver-diff@4.0.0:
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
 
   semver@5.7.2: {}
 
@@ -18170,7 +18182,7 @@ snapshots:
       is-npm: 6.0.0
       latest-version: 9.0.0
       pupa: 3.1.0
-      semver: 7.6.2
+      semver: 7.6.3
       semver-diff: 4.0.0
       xdg-basedir: 5.1.0
 

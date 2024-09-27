@@ -56,7 +56,7 @@
     "@alanlu-dev/mastercss-config": "^1.0.12",
     "@alanlu-dev/playwright-config": "^0.1.0",
     "@alanlu-dev/prettier-config": "^1.0.5",
-    "@alanlu-dev/release-it-config": "^0.0.7",
+    "@alanlu-dev/release-it-config": "^0.0.8",
     "@alanlu-dev/stylelint-config": "^1.0.12",
     "@alanlu-dev/tsconfig": "^1.0.9",
     "@alanlu-dev/types": "^1.0.9",
