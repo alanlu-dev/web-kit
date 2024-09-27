@@ -1,5 +1,11 @@
 # @alanlu-dev/release-it-config
 
+## 0.0.9
+
+### Patch Changes
+
+- [`9e9f4ad`](https://github.com/alanlu-dev/web-kit/commit/9e9f4ad8decfcb64a4bd10a6ac1c96da18cd9fa4) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(release-it-config): root path
+
 ## 0.0.8
 
 ### Patch Changes
