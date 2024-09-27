@@ -1,5 +1,11 @@
 # @alanlu-dev/release-it-config
 
+## 0.0.11
+
+### Patch Changes
+
+- [`49bfdd5`](https://github.com/alanlu-dev/web-kit/commit/49bfdd5b29092990530d7ea22bb59a3eb7666692) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - fix(release-it-config): fix workspace root path
+
 ## 0.0.10
 
 ### Patch Changes
