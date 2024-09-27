@@ -21,7 +21,7 @@ function findPackageJson(startPath) {
   throw new Error('package.json not found')
 }
 
-const root = findPackageJson(__dirname)
+const root = findPackageJson(process.cwd())
 const packageJsonPath = path.join(root, 'package.json')
 const packageJsonContent = fs.readFileSync(packageJsonPath, 'utf8')
 const packageJson = JSON.parse(packageJsonContent)
