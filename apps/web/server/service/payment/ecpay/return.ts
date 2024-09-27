@@ -70,7 +70,7 @@ export async function getPaymentResult(order_page_id: string, data: EcPayPayment
     notion.pages.update({
       page_id: order_page_id,
       properties: {
-        訂單狀態: { status: { name: data?.RtnCode === '1' ? `${preText}後成功` : `${preText}後失敗` } },
+        訂單狀態: { status: { name: data?.RtnCode === '1' ? `${preText}成功` : `${preText}失敗` } },
       },
     }),
   )
