@@ -29,6 +29,14 @@ const packageJson = JSON.parse(packageJsonContent)
 const packageName = packageJson.name
 const scope = packageName.split('/')[1]
 
+let pushRepo = packageJson.repository.url.replace(/^git\+/, '')
+if (!pushRepo.startsWith('https://')) {
+  pushRepo = pushRepo.replace(/^http:\/\//, 'https://')
+}
+if (!pushRepo.endsWith('.git')) {
+  pushRepo += '.git'
+}
+
 module.exports = {
   plugins: {
     '@release-it/conventional-changelog': {
@@ -48,7 +56,7 @@ module.exports = {
     requireBranch: 'main',
     push: true,
     tagName: `${packageName}@${version}`,
-    pushRepo: packageJson.repository.url,
+    pushRepo,
     commitsPath: '.',
     commitMessage: `chore(${scope}): released version v${version} [skip ci]`,
     requireCommits: true,
