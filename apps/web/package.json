@@ -81,7 +81,7 @@
     "zod-i18n-map": "^2.27.0"
   },
   "devDependencies": {
-    "@alanlu-dev/release-it-config": "^0.0.7",
+    "@alanlu-dev/release-it-config": "^0.0.8",
     "@alanlu-dev/types": "^1.0.9",
     "@pccaclean/master-css-config": "workspace:*",
     "@vueuse/nuxt": "^11.1.0",
