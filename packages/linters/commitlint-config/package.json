@@ -29,11 +29,11 @@
   "peerDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "czg": "^1.9.4"
+    "czg": "^1.10.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "czg": "^1.9.4"
+    "czg": "^1.10.1"
   }
 }

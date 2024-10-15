@@ -2,7 +2,6 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 // modules's config
-import nuxtConfig from '@alanlu-dev/nuxt-base/config/modules/_nuxtConfig'
 
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
 
@@ -21,7 +20,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
 
     /* --- components --- */
-    ['@nuxt/content', nuxtConfig.content],
     ['nuxt-splide', { theme: 'default' }],
     'floating-vue/nuxt',
   ],

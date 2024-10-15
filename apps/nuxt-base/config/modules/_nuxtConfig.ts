@@ -1,5 +1,4 @@
 import { nuxtConfig as colorMode } from './colorMode'
-import { nuxtConfig as content } from './content'
 import { nuxtConfig as fontaine } from './fontaine'
 import { nuxtConfig as formkit } from './formkit'
 import { nuxtConfig as googleFonts } from './googleFonts'
@@ -11,7 +10,6 @@ import { nuxtConfig as vueuse } from './vueuse'
 
 export default {
   colorMode,
-  content,
   fontaine,
   formkit,
   googleFonts,

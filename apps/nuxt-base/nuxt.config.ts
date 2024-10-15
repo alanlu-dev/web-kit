@@ -60,7 +60,6 @@ export default defineNuxtConfig({
     /* --- components --- */
     ['@nuxt/image', nuxtConfig.image],
     ['nuxt-icon', nuxtConfig.nuxtIcon],
-    // ['@nuxt/content', _nuxtConfig.content],
     ['@formkit/nuxt', nuxtConfig.formkit],
 
     '@vue-final-modal/nuxt',
@@ -131,15 +130,17 @@ export default defineNuxtConfig({
   ],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#vite
-  // vite: {
-  //   // css: {
-  //   //   preprocessorOptions: {
-  //   //     scss: {
-  //   //       additionalData: '@use "@alanlu-dev/scss/src/abstracts" as *;',
-  //   //     },
-  //   //   },
-  //   // },
-  // },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // https://github.com/sass/dart-sass/issues/2352
+          api: 'modern-compiler', // or 'modern'
+          // additionalData: '@use "@alanlu-dev/scss/src/abstracts" as *;',
+        },
+      },
+    },
+  },
 
   nitro: {
     // https://github.com/nuxt/nuxt/issues/20773

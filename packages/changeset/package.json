@@ -41,8 +41,7 @@
     "@changesets/read": "^0.6.1",
     "@changesets/write": "^0.3.2",
     "@manypkg/get-packages": "^2.2.2",
-    "commander": "^12.1.0",
-    "jiti": "1.21.6"
+    "commander": "^12.1.0"
   },
   "devDependencies": {
     "@alanlu-dev/tsconfig": "workspace:*",

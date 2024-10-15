@@ -26,11 +26,11 @@
     "lint": "pnpm lint:eslint && pnpm lint:prettier"
   },
   "peerDependencies": {
-    "@playwright/test": "^1.47.1",
-    "playwright-core": "^1.47.1"
+    "@playwright/test": "^1.48.0",
+    "playwright-core": "^1.48.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.47.1",
-    "playwright-core": "^1.47.1"
+    "@playwright/test": "^1.48.0",
+    "playwright-core": "^1.48.0"
   }
 }
