@@ -1,5 +1,11 @@
 # @alanlu-dev/commitlint-config
 
+## 1.0.8
+
+### Patch Changes
+
+- [`fc948d8`](https://github.com/alanlu-dev/web-kit/commit/fc948d8d69a4ffbbcd9cee5bbff1d9ca61f58765) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.7
 
 ### Patch Changes
