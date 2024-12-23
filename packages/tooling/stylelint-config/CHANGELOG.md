@@ -1,5 +1,11 @@
 # @alanlu-dev/stylelint-config
 
+## 1.0.14
+
+### Patch Changes
+
+- [`19ebc81`](https://github.com/alanlu-dev/web-kit/commit/19ebc81bcbe41e1588911394635cae7877ab9af1) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.13
 
 ### Patch Changes
