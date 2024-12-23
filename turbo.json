@@ -1,5 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "globalDependencies": ["**/.output/**"],
   "tasks": {
     "app:prepare": {
       "cache": false
@@ -15,21 +17,28 @@
     "cleanup": {
       "cache": false
     },
-    "build:clean": {
+    "clean:build": {
       "cache": false
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".output/**"]
+      "outputs": [".cache/tsbuildinfo.json", "dist/**", "build/**", ".expo/**", ".output/**", ".vercel/output/**"]
     },
     "deploy": {
       "dependsOn": ["build", "test", "lint"]
     },
+    "format": {
+      "outputs": [".cache/.prettiercache"],
+      "outputLogs": "new-only"
+    },
+    "lint": {
+      "outputs": [".cache/.eslintcache"]
+    },
+    "typecheck": {
+      "outputs": [".cache/tsbuildinfo.json"]
+    },
     "test": {},
-    "e2e-test": {},
-    "lint": {},
-    "lint:eslint": {},
-    "typecheck": {},
+    "test-e2e": {},
     "coverage": {
       "outputs": ["coverage/**"]
     }

@@ -1,0 +1,46 @@
+{
+  "name": "@alanlu-dev/eslint-config",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Shareable eslint configuration.",
+  "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alanlu-dev/web-kit.git",
+    "directory": "packages/tooling/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./*": "./src/*.mjs"
+  },
+  "main": "src/index.mjs",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier --check . --ignore-path ../../../.prettierignore",
+    "lint": "eslint"
+  },
+  "peerDependencies": {
+    "@antfu/eslint-config": "^3.12.0",
+    "@master/eslint-config-css": "2.0.0-rc.47",
+    "@master/eslint-plugin-css": "2.0.0-rc.47",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vitest": "^0.5.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.12.0",
+    "@master/eslint-config-css": "2.0.0-rc.47",
+    "@master/eslint-plugin-css": "2.0.0-rc.47",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vitest": "^0.5.4"
+  }
+}

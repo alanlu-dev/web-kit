@@ -1,0 +1,49 @@
+{
+  "name": "@alanlu-dev/mastercss-config",
+  "type": "module",
+  "version": "1.0.12",
+  "description": "Shareable Master CSS configuration.",
+  "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alanlu-dev/web-kit.git",
+    "directory": "packages/styles/mastercss/config"
+  },
+  "bugs": {
+    "url": "https://github.com/alanlu-dev/web-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./vendors/*": {
+      "import": "./dist/vendors/*.mjs",
+      "require": "./dist/vendors/*.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "pkg:prepare": "pnpm run build",
+    "clean:build": "npx rimraf --glob ./dist",
+    "build": "tsx scripts/build.mjs",
+    "dev": "tsx --watch scripts/build.mjs",
+    "format": "prettier --check . --ignore-path ../../../../.prettierignore",
+    "lint": "eslint",
+    "runner:test": "node scripts/runner.mjs"
+  },
+  "peerDependencies": {
+    "@master/css": "2.0.0-rc.47"
+  },
+  "devDependencies": {
+    "@alanlu-dev/mastercss-helpers": "workspace:*",
+    "@master/css": "2.0.0-rc.47",
+    "@master/css-validator": "2.0.0-rc.47",
+    "ts-deepmerge": "^7.0.2"
+  }
+}

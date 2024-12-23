@@ -4,16 +4,10 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
-
   "editor.formatOnPaste": false, // required
   "editor.formatOnType": false, // required
   "editor.formatOnSave": false, // optional, if you use ESlint，this should be false
   "editor.formatOnSaveMode": "file", // required to format on save
-
-  "editor.quickSuggestions": {
-    "strings": true
-  },
-
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never",
     "source.fixAll": "never",
@@ -21,11 +15,14 @@
     "source.fixAll.stylelint": "explicit",
     "source.fixAll.markdownlint": "explicit"
   },
-
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "json", "jsonc", "yaml", "toml"],
-  "eslint.workingDirectories": [{ "pattern": "./apps/*" }, { "pattern": "./packages/*" }],
+  "eslint.workingDirectories": [
+    { "pattern": "./apps/*" },
+    { "pattern": "./packages/*" },
+    { "pattern": "./packages/{styles,tests,tooling,versions}/*" },
+    { "pattern": "./packages/styles/mastercsss/*" }
+  ],
   // "eslint.trace.server": "verbose",
-
   // Silent the stylistic rules in you IDE, but still auto fix them
   // "eslint.rules.customizations": [
   //   { "rule": "style/*", "severity": "off" },
@@ -39,12 +36,12 @@
   //   { "rule": "*quotes", "severity": "off" },
   //   { "rule": "*semi", "severity": "off" }
   // ],
-
   "stylelint.enable": true,
   "stylelint.validate": ["css", "less", "postcss", "sass", "scss", "vue", "html"],
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-
-  "vitest.disableWorkspaceWarning": true
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

@@ -15,6 +15,7 @@ markdownlint
 maska
 mastercss
 mcss
+nitropack
 notionhq
 nuxt
 nuxtjs
@@ -22,6 +23,7 @@ persistedstate
 pinia
 postcss
 resvg
+shadcn
 splide
 splidejs
 Stylelint
@@ -31,6 +33,7 @@ toastify
 tseslint
 tsup
 Turborepo
+unhead
 unplugin
 unstorage
 versionrc

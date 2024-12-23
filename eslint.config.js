@@ -1,3 +1,3 @@
-import config from '@alanlu-dev/eslint-config-flat'
+import config from '@alanlu-dev/eslint-config'
 
 export default config

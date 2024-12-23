@@ -1,3 +1,10 @@
 {
-  "recommendations": ["EditorConfig.EditorConfig", "dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "DavidAnson.vscode-markdownlint", "streetsidesoftware.code-spell-checker"]
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "DavidAnson.vscode-markdownlint",
+    "streetsidesoftware.code-spell-checker",
+    "yoavbls.pretty-ts-errors"
+  ]
 }
