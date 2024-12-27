@@ -1,5 +1,11 @@
 # @alanlu-dev/release-it-config
 
+## 0.0.14
+
+### Patch Changes
+
+- [`55ca24d`](https://github.com/alanlu-dev/web-kit/commit/55ca24db5575e29504728e1ee77dbff3797a3a18) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 0.0.13
 
 ### Patch Changes
