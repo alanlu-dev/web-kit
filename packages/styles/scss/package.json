@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/scss",
   "type": "commonjs",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Shareable SCSS configuration.",
   "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
   "license": "MIT",

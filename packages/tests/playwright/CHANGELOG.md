@@ -1,5 +1,11 @@
 # @alanlu-dev/playwright-config
 
+## 0.1.3
+
+### Patch Changes
+
+- [`55ca24d`](https://github.com/alanlu-dev/web-kit/commit/55ca24db5575e29504728e1ee77dbff3797a3a18) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 0.1.2
 
 ### Patch Changes
