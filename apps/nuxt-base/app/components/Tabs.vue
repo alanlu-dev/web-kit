@@ -46,7 +46,7 @@ const name = ref(nanoid(10))
 
 function onInput(newIdx: number) {
   idx.value = newIdx
-  const value = inputProps.value?.tabs[newIdx]?.value as string
+  const value = inputProps.value.tabs[newIdx]?.value as string
   emit('update:modelValue', value)
 }
 

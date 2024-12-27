@@ -42,6 +42,7 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "test-e2e": "turbo run test-e2e",
+    "nuxt-base": "pnpm --filter=./apps/nuxt-base",
     "nuxt-demo": "pnpm --filter=./apps/nuxt-demo",
     "nuxt-demo:dev": "turbo run dev --filter=./apps/nuxt-demo --filter=./packages/**",
     "taze": "npx taze",

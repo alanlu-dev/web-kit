@@ -49,7 +49,7 @@ export const rules = {
 export const messages = Object.entries(_messages).reduce(
   (acc, [key, messages]) => {
     Object.entries(messages).forEach(([locale, func]) => {
-      if (acc[locale]?.validation && acc[locale].validation[key]) {
+      if (acc[locale] && acc[locale].validation) {
         acc[locale].validation[key] = func
       }
     })

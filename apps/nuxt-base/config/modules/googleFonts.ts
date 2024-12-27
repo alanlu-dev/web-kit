@@ -9,4 +9,5 @@ export const nuxtConfig: typeof import('@nuxtjs/google-fonts').default extends N
   },
   display: 'swap',
   useStylesheet: true,
+  download: false,
 }

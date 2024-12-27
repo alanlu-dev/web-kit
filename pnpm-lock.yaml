@@ -84,35 +84,17 @@ importers:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.2)(happy-dom@16.0.0)(sass@1.83.0)(terser@5.37.0)
 
-  apps/nuxt-demo:
+  apps/nuxt-base:
     dependencies:
       '@alanlu-dev/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      '@formkit/i18n':
-        specifier: ^1.6.9
-        version: 1.6.9
-      '@splidejs/splide':
-        specifier: ^4.1.4
-        version: 4.1.4
-      '@splidejs/splide-extension-intersection':
-        specifier: ^0.2.0
-        version: 0.2.0
       '@vueuse/core':
         specifier: ^12.2.0
         version: 12.2.0(typescript@5.7.2)
       class-variant:
         specifier: ^2.0.4
         version: 2.0.4
-      floating-vue:
-        specifier: ^5.2.2
-        version: 5.2.2(@nuxt/kit@3.15.0(magicast@0.3.5)(rollup@4.29.1))(vue@3.5.13(typescript@5.7.2))
-      i18next:
-        specifier: ^24.2.0
-        version: 24.2.0(typescript@5.7.2)
-      maska:
-        specifier: ^3.0.4
-        version: 3.0.4
       nanoid:
         specifier: ^5.0.9
         version: 5.0.9
@@ -120,7 +102,7 @@ importers:
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))
       unstorage:
-        specifier: 1.14.3
+        specifier: ^1.14.3
         version: 1.14.3(db0@0.2.1)(ioredis@5.4.2)
       vue:
         specifier: ^3.5.13
@@ -131,15 +113,9 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
-      vue3-toastify:
-        specifier: ^0.2.8
-        version: 0.2.8(vue@3.5.13(typescript@5.7.2))
       zod:
         specifier: ^3.24.1
         version: 3.24.1
-      zod-i18n-map:
-        specifier: ^2.27.0
-        version: 2.27.0(i18next@24.2.0(typescript@5.7.2))(zod@3.24.1)
     devDependencies:
       '@alanlu-dev/mastercss-config':
         specifier: workspace:*
@@ -157,6 +133,9 @@ importers:
         specifier: ^1.6.9
         version: 1.6.9
       '@formkit/core':
+        specifier: ^1.6.9
+        version: 1.6.9
+      '@formkit/i18n':
         specifier: ^1.6.9
         version: 1.6.9
       '@formkit/icons':
@@ -177,12 +156,6 @@ importers:
       '@formkit/zod':
         specifier: ^1.6.9
         version: 1.6.9(zod@3.24.1)
-      '@gtm-support/vue-gtm':
-        specifier: ^3.1.0
-        version: 3.1.0(vue@3.5.13(typescript@5.7.2))
-      '@intlify/unplugin-vue-i18n':
-        specifier: ^6.0.2
-        version: 6.0.2(@vue/compiler-dom@3.5.13)(eslint@9.17.0(jiti@2.4.2))(rollup@4.29.1)(typescript@5.7.2)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.2)))(vue@3.5.13(typescript@5.7.2))
       '@master/css.nuxt':
         specifier: 2.0.0-rc.47
         version: 2.0.0-rc.47(magicast@0.3.5)(rollup@4.29.1)(vue@3.5.13(typescript@5.7.2))
@@ -201,9 +174,6 @@ importers:
       '@nuxt/schema':
         specifier: ^3.15.0
         version: 3.15.0(magicast@0.3.5)(rollup@4.29.1)
-      '@nuxt/test-utils':
-        specifier: ^3.15.1
-        version: 3.15.1(@playwright/test@1.49.1)(@testing-library/vue@8.1.0(@vue/compiler-sfc@3.5.13)(vue@3.5.13(typescript@5.7.2)))(@types/node@22.10.2)(@vue/test-utils@2.4.6)(happy-dom@16.0.0)(magicast@0.3.5)(playwright-core@1.49.1)(rollup@4.29.1)(sass@1.83.0)(terser@5.37.0)(typescript@5.7.2)(vitest@2.1.8(@types/node@22.10.2)(happy-dom@16.0.0)(sass@1.83.0)(terser@5.37.0))
       '@nuxt/ui':
         specifier: ^2.20.0
         version: 2.20.0(change-case@5.4.4)(focus-trap@7.6.2)(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
@@ -216,24 +186,12 @@ importers:
       '@nuxtjs/google-fonts':
         specifier: ^3.2.0
         version: 3.2.0(magicast@0.3.5)(rollup@4.29.1)
-      '@nuxtjs/i18n':
-        specifier: ^9.1.1
-        version: 9.1.1(@vue/compiler-dom@3.5.13)(eslint@9.17.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))
-      '@nuxtjs/seo':
-        specifier: ^2.0.2
-        version: 2.0.2(@unhead/vue@1.11.14(vue@3.5.13(typescript@5.7.2)))(h3@1.13.0)(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(unhead@1.11.14)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
       '@pinia/nuxt':
         specifier: ^0.9.0
         version: 0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))(rollup@4.29.1)
-      '@testing-library/vue':
-        specifier: ^8.1.0
-        version: 8.1.0(@vue/compiler-sfc@3.5.13)(vue@3.5.13(typescript@5.7.2))
       '@vue-final-modal/nuxt':
         specifier: ^1.0.3
         version: 1.0.3(magicast@0.3.5)(rollup@4.29.1)(vue-final-modal@4.5.5(@vueuse/core@12.2.0(typescript@5.7.2))(@vueuse/integrations@12.2.0(change-case@5.4.4)(focus-trap@7.6.2)(fuse.js@7.0.0)(typescript@5.7.2))(focus-trap@7.6.2)(vue@3.5.13(typescript@5.7.2)))
-      '@vue/test-utils':
-        specifier: ^2.4.6
-        version: 2.4.6
       '@vueuse/nuxt':
         specifier: ^12.2.0
         version: 12.2.0(magicast@0.3.5)(nuxt@3.15.0(@parcel/watcher@2.5.0)(@types/node@22.10.2)(db0@0.2.1)(eslint@9.17.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.29.1)(sass@1.83.0)(stylelint@16.12.0(typescript@5.7.2))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue-tsc@2.2.0(typescript@5.7.2))(yaml@2.6.1))(rollup@4.29.1)(typescript@5.7.2)
@@ -243,21 +201,100 @@ importers:
       nuxt:
         specifier: ^3.15.0
         version: 3.15.0(@parcel/watcher@2.5.0)(@types/node@22.10.2)(db0@0.2.1)(eslint@9.17.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.29.1)(sass@1.83.0)(stylelint@16.12.0(typescript@5.7.2))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue-tsc@2.2.0(typescript@5.7.2))(yaml@2.6.1)
-      nuxt-gtag:
-        specifier: ^3.0.2
-        version: 3.0.2(magicast@0.3.5)(rollup@4.29.1)
       nuxt-icon:
         specifier: ^0.6.10
         version: 0.6.10(magicast@0.3.5)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
+      pinia-plugin-persistedstate:
+        specifier: ^4.2.0
+        version: 4.2.0(@pinia/nuxt@0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))(rollup@4.29.1))(magicast@0.3.5)(pinia@2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))(rollup@4.29.1)
+      vue-tsc:
+        specifier: ^2.2.0
+        version: 2.2.0(typescript@5.7.2)
+
+  apps/nuxt-demo:
+    dependencies:
+      '@alanlu-dev/nuxt-base':
+        specifier: workspace:*
+        version: link:../nuxt-base
+      '@formkit/core':
+        specifier: ^1.6.9
+        version: 1.6.9
+      '@formkit/i18n':
+        specifier: ^1.6.9
+        version: 1.6.9
+      '@splidejs/splide':
+        specifier: ^4.1.4
+        version: 4.1.4
+      '@splidejs/splide-extension-intersection':
+        specifier: ^0.2.0
+        version: 0.2.0
+      '@vueuse/core':
+        specifier: ^12.2.0
+        version: 12.2.0(typescript@5.7.2)
+      floating-vue:
+        specifier: ^5.2.2
+        version: 5.2.2(@nuxt/kit@3.15.0(magicast@0.3.5)(rollup@4.29.1))(vue@3.5.13(typescript@5.7.2))
+      i18next:
+        specifier: ^24.2.0
+        version: 24.2.0(typescript@5.7.2)
+      maska:
+        specifier: ^3.0.4
+        version: 3.0.4
+      pinia:
+        specifier: ^2.3.0
+        version: 2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.13(typescript@5.7.2)
+      vue-final-modal:
+        specifier: ^4.5.5
+        version: 4.5.5(@vueuse/core@12.2.0(typescript@5.7.2))(@vueuse/integrations@12.2.0(change-case@5.4.4)(focus-trap@7.6.2)(fuse.js@7.0.0)(typescript@5.7.2))(focus-trap@7.6.2)(vue@3.5.13(typescript@5.7.2))
+      zod:
+        specifier: ^3.24.1
+        version: 3.24.1
+      zod-i18n-map:
+        specifier: ^2.27.0
+        version: 2.27.0(i18next@24.2.0(typescript@5.7.2))(zod@3.24.1)
+    devDependencies:
+      '@alanlu-dev/mastercss-config':
+        specifier: workspace:*
+        version: link:../../packages/styles/mastercss/config
+      '@gtm-support/vue-gtm':
+        specifier: ^3.1.0
+        version: 3.1.0(vue@3.5.13(typescript@5.7.2))
+      '@intlify/unplugin-vue-i18n':
+        specifier: ^6.0.2
+        version: 6.0.2(@vue/compiler-dom@3.5.13)(eslint@9.17.0(jiti@2.4.2))(rollup@4.29.1)(typescript@5.7.2)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.2)))(vue@3.5.13(typescript@5.7.2))
+      '@nuxt/kit':
+        specifier: ^3.15.0
+        version: 3.15.0(magicast@0.3.5)(rollup@4.29.1)
+      '@nuxt/test-utils':
+        specifier: ^3.15.1
+        version: 3.15.1(@playwright/test@1.49.1)(@testing-library/vue@8.1.0(@vue/compiler-sfc@3.5.13)(vue@3.5.13(typescript@5.7.2)))(@types/node@22.10.2)(@vue/test-utils@2.4.6)(happy-dom@16.0.0)(magicast@0.3.5)(playwright-core@1.49.1)(rollup@4.29.1)(sass@1.83.0)(terser@5.37.0)(typescript@5.7.2)(vitest@2.1.8(@types/node@22.10.2)(happy-dom@16.0.0)(sass@1.83.0)(terser@5.37.0))
+      '@nuxtjs/i18n':
+        specifier: ^9.1.1
+        version: 9.1.1(@vue/compiler-dom@3.5.13)(eslint@9.17.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))
+      '@nuxtjs/seo':
+        specifier: ^2.0.2
+        version: 2.0.2(@unhead/vue@1.11.14(vue@3.5.13(typescript@5.7.2)))(h3@1.13.0)(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(unhead@1.11.14)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
+      '@testing-library/vue':
+        specifier: ^8.1.0
+        version: 8.1.0(@vue/compiler-sfc@3.5.13)(vue@3.5.13(typescript@5.7.2))
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.6
+      nuxt:
+        specifier: ^3.15.0
+        version: 3.15.0(@parcel/watcher@2.5.0)(@types/node@22.10.2)(db0@0.2.1)(eslint@9.17.0(jiti@2.4.2))(ioredis@5.4.2)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.29.1)(sass@1.83.0)(stylelint@16.12.0(typescript@5.7.2))(terser@5.37.0)(tsx@4.19.2)(typescript@5.7.2)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue-tsc@2.2.0(typescript@5.7.2))(yaml@2.6.1)
+      nuxt-gtag:
+        specifier: ^3.0.2
+        version: 3.0.2(magicast@0.3.5)(rollup@4.29.1)
       nuxt-security:
         specifier: ^2.1.5
         version: 2.1.5(magicast@0.3.5)(rollup@4.29.1)
       nuxt-splide:
         specifier: ^1.1.1
         version: 1.1.1(magicast@0.3.5)(rollup@4.29.1)
-      pinia-plugin-persistedstate:
-        specifier: ^4.2.0
-        version: 4.2.0(@pinia/nuxt@0.9.0(magicast@0.3.5)(pinia@2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))(rollup@4.29.1))(magicast@0.3.5)(pinia@2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2)))(rollup@4.29.1)
       vue-tsc:
         specifier: ^2.2.0
         version: 2.2.0(typescript@5.7.2)
@@ -8757,15 +8794,6 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
-
-  vue3-toastify@0.2.8:
-    resolution: {integrity: sha512-8jDOqsJaBZEbGpCbhWDETJc11D1lZefvgFPq/IPdM+U7+qyXoVPDvK6uq/FIgyV7qV0NcNzvGBMEzjsLQqGROw==}
-    engines: {node: '>=20', npm: '>=9.0.0'}
-    peerDependencies:
-      vue: '>=3.2.0'
-    peerDependenciesMeta:
-      vue:
-        optional: true
 
   vue@3.5.13:
     resolution: {integrity: sha512-wmeiSMxkZCSc+PM2w2VRsOYAZC8GdipNFRTsLSfodVqI9mbejKeXEGr8SckuLnrQPGe3oJN5c3K0vpoU9q/wCQ==}
@@ -18939,10 +18967,6 @@ snapshots:
       '@volar/typescript': 2.4.11
       '@vue/language-core': 2.2.0(typescript@5.7.2)
       typescript: 5.7.2
-
-  vue3-toastify@0.2.8(vue@3.5.13(typescript@5.7.2)):
-    optionalDependencies:
-      vue: 3.5.13(typescript@5.7.2)
 
   vue@3.5.13(typescript@5.7.2):
     dependencies:
