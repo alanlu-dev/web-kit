@@ -102,7 +102,7 @@ function group(config: GroupConfig): string {
         otherGroup.push(
           group({
             parent: _parent,
-            cls: r[2].split(';').join(' '),
+            cls: r[2]!.split(';').join(' '),
             selector: _selector,
             mq: _mq,
             scope,
@@ -150,7 +150,7 @@ function toLine(obj: Record<string, string>, options: Partial<ToLineOptions> = {
       })
     }
     // 以下開頭視為後代選擇器
-    else if (['_', '>', '~', '+', ':', '[', '@', '!'].includes(temp[0]) || options?.scope) {
+    else if (['_', '>', '~', '+', ':', '[', '@', '!'].includes(temp[0]!) || options?.scope) {
       styles = group({
         selector,
         cls: styles,

@@ -48,10 +48,10 @@ jobs:
         run: pnpm run build
 
       - name: Lint
-        run: pnpm run lint:fix
+        run: pnpm run lint
 
       - name: Format
-        run: pnpm run format:fix
+        run: pnpm run format
 
       - name: TypeCheck
         run: pnpm run typecheck

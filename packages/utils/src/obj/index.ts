@@ -30,7 +30,7 @@ function queryString2Obj(str?: string): Record<string, any> {
   if (!str) return {}
   return str.split('&').reduce((acc: Record<string, any>, params: string) => {
     const p = params.split('=', 2)
-    if (p.length > 1) acc[p[0]] = decodeURIComponent(p[1].replace(/\+/g, ' '))
+    if (p.length > 1) acc[p[0]!] = decodeURIComponent(p[1]!.replace(/\+/g, ' '))
     return acc
   }, {})
 }

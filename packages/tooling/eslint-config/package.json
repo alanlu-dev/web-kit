@@ -26,7 +26,7 @@
     "lint": "eslint"
   },
   "peerDependencies": {
-    "@antfu/eslint-config": "^3.12.0",
+    "@antfu/eslint-config": "^3.12.1",
     "@master/eslint-config-css": "2.0.0-rc.47",
     "@master/eslint-plugin-css": "2.0.0-rc.47",
     "eslint": "^9.17.0",
@@ -35,7 +35,7 @@
     "eslint-plugin-vitest": "^0.5.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.12.0",
+    "@antfu/eslint-config": "^3.12.1",
     "@master/eslint-config-css": "2.0.0-rc.47",
     "@master/eslint-plugin-css": "2.0.0-rc.47",
     "eslint": "^9.17.0",
