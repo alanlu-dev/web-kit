@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/playwright-config",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
   "license": "MIT",
   "repository": {
