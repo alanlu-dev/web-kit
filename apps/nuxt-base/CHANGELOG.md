@@ -1,5 +1,11 @@
 # @alanlu-dev/nuxt-base
 
+## 1.0.17
+
+### Patch Changes
+
+- [`433c70b`](https://github.com/alanlu-dev/web-kit/commit/433c70b2da50e9d6854e148864ef566aacfa2ea7) Thanks [@alanlu-zyl](https://github.com/alanlu-zyl)! - chore(deps): bump package versions
+
 ## 1.0.16
 
 ### Patch Changes
