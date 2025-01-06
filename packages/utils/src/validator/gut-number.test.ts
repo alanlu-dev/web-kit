@@ -1,4 +1,4 @@
-import { isGuiNumberValid } from './index'
+import { isGuiNumberValid } from './gui-number'
 
 describe('isGuiNumValid', () => {
   it('should only accept 8-digit of string or number', () => {

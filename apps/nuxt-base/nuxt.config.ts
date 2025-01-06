@@ -105,7 +105,7 @@ export default defineNuxtConfig({
       script: [
         {
           // https://github.com/iconify/iconify/issues/283#issuecomment-1947790510
-          src: 'https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js',
+          src: 'https://code.iconify.design/iconify-icon/2.2.0/iconify-icon.min.js',
           key: 'iconify-icon',
         },
       ],
@@ -124,6 +124,7 @@ export default defineNuxtConfig({
   css: [
     '@master/normal.css',
     '@formkit/themes/genesis',
+    '@formkit/addons/css/floatingLabels',
     // SCSS file in the project
     // '@alanlu-dev/scss', // you should add main.scss somewhere in your app
   ],
@@ -169,6 +170,4 @@ export default defineNuxtConfig({
       },
     },
   },
-
-  compatibilityDate: '2024-12-27',
 })

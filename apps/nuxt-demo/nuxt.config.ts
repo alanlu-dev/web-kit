@@ -14,8 +14,6 @@ export default defineNuxtConfig({
   // https://nuxt.com/docs/guide/going-further/layers
   extends: ['@alanlu-dev/nuxt-base'],
 
-  telemetry: false,
-
   future: {
     compatibilityVersion: 4,
   },
@@ -85,13 +83,7 @@ export default defineNuxtConfig({
   },
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#css
-  css: [
-    '@master/normal.css',
-    '@formkit/themes/genesis',
-    '@formkit/addons/css/floatingLabels',
-    // SCSS file in the project
-    // '@alanlu-dev/scss', // you should add main.scss somewhere in your app
-  ],
+  css: [],
 
   // https://nuxt.com/docs/api/configuration/nuxt-config#vite
   vite: {
