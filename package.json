@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@9.15.3",
   "description": "A monorepo build system and workflow for web projects.",
-  "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-zyl)",
+  "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-tw)",
   "license": "MIT",
   "repository": {
     "type": "git",
