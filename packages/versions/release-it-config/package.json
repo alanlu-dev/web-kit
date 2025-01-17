@@ -1,7 +1,7 @@
 {
   "name": "@alanlu-dev/release-it-config",
   "type": "commonjs",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-tw)",
   "license": "MIT",
   "repository": {

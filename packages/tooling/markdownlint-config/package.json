@@ -1,6 +1,6 @@
 {
   "name": "@alanlu-dev/markdownlint-config",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Shareable markdownlint configuration.",
   "author": "Alan Lu <hi@alanlu.me> (https://github.com/alanlu-tw)",
   "license": "MIT",

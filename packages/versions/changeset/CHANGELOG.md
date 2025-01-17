@@ -1,5 +1,11 @@
 # @alanlu-dev/changeset
 
+## 1.0.12
+
+### Patch Changes
+
+- [`3c947ee`](https://github.com/alanlu-dev/web-kit/commit/3c947eedbd52f32519362e118018bcbcbb4db6c5) Thanks [@alanlu-tw](https://github.com/alanlu-tw)! - chore: update the author's GitHub link
+
 ## 1.0.11
 
 ### Patch Changes
