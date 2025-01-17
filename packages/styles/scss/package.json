@@ -27,10 +27,10 @@
     "lint": "stylelint --allow-empty-input ./src/**/*.scss"
   },
   "peerDependencies": {
-    "sass": "^1.83.1"
+    "sass": "^1.83.4"
   },
   "devDependencies": {
     "@alanlu-dev/stylelint-config": "workspace:*",
-    "sass": "^1.83.1"
+    "sass": "^1.83.4"
   }
 }

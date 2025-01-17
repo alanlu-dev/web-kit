@@ -25,12 +25,12 @@
   },
   "peerDependencies": {
     "prettier": "^3.4.2",
-    "prettier-plugin-brace-style": "^0.7.1",
+    "prettier-plugin-brace-style": "^0.7.2",
     "prettier-plugin-merge": "^0.7.2"
   },
   "devDependencies": {
     "prettier": "^3.4.2",
-    "prettier-plugin-brace-style": "^0.7.1",
+    "prettier-plugin-brace-style": "^0.7.2",
     "prettier-plugin-merge": "^0.7.2"
   }
 }
