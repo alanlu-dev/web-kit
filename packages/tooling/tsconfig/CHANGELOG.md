@@ -1,5 +1,13 @@
 # @alanlu-dev/tsconfig
 
+## 1.0.14
+
+### Patch Changes
+
+- [`3c947ee`](https://github.com/alanlu-dev/web-kit/commit/3c947eedbd52f32519362e118018bcbcbb4db6c5) Thanks [@alanlu-tw](https://github.com/alanlu-tw)! - chore: update the author's GitHub link
+
+- [`479902f`](https://github.com/alanlu-dev/web-kit/commit/479902ffe1c2906c8fd262c52a1546bbcfc3baa3) Thanks [@alanlu-tw](https://github.com/alanlu-tw)! - chore(deps): bump package versions
+
 ## 1.0.13
 
 ### Patch Changes
